@@ -1,0 +1,475 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_FUGR" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <AREAT>RFC-Bausteine für die Dateibearbeitung</AREAT>
+   <INCLUDES>
+    <SOBJ_NAME>LZAPCMD_FG_RFCTOP</SOBJ_NAME>
+    <SOBJ_NAME>SAPLZAPCMD_FG_RFC</SOBJ_NAME>
+   </INCLUDES>
+   <FUNCTIONS>
+    <item>
+     <FUNCNAME>ZAPCMD_CHECK_DIR</FUNCNAME>
+     <REMOTE_CALL>R</REMOTE_CALL>
+     <SHORT_TEXT>Prüft, ob ein Verzeichnis vorhanden ist</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>IV_DIR</PARAMETER>
+       <TYP>TEXT255</TYP>
+      </RSIMP>
+     </IMPORT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>EV_REACHABLE</PARAMETER>
+       <TYP>XFELD</TYP>
+      </RSEXP>
+     </EXPORT>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>IV_DIR</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Text, 255 Zeichen</STEXT>
+       <INDEX> 001</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>EV_REACHABLE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Feld zum Ankreuzen</STEXT>
+       <INDEX> 002</INDEX>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
+     <FUNCNAME>ZAPCMD_DELETE_FILE</FUNCNAME>
+     <REMOTE_CALL>R</REMOTE_CALL>
+     <SHORT_TEXT>Löscht eine Datei</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>IV_FULL_NAME</PARAMETER>
+       <TYP>TEXT255</TYP>
+      </RSIMP>
+     </IMPORT>
+     <EXCEPTION>
+      <RSEXC>
+       <EXCEPTION>NOT_FOUND</EXCEPTION>
+      </RSEXC>
+     </EXCEPTION>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>IV_FULL_NAME</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Text, 255 Zeichen</STEXT>
+       <INDEX> 001</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>NOT_FOUND</PARAMETER>
+       <KIND>X</KIND>
+       <INDEX> 002</INDEX>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
+     <FUNCNAME>ZAPCMD_EXEC_ABAP</FUNCNAME>
+     <REMOTE_CALL>R</REMOTE_CALL>
+     <SHORT_TEXT>Führt ABAP-Code per aus.</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>IV_FULL_NAME</PARAMETER>
+       <TYP>TEXT255</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_SHORTNAME</PARAMETER>
+       <TYP>TEXT255</TYP>
+      </RSIMP>
+     </IMPORT>
+     <EXCEPTION>
+      <RSEXC>
+       <EXCEPTION>NOT_FOUND</EXCEPTION>
+      </RSEXC>
+      <RSEXC>
+       <EXCEPTION>NO_EXEC</EXCEPTION>
+      </RSEXC>
+     </EXCEPTION>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>IV_FULL_NAME</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Text, 255 Zeichen</STEXT>
+       <INDEX> 001</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_SHORTNAME</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Text, 255 Zeichen</STEXT>
+       <INDEX> 002</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>NOT_FOUND</PARAMETER>
+       <KIND>X</KIND>
+       <INDEX> 003</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>NO_EXEC</PARAMETER>
+       <KIND>X</KIND>
+       <INDEX> 004</INDEX>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
+     <FUNCNAME>ZAPCMD_EXEC_CMD</FUNCNAME>
+     <REMOTE_CALL>R</REMOTE_CALL>
+     <SHORT_TEXT>Legt ein Verzeichnis an.</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>IV_COMMAND</PARAMETER>
+       <DEFAULT>&apos;mkdir&apos;</DEFAULT>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>TEXT255</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_DIR</PARAMETER>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>TEXT255</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_PARAMETER</PARAMETER>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>TEXT255</TYP>
+      </RSIMP>
+     </IMPORT>
+     <TABLES>
+      <RSTBL>
+       <PARAMETER>ET_OUTPUT</PARAMETER>
+       <DBSTRUCT>ZAPCMD_T_TEXT255</DBSTRUCT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSTBL>
+     </TABLES>
+     <EXCEPTION>
+      <RSEXC>
+       <EXCEPTION>NOT_FOUND</EXCEPTION>
+      </RSEXC>
+     </EXCEPTION>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>IV_COMMAND</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Text, 255 Zeichen</STEXT>
+       <INDEX> 001</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_DIR</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Text, 255 Zeichen</STEXT>
+       <INDEX> 002</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_PARAMETER</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Text, 255 Zeichen</STEXT>
+       <INDEX> 003</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>ET_OUTPUT</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Struktur für RFC-Übergabe</STEXT>
+       <INDEX> 004</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>NOT_FOUND</PARAMETER>
+       <KIND>X</KIND>
+       <STEXT>Verzeichnis nicht gefunden</STEXT>
+       <INDEX> 005</INDEX>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
+     <FUNCNAME>ZAPCMD_GET_HOMEDIR</FUNCNAME>
+     <REMOTE_CALL>R</REMOTE_CALL>
+     <SHORT_TEXT>gibt das Heimatverzeichnis zurück</SHORT_TEXT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>EV_FULLNAME</PARAMETER>
+       <TYP>TEXT255</TYP>
+      </RSEXP>
+     </EXPORT>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>EV_FULLNAME</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Text, 255 Zeichen</STEXT>
+       <INDEX> 001</INDEX>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
+     <FUNCNAME>ZAPCMD_GET_OPSYS</FUNCNAME>
+     <REMOTE_CALL>R</REMOTE_CALL>
+     <SHORT_TEXT>gibt das Betriebssystem zurück</SHORT_TEXT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>EV_OPSYS</PARAMETER>
+       <TYP>SYOPSYS</TYP>
+      </RSEXP>
+     </EXPORT>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>EV_OPSYS</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Betriebssystem des Applikationsservers</STEXT>
+       <INDEX> 001</INDEX>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
+     <FUNCNAME>ZAPCMD_READ_BINFILE</FUNCNAME>
+     <REMOTE_CALL>R</REMOTE_CALL>
+     <SHORT_TEXT>Liest eine Binärdatei ein.</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>IV_FULL_NAME</PARAMETER>
+       <TYP>TEXT255</TYP>
+      </RSIMP>
+     </IMPORT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>EV_FILESIZE</PARAMETER>
+       <TYP>I</TYP>
+      </RSEXP>
+     </EXPORT>
+     <TABLES>
+      <RSTBL>
+       <PARAMETER>ET_FILE</PARAMETER>
+       <DBSTRUCT>ZAPCMD_DATA_BUFFER</DBSTRUCT>
+      </RSTBL>
+     </TABLES>
+     <EXCEPTION>
+      <RSEXC>
+       <EXCEPTION>NOT_FOUND</EXCEPTION>
+      </RSEXC>
+     </EXCEPTION>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>IV_FULL_NAME</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Text, 255 Zeichen</STEXT>
+       <INDEX> 001</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>EV_FILESIZE</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 002</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>ET_FILE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Datenpuffer für RFC-Übertragung</STEXT>
+       <INDEX> 003</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>NOT_FOUND</PARAMETER>
+       <KIND>X</KIND>
+       <INDEX> 004</INDEX>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
+     <FUNCNAME>ZAPCMD_READ_DIR</FUNCNAME>
+     <REMOTE_CALL>R</REMOTE_CALL>
+     <SHORT_TEXT>Liest ein Verzeichnis ein.</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>IV_DIR</PARAMETER>
+       <TYP>TEXT255</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_FILTER</PARAMETER>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>TEXT255</TYP>
+      </RSIMP>
+     </IMPORT>
+     <TABLES>
+      <RSTBL>
+       <PARAMETER>ET_FILE</PARAMETER>
+       <DBSTRUCT>ZAPCMD_FILE_DESCR</DBSTRUCT>
+      </RSTBL>
+     </TABLES>
+     <EXCEPTION>
+      <RSEXC>
+       <EXCEPTION>NOT_FOUND</EXCEPTION>
+      </RSEXC>
+     </EXCEPTION>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>IV_DIR</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>char255</STEXT>
+       <INDEX> 001</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_FILTER</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>char255</STEXT>
+       <INDEX> 002</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>ET_FILE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Struktur zur Beschreibung einer Datei</STEXT>
+       <INDEX> 003</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>NOT_FOUND</PARAMETER>
+       <KIND>X</KIND>
+       <STEXT>Verzeichnis nicht gefunden</STEXT>
+       <INDEX> 004</INDEX>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
+     <FUNCNAME>ZAPCMD_READ_TEXTFILE</FUNCNAME>
+     <REMOTE_CALL>R</REMOTE_CALL>
+     <SHORT_TEXT>liest eine textdatei ein</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>IV_FULL_NAME</PARAMETER>
+       <TYP>TEXT255</TYP>
+      </RSIMP>
+     </IMPORT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>EV_FILESIZE</PARAMETER>
+       <TYP>I</TYP>
+      </RSEXP>
+     </EXPORT>
+     <TABLES>
+      <RSTBL>
+       <PARAMETER>ET_FILE</PARAMETER>
+       <DBSTRUCT>ZAPCMD_DATA_BUFFER</DBSTRUCT>
+      </RSTBL>
+     </TABLES>
+     <EXCEPTION>
+      <RSEXC>
+       <EXCEPTION>NOT_FOUND</EXCEPTION>
+      </RSEXC>
+     </EXCEPTION>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>IV_FULL_NAME</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Text, 255 Zeichen</STEXT>
+       <INDEX> 001</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>EV_FILESIZE</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 002</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>ET_FILE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Struktur für RFC-Übergabe</STEXT>
+       <INDEX> 003</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>NOT_FOUND</PARAMETER>
+       <KIND>X</KIND>
+       <STEXT>Datei nicht gefunden</STEXT>
+       <INDEX> 004</INDEX>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
+     <FUNCNAME>ZAPCMD_WRITE_BINFILE</FUNCNAME>
+     <REMOTE_CALL>R</REMOTE_CALL>
+     <SHORT_TEXT>Schreibt eine Binärdatei</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>IV_FULL_NAME</PARAMETER>
+       <TYP>TEXT255</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_FILESIZE</PARAMETER>
+       <TYP>I</TYP>
+      </RSIMP>
+     </IMPORT>
+     <TABLES>
+      <RSTBL>
+       <PARAMETER>IT_FILE</PARAMETER>
+       <DBSTRUCT>ZAPCMD_DATA_BUFFER</DBSTRUCT>
+      </RSTBL>
+     </TABLES>
+     <EXCEPTION>
+      <RSEXC>
+       <EXCEPTION>NOT_FOUND</EXCEPTION>
+      </RSEXC>
+     </EXCEPTION>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>IV_FULL_NAME</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Text, 255 Zeichen</STEXT>
+       <INDEX> 001</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_FILESIZE</PARAMETER>
+       <KIND>P</KIND>
+       <INDEX> 002</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IT_FILE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Datenpuffer für RFC-Übertragung</STEXT>
+       <INDEX> 003</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>NOT_FOUND</PARAMETER>
+       <KIND>X</KIND>
+       <INDEX> 004</INDEX>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
+     <FUNCNAME>ZAPCMD_WRITE_TEXTFILE</FUNCNAME>
+     <REMOTE_CALL>R</REMOTE_CALL>
+     <SHORT_TEXT>Schreibt eine Binärdatei</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>IV_FULL_NAME</PARAMETER>
+       <TYP>TEXT255</TYP>
+      </RSIMP>
+     </IMPORT>
+     <TABLES>
+      <RSTBL>
+       <PARAMETER>IT_FILE</PARAMETER>
+       <DBSTRUCT>ZAPCMD_DATA_BUFFER</DBSTRUCT>
+      </RSTBL>
+     </TABLES>
+     <EXCEPTION>
+      <RSEXC>
+       <EXCEPTION>NOT_FOUND</EXCEPTION>
+      </RSEXC>
+     </EXCEPTION>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>IV_FULL_NAME</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Text, 255 Zeichen</STEXT>
+       <INDEX> 001</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IT_FILE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Datenpuffer für RFC-Übertragung</STEXT>
+       <INDEX> 002</INDEX>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>NOT_FOUND</PARAMETER>
+       <KIND>X</KIND>
+       <INDEX> 003</INDEX>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+   </FUNCTIONS>
+  </asx:values>
+ </asx:abap>
+</abapGit>

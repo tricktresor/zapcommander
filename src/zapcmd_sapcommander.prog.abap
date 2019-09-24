@@ -6,6 +6,7 @@
 *&---------------------------------------------------------------------*
 REPORT  zapcmd_sapcommander.
 
+
 PARAMETER p_ltype TYPE syucomm DEFAULT zapcmd_cl_dir=>co_default NO-DISPLAY.
 PARAMETER p_ldir TYPE string DEFAULT space NO-DISPLAY.
 PARAMETER p_rtype TYPE syucomm DEFAULT zapcmd_cl_dir=>co_default NO-DISPLAY.
@@ -38,27 +39,16 @@ START-OF-SELECTION.
   ENDIF.
 
 
-
   DATA ok_code100 LIKE sy-ucomm.
-
   DATA gf_gui_commander_container TYPE REF TO cl_gui_custom_container.
   DATA gf_gui_dirname_container TYPE REF TO cl_gui_custom_container.
-
   DATA gf_commander TYPE REF TO zapcmd_cl_commander.
   DATA gf_cmdline TYPE REF TO zapcmd_cl_cmdline.
-
-
   DATA g_cmdline TYPE string.
   DATA g_dirname TYPE string.
-
-
-
-
-
-
   DATA lf_temp TYPE REF TO string.
-
   DATA lf_dirname TYPE REF TO string.
+
   GET REFERENCE OF g_cmdline INTO lf_temp.
   GET REFERENCE OF g_dirname INTO lf_dirname.
 
@@ -121,9 +111,7 @@ MODULE status_0100 OUTPUT.
 
   ENDIF.
 
-  CALL METHOD gf_commander->show
-    EXPORTING
-      pf_container = gf_gui_commander_container.
+  gf_commander->show( gf_gui_commander_container ).
 
   DATA gs_dir TYPE REF TO zapcmd_cl_dir.
   gs_dir = gf_commander->cf_activelist->get_dir( ).
@@ -136,9 +124,7 @@ MODULE status_0100 OUTPUT.
           container_name = 'CUST400'.
     ENDIF.
 
-    CALL METHOD gf_cmdline->show1
-      EXPORTING
-        pf_container = gf_gui_dirname_container.
+    gf_cmdline->show1( gf_gui_dirname_container ).
   ENDIF.
 
 

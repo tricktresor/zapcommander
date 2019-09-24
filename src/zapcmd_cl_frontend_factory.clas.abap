@@ -1,17 +1,17 @@
-class ZAPCMD_CL_FRONTEND_FACTORY definition
-  public
-  final
-  create public .
+CLASS zapcmd_cl_frontend_factory DEFINITION
+  PUBLIC
+  FINAL
+  CREATE PUBLIC .
 
 *"* public components of class ZAPCMD_CL_FRONTEND_FACTORY
 *"* do not include other source files here!!!
-public section.
+  PUBLIC SECTION.
 
-  interfaces ZAPCMD_IF_FACTORY .
-protected section.
+    INTERFACES zapcmd_if_factory .
+  PROTECTED SECTION.
 *"* protected components of class ZAPCMD_CL_FRONTEND_FACTORY
 *"* do not include other source files here!!!
-private section.
+  PRIVATE SECTION.
 *"* private components of class ZAPCMD_CL_FRONTEND_FACTORY
 *"* do not include other source files here!!!
 ENDCLASS.
@@ -21,29 +21,29 @@ ENDCLASS.
 CLASS ZAPCMD_CL_FRONTEND_FACTORY IMPLEMENTATION.
 
 
-method ZAPCMD_IF_FACTORY~CREATE_DIR.
+  METHOD zapcmd_if_factory~create_dir.
 
-  if i_fcode = 'FRONTEND'.
+    IF i_fcode = 'FRONTEND'.
 
-    create object eo_dir type ZAPCMD_CL_FRONTEND_DIR.
-    eo_dir->init( pf_full_name = i_dir ).
+      CREATE OBJECT eo_dir TYPE zapcmd_cl_frontend_dir.
+      eo_dir->init( pf_full_name = i_dir ).
 
-  endif.
-endmethod.
+    ENDIF.
+  ENDMETHOD.
 
 
-method ZAPCMD_IF_FACTORY~GET_BUTTON.
+  METHOD zapcmd_if_factory~get_button.
 
-      data ls_toolbar type STB_BUTTON.
+    DATA ls_toolbar TYPE stb_button.
 
     CLEAR ls_toolbar.
     MOVE 0 TO ls_toolbar-butn_type.
     MOVE 'FRONTEND' TO ls_toolbar-function.
-    MOVE ICON_WORKPLACE TO ls_toolbar-icon.
-    MOVE 'Frontend'(220) to ls_toolbar-text.
+    MOVE icon_workplace TO ls_toolbar-icon.
+    MOVE 'Frontend'(220) TO ls_toolbar-text.
     MOVE 'Präsentationsserver'(221) TO ls_toolbar-quickinfo.
-    MOVE SPACE TO ls_toolbar-disabled.
+    MOVE space TO ls_toolbar-disabled.
     APPEND ls_toolbar TO et_button.
 
-endmethod.
+  ENDMETHOD.
 ENDCLASS.

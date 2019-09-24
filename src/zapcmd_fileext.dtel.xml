@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_DTEL" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <DD04V>
+    <ROLLNAME>ZAPCMD_FILEEXT</ROLLNAME>
+    <DDLANGUAGE>D</DDLANGUAGE>
+    <DOMNAME>ZAPCMD_FILENAME</DOMNAME>
+    <HEADLEN>21</HEADLEN>
+    <SCRLEN1>04</SCRLEN1>
+    <SCRLEN2>11</SCRLEN2>
+    <SCRLEN3>21</SCRLEN3>
+    <DDTEXT>Dateinamenerweiterung</DDTEXT>
+    <REPTEXT>Dateinamenerweiterung</REPTEXT>
+    <SCRTEXT_S>Erw.</SCRTEXT_S>
+    <SCRTEXT_M>Erweiterung</SCRTEXT_M>
+    <SCRTEXT_L>Dateinamenerweiterung</SCRTEXT_L>
+    <DTELMASTER>D</DTELMASTER>
+    <REFKIND>D</REFKIND>
+   </DD04V>
+   <I18N_LANGS>
+    <LANGU>E</LANGU>
+   </I18N_LANGS>
+   <DD04_TEXTS>
+    <item>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DDTEXT>File extension</DDTEXT>
+     <REPTEXT>File extension</REPTEXT>
+     <SCRTEXT_S>Ext.</SCRTEXT_S>
+     <SCRTEXT_M>Extension</SCRTEXT_M>
+     <SCRTEXT_L>File extension</SCRTEXT_L>
+    </item>
+   </DD04_TEXTS>
+  </asx:values>
+ </asx:abap>
+</abapGit>

@@ -1,52 +1,52 @@
-class ZAPCMD_CL_CMDLINE definition
-  public
-  final
-  create public .
+CLASS zapcmd_cl_cmdline DEFINITION
+  PUBLIC
+  FINAL
+  CREATE PUBLIC .
 
 *"* public components of class ZAPCMD_CL_CMDLINE
 *"* do not include other source files here!!!
-public section.
+  PUBLIC SECTION.
 
-   data cf_gui_textedit type ref to cl_gui_textedit.
-    data cf_gui_dirname type ref to cl_gui_textedit.
-    data ct_line type zapcmd_tbl_string.
-    data cf_commandlinenumber type i.
+    DATA cf_gui_textedit TYPE REF TO cl_gui_textedit.
+    DATA cf_gui_dirname TYPE REF TO cl_gui_textedit.
+    DATA ct_line TYPE zapcmd_tbl_string.
+    DATA cf_commandlinenumber TYPE i.
     DATA cf_dirname TYPE string.
-    data cf_cmdline type ref to string.
-    data cf_filelist type ref to zapcmd_refref_filelist.
+    DATA cf_cmdline TYPE REF TO string.
+    DATA cf_filelist TYPE REF TO zapcmd_refref_filelist.
 
-    methods show1
-      importing
-         !PF_CONTAINER type ref to CL_GUI_CONTAINER.
+    METHODS show1
+      IMPORTING
+        !pf_container TYPE REF TO cl_gui_container.
 
-    methods SHOW
-       importing
-         !PF_CONTAINER type ref to CL_GUI_CONTAINER.
+    METHODS show
+      IMPORTING
+        !pf_container TYPE REF TO cl_gui_container.
 
 *    methods HANDLE_DOUBLECLICK
 *      for event DOUBLE_CLICK of CL_GUI_ALV_GRID.
 
-     methods HANDLE_DOUBLECLICK
-      for event set_active of zapcmd_cl_filelist.
+    METHODS handle_doubleclick
+        FOR EVENT set_active OF zapcmd_cl_filelist.
 
-    methods constructor
-      importing
-        pf_cmdline type ref to string
-        pf_dir type ref to zapcmd_refref_filelist.
+    METHODS constructor
+      IMPORTING
+        pf_cmdline TYPE REF TO string
+        pf_dir     TYPE REF TO zapcmd_refref_filelist.
 
-    methods execute
-      importing pf_cmdline type string
-                pf_filelist type ref to ZApcmd_CL_filelist.
+    METHODS execute
+      IMPORTING pf_cmdline  TYPE string
+                pf_filelist TYPE REF TO zapcmd_cl_filelist.
 
 *    methods handle_dblclick for event dblclick of cl_gui_textedit.
 
-    methods user_command
-      importing
-        e_ucomm type syucomm.
-protected section.
+    METHODS user_command
+      IMPORTING
+        e_ucomm TYPE syucomm.
+  PROTECTED SECTION.
 *"* protected components of class ZAPCMD_CL_CMDLINE
 *"* do not include other source files here!!!
-private section.
+  PRIVATE SECTION.
 *"* private components of class ZAPCMD_CL_CMDLINE
 *"* do not include other source files here!!!
 ENDCLASS.
@@ -56,22 +56,22 @@ ENDCLASS.
 CLASS ZAPCMD_CL_CMDLINE IMPLEMENTATION.
 
 
-method CONSTRUCTOR.
+  METHOD constructor.
 
     cf_cmdline = pf_cmdline.
     cf_filelist = pf_dir.
 
-endmethod.
+  ENDMETHOD.
 
 
-method EXECUTE.
+  METHOD execute.
 
     IF pf_cmdline IS NOT INITIAL.
       DATA ls_dir TYPE REF TO zapcmd_cl_dir.
       DATA lf_cmdline TYPE string.
       ls_dir ?= pf_filelist->get_dir( ).
       DATA lf_cd(3) TYPE c.
-      IF STRLEN( pf_cmdline ) > 2.
+      IF strlen( pf_cmdline ) > 2.
         lf_cd = pf_cmdline(3).
         CONDENSE lf_cd.
         TRANSLATE lf_cd TO UPPER CASE.
@@ -91,14 +91,10 @@ method EXECUTE.
           INTO lf_params SEPARATED BY space.
         CALL METHOD cl_gui_frontend_services=>execute
           EXPORTING
-*            DOCUMENT               = 'c:\WINDOWS\system32\cmd.exe'
             application            = 'c:\WINDOWS\system32\cmd.exe'
             parameter              = lf_params
             default_directory      = ls_dir->full_name
-*            MAXIMIZED              =
-*            MINIMIZED              =
             synchronous            = 'X'
-*            OPERATION              = 'OPEN'
           EXCEPTIONS
             cntl_error             = 1
             error_no_gui           = 2
@@ -109,11 +105,11 @@ method EXECUTE.
             error_execute_failed   = 7
             synchronous_failed     = 8
             not_supported_by_gui   = 9
-            OTHERS                 = 10
-                .
+            OTHERS                 = 10.
         IF sy-subrc <> 0.
           MESSAGE ID sy-msgid TYPE 'I' NUMBER sy-msgno
                      WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+          RETURN.
         ENDIF.
 
       ELSE.
@@ -152,8 +148,7 @@ method EXECUTE.
 *       CALL SCREEN 300 STARTING AT 10 3 ENDING AT 100 27.
         CALL FUNCTION 'ZAPCMD_CALL_CMDLINE'
           EXPORTING
-            pf_cmdline       = me
-                  .
+            pf_cmdline = me.
 
 *      cf_gui_textedit->SET_TEXT_AS_R3TABLE(
 *        exporting
@@ -163,187 +158,89 @@ method EXECUTE.
       ENDIF.
     ENDIF.
 
-endmethod.
+  ENDMETHOD.
 
 
-method HANDLE_DOUBLECLICK.
+  METHOD handle_doubleclick.
+
     FIELD-SYMBOLS: <filelist> TYPE REF TO zapcmd_cl_filelist.
     ASSIGN cf_filelist->* TO <filelist>.
     cf_dirname = <filelist>->cf_ref_dir->full_name.
-    cf_gui_dirname->set_textstream(
-      EXPORTING
-        TEXT                   = cf_dirname
-      EXCEPTIONS
-        ERROR_CNTL_CALL_METHOD = 1
-        NOT_SUPPORTED_BY_GUI   = 2
-        others                 = 3
-           ).
-    IF sy-subrc <> 0.
-     MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
-                WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
-    ENDIF.
 
-**    DATA ct_dirname TYPE TABLE OF string.
-*    refresh ct_dirname.
-*    FIELD-SYMBOLS: <filelist> TYPE REF TO zapcmd_cl_filelist.
-*    ASSIGN cf_filelist->* TO <filelist>.
-*    APPEND <filelist>->cf_ref_dir->full_name TO ct_dirname.
-*    cf_gui_dirname->set_text_as_r3table(
-*      EXPORTING
-*        table = ct_dirname
-*      ).
-*    CALL METHOD cl_gui_cfw=>flush.
-*    IF sy-subrc NE 0.
-*    ENDIF.
+    cf_gui_dirname->set_textstream( text = cf_dirname ).
 
-endmethod.
+  ENDMETHOD.
 
 
-method SHOW.
-
-*      importing
-*        !PF_CONTAINER type ref to CL_GUI_CONTAINER .
-  IF cf_gui_textedit IS INITIAL.
-    CREATE OBJECT cf_gui_textedit
-      EXPORTING
-        style = 0
-        wordwrap_mode = 0
-        parent  = pf_container.
-    cf_gui_textedit->set_statusbar_mode( 0 ).
-    cf_gui_textedit->set_toolbar_mode( 0 ).
+  METHOD show.
+    IF cf_gui_textedit IS INITIAL.
+      CREATE OBJECT cf_gui_textedit
+        EXPORTING
+          style         = 0
+          wordwrap_mode = 0
+          parent        = pf_container.
+      cf_gui_textedit->set_statusbar_mode( 0 ).
+      cf_gui_textedit->set_toolbar_mode( 0 ).
 *      cf_gui_textedit->SET_MODE( 0 ).
 *      set handler handle_dblclick for cf_gui_textedit.
-    cf_gui_textedit->register_event_dblclick(
-      register = 1 ).
+      cf_gui_textedit->register_event_dblclick( register = 1 ).
 
-  ENDIF.
+    ENDIF.
 
-  CALL METHOD cf_gui_textedit->set_readonly_mode
-    EXPORTING
-      readonly_mode = 1.
+    cf_gui_textedit->set_readonly_mode( 1 ).
 
-  DATA lf_stream TYPE string.
-  lf_stream = zapcmd_cl_file=>text2stream( ct_line ).
+    DATA lf_stream TYPE string.
+    lf_stream = zapcmd_cl_file=>text2stream( ct_line ).
 
-  cf_gui_textedit->set_textstream(
-    EXPORTING
-      text                   = lf_stream
-    EXCEPTIONS
-      error_cntl_call_method = 1
-      not_supported_by_gui   = 2
-      OTHERS                 = 3
-         ).
-  IF sy-subrc <> 0.
-    MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
-               WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
-  ENDIF.
+    cf_gui_textedit->set_textstream( text = lf_stream ).
+
+    IF cf_commandlinenumber IS INITIAL.
+      cf_commandlinenumber = 1.
+    ENDIF.
+
+    cf_gui_textedit->go_to_line( line = cf_commandlinenumber ).
+
+    cf_gui_textedit->set_first_visible_line( line = cf_commandlinenumber ).
+
+  ENDMETHOD.
 
 
-*    cf_gui_textedit->set_text_as_r3table(
-*      EXPORTING
-*        table = ct_line
-*      ).
-
-  IF cf_commandlinenumber IS INITIAL.
-    cf_commandlinenumber = 1.
-  ENDIF.
-
-  cf_gui_textedit->go_to_line(
-    EXPORTING
-      line                   = cf_commandlinenumber
-*      EXCEPTIONS
-*        ERROR_CNTL_CALL_METHOD = 1
-*        others                 = 2
-         ).
-  IF sy-subrc <> 0.
-*     MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
-*                WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
-  ENDIF.
-
-  cf_gui_textedit->set_first_visible_line(
-    EXPORTING
-      line                   = cf_commandlinenumber
-*      EXCEPTIONS
-*        ERROR_CNTL_CALL_METHOD = 1
-*        others                 = 2
-         ).
-  IF sy-subrc <> 0.
-*     MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
-*                WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
-  ENDIF.
-
-endmethod.
-
-
-method SHOW1.
-
+  METHOD show1.
 *      importing
 *        !PF_CONTAINER type ref to CL_GUI_CONTAINER .
     IF cf_gui_dirname IS INITIAL.
       CREATE OBJECT cf_gui_dirname
         EXPORTING
-          style = 0
+          style         = 0
           wordwrap_mode = 0
-          parent  = pf_container.
+          parent        = pf_container.
       cf_gui_dirname->set_statusbar_mode( 0 ).
       cf_gui_dirname->set_toolbar_mode( 0 ).
 
-      set handler handle_doubleclick for all instances.
-
+      SET HANDLER handle_doubleclick FOR ALL INSTANCES.
     ENDIF.
 
-    CALL METHOD cf_gui_dirname->set_readonly_mode
-      EXPORTING
-        readonly_mode = 1.
+    cf_gui_dirname->set_readonly_mode( 1 ).
 
-      FIELD-SYMBOLS: <filelist> TYPE REF TO zapcmd_cl_filelist.
+    FIELD-SYMBOLS: <filelist> TYPE REF TO zapcmd_cl_filelist.
     ASSIGN cf_filelist->* TO <filelist>.
     cf_dirname = <filelist>->cf_ref_dir->full_name.
-    cf_gui_dirname->set_textstream(
-      EXPORTING
-        TEXT                   = cf_dirname
-      EXCEPTIONS
-        ERROR_CNTL_CALL_METHOD = 1
-        NOT_SUPPORTED_BY_GUI   = 2
-        others                 = 3
-           ).
-    IF sy-subrc <> 0.
-     MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
-                WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
-    ENDIF.
+    cf_gui_dirname->set_textstream( text = cf_dirname ).
 
-**    DATA ct_dirname TYPE TABLE OF string.
-*    refresh ct_dirname.
-*    FIELD-SYMBOLS: <filelist> TYPE REF TO zapcmd_cl_filelist.
-*    ASSIGN cf_filelist->* TO <filelist>.
-*    APPEND <filelist>->cf_ref_dir->full_name TO ct_dirname.
-*    cf_gui_dirname->set_text_as_r3table(
-*      EXPORTING
-*        table = ct_dirname
-*      ).
-*    CALL METHOD cl_gui_cfw=>flush.
-*    IF sy-subrc NE 0.
-*    ENDIF.
-
-endmethod.
+  ENDMETHOD.
 
 
-method USER_COMMAND.
+  METHOD user_command.
 
     IF e_ucomm IS INITIAL.
       FIELD-SYMBOLS: <cmdline> TYPE string.
       ASSIGN cf_cmdline->* TO <cmdline>.
       FIELD-SYMBOLS: <filelist> TYPE REF TO zapcmd_cl_filelist.
       ASSIGN cf_filelist->* TO <filelist>.
-
       execute(
         pf_cmdline = <cmdline>
-        pf_filelist = <filelist>
-        ).
-
+        pf_filelist = <filelist> ).
       CLEAR <cmdline>.
-
     ENDIF.
-
-endmethod.
+  ENDMETHOD.
 ENDCLASS.

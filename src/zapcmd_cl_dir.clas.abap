@@ -1,82 +1,82 @@
-class ZAPCMD_CL_DIR definition
-  public
-  inheriting from ZAPCMD_CL_KNOT
-  abstract
-  create public .
+CLASS zapcmd_cl_dir DEFINITION
+  PUBLIC
+  INHERITING FROM zapcmd_cl_knot
+  ABSTRACT
+  CREATE PUBLIC .
 
 *"* public components of class ZAPCMD_CL_DIR
 *"* do not include other source files here!!!
-public section.
+  PUBLIC SECTION.
 
-  constants CO_DEFAULT type SYUCOMM value 'DEFAULT'. "#EC NOTEXT
-  constants CO_FRONTEND type SYUCOMM value 'FRONTEND'. "#EC NOTEXT
-  constants CO_APPLSERV type SYUCOMM value 'APPLSERV'. "#EC NOTEXT
-  constants CO_SERVER type SYUCOMM value 'SERVER'. "#EC NOTEXT
-  constants CO_DRIVES type SYUCOMM value 'DRIVES'. "#EC NOTEXT
-  constants CO_RENAME type SYUCOMM value 'RENAME'. "#EC NOTEXT
-  constants CO_DELETE type SYUCOMM value 'DELETE'. "#EC NOTEXT
-  constants CO_REFRESH type SYUCOMM value 'REFRESH'. "#EC NOTEXT
-  constants CO_AL11 type SYUCOMM value 'AL11'. "#EC NOTEXT
-  constants CO_EDIT_DIR type SYUCOMM value 'EDDIR'. "#EC NOTEXT
-  constants CO_RFC type SYUCOMM value 'RFC'. "#EC NOTEXT
-  constants CO_LOGICALFILE type SYUCOMM value 'LOGICALF'. "#EC NOTEXT
-  data FILTER type STRING .
-  data AREA_STRING type STRING .
+    CONSTANTS co_default TYPE syucomm VALUE 'DEFAULT' ##NO_TEXT.
+    CONSTANTS co_frontend TYPE syucomm VALUE 'FRONTEND' ##NO_TEXT.
+    CONSTANTS co_applserv TYPE syucomm VALUE 'APPLSERV' ##NO_TEXT.
+    CONSTANTS co_server TYPE syucomm VALUE 'SERVER' ##NO_TEXT.
+    CONSTANTS co_drives TYPE syucomm VALUE 'DRIVES' ##NO_TEXT.
+    CONSTANTS co_rename TYPE syucomm VALUE 'RENAME' ##NO_TEXT.
+    CONSTANTS co_delete TYPE syucomm VALUE 'DELETE' ##NO_TEXT.
+    CONSTANTS co_refresh TYPE syucomm VALUE 'REFRESH' ##NO_TEXT.
+    CONSTANTS co_al11 TYPE syucomm VALUE 'AL11' ##NO_TEXT.
+    CONSTANTS co_edit_dir TYPE syucomm VALUE 'EDDIR' ##NO_TEXT.
+    CONSTANTS co_rfc TYPE syucomm VALUE 'RFC' ##NO_TEXT.
+    CONSTANTS co_logicalfile TYPE syucomm VALUE 'LOGICALF' ##NO_TEXT.
+    DATA filter TYPE string .
+    DATA area_string TYPE string .
 
-  methods CONSTRUCTOR .
-  methods READ_DIR
-  abstract
-    importing
-      !PF_MASK type ZAPCMD_FILENAME optional
-    exporting
-      value(PT_FILELIST) type ZAPCMD_TBL_FILELIST
-    exceptions
-      PERMISSION_DENIED .
-  methods CREATE_FILE
-  abstract
-    importing
-      value(PF_FILENAME) type STRING
-    exporting
-      !PF_FILE type ref to ZAPCMD_CL_FILE .
-  methods CREATE_DIR
-  abstract
-    importing
-      value(PF_FILENAME) type STRING
-    exporting
-      !PF_FILE type ref to ZAPCMD_CL_DIR .
-  methods GET_FREESPACE
-  abstract
-    exporting
-      !PF_SPACE type P .
-  methods GET_TOOLBAR
-  abstract
-    exporting
-      !PT_TOOLBAR type TTB_BUTTON .
-  type-pools ABAP .
-  methods CHECK_FILEEXIST
-    importing
-      !PF_FILENAME type CSEQUENCE
-    returning
-      value(PFX_EXIST) type ABAP_BOOL .
-  methods CREATE_NEW
-  abstract
-    importing
-      !I_FCODE type SYUCOMM optional
-    returning
-      value(EO_DIR) type ref to ZAPCMD_CL_DIR .
+    CLASS-METHODS class_constructor .
+    METHODS constructor .
+    METHODS read_dir
+          ABSTRACT
+      IMPORTING
+        !pf_mask           TYPE zapcmd_filename OPTIONAL
+      EXPORTING
+        VALUE(pt_filelist) TYPE zapcmd_tbl_filelist
+      EXCEPTIONS
+        permission_denied .
+    METHODS create_file
+          ABSTRACT
+      IMPORTING
+        VALUE(pf_filename) TYPE string
+      EXPORTING
+        !pf_file           TYPE REF TO zapcmd_cl_file .
+    METHODS create_dir
+          ABSTRACT
+      IMPORTING
+        VALUE(pf_filename) TYPE string
+      EXPORTING
+        !pf_file           TYPE REF TO zapcmd_cl_dir .
+    METHODS get_freespace
+          ABSTRACT
+      EXPORTING
+        !pf_space TYPE p .
+    METHODS get_toolbar
+          ABSTRACT
+      EXPORTING
+        !pt_toolbar TYPE ttb_button .
+    METHODS check_fileexist
+      IMPORTING
+        !pf_filename     TYPE csequence
+      RETURNING
+        VALUE(pfx_exist) TYPE abap_bool .
+    METHODS create_new
+          ABSTRACT
+      IMPORTING
+        !i_fcode      TYPE syucomm OPTIONAL
+      RETURNING
+        VALUE(eo_dir) TYPE REF TO zapcmd_cl_dir .
 
-  methods EXECUTE
-    redefinition .
-  methods INIT
-    redefinition .
-protected section.
+    METHODS execute
+        REDEFINITION .
+    METHODS init
+        REDEFINITION .
+  PROTECTED SECTION.
 *"* protected components of class ZAPCMD_CL_DIR
 *"* do not include other source files here!!!
 
-  methods READ_RFC
-    exporting
-      !PT_FILELIST type ZAPCMD_TBL_FILELIST .
-private section.
+    METHODS read_rfc
+      EXPORTING
+        !pt_filelist TYPE zapcmd_tbl_filelist .
+  PRIVATE SECTION.
 *"* private components of class ZAPCMD_CL_DIR
 *"* do not include other source files here!!!
 ENDCLASS.
@@ -86,136 +86,134 @@ ENDCLASS.
 CLASS ZAPCMD_CL_DIR IMPLEMENTATION.
 
 
-method CHECK_FILEEXIST.
+  METHOD check_fileexist.
 
-data LT_filelist type ZAPCMD_TBL_FILELIST.
-data lf_mask type zapcmd_filename.
-lf_mask = pf_filename.
-read_dir(
-  EXPORTING
-    PF_MASK           = lf_mask
-  IMPORTING
-    PT_FILELIST       = LT_FILELIST
-  EXCEPTIONS
-    PERMISSION_DENIED = 1
-    others            = 2
-       ).
-IF sy-subrc <> 0.
-  clear pfx_exist.
-  return.
-ENDIF.
-if lt_filelist is initial.
-  pfx_exist = abap_false.
-else.
-  pfx_exist = abap_true.
-endif.
-
-
-endmethod.
-
-
-method CONSTRUCTOR.
-
-  CALL METHOD super->constructor.
-
-  filetype = 'DIR'.
-
-endmethod.
-
-
-method EXECUTE.
-*** No Execution per default avalable.
-endmethod.
-
-
-method INIT.
-   call method super->init
+    DATA lt_filelist TYPE zapcmd_tbl_filelist.
+    DATA lf_mask TYPE zapcmd_filename.
+    lf_mask = pf_filename.
+    read_dir(
       EXPORTING
+        pf_mask           = lf_mask
+      IMPORTING
+        pt_filelist       = lt_filelist
+      EXCEPTIONS
+        permission_denied = 1
+        OTHERS            = 2
+           ).
+    IF sy-subrc <> 0.
+      CLEAR pfx_exist.
+      RETURN.
+    ENDIF.
+    IF lt_filelist IS INITIAL.
+      pfx_exist = abap_false.
+    ELSE.
+      pfx_exist = abap_true.
+    ENDIF.
+
+
+  ENDMETHOD.
+
+
+  METHOD class_constructor.
+  ENDMETHOD.
+
+
+  METHOD constructor.
+    super->constructor( ).
+    filetype = 'DIR'.
+  ENDMETHOD.
+
+
+  METHOD execute.
+*** No Execution per default avalable.
+  ENDMETHOD.
+
+
+  METHOD init.
+
+    super->init(
         pf_name      = pf_name
         pf_full_name = pf_full_name
         pf_size      = pf_size
         pf_moddate   = pf_moddate
         pf_modtime   = pf_modtime
         pf_attr      = pf_attr
-        pf_dir       = pf_dir.
+        pf_dir       = pf_dir ).
 
-  IS_DIR = 'X'.
+    is_dir = 'X'.
 
-  data lf_temp type i.
-  data lf_temp2 type string.
-  concatenate separator '..' into lf_temp2.
-  lf_temp = strlen( full_name ).
-  lf_temp = lf_temp - strlen( lf_temp2 ).
-  if lf_temp > 0.
-    if full_name+lf_temp = lf_temp2.
-      full_name = full_name(lf_temp).
-      search full_name for separator.
-      if sy-subrc = 0.
-        lf_temp = SY-FDPOS + strlen( separator ).
-        do.
-          search full_name+lf_temp for separator.
-          if sy-subrc = 0.
-            lf_temp = lf_temp + SY-FDPOS + strlen( separator ).
-          else.
-            exit.
-          endif.
-        enddo.
-        lf_temp = lf_temp - strlen( separator ).
+    DATA lf_temp TYPE i.
+    DATA lf_temp2 TYPE string.
+    CONCATENATE separator '..' INTO lf_temp2.
+    lf_temp = strlen( full_name ).
+    lf_temp = lf_temp - strlen( lf_temp2 ).
+    IF lf_temp > 0.
+      IF full_name+lf_temp = lf_temp2.
         full_name = full_name(lf_temp).
-        search full_name for separator.
-        if sy-subrc <> 0.
-          concatenate full_name separator into full_name.
-        endif.
-      else.
-        full_name = separator.
-      endif.
-    endif.
-  endif.
+        SEARCH full_name FOR separator.
+        IF sy-subrc = 0.
+          lf_temp = sy-fdpos + strlen( separator ).
+          DO.
+            SEARCH full_name+lf_temp FOR separator.
+            IF sy-subrc = 0.
+              lf_temp = lf_temp + sy-fdpos + strlen( separator ).
+            ELSE.
+              EXIT.
+            ENDIF.
+          ENDDO.
+          lf_temp = lf_temp - strlen( separator ).
+          full_name = full_name(lf_temp).
+          SEARCH full_name FOR separator.
+          IF sy-subrc <> 0.
+            CONCATENATE full_name separator INTO full_name.
+          ENDIF.
+        ELSE.
+          full_name = separator.
+        ENDIF.
+      ENDIF.
+    ENDIF.
 
 
 *  concatenate '[' name ']' into name.
-  filesize = 0.
-  clear sizestr.
-  filter = '*.*'.
-endmethod.
+    filesize = 0.
+    CLEAR sizestr.
+    filter = '*.*'.
+
+  ENDMETHOD.
 
 
-method READ_RFC.
+  METHOD read_rfc.
 
-data lt_rfc type table of rfcdest.
-data l_rfc type rfcdest.
+    DATA lt_rfc TYPE TABLE OF rfcdest.
+    DATA l_rfc TYPE rfcdest.
 
-select rfcdest from RFCDES
-  into table lt_rfc
-  where rfctype = '3'.
+    SELECT rfcdest FROM rfcdes
+      INTO TABLE lt_rfc
+      WHERE rfctype = '3'.
 
-  loop at lt_rfc into l_rfc.
+    LOOP AT lt_rfc INTO l_rfc.
 
-      data lf_name type string.
-      data lf_ref_file type ref to ZAPCMD_CL_KNOT.
+      DATA lf_name TYPE string.
+      DATA lf_ref_file TYPE REF TO zapcmd_cl_knot.
       lf_name = l_rfc.
 
-        create object lf_ref_file type ZAPCMD_CL_rfc_DIR
-          EXPORTING
-            iv_rfcdest = l_rfc
-          EXCEPTIONS
-            not_installed = 1.
-
-      if sy-subrc = 0.
-
-      call method lf_ref_file->init
+      CREATE OBJECT lf_ref_file TYPE zapcmd_cl_rfc_dir
         EXPORTING
-          pf_full_name = SEPARATOR
-          pf_name      = lf_name
-          pf_size      = 0
-          pf_dir       = full_name.
+          iv_rfcdest    = l_rfc
+        EXCEPTIONS
+          not_installed = 1.
 
-      append lf_ref_file to pt_filelist.
+      IF sy-subrc = 0.
+        lf_ref_file->init(
+            pf_full_name = separator
+            pf_name      = lf_name
+            pf_size      = 0
+            pf_dir       = full_name ).
 
-      endif.
+        APPEND lf_ref_file TO pt_filelist.
+      ENDIF.
 
-  endloop.
+    ENDLOOP.
 
-
-endmethod.
+  ENDMETHOD.
 ENDCLASS.
