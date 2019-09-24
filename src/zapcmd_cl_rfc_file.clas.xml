@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_CLAS" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOCLASS>
+    <CLSNAME>ZAPCMD_CL_RFC_FILE</CLSNAME>
+    <LANGU>D</LANGU>
+    <DESCRIPT>Datei auf dem applikationsssever</DESCRIPT>
+    <STATE>1</STATE>
+    <CLSCCINCL>X</CLSCCINCL>
+    <FIXPT>X</FIXPT>
+    <UNICODE>X</UNICODE>
+   </VSEOCLASS>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CLSNAME>ZAPCMD_CL_RFC_FILE</CLSNAME>
+     <CMPNAME>RFCDEST</CMPNAME>
+     <LANGU>D</LANGU>
+     <DESCRIPT>logische Destination (Wird bei Funktionsaufruf angegeben)</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+  </asx:values>
+ </asx:abap>
+</abapGit>

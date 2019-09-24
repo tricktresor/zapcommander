@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_CLAS" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOCLASS>
+    <CLSNAME>ZAPCMD_CL_SERVER_FACTORY</CLSNAME>
+    <LANGU>D</LANGU>
+    <DESCRIPT>Erzeugt Verzeichnis Frontend</DESCRIPT>
+    <STATE>1</STATE>
+    <CLSCCINCL>X</CLSCCINCL>
+    <FIXPT>X</FIXPT>
+    <UNICODE>X</UNICODE>
+   </VSEOCLASS>
+   <TPOOL>
+    <item>
+     <ID>I</ID>
+     <KEY>210</KEY>
+     <ENTRY>Appl. Server</ENTRY>
+     <LENGTH>12</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
+     <KEY>211</KEY>
+     <ENTRY>Applikationsserver</ENTRY>
+     <LENGTH>18</LENGTH>
+    </item>
+   </TPOOL>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CLSNAME>ZAPCMD_CL_SERVER_FACTORY</CLSNAME>
+     <CMPNAME>CO_APPLSERV</CMPNAME>
+     <LANGU>D</LANGU>
+     <DESCRIPT>Funktionscode, der PAI ausgelöst hat</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZAPCMD_CL_SERVER_FACTORY</CLSNAME>
+     <CMPNAME>CO_LOGICALFILE</CMPNAME>
+     <LANGU>D</LANGU>
+     <DESCRIPT>logischer Pfad</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+  </asx:values>
+ </asx:abap>
+</abapGit>

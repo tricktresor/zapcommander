@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_CLAS" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOCLASS>
+    <CLSNAME>ZAPCMD_CL_FILE</CLSNAME>
+    <LANGU>D</LANGU>
+    <DESCRIPT>Klasse für eine Datei</DESCRIPT>
+    <STATE>1</STATE>
+    <CLSCCINCL>X</CLSCCINCL>
+    <FIXPT>X</FIXPT>
+    <UNICODE>X</UNICODE>
+   </VSEOCLASS>
+   <TPOOL>
+    <item>
+     <ID>I</ID>
+     <KEY>001</KEY>
+     <ENTRY>Syntaxfehler in Zeile</ENTRY>
+     <LENGTH>21</LENGTH>
+    </item>
+   </TPOOL>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CLSNAME>ZAPCMD_CL_FILE</CLSNAME>
+     <CMPNAME>EXECUTE_ABAP</CMPNAME>
+     <LANGU>D</LANGU>
+     <DESCRIPT>Führt Abap-Reports aus Dateien aus</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZAPCMD_CL_FILE</CLSNAME>
+     <CMPNAME>GET_EXTENSION</CMPNAME>
+     <LANGU>D</LANGU>
+     <DESCRIPT>gibt die Dateierweiterung in Großbuchstaben aus.</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+  </asx:values>
+ </asx:abap>
+</abapGit>

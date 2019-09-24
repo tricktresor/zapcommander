@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_CLAS" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOCLASS>
+    <CLSNAME>ZAPCMD_CL_KNOTLIST</CLSNAME>
+    <LANGU>D</LANGU>
+    <DESCRIPT>interne Tabelle mit Knoten</DESCRIPT>
+    <STATE>1</STATE>
+    <CLSCCINCL>X</CLSCCINCL>
+    <FIXPT>X</FIXPT>
+    <UNICODE>X</UNICODE>
+   </VSEOCLASS>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CLSNAME>ZAPCMD_CL_KNOTLIST</CLSNAME>
+     <CMPNAME>ADD</CMPNAME>
+     <LANGU>D</LANGU>
+     <DESCRIPT>hinzufügen</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZAPCMD_CL_KNOTLIST</CLSNAME>
+     <CMPNAME>CT_LIST</CMPNAME>
+     <LANGU>D</LANGU>
+     <DESCRIPT>Tabelle mit Dateien und Verzeichnissen</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+  </asx:values>
+ </asx:abap>
+</abapGit>

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_CLAS" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOCLASS>
+    <CLSNAME>ZAPCMD_CL_EDITOR</CLSNAME>
+    <LANGU>D</LANGU>
+    <DESCRIPT>Einfacher Editor</DESCRIPT>
+    <STATE>1</STATE>
+    <CLSCCINCL>X</CLSCCINCL>
+    <FIXPT>X</FIXPT>
+    <UNICODE>X</UNICODE>
+   </VSEOCLASS>
+   <TPOOL>
+    <item>
+     <ID>I</ID>
+     <KEY>300</KEY>
+     <ENTRY>Text verändert.</ENTRY>
+     <LENGTH>15</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
+     <KEY>301</KEY>
+     <ENTRY>Soll der Text gespeichert werden?</ENTRY>
+     <LENGTH>33</LENGTH>
+    </item>
+   </TPOOL>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CLSNAME>ZAPCMD_CL_EDITOR</CLSNAME>
+     <CMPNAME>CF_GUI_SEDIT</CMPNAME>
+     <LANGU>D</LANGU>
+     <DESCRIPT>SAP ABAP Control</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZAPCMD_CL_EDITOR</CLSNAME>
+     <CMPNAME>CT_FILE</CMPNAME>
+     <LANGU>D</LANGU>
+     <DESCRIPT>Tabelle mit Zeichenketten</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZAPCMD_CL_EDITOR</CLSNAME>
+     <CMPNAME>GF_INSTANCE</CMPNAME>
+     <LANGU>D</LANGU>
+     <DESCRIPT>Einfacher Editor</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+  </asx:values>
+ </asx:abap>
+</abapGit>
