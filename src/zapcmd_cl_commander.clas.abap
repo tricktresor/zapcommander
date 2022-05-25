@@ -108,7 +108,11 @@ CLASS ZAPCMD_CL_COMMANDER IMPLEMENTATION.
 
     cl_gui_control=>get_focus(
       IMPORTING
-        control           = lf_gui_comp ).
+        control           = lf_gui_comp
+      EXCEPTIONS
+        cntl_error        = 1
+        cntl_system_error = 2
+        OTHERS            = 3 ).
 
     cf_filesleft->check_active( lf_gui_comp ).
     cf_filesright->check_active( lf_gui_comp ).
