@@ -29,13 +29,11 @@
        <PARAMETER>IV_DIR</PARAMETER>
        <KIND>P</KIND>
        <STEXT>Text, 255 Zeichen</STEXT>
-       <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>EV_REACHABLE</PARAMETER>
        <KIND>P</KIND>
        <STEXT>Feld zum Ankreuzen</STEXT>
-       <INDEX> 002</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
@@ -59,12 +57,10 @@
        <PARAMETER>IV_FULL_NAME</PARAMETER>
        <KIND>P</KIND>
        <STEXT>Text, 255 Zeichen</STEXT>
-       <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOT_FOUND</PARAMETER>
        <KIND>X</KIND>
-       <INDEX> 002</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
@@ -95,23 +91,19 @@
        <PARAMETER>IV_FULL_NAME</PARAMETER>
        <KIND>P</KIND>
        <STEXT>Text, 255 Zeichen</STEXT>
-       <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>IV_SHORTNAME</PARAMETER>
        <KIND>P</KIND>
        <STEXT>Text, 255 Zeichen</STEXT>
-       <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOT_FOUND</PARAMETER>
        <KIND>X</KIND>
-       <INDEX> 003</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NO_EXEC</PARAMETER>
        <KIND>X</KIND>
-       <INDEX> 004</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
@@ -154,31 +146,26 @@
        <PARAMETER>IV_COMMAND</PARAMETER>
        <KIND>P</KIND>
        <STEXT>Text, 255 Zeichen</STEXT>
-       <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>IV_DIR</PARAMETER>
        <KIND>P</KIND>
        <STEXT>Text, 255 Zeichen</STEXT>
-       <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>IV_PARAMETER</PARAMETER>
        <KIND>P</KIND>
        <STEXT>Text, 255 Zeichen</STEXT>
-       <INDEX> 003</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>ET_OUTPUT</PARAMETER>
        <KIND>P</KIND>
        <STEXT>Struktur für RFC-Übergabe</STEXT>
-       <INDEX> 004</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOT_FOUND</PARAMETER>
        <KIND>X</KIND>
        <STEXT>Verzeichnis nicht gefunden</STEXT>
-       <INDEX> 005</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
@@ -197,7 +184,6 @@
        <PARAMETER>EV_FULLNAME</PARAMETER>
        <KIND>P</KIND>
        <STEXT>Text, 255 Zeichen</STEXT>
-       <INDEX> 001</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
@@ -216,7 +202,6 @@
        <PARAMETER>EV_OPSYS</PARAMETER>
        <KIND>P</KIND>
        <STEXT>Betriebssystem des Applikationsservers</STEXT>
-       <INDEX> 001</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
@@ -252,23 +237,19 @@
        <PARAMETER>IV_FULL_NAME</PARAMETER>
        <KIND>P</KIND>
        <STEXT>Text, 255 Zeichen</STEXT>
-       <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>EV_FILESIZE</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>ET_FILE</PARAMETER>
        <KIND>P</KIND>
        <STEXT>Datenpuffer für RFC-Übertragung</STEXT>
-       <INDEX> 003</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOT_FOUND</PARAMETER>
        <KIND>X</KIND>
-       <INDEX> 004</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
@@ -303,25 +284,21 @@
        <PARAMETER>IV_DIR</PARAMETER>
        <KIND>P</KIND>
        <STEXT>char255</STEXT>
-       <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>IV_FILTER</PARAMETER>
        <KIND>P</KIND>
        <STEXT>char255</STEXT>
-       <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>ET_FILE</PARAMETER>
        <KIND>P</KIND>
        <STEXT>Struktur zur Beschreibung einer Datei</STEXT>
-       <INDEX> 003</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOT_FOUND</PARAMETER>
        <KIND>X</KIND>
        <STEXT>Verzeichnis nicht gefunden</STEXT>
-       <INDEX> 004</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
@@ -357,24 +334,20 @@
        <PARAMETER>IV_FULL_NAME</PARAMETER>
        <KIND>P</KIND>
        <STEXT>Text, 255 Zeichen</STEXT>
-       <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>EV_FILESIZE</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>ET_FILE</PARAMETER>
        <KIND>P</KIND>
        <STEXT>Struktur für RFC-Übergabe</STEXT>
-       <INDEX> 003</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOT_FOUND</PARAMETER>
        <KIND>X</KIND>
        <STEXT>Datei nicht gefunden</STEXT>
-       <INDEX> 004</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
@@ -408,23 +381,19 @@
        <PARAMETER>IV_FULL_NAME</PARAMETER>
        <KIND>P</KIND>
        <STEXT>Text, 255 Zeichen</STEXT>
-       <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>IV_FILESIZE</PARAMETER>
        <KIND>P</KIND>
-       <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>IT_FILE</PARAMETER>
        <KIND>P</KIND>
        <STEXT>Datenpuffer für RFC-Übertragung</STEXT>
-       <INDEX> 003</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOT_FOUND</PARAMETER>
        <KIND>X</KIND>
-       <INDEX> 004</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
@@ -454,18 +423,15 @@
        <PARAMETER>IV_FULL_NAME</PARAMETER>
        <KIND>P</KIND>
        <STEXT>Text, 255 Zeichen</STEXT>
-       <INDEX> 001</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>IT_FILE</PARAMETER>
        <KIND>P</KIND>
        <STEXT>Datenpuffer für RFC-Übertragung</STEXT>
-       <INDEX> 002</INDEX>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOT_FOUND</PARAMETER>
        <KIND>X</KIND>
-       <INDEX> 003</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>

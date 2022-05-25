@@ -24,7 +24,6 @@
        <PARAMETER>PF_EDITOR</PARAMETER>
        <KIND>P</KIND>
        <STEXT>Einfacher Editor</STEXT>
-       <INDEX> 001</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
@@ -65,7 +64,7 @@
        <LINE>PROCESS BEFORE OUTPUT.</LINE>
       </RPY_DYFLOW>
       <RPY_DYFLOW>
-       <LINE>MODULE STATUS_0200.</LINE>
+       <LINE>  MODULE STATUS_0200.</LINE>
       </RPY_DYFLOW>
       <RPY_DYFLOW>
        <LINE>*</LINE>
@@ -74,19 +73,15 @@
        <LINE>PROCESS AFTER INPUT.</LINE>
       </RPY_DYFLOW>
       <RPY_DYFLOW>
-       <LINE>MODULE USER_COMMAND_0200.</LINE>
+       <LINE>  MODULE USER_COMMAND_0200.</LINE>
       </RPY_DYFLOW>
      </FLOW_LOGIC>
-     <SPACES>
-      <item>0</item>
-      <item>2</item>
-      <item>0</item>
-      <item>0</item>
-      <item>2</item>
-     </SPACES>
     </item>
    </DYNPROS>
    <CUA>
+    <ADM>
+     <PFKCODE>000001</PFKCODE>
+    </ADM>
     <STA>
      <RSMPE_STAT>
       <CODE>STATUS200</CODE>

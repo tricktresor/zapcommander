@@ -24,7 +24,6 @@
        <PARAMETER>PF_CMDLINE</PARAMETER>
        <KIND>P</KIND>
        <STEXT>Kommandozeile</STEXT>
-       <INDEX> 001</INDEX>
       </RSFDO>
      </DOCUMENTATION>
     </item>
@@ -75,7 +74,7 @@
        <LINE>PROCESS BEFORE OUTPUT.</LINE>
       </RPY_DYFLOW>
       <RPY_DYFLOW>
-       <LINE>MODULE STATUS_0300.</LINE>
+       <LINE>  MODULE STATUS_0300.</LINE>
       </RPY_DYFLOW>
       <RPY_DYFLOW>
        <LINE>*</LINE>
@@ -84,19 +83,15 @@
        <LINE>PROCESS AFTER INPUT.</LINE>
       </RPY_DYFLOW>
       <RPY_DYFLOW>
-       <LINE>MODULE USER_COMMAND_0300.</LINE>
+       <LINE>  MODULE USER_COMMAND_0300.</LINE>
       </RPY_DYFLOW>
      </FLOW_LOGIC>
-     <SPACES>
-      <item>0</item>
-      <item>2</item>
-      <item>0</item>
-      <item>0</item>
-      <item>2</item>
-     </SPACES>
     </item>
    </DYNPROS>
    <CUA>
+    <ADM>
+     <PFKCODE>000001</PFKCODE>
+    </ADM>
     <STA>
      <RSMPE_STAT>
       <CODE>STATUS300</CODE>
