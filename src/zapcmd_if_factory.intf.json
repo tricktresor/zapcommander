@@ -1,0 +1,53 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Factory zum erzeugen von Verzeichnissen",
+    "originalLanguage": "D",
+    "abapLanguageVersion": "X"
+  },
+  "category": "00",
+  "proxy": false,
+  "descriptions": {
+    "methods": [
+      {
+        "name": "CREATE_DIR",
+        "parameters": [
+          {
+            "name": "EO_DIR",
+            "description": "Klasse für ein Verzeichnis"
+          },
+          {
+            "name": "I_DIR",
+            "description": "Dateiname mit Pfad"
+          },
+          {
+            "name": "I_FCODE",
+            "description": "Funktionscode, der PAI ausgelöst hat"
+          }
+        ]
+      },
+      {
+        "name": "GET_BUTTON",
+        "description": "Fügt Buttons zur Leiste hinzu.",
+        "parameters": [
+          {
+            "name": "EO_DIR",
+            "description": "Klasse für ein Verzeichnis"
+          },
+          {
+            "name": "ET_BUTTON",
+            "description": "Toolbarbuttons"
+          },
+          {
+            "name": "I_DIR",
+            "description": "Dateiname mit Pfad"
+          },
+          {
+            "name": "I_FCODE",
+            "description": "Funktionscode, der PAI ausgelöst hat"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -9,9 +9,9 @@
       <OBJECT>ZAPCMD01</OBJECT>
       <LANGU>D</LANGU>
       <TYP>E</TYP>
-      <VERSION>0001</VERSION>
+      <VERSION>0008</VERSION>
       <MASTERLANG>X</MASTERLANG>
-      <TXTLINES>00072</TXTLINES>
+      <TXTLINES>00017</TXTLINES>
       <DOKSTATE>A</DOKSTATE>
      </DOKIL>
      <HEAD>
@@ -21,135 +21,10 @@
       <TDSPRAS>D</TDSPRAS>
       <TDFORM>S_DOCU_SHOW</TDFORM>
       <TDSTYLE>S_DOCUS1</TDSTYLE>
-      <TDVERSION>00001</TDVERSION>
+      <TDVERSION>00008</TDVERSION>
       <TDLINESIZE>072</TDLINESIZE>
      </HEAD>
      <LINES>
-      <TLINE>
-       <TDFORMAT>U2</TDFORMAT>
-       <TDLINE>SAP-Commander</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDFORMAT>*</TDFORMAT>
-       <TDLINE>(c) 2007-2010 Achim von Lowtzow</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDFORMAT>*</TDFORMAT>
-       <TDLINE>Version 0.4</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDFORMAT>*</TDFORMAT>
-       <TDLINE>Der SAP-Commander dient dazu Dateien und Verzeichnisse zwischen</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDLINE>Applikationsserver und Präsentationsserver (Frontend) kopieren zu</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDLINE>können. Der Aufbau ist ähnlich dem Norton Commander für DOS.</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDFORMAT>*</TDFORMAT>
-       <TDLINE>Unterstützt werden folgende Funktionen:</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDFORMAT>*</TDFORMAT>
-       <TDLINE>Dateien vom Präsentationsserver (Frontend)</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDFORMAT>*</TDFORMAT>
-       <TDLINE>Dateien vom Applikationsserver</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDFORMAT>*</TDFORMAT>
-       <TDLINE>Dateien von anderen Instanzen des Systems über RFC-Verbindung</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDFORMAT>*</TDFORMAT>
-       <TDLINE>Kopieren, verschieben, löschen, umbenennen</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDFORMAT>*</TDFORMAT>
-       <TDLINE>Anzeigen, Bearbeiten</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDFORMAT>*</TDFORMAT>
-       <TDLINE>Ausführen von Dateien auf dem Frontend mit Doppelklick</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDFORMAT>*</TDFORMAT>
-       <TDLINE>Bearbeiten und ausführen von ABAP-Reports in Dateien mit Endung &quot;.ABAP&quot;.</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDFORMAT>*</TDFORMAT>
-      </TLINE>
-      <TLINE>
-       <TDFORMAT>U2</TDFORMAT>
-       <TDLINE>SAP-Commander</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDFORMAT>*</TDFORMAT>
-       <TDLINE>(c) 2007-2011 Achim von Lowtzow</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDFORMAT>*</TDFORMAT>
-       <TDLINE>Version 0.6</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDFORMAT>*</TDFORMAT>
-       <TDLINE>Der SAP-Commander dient dazu Dateien und Verzeichnisse zwischen</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDLINE>Applikationsserver und Präsentationsserver (Frontend) kopieren zu</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDLINE>können. Der Aufbau ist ähnlich dem Norton Commander für DOS.</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDFORMAT>*</TDFORMAT>
-       <TDLINE>Unterstützt werden folgende Funktionen:</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDFORMAT>M3</TDFORMAT>
-       <TDLINE>Dateien vom Präsentationsserver (Frontend)</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDFORMAT>M3</TDFORMAT>
-       <TDLINE>Dateien vom Applikationsserver</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDFORMAT>M3</TDFORMAT>
-       <TDLINE>Dateien von anderen Instanzen des Systems über RFC-Verbindung</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDFORMAT>M3</TDFORMAT>
-       <TDLINE>Dateien anderer Systeme über RFC-Verbindung</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDFORMAT>M3</TDFORMAT>
-       <TDLINE>Kopieren, Verschieben, Löschen und Umbenennen von Dateien und</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDLINE>Verzeichnissen</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDFORMAT>M3</TDFORMAT>
-       <TDLINE>Anzeigen und Bearbeiten von Dateien</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDFORMAT>M3</TDFORMAT>
-       <TDLINE>Ausführen von Dateien auf dem Frontend mit Doppelklick</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDFORMAT>M3</TDFORMAT>
-       <TDLINE>Bearbeiten und Ausführen von ABAP-Reports in Dateien mit Endung &quot;.ABAP&quot;.</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDFORMAT>M3</TDFORMAT>
-       <TDLINE>Plug-In-Schnittstelle für weitere Dateisysteme</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDFORMAT>*</TDFORMAT>
-      </TLINE>
       <TLINE>
        <TDFORMAT>U2</TDFORMAT>
        <TDLINE>SAP-Commander</TDLINE>
@@ -218,48 +93,29 @@
       <TLINE>
        <TDFORMAT>*</TDFORMAT>
       </TLINE>
-      <TLINE>
-       <TDFORMAT>U2</TDFORMAT>
-       <TDLINE>SAP-Commander</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDFORMAT>*</TDFORMAT>
-       <TDLINE>(c) 2007 Achim von Lowtzow</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDFORMAT>*</TDFORMAT>
-      </TLINE>
-      <TLINE>
-       <TDFORMAT>*</TDFORMAT>
-       <TDLINE>Der SAP-Commander dient dazu Dateien und Verzeichnisse zwischen</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDLINE>Applikationsserver und Präsentationsserver (Frontend) kopieren zu</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDLINE>können. Der Aufbau ist ähnlich dem Norton Commander für DOS.</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDFORMAT>*</TDFORMAT>
-      </TLINE>
-      <TLINE>
-       <TDFORMAT>U2</TDFORMAT>
-       <TDLINE>SAP-Commander</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDFORMAT>*</TDFORMAT>
-       <TDLINE>(c) 2007 Achim von Lowtzow</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDFORMAT>*</TDFORMAT>
-      </TLINE>
-      <TLINE>
-       <TDFORMAT>*</TDFORMAT>
-       <TDLINE>The SAP-Commander can copy files from the frontend to the application</TDLINE>
-      </TLINE>
-      <TLINE>
-       <TDLINE>Server.</TDLINE>
-      </TLINE>
+     </LINES>
+    </item>
+    <item>
+     <DOKIL>
+      <ID>TX</ID>
+      <OBJECT>ZAPCMD01</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>E</TYP>
+      <VERSION>0008</VERSION>
+      <TXTLINES>00015</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>ZAPCMD01</TDNAME>
+      <TDID>TX</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00008</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
       <TLINE>
        <TDFORMAT>U2</TDFORMAT>
        <TDLINE>SAP-Commander</TDLINE>

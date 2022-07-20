@@ -965,6 +965,14 @@ METHOD handle_set_toolbar.
     MOVE space TO ls_toolbar-disabled.
     APPEND ls_toolbar TO e_object->mt_toolbar.
 
+    MOVE 0 TO ls_toolbar-butn_type.
+    MOVE zapcmd_cl_dir=>co_directory_up TO ls_toolbar-function.
+    MOVE icon_collapse_all TO ls_toolbar-icon.
+    MOVE 'Verzeichnis hoch'(203) TO ls_toolbar-quickinfo.
+    MOVE space TO ls_toolbar-disabled.
+    APPEND ls_toolbar TO e_object->mt_toolbar.
+
+
     DATA lt_toolbar TYPE ttb_button.
     CALL METHOD cf_ref_dir->get_toolbar
       IMPORTING
@@ -991,6 +999,8 @@ METHOD handle_usercommand.
 
   DATA l_dir_temp TYPE REF TO zapcmd_cl_dir.
 
+  DATA lf_file TYPE REF TO zapcmd_cl_knot.
+
   DATA ls_factory TYPE zapcmd_str_fcode_factory.
   READ TABLE gt_fcode_factory INTO ls_factory
     WITH TABLE KEY fcode = e_ucomm.
@@ -1005,9 +1015,9 @@ METHOD handle_usercommand.
       CALL METHOD reload_dir.
       CALL METHOD refresh.
       RETURN.
-    else.
-      message 'Verzeichnis konnte nicht eingelesen werden.'(017) type 'I' DISPLAY LIKE 'E'.
-      return.
+    ELSE.
+      MESSAGE 'Verzeichnis konnte nicht eingelesen werden.'(017) TYPE 'I' DISPLAY LIKE 'E'.
+      RETURN.
     ENDIF.
 
   ENDIF.
@@ -1026,6 +1036,13 @@ METHOD handle_usercommand.
 
 
   CASE e_ucomm.
+    WHEN zapcmd_cl_dir=>co_directory_up.
+
+      READ TABLE ct_files INTO lf_file WITH KEY table_line->name = '..'.
+      IF sy-subrc = 0.
+        handle_doubleclick( VALUE #( index = sy-tabix ) ).
+      ENDIF.
+
     WHEN zapcmd_cl_dir=>co_refresh.
       CALL METHOD reload_dir.
       CALL METHOD refresh.
@@ -1034,7 +1051,6 @@ METHOD handle_usercommand.
       CALL METHOD refresh.
     WHEN zapcmd_cl_dir=>co_rename.
       DATA lt_file TYPE zapcmd_tbl_filelist.
-      DATA lf_file TYPE REF TO zapcmd_cl_knot.
       lt_file = me->get_files( ).
       LOOP AT lt_file INTO lf_file.
 
@@ -1048,18 +1064,18 @@ METHOD handle_usercommand.
 
         CALL FUNCTION 'POPUP_GET_VALUES'
           EXPORTING
-*             NO_VALUE_CHECK        = ' '
-            popup_title           = 'Neuer Dateiname'(001)
-*             START_COLUMN          = '5'
-*             START_ROW             = '5'
+*           NO_VALUE_CHECK        = ' '
+            popup_title = 'Neuer Dateiname'(001)
+*           START_COLUMN          = '5'
+*           START_ROW   = '5'
 *           IMPORTING
-*             RETURNCODE            = RETURNCODE
+*           RETURNCODE  = RETURNCODE
           TABLES
-            fields                = lt_fields
+            fields      = lt_fields
 *           EXCEPTIONS
-*             ERROR_IN_FIELDS       = 1
-*             OTHERS                = 2
-                  .
+*           ERROR_IN_FIELDS       = 1
+*           OTHERS      = 2
+          .
         IF sy-subrc <> 0.
 * MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
 *         WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.

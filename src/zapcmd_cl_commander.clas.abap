@@ -110,9 +110,7 @@ CLASS ZAPCMD_CL_COMMANDER IMPLEMENTATION.
       IMPORTING
         control           = lf_gui_comp
       EXCEPTIONS
-        cntl_error        = 1
-        cntl_system_error = 2
-        OTHERS            = 3 ).
+        cntl_error = 1 ).
 
     cf_filesleft->check_active( lf_gui_comp ).
     cf_filesright->check_active( lf_gui_comp ).
