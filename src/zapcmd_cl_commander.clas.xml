@@ -25,7 +25,7 @@
       <item>
        <ID>I</ID>
        <KEY>005</KEY>
-       <ENTRY>Create new directory?</ENTRY>
+       <ENTRY>Create new directory:</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
      </TEXTPOOL>
