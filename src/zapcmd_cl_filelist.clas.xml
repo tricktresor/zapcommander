@@ -134,12 +134,6 @@
     </item>
     <item>
      <ID>I</ID>
-     <KEY>203</KEY>
-     <ENTRY>Verzeichnis hoch</ENTRY>
-     <LENGTH>26</LENGTH>
-    </item>
-    <item>
-     <ID>I</ID>
      <KEY>231</KEY>
      <ENTRY>Umbenennen</ENTRY>
      <LENGTH>15</LENGTH>
@@ -274,12 +268,6 @@
        <KEY>202</KEY>
        <ENTRY>jump directly to path</ENTRY>
        <LENGTH>25</LENGTH>
-      </item>
-      <item>
-       <ID>I</ID>
-       <KEY>203</KEY>
-       <ENTRY>Directory up</ENTRY>
-       <LENGTH>26</LENGTH>
       </item>
       <item>
        <ID>I</ID>

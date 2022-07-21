@@ -1,75 +1,74 @@
-class ZAPCMD_CL_DIR definition
-  public
-  inheriting from ZAPCMD_CL_KNOT
-  abstract
-  create public .
+CLASS zapcmd_cl_dir DEFINITION
+  PUBLIC
+  INHERITING FROM zapcmd_cl_knot
+  ABSTRACT
+  CREATE PUBLIC .
 
 *"* public components of class ZAPCMD_CL_DIR
 *"* do not include other source files here!!!
-public section.
+  PUBLIC SECTION.
 
-  constants CO_DEFAULT type SYUCOMM value 'DEFAULT' ##NO_TEXT.
-  constants CO_FRONTEND type SYUCOMM value 'FRONTEND' ##NO_TEXT.
-  constants CO_APPLSERV type SYUCOMM value 'APPLSERV' ##NO_TEXT.
-  constants CO_SERVER type SYUCOMM value 'SERVER' ##NO_TEXT.
-  constants CO_DRIVES type SYUCOMM value 'DRIVES' ##NO_TEXT.
-  constants CO_RENAME type SYUCOMM value 'RENAME' ##NO_TEXT.
-  constants CO_DELETE type SYUCOMM value 'DELETE' ##NO_TEXT.
-  constants CO_REFRESH type SYUCOMM value 'REFRESH' ##NO_TEXT.
-  constants CO_AL11 type SYUCOMM value 'AL11' ##NO_TEXT.
-  constants CO_EDIT_DIR type SYUCOMM value 'EDDIR' ##NO_TEXT.
-  constants CO_RFC type SYUCOMM value 'RFC' ##NO_TEXT.
-  constants CO_LOGICALFILE type SYUCOMM value 'LOGICALF' ##NO_TEXT.
-  data FILTER type STRING .
-  data AREA_STRING type STRING .
-  constants CO_DIRECTORY_UP type SYUCOMM value '..' ##NO_TEXT.
+    CONSTANTS co_default TYPE syucomm VALUE 'DEFAULT' ##NO_TEXT.
+    CONSTANTS co_frontend TYPE syucomm VALUE 'FRONTEND' ##NO_TEXT.
+    CONSTANTS co_applserv TYPE syucomm VALUE 'APPLSERV' ##NO_TEXT.
+    CONSTANTS co_server TYPE syucomm VALUE 'SERVER' ##NO_TEXT.
+    CONSTANTS co_drives TYPE syucomm VALUE 'DRIVES' ##NO_TEXT.
+    CONSTANTS co_rename TYPE syucomm VALUE 'RENAME' ##NO_TEXT.
+    CONSTANTS co_delete TYPE syucomm VALUE 'DELETE' ##NO_TEXT.
+    CONSTANTS co_refresh TYPE syucomm VALUE 'REFRESH' ##NO_TEXT.
+    CONSTANTS co_al11 TYPE syucomm VALUE 'AL11' ##NO_TEXT.
+    CONSTANTS co_edit_dir TYPE syucomm VALUE 'EDDIR' ##NO_TEXT.
+    CONSTANTS co_rfc TYPE syucomm VALUE 'RFC' ##NO_TEXT.
+    CONSTANTS co_logicalfile TYPE syucomm VALUE 'LOGICALF' ##NO_TEXT.
+    DATA filter TYPE string .
+    DATA area_string TYPE string .
 
-  class-methods CLASS_CONSTRUCTOR .
-  methods CONSTRUCTOR .
-  methods READ_DIR
-  abstract
-    importing
-      !PF_MASK type ZAPCMD_FILENAME optional
-    exporting
-      value(PT_FILELIST) type ZAPCMD_TBL_FILELIST
-    exceptions
-      PERMISSION_DENIED .
-  methods CREATE_FILE
-  abstract
-    importing
-      value(PF_FILENAME) type STRING
-    exporting
-      !PF_FILE type ref to ZAPCMD_CL_FILE .
-  methods CREATE_DIR
-  abstract
-    importing
-      value(PF_FILENAME) type STRING
-    exporting
-      !PF_FILE type ref to ZAPCMD_CL_DIR .
-  methods GET_FREESPACE
-  abstract
-    exporting
-      !PF_SPACE type P .
-  methods GET_TOOLBAR
-  abstract
-    exporting
-      !PT_TOOLBAR type TTB_BUTTON .
-  methods CHECK_FILEEXIST
-    importing
-      !PF_FILENAME type CSEQUENCE
-    returning
-      value(PFX_EXIST) type ABAP_BOOL .
-  methods CREATE_NEW
-  abstract
-    importing
-      !I_FCODE type SYUCOMM optional
-    returning
-      value(EO_DIR) type ref to ZAPCMD_CL_DIR .
+    CLASS-METHODS class_constructor .
+    METHODS constructor .
+    METHODS read_dir
+          ABSTRACT
+      IMPORTING
+        !pf_mask           TYPE zapcmd_filename OPTIONAL
+      EXPORTING
+        VALUE(pt_filelist) TYPE zapcmd_tbl_filelist
+      EXCEPTIONS
+        permission_denied .
+    METHODS create_file
+          ABSTRACT
+      IMPORTING
+        VALUE(pf_filename) TYPE string
+      EXPORTING
+        !pf_file           TYPE REF TO zapcmd_cl_file .
+    METHODS create_dir
+          ABSTRACT
+      IMPORTING
+        VALUE(pf_filename) TYPE string
+      EXPORTING
+        !pf_file           TYPE REF TO zapcmd_cl_dir .
+    METHODS get_freespace
+          ABSTRACT
+      EXPORTING
+        !pf_space TYPE p .
+    METHODS get_toolbar
+          ABSTRACT
+      EXPORTING
+        !pt_toolbar TYPE ttb_button .
+    METHODS check_fileexist
+      IMPORTING
+        !pf_filename     TYPE csequence
+      RETURNING
+        VALUE(pfx_exist) TYPE abap_bool .
+    METHODS create_new
+          ABSTRACT
+      IMPORTING
+        !i_fcode      TYPE syucomm OPTIONAL
+      RETURNING
+        VALUE(eo_dir) TYPE REF TO zapcmd_cl_dir .
 
-  methods EXECUTE
-    redefinition .
-  methods INIT
-    redefinition .
+    METHODS execute
+        REDEFINITION .
+    METHODS init
+        REDEFINITION .
   PROTECTED SECTION.
 *"* protected components of class ZAPCMD_CL_DIR
 *"* do not include other source files here!!!

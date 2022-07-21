@@ -110,10 +110,13 @@ CLASS ZAPCMD_CL_COMMANDER IMPLEMENTATION.
       IMPORTING
         control           = lf_gui_comp
       EXCEPTIONS
-        cntl_error = 1 ).
-
-    cf_filesleft->check_active( lf_gui_comp ).
-    cf_filesright->check_active( lf_gui_comp ).
+        cntl_error        = 1
+        cntl_system_error = 2
+        OTHERS            = 3 ).
+    IF sy-subrc = 0.
+      cf_filesleft->check_active( lf_gui_comp ).
+      cf_filesright->check_active( lf_gui_comp ).
+    ENDIF.
 
     IF cf_filesleft->cf_active = 'X'.
       cf_activelist = cf_filesleft.

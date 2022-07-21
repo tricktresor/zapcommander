@@ -85,10 +85,13 @@ CLASS ZAPCMD_CL_FRONTEND_DIR IMPLEMENTATION.
         unknown_error            = 7
         OTHERS                   = 10 ).
     IF sy-subrc <> 0.
-      MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
-                 WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+      IF sy-msgno IS INITIAL.
+        MESSAGE |error Directory_Create { sy-subrc }| TYPE 'I'.
+      ELSE.
+        MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+                   WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+      ENDIF.
     ENDIF.
-
 
   ENDMETHOD.
 
