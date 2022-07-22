@@ -10,7 +10,6 @@
    <FUNCTIONS>
     <item>
      <FUNCNAME>ZAPCMD_CALL_CMDLINE</FUNCNAME>
-     <SHORT_TEXT>Ruft die Ausgabe für eine Commandozeile auf</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>PF_CMDLINE</PARAMETER>
@@ -23,7 +22,6 @@
       <RSFDO>
        <PARAMETER>PF_CMDLINE</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Kommandozeile</STEXT>
       </RSFDO>
      </DOCUMENTATION>
     </item>
