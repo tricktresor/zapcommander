@@ -10,6 +10,7 @@
    <FUNCTIONS>
     <item>
      <FUNCNAME>ZAPCMD_CALL_EDITOR</FUNCNAME>
+     <SHORT_TEXT>Aufruf eines einfachen editors</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>PF_EDITOR</PARAMETER>
@@ -22,6 +23,7 @@
       <RSFDO>
        <PARAMETER>PF_EDITOR</PARAMETER>
        <KIND>P</KIND>
+       <STEXT>Einfacher Editor</STEXT>
       </RSFDO>
      </DOCUMENTATION>
     </item>
