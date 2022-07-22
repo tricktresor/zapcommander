@@ -326,6 +326,93 @@
       </TLINE>
      </LINES>
     </item>
+    <item>
+     <DOKIL>
+      <ID>TX</ID>
+      <OBJECT>ZAPCMD01</OBJECT>
+      <LANGU>E</LANGU>
+      <TYP>E</TYP>
+      <VERSION>0008</VERSION>
+      <TXTLINES>00015</TXTLINES>
+      <DOKSTATE>A</DOKSTATE>
+     </DOKIL>
+     <HEAD>
+      <TDOBJECT>DOKU</TDOBJECT>
+      <TDNAME>ZAPCMD01</TDNAME>
+      <TDID>TX</TDID>
+      <TDSPRAS>E</TDSPRAS>
+      <TDFORM>S_DOCU_SHOW</TDFORM>
+      <TDSTYLE>S_DOCUS1</TDSTYLE>
+      <TDVERSION>00008</TDVERSION>
+      <TDLINESIZE>072</TDLINESIZE>
+     </HEAD>
+     <LINES>
+      <TLINE>
+       <TDFORMAT>U2</TDFORMAT>
+       <TDLINE>SAP-Commander</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>*</TDFORMAT>
+       <TDLINE>(c) 2007-2011 Achim von Lowtzow</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>*</TDFORMAT>
+       <TDLINE>Release 0.61</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>*</TDFORMAT>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>*</TDFORMAT>
+       <TDLINE>The SAP-Commander can copy files from the frontend to the application</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>Server. It contains two side-by-side filelists like the Norton Commander</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDLINE>.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>*</TDFORMAT>
+       <TDLINE>Functions</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>M3</TDFORMAT>
+       <TDLINE>File vom frontend</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>M3</TDFORMAT>
+       <TDLINE>Files from application server</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>M3</TDFORMAT>
+       <TDLINE>Files from other System per RFC connection</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>M3</TDFORMAT>
+       <TDLINE>Copy, move, delete an rename of files and folders</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>M3</TDFORMAT>
+       <TDLINE>Show and edit files</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>M3</TDFORMAT>
+       <TDLINE>Execute files on frontend</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>M3</TDFORMAT>
+       <TDLINE>Edit and execute ABAP-Programs from files with extension &quot;.ABAP&quot;.</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>M3</TDFORMAT>
+       <TDLINE>Plug-in interface für other file systems</TDLINE>
+      </TLINE>
+      <TLINE>
+       <TDFORMAT>*</TDFORMAT>
+      </TLINE>
+     </LINES>
+    </item>
    </DOC>
   </asx:values>
  </asx:abap>
