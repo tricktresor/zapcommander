@@ -4,13 +4,13 @@
   <asx:values>
    <DD04V>
     <ROLLNAME>ZAPCMD_REFREF_FILELIST</ROLLNAME>
-    <DDLANGUAGE>D</DDLANGUAGE>
+    <DDLANGUAGE>E</DDLANGUAGE>
     <DOMNAME>ZAPCMD_CL_FILELIST</DOMNAME>
     <HEADLEN>08</HEADLEN>
     <SCRLEN1>08</SCRLEN1>
     <SCRLEN2>08</SCRLEN2>
     <SCRLEN3>08</SCRLEN3>
-    <DDTEXT>Referenz auf die Refernz des Objektes Filelist</DDTEXT>
+    <DDTEXT>References to the reference of the object FILELIST</DDTEXT>
     <REPTEXT>Filelist</REPTEXT>
     <SCRTEXT_S>Filelist</SCRTEXT_S>
     <SCRTEXT_M>Filelist</SCRTEXT_M>
@@ -21,12 +21,12 @@
     <REFTYPE>C</REFTYPE>
    </DD04V>
    <I18N_LANGS>
-    <LANGU>E</LANGU>
+    <LANGU>D</LANGU>
    </I18N_LANGS>
    <DD04_TEXTS>
     <item>
-     <DDLANGUAGE>E</DDLANGUAGE>
-     <DDTEXT>References to the reference of the object FILELIST</DDTEXT>
+     <DDLANGUAGE>D</DDLANGUAGE>
+     <DDTEXT>Referenz auf die Refernz des Objektes Filelist</DDTEXT>
      <REPTEXT>Filelist</REPTEXT>
      <SCRTEXT_S>Filelist</SCRTEXT_S>
      <SCRTEXT_M>Filelist</SCRTEXT_M>

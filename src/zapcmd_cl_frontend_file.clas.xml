@@ -15,18 +15,18 @@
     <item>
      <ID>I</ID>
      <KEY>001</KEY>
-     <ENTRY>Noch nicht implementiert</ENTRY>
+     <ENTRY>Not yet implemented.</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
    </TPOOL>
    <I18N_TPOOL>
     <item>
-     <LANGUAGE>E</LANGUAGE>
+     <LANGUAGE>D</LANGUAGE>
      <TEXTPOOL>
       <item>
        <ID>I</ID>
        <KEY>001</KEY>
-       <ENTRY>Not yet implemented.</ENTRY>
+       <ENTRY>Noch nicht implementiert</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
      </TEXTPOOL>

@@ -4,32 +4,32 @@
   <asx:values>
    <DD04V>
     <ROLLNAME>ZAPCMD_FILESIZE_STR</ROLLNAME>
-    <DDLANGUAGE>D</DDLANGUAGE>
+    <DDLANGUAGE>E</DDLANGUAGE>
     <HEADLEN>27</HEADLEN>
     <SCRLEN1>10</SCRLEN1>
     <SCRLEN2>10</SCRLEN2>
     <SCRLEN3>27</SCRLEN3>
-    <DDTEXT>Dateigröße als Zeichenkette</DDTEXT>
-    <REPTEXT>Dateigröße als Zeichenkette</REPTEXT>
-    <SCRTEXT_S>Größe</SCRTEXT_S>
-    <SCRTEXT_M>Dateigröße</SCRTEXT_M>
-    <SCRTEXT_L>Dateigröße als Zeichenkette</SCRTEXT_L>
+    <DDTEXT>File size text</DDTEXT>
+    <REPTEXT>File size text</REPTEXT>
+    <SCRTEXT_S>Size</SCRTEXT_S>
+    <SCRTEXT_M>File size</SCRTEXT_M>
+    <SCRTEXT_L>File size text</SCRTEXT_L>
     <DTELMASTER>E</DTELMASTER>
     <DATATYPE>CHAR</DATATYPE>
     <LENG>000015</LENG>
     <OUTPUTLEN>000015</OUTPUTLEN>
    </DD04V>
    <I18N_LANGS>
-    <LANGU>E</LANGU>
+    <LANGU>D</LANGU>
    </I18N_LANGS>
    <DD04_TEXTS>
     <item>
-     <DDLANGUAGE>E</DDLANGUAGE>
-     <DDTEXT>File size text</DDTEXT>
-     <REPTEXT>File size text</REPTEXT>
-     <SCRTEXT_S>Size</SCRTEXT_S>
-     <SCRTEXT_M>File size</SCRTEXT_M>
-     <SCRTEXT_L>File size text</SCRTEXT_L>
+     <DDLANGUAGE>D</DDLANGUAGE>
+     <DDTEXT>Dateigröße als Zeichenkette</DDTEXT>
+     <REPTEXT>Dateigröße als Zeichenkette</REPTEXT>
+     <SCRTEXT_S>Größe</SCRTEXT_S>
+     <SCRTEXT_M>Dateigröße</SCRTEXT_M>
+     <SCRTEXT_L>Dateigröße als Zeichenkette</SCRTEXT_L>
     </item>
    </DD04_TEXTS>
   </asx:values>

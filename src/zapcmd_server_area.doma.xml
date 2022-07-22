@@ -4,60 +4,60 @@
   <asx:values>
    <DD01V>
     <DOMNAME>ZAPCMD_SERVER_AREA</DOMNAME>
-    <DDLANGUAGE>D</DDLANGUAGE>
+    <DDLANGUAGE>E</DDLANGUAGE>
     <DATATYPE>CHAR</DATATYPE>
     <LENG>000001</LENG>
     <OUTPUTLEN>000001</OUTPUTLEN>
     <VALEXI>X</VALEXI>
-    <DDTEXT>Applikationsserver oder Präsentationsserver (Frontend)</DDTEXT>
+    <DDTEXT>Appication Server or Frontend</DDTEXT>
    </DD01V>
    <DD07V_TAB>
     <DD07V>
      <VALPOS>0001</VALPOS>
-     <DDLANGUAGE>D</DDLANGUAGE>
+     <DDLANGUAGE>E</DDLANGUAGE>
      <DOMVALUE_L>A</DOMVALUE_L>
-     <DDTEXT>Applikationsserver</DDTEXT>
+     <DDTEXT>Application server</DDTEXT>
     </DD07V>
     <DD07V>
      <VALPOS>0002</VALPOS>
-     <DDLANGUAGE>D</DDLANGUAGE>
+     <DDLANGUAGE>E</DDLANGUAGE>
      <DOMVALUE_L>P</DOMVALUE_L>
-     <DDTEXT>Präsentationsserver</DDTEXT>
+     <DDTEXT>Presentation server</DDTEXT>
     </DD07V>
     <DD07V>
      <VALPOS>0003</VALPOS>
-     <DDLANGUAGE>D</DDLANGUAGE>
+     <DDLANGUAGE>E</DDLANGUAGE>
      <DOMVALUE_L>R</DOMVALUE_L>
-     <DDTEXT>RFC-Verbindung</DDTEXT>
+     <DDTEXT>RFC-connection</DDTEXT>
     </DD07V>
    </DD07V_TAB>
    <I18N_LANGS>
-    <LANGU>E</LANGU>
+    <LANGU>D</LANGU>
    </I18N_LANGS>
    <DD01_TEXTS>
     <item>
-     <DDLANGUAGE>E</DDLANGUAGE>
-     <DDTEXT>Appication Server or Frontend</DDTEXT>
+     <DDLANGUAGE>D</DDLANGUAGE>
+     <DDTEXT>Applikationsserver oder Präsentationsserver (Frontend)</DDTEXT>
     </item>
    </DD01_TEXTS>
    <DD07_TEXTS>
     <item>
      <VALPOS>0001</VALPOS>
-     <DDLANGUAGE>E</DDLANGUAGE>
+     <DDLANGUAGE>D</DDLANGUAGE>
      <DOMVALUE_L>A</DOMVALUE_L>
-     <DDTEXT>Application server</DDTEXT>
+     <DDTEXT>Applikationsserver</DDTEXT>
     </item>
     <item>
      <VALPOS>0002</VALPOS>
-     <DDLANGUAGE>E</DDLANGUAGE>
+     <DDLANGUAGE>D</DDLANGUAGE>
      <DOMVALUE_L>P</DOMVALUE_L>
-     <DDTEXT>Presentation server</DDTEXT>
+     <DDTEXT>Präsentationsserver</DDTEXT>
     </item>
     <item>
      <VALPOS>0003</VALPOS>
-     <DDLANGUAGE>E</DDLANGUAGE>
+     <DDLANGUAGE>D</DDLANGUAGE>
      <DOMVALUE_L>R</DOMVALUE_L>
-     <DDTEXT>RFC-connection</DDTEXT>
+     <DDTEXT>RFC-Verbindung</DDTEXT>
     </item>
    </DD07_TEXTS>
   </asx:values>

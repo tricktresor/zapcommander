@@ -4,14 +4,14 @@
   <asx:values>
    <DD40V>
     <TYPENAME>ZAPCMD_TBL_FILE_INFO</TYPENAME>
-    <DDLANGUAGE>D</DDLANGUAGE>
+    <DDLANGUAGE>E</DDLANGUAGE>
     <ROWTYPE>ZAPCMD_FILE_DESCR</ROWTYPE>
     <ROWKIND>S</ROWKIND>
     <DATATYPE>STRU</DATATYPE>
     <ACCESSMODE>T</ACCESSMODE>
     <KEYDEF>D</KEYDEF>
     <KEYKIND>N</KEYKIND>
-    <DDTEXT>Liste mit Dateinformationen</DDTEXT>
+    <DDTEXT>List containing file information</DDTEXT>
    </DD40V>
   </asx:values>
  </asx:abap>

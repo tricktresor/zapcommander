@@ -15,30 +15,30 @@
     <item>
      <ID>I</ID>
      <KEY>300</KEY>
-     <ENTRY>Text verändert.</ENTRY>
+     <ENTRY>Text changed.</ENTRY>
      <LENGTH>15</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>301</KEY>
-     <ENTRY>Soll der Text gespeichert werden?</ENTRY>
+     <ENTRY>Save the changed text?</ENTRY>
      <LENGTH>33</LENGTH>
     </item>
    </TPOOL>
    <I18N_TPOOL>
     <item>
-     <LANGUAGE>E</LANGUAGE>
+     <LANGUAGE>D</LANGUAGE>
      <TEXTPOOL>
       <item>
        <ID>I</ID>
        <KEY>300</KEY>
-       <ENTRY>Text changed.</ENTRY>
+       <ENTRY>Text verändert.</ENTRY>
        <LENGTH>15</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>301</KEY>
-       <ENTRY>Save the changed text?</ENTRY>
+       <ENTRY>Soll der Text gespeichert werden?</ENTRY>
        <LENGTH>33</LENGTH>
       </item>
      </TEXTPOOL>

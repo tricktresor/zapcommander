@@ -21,13 +21,13 @@
     <item>
      <ID>I</ID>
      <KEY>221</KEY>
-     <ENTRY>Präsentationsserver</ENTRY>
+     <ENTRY>presentation server</ENTRY>
      <LENGTH>19</LENGTH>
     </item>
    </TPOOL>
    <I18N_TPOOL>
     <item>
-     <LANGUAGE>E</LANGUAGE>
+     <LANGUAGE>D</LANGUAGE>
      <TEXTPOOL>
       <item>
        <ID>I</ID>
@@ -38,7 +38,7 @@
       <item>
        <ID>I</ID>
        <KEY>221</KEY>
-       <ENTRY>presentation server</ENTRY>
+       <ENTRY>Präsentationsserver</ENTRY>
        <LENGTH>19</LENGTH>
       </item>
      </TEXTPOOL>

@@ -21,7 +21,7 @@
     <item>
      <ID>I</ID>
      <KEY>002</KEY>
-     <ENTRY>Verzeichnisse über RFC</ENTRY>
+     <ENTRY>Directories over RFC</ENTRY>
      <LENGTH>22</LENGTH>
     </item>
     <item>
@@ -39,13 +39,13 @@
     <item>
      <ID>I</ID>
      <KEY>005</KEY>
-     <ENTRY>RFC-Destination nicht erreichbar</ENTRY>
+     <ENTRY>RFC-Destination not reachable</ENTRY>
      <LENGTH>32</LENGTH>
     </item>
    </TPOOL>
    <I18N_TPOOL>
     <item>
-     <LANGUAGE>E</LANGUAGE>
+     <LANGUAGE>D</LANGUAGE>
      <TEXTPOOL>
       <item>
        <ID>I</ID>
@@ -56,7 +56,7 @@
       <item>
        <ID>I</ID>
        <KEY>002</KEY>
-       <ENTRY>Directories over RFC</ENTRY>
+       <ENTRY>Verzeichnisse über RFC</ENTRY>
        <LENGTH>22</LENGTH>
       </item>
       <item>
@@ -74,7 +74,7 @@
       <item>
        <ID>I</ID>
        <KEY>005</KEY>
-       <ENTRY>RFC-Destination not reachable</ENTRY>
+       <ENTRY>RFC-Destination nicht erreichbar</ENTRY>
        <LENGTH>32</LENGTH>
       </item>
      </TEXTPOOL>

@@ -4,28 +4,28 @@
   <asx:values>
    <DD04V>
     <ROLLNAME>ZAPCMD_SORT_PRIO</ROLLNAME>
-    <DDLANGUAGE>D</DDLANGUAGE>
+    <DDLANGUAGE>E</DDLANGUAGE>
     <DOMNAME>ZAPCMD_SORT_PRIO</DOMNAME>
     <HEADLEN>55</HEADLEN>
     <SCRLEN2>20</SCRLEN2>
     <SCRLEN3>40</SCRLEN3>
-    <DDTEXT>Sortierpriorität</DDTEXT>
-    <REPTEXT>Sortierpriorität</REPTEXT>
-    <SCRTEXT_M>Sortierpriorität</SCRTEXT_M>
-    <SCRTEXT_L>Sortierpriorität</SCRTEXT_L>
+    <DDTEXT>Sorting priority</DDTEXT>
+    <REPTEXT>Sorting priority</REPTEXT>
+    <SCRTEXT_M>Sorting priority</SCRTEXT_M>
+    <SCRTEXT_L>Sorting priority</SCRTEXT_L>
     <DTELMASTER>E</DTELMASTER>
     <REFKIND>D</REFKIND>
    </DD04V>
    <I18N_LANGS>
-    <LANGU>E</LANGU>
+    <LANGU>D</LANGU>
    </I18N_LANGS>
    <DD04_TEXTS>
     <item>
-     <DDLANGUAGE>E</DDLANGUAGE>
-     <DDTEXT>Sorting priority</DDTEXT>
-     <REPTEXT>Sorting priority</REPTEXT>
-     <SCRTEXT_M>Sorting priority</SCRTEXT_M>
-     <SCRTEXT_L>Sorting priority</SCRTEXT_L>
+     <DDLANGUAGE>D</DDLANGUAGE>
+     <DDTEXT>Sortierpriorität</DDTEXT>
+     <REPTEXT>Sortierpriorität</REPTEXT>
+     <SCRTEXT_M>Sortierpriorität</SCRTEXT_M>
+     <SCRTEXT_L>Sortierpriorität</SCRTEXT_L>
     </item>
    </DD04_TEXTS>
   </asx:values>

@@ -15,18 +15,18 @@
     <item>
      <ID>I</ID>
      <KEY>130</KEY>
-     <ENTRY>Datei nicht gefunden.</ENTRY>
+     <ENTRY>File not found.</ENTRY>
      <LENGTH>21</LENGTH>
     </item>
    </TPOOL>
    <I18N_TPOOL>
     <item>
-     <LANGUAGE>E</LANGUAGE>
+     <LANGUAGE>D</LANGUAGE>
      <TEXTPOOL>
       <item>
        <ID>I</ID>
        <KEY>130</KEY>
-       <ENTRY>File not found.</ENTRY>
+       <ENTRY>Datei nicht gefunden.</ENTRY>
        <LENGTH>21</LENGTH>
       </item>
      </TEXTPOOL>

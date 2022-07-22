@@ -4,31 +4,31 @@
   <asx:values>
    <DD04V>
     <ROLLNAME>ZAPCMD_INDEX</ROLLNAME>
-    <DDLANGUAGE>D</DDLANGUAGE>
+    <DDLANGUAGE>E</DDLANGUAGE>
     <DOMNAME>INT4</DOMNAME>
     <HEADLEN>15</HEADLEN>
     <SCRLEN1>10</SCRLEN1>
     <SCRLEN2>15</SCRLEN2>
     <SCRLEN3>15</SCRLEN3>
-    <DDTEXT>Index-Zähler</DDTEXT>
-    <REPTEXT>Index-Zähler</REPTEXT>
+    <DDTEXT>index counter</DDTEXT>
+    <REPTEXT>index counter</REPTEXT>
     <SCRTEXT_S>Index</SCRTEXT_S>
-    <SCRTEXT_M>Index-Zähler</SCRTEXT_M>
-    <SCRTEXT_L>Index-Zähler</SCRTEXT_L>
+    <SCRTEXT_M>index counter</SCRTEXT_M>
+    <SCRTEXT_L>index counter</SCRTEXT_L>
     <DTELMASTER>E</DTELMASTER>
     <REFKIND>D</REFKIND>
    </DD04V>
    <I18N_LANGS>
-    <LANGU>E</LANGU>
+    <LANGU>D</LANGU>
    </I18N_LANGS>
    <DD04_TEXTS>
     <item>
-     <DDLANGUAGE>E</DDLANGUAGE>
-     <DDTEXT>index counter</DDTEXT>
-     <REPTEXT>index counter</REPTEXT>
+     <DDLANGUAGE>D</DDLANGUAGE>
+     <DDTEXT>Index-Zähler</DDTEXT>
+     <REPTEXT>Index-Zähler</REPTEXT>
      <SCRTEXT_S>Index</SCRTEXT_S>
-     <SCRTEXT_M>index counter</SCRTEXT_M>
-     <SCRTEXT_L>index counter</SCRTEXT_L>
+     <SCRTEXT_M>Index-Zähler</SCRTEXT_M>
+     <SCRTEXT_L>Index-Zähler</SCRTEXT_L>
     </item>
    </DD04_TEXTS>
   </asx:values>

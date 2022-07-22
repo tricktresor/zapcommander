@@ -21,13 +21,13 @@
     <item>
      <ID>I</ID>
      <KEY>232</KEY>
-     <ENTRY>Laufwerke</ENTRY>
+     <ENTRY>Drives</ENTRY>
      <LENGTH>9</LENGTH>
     </item>
    </TPOOL>
    <I18N_TPOOL>
     <item>
-     <LANGUAGE>E</LANGUAGE>
+     <LANGUAGE>D</LANGUAGE>
      <TEXTPOOL>
       <item>
        <ID>I</ID>
@@ -38,7 +38,7 @@
       <item>
        <ID>I</ID>
        <KEY>232</KEY>
-       <ENTRY>Drives</ENTRY>
+       <ENTRY>Laufwerke</ENTRY>
        <LENGTH>9</LENGTH>
       </item>
      </TEXTPOOL>

@@ -4,12 +4,12 @@
   <asx:values>
    <DD40V>
     <TYPENAME>ZAPCMD_TBL_STRING</TYPENAME>
-    <DDLANGUAGE>D</DDLANGUAGE>
+    <DDLANGUAGE>E</DDLANGUAGE>
     <DATATYPE>STRG</DATATYPE>
     <ACCESSMODE>T</ACCESSMODE>
     <KEYDEF>D</KEYDEF>
     <KEYKIND>N</KEYKIND>
-    <DDTEXT>Tabelle mit Zeichenketten</DDTEXT>
+    <DDTEXT>Table with strings</DDTEXT>
     <TYPELEN>000008</TYPELEN>
    </DD40V>
   </asx:values>

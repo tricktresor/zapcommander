@@ -17,7 +17,7 @@
     <item>
      <ID>I</ID>
      <KEY>001</KEY>
-     <ENTRY>Syntaxfehler in Zeile</ENTRY>
+     <ENTRY>Syntax error in line</ENTRY>
      <LENGTH>21</LENGTH>
     </item>
    </TPOOL>

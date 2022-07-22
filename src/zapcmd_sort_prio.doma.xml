@@ -4,48 +4,48 @@
   <asx:values>
    <DD01V>
     <DOMNAME>ZAPCMD_SORT_PRIO</DOMNAME>
-    <DDLANGUAGE>D</DDLANGUAGE>
+    <DDLANGUAGE>E</DDLANGUAGE>
     <DATATYPE>CHAR</DATATYPE>
     <LENG>000001</LENG>
     <OUTPUTLEN>000001</OUTPUTLEN>
     <VALEXI>X</VALEXI>
-    <DDTEXT>Sortierpriorität</DDTEXT>
+    <DDTEXT>Sorting priority</DDTEXT>
    </DD01V>
    <DD07V_TAB>
     <DD07V>
      <VALPOS>0001</VALPOS>
-     <DDLANGUAGE>D</DDLANGUAGE>
+     <DDLANGUAGE>E</DDLANGUAGE>
      <DOMVALUE_L>1</DOMVALUE_L>
-     <DDTEXT>kein Sortierung - bleibt am Anfang</DDTEXT>
+     <DDTEXT>no sorting - stays at the beginning</DDTEXT>
     </DD07V>
     <DD07V>
      <VALPOS>0002</VALPOS>
-     <DDLANGUAGE>D</DDLANGUAGE>
+     <DDLANGUAGE>E</DDLANGUAGE>
      <DOMVALUE_L>2</DOMVALUE_L>
-     <DDTEXT>normale Sortierung</DDTEXT>
+     <DDTEXT>normal sorting</DDTEXT>
     </DD07V>
    </DD07V_TAB>
    <I18N_LANGS>
-    <LANGU>E</LANGU>
+    <LANGU>D</LANGU>
    </I18N_LANGS>
    <DD01_TEXTS>
     <item>
-     <DDLANGUAGE>E</DDLANGUAGE>
-     <DDTEXT>Sorting priority</DDTEXT>
+     <DDLANGUAGE>D</DDLANGUAGE>
+     <DDTEXT>Sortierpriorität</DDTEXT>
     </item>
    </DD01_TEXTS>
    <DD07_TEXTS>
     <item>
      <VALPOS>0001</VALPOS>
-     <DDLANGUAGE>E</DDLANGUAGE>
+     <DDLANGUAGE>D</DDLANGUAGE>
      <DOMVALUE_L>1</DOMVALUE_L>
-     <DDTEXT>no sorting - stays at the beginning</DDTEXT>
+     <DDTEXT>kein Sortierung - bleibt am Anfang</DDTEXT>
     </item>
     <item>
      <VALPOS>0002</VALPOS>
-     <DDLANGUAGE>E</DDLANGUAGE>
+     <DDLANGUAGE>D</DDLANGUAGE>
      <DOMVALUE_L>2</DOMVALUE_L>
-     <DDTEXT>normal sorting</DDTEXT>
+     <DDTEXT>normale Sortierung</DDTEXT>
     </item>
    </DD07_TEXTS>
   </asx:values>

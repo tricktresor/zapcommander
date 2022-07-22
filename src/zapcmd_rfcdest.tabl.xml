@@ -4,7 +4,7 @@
   <asx:values>
    <DD02V>
     <TABNAME>ZAPCMD_RFCDEST</TABNAME>
-    <DDLANGUAGE>D</DDLANGUAGE>
+    <DDLANGUAGE>E</DDLANGUAGE>
     <TABCLASS>INTTAB</TABCLASS>
     <DDTEXT>RFC-Destination</DDTEXT>
    </DD02V>
@@ -42,11 +42,11 @@
     </DD36M>
    </DD36M>
    <I18N_LANGS>
-    <LANGU>E</LANGU>
+    <LANGU>D</LANGU>
    </I18N_LANGS>
    <DD02_TEXTS>
     <item>
-     <DDLANGUAGE>E</DDLANGUAGE>
+     <DDLANGUAGE>D</DDLANGUAGE>
      <DDTEXT>RFC-Destination</DDTEXT>
     </item>
    </DD02_TEXTS>

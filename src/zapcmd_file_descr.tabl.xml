@@ -4,9 +4,9 @@
   <asx:values>
    <DD02V>
     <TABNAME>ZAPCMD_FILE_DESCR</TABNAME>
-    <DDLANGUAGE>D</DDLANGUAGE>
+    <DDLANGUAGE>E</DDLANGUAGE>
     <TABCLASS>INTTAB</TABCLASS>
-    <DDTEXT>Struktur zur Beschreibung einer Datei</DDTEXT>
+    <DDTEXT>Structure for file description</DDTEXT>
     <EXCLASS>4</EXCLASS>
    </DD02V>
    <DD03P_TABLE>
@@ -94,12 +94,12 @@
     </DD03P>
    </DD03P_TABLE>
    <I18N_LANGS>
-    <LANGU>E</LANGU>
+    <LANGU>D</LANGU>
    </I18N_LANGS>
    <DD02_TEXTS>
     <item>
-     <DDLANGUAGE>E</DDLANGUAGE>
-     <DDTEXT>Structure for file description</DDTEXT>
+     <DDLANGUAGE>D</DDLANGUAGE>
+     <DDTEXT>Struktur zur Beschreibung einer Datei</DDTEXT>
     </item>
    </DD02_TEXTS>
   </asx:values>

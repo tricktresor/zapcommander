@@ -14,18 +14,18 @@
     <item>
      <ID>I</ID>
      <KEY>005</KEY>
-     <ENTRY>Neues Verzeichnis anlegen:</ENTRY>
+     <ENTRY>Create new directory:</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
    </TPOOL>
    <I18N_TPOOL>
     <item>
-     <LANGUAGE>E</LANGUAGE>
+     <LANGUAGE>D</LANGUAGE>
      <TEXTPOOL>
       <item>
        <ID>I</ID>
        <KEY>005</KEY>
-       <ENTRY>Create new directory:</ENTRY>
+       <ENTRY>Neues Verzeichnis anlegen:</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
      </TEXTPOOL>

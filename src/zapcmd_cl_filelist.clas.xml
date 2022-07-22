@@ -15,13 +15,13 @@
     <item>
      <ID>I</ID>
      <KEY>001</KEY>
-     <ENTRY>Neuer Dateiname</ENTRY>
+     <ENTRY>New File name</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>002</KEY>
-     <ENTRY>Pfad:</ENTRY>
+     <ENTRY>Path:</ENTRY>
      <LENGTH>10</LENGTH>
     </item>
     <item>
@@ -39,55 +39,55 @@
     <item>
      <ID>I</ID>
      <KEY>005</KEY>
-     <ENTRY>RFC-Destination nicht erreichbar</ENTRY>
+     <ENTRY>RFC-Destination not reachable</ENTRY>
      <LENGTH>35</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>006</KEY>
-     <ENTRY> existiert.</ENTRY>
+     <ENTRY> exists.</ENTRY>
      <LENGTH>15</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>007</KEY>
-     <ENTRY> Überschreiben?</ENTRY>
+     <ENTRY> Overwrite?</ENTRY>
      <LENGTH>20</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>008</KEY>
-     <ENTRY>Ja</ENTRY>
+     <ENTRY>Yes</ENTRY>
      <LENGTH>5</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>009</KEY>
-     <ENTRY>Ja, Alle</ENTRY>
+     <ENTRY>Yes to all</ENTRY>
      <LENGTH>10</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>010</KEY>
-     <ENTRY> löschen?</ENTRY>
+     <ENTRY> delete?</ENTRY>
      <LENGTH>10</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>011</KEY>
-     <ENTRY>Löschen</ENTRY>
+     <ENTRY>Delete</ENTRY>
      <LENGTH>10</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>012</KEY>
-     <ENTRY>Logischer Pfad</ENTRY>
+     <ENTRY>logical Path</ENTRY>
      <LENGTH>15</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>013</KEY>
-     <ENTRY>logischer Pfad</ENTRY>
+     <ENTRY>logical Path</ENTRY>
      <LENGTH>15</LENGTH>
     </item>
     <item>
@@ -111,13 +111,13 @@
     <item>
      <ID>I</ID>
      <KEY>017</KEY>
-     <ENTRY>Verzeichnis konnte nicht eingelesen werden.</ENTRY>
+     <ENTRY>Directory could not read.</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>018</KEY>
-     <ENTRY>Werteingabe</ENTRY>
+     <ENTRY>Insert value</ENTRY>
      <LENGTH>15</LENGTH>
     </item>
     <item>
@@ -129,36 +129,36 @@
     <item>
      <ID>I</ID>
      <KEY>202</KEY>
-     <ENTRY>Direkte Pfadeingabe</ENTRY>
+     <ENTRY>jump directly to path</ENTRY>
      <LENGTH>25</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>231</KEY>
-     <ENTRY>Umbenennen</ENTRY>
+     <ENTRY>Rename</ENTRY>
      <LENGTH>15</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>500</KEY>
-     <ENTRY>Fehler im GUI</ENTRY>
+     <ENTRY>Error in GUI</ENTRY>
      <LENGTH>15</LENGTH>
     </item>
    </TPOOL>
    <I18N_TPOOL>
     <item>
-     <LANGUAGE>E</LANGUAGE>
+     <LANGUAGE>D</LANGUAGE>
      <TEXTPOOL>
       <item>
        <ID>I</ID>
        <KEY>001</KEY>
-       <ENTRY>New File name</ENTRY>
+       <ENTRY>Neuer Dateiname</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>002</KEY>
-       <ENTRY>Path:</ENTRY>
+       <ENTRY>Pfad:</ENTRY>
        <LENGTH>10</LENGTH>
       </item>
       <item>
@@ -176,55 +176,55 @@
       <item>
        <ID>I</ID>
        <KEY>005</KEY>
-       <ENTRY>RFC-Destination not reachable</ENTRY>
+       <ENTRY>RFC-Destination nicht erreichbar</ENTRY>
        <LENGTH>35</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>006</KEY>
-       <ENTRY> exists.</ENTRY>
+       <ENTRY> existiert.</ENTRY>
        <LENGTH>15</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>007</KEY>
-       <ENTRY> Overwrite?</ENTRY>
+       <ENTRY> Überschreiben?</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>008</KEY>
-       <ENTRY>Yes</ENTRY>
+       <ENTRY>Ja</ENTRY>
        <LENGTH>5</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>009</KEY>
-       <ENTRY>Yes to all</ENTRY>
+       <ENTRY>Ja, Alle</ENTRY>
        <LENGTH>10</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>010</KEY>
-       <ENTRY> delete?</ENTRY>
+       <ENTRY> löschen?</ENTRY>
        <LENGTH>10</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>011</KEY>
-       <ENTRY>Delete</ENTRY>
+       <ENTRY>Löschen</ENTRY>
        <LENGTH>10</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>012</KEY>
-       <ENTRY>logical Path</ENTRY>
+       <ENTRY>Logischer Pfad</ENTRY>
        <LENGTH>15</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>013</KEY>
-       <ENTRY>logical Path</ENTRY>
+       <ENTRY>logischer Pfad</ENTRY>
        <LENGTH>15</LENGTH>
       </item>
       <item>
@@ -248,13 +248,13 @@
       <item>
        <ID>I</ID>
        <KEY>017</KEY>
-       <ENTRY>Directory could not read.</ENTRY>
+       <ENTRY>Verzeichnis konnte nicht eingelesen werden.</ENTRY>
        <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>018</KEY>
-       <ENTRY>Insert value</ENTRY>
+       <ENTRY>Werteingabe</ENTRY>
        <LENGTH>15</LENGTH>
       </item>
       <item>
@@ -266,19 +266,19 @@
       <item>
        <ID>I</ID>
        <KEY>202</KEY>
-       <ENTRY>jump directly to path</ENTRY>
+       <ENTRY>Direkte Pfadeingabe</ENTRY>
        <LENGTH>25</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>231</KEY>
-       <ENTRY>Rename</ENTRY>
+       <ENTRY>Umbenennen</ENTRY>
        <LENGTH>15</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>500</KEY>
-       <ENTRY>Error in GUI</ENTRY>
+       <ENTRY>Fehler im GUI</ENTRY>
        <LENGTH>15</LENGTH>
       </item>
      </TEXTPOOL>

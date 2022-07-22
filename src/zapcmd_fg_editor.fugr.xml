@@ -28,11 +28,6 @@
      </DOCUMENTATION>
     </item>
    </FUNCTIONS>
-   <I18N_TPOOL>
-    <item>
-     <LANGUAGE>E</LANGUAGE>
-    </item>
-   </I18N_TPOOL>
    <DYNPROS>
     <item>
      <HEADER>
@@ -100,7 +95,7 @@
       <CODE>BACK</CODE>
       <TEXTNO>001</TEXTNO>
       <TEXT_TYPE>S</TEXT_TYPE>
-      <FUN_TEXT>Zurück</FUN_TEXT>
+      <FUN_TEXT>Back</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>EXIT</CODE>
@@ -108,7 +103,7 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_CANCEL</TEXT_NAME>
       <ICON_ID>@0W@</ICON_ID>
-      <FUN_TEXT>Abbrechen</FUN_TEXT>
+      <FUN_TEXT>Cancel</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>SAVE</CODE>
@@ -116,7 +111,7 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_SYSTEM_SAVE</TEXT_NAME>
       <ICON_ID>@2L@</ICON_ID>
-      <FUN_TEXT>Sichern</FUN_TEXT>
+      <FUN_TEXT>Save</FUN_TEXT>
      </RSMPE_FUNT>
     </FUN>
     <PFK>
@@ -177,7 +172,7 @@
     <TIT>
      <RSMPE_TITT>
       <CODE>TITLE200</CODE>
-      <TEXT>SAP-Commander-Editor &amp;1 &amp;2 &amp;3 &amp;4</TEXT>
+      <TEXT>SAP-Commander-Edit &amp;1 &amp;2 &amp;3 &amp;4</TEXT>
      </RSMPE_TITT>
     </TIT>
    </CUA>
