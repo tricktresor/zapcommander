@@ -4,8 +4,8 @@
   <asx:values>
    <VSEOCLASS>
     <CLSNAME>ZAPCMD_CL_FILE</CLSNAME>
-    <LANGU>D</LANGU>
-    <DESCRIPT>Klasse für eine Datei</DESCRIPT>
+    <LANGU>E</LANGU>
+    <DESCRIPT>Class for a file</DESCRIPT>
     <STATE>1</STATE>
     <CLSCCINCL>X</CLSCCINCL>
     <FIXPT>X</FIXPT>
@@ -41,9 +41,21 @@
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CLSNAME>ZAPCMD_CL_FILE</CLSNAME>
+     <CMPNAME>EXECUTE_ABAP</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Executes ABAP reports directly</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZAPCMD_CL_FILE</CLSNAME>
      <CMPNAME>GET_EXTENSION</CMPNAME>
      <LANGU>D</LANGU>
      <DESCRIPT>gibt die Dateierweiterung in Großbuchstaben aus.</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZAPCMD_CL_FILE</CLSNAME>
+     <CMPNAME>GET_EXTENSION</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Return the file extension in upper case</DESCRIPT>
     </SEOCOMPOTX>
    </DESCRIPTIONS>
   </asx:values>

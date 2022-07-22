@@ -19,6 +19,12 @@
     <TCODE>ZAPCMD</TCODE>
     <TTEXT>SAPCommander</TTEXT>
    </TSTCT>
+   <I18N_TPOOL>
+    <TSTCT>
+     <SPRSL>E</SPRSL>
+     <TTEXT>SAPCommander</TTEXT>
+    </TSTCT>
+   </I18N_TPOOL>
   </asx:values>
  </asx:abap>
 </abapGit>

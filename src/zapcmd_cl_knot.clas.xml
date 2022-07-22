@@ -4,8 +4,8 @@
   <asx:values>
    <VSEOCLASS>
     <CLSNAME>ZAPCMD_CL_KNOT</CLSNAME>
-    <LANGU>D</LANGU>
-    <DESCRIPT>Knoten im Verzeichnisbaum</DESCRIPT>
+    <LANGU>E</LANGU>
+    <DESCRIPT>Node in directory tree</DESCRIPT>
     <STATE>1</STATE>
     <CLSCCINCL>X</CLSCCINCL>
     <FIXPT>X</FIXPT>
@@ -41,9 +41,21 @@
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CLSNAME>ZAPCMD_CL_KNOT</CLSNAME>
+     <CMPNAME>CONVERT_SIZE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Writes file length in string</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZAPCMD_CL_KNOT</CLSNAME>
      <CMPNAME>DELETE</CMPNAME>
      <LANGU>D</LANGU>
      <DESCRIPT>Löschen der Datei oder Verzeichnis</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZAPCMD_CL_KNOT</CLSNAME>
+     <CMPNAME>DELETE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>delete file or dir</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CLSNAME>ZAPCMD_CL_KNOT</CLSNAME>
@@ -53,9 +65,21 @@
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CLSNAME>ZAPCMD_CL_KNOT</CLSNAME>
+     <CMPNAME>EXECUTE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Display or execute file</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZAPCMD_CL_KNOT</CLSNAME>
      <CMPNAME>EXEC_SERVER</CMPNAME>
      <LANGU>D</LANGU>
      <DESCRIPT>Führt einen Befehl auf dem Applikationsserver aus.</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZAPCMD_CL_KNOT</CLSNAME>
+     <CMPNAME>EXEC_SERVER</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Executes command on application server</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CLSNAME>ZAPCMD_CL_KNOT</CLSNAME>
@@ -65,9 +89,21 @@
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CLSNAME>ZAPCMD_CL_KNOT</CLSNAME>
+     <CMPNAME>FILESIZE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>File size in Bytes</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZAPCMD_CL_KNOT</CLSNAME>
      <CMPNAME>GET_INFO</CMPNAME>
      <LANGU>D</LANGU>
      <DESCRIPT>Liefert eine Informationsstruktur über die Datei</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZAPCMD_CL_KNOT</CLSNAME>
+     <CMPNAME>GET_INFO</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Returns information structure of file</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CLSNAME>ZAPCMD_CL_KNOT</CLSNAME>
@@ -77,9 +113,21 @@
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CLSNAME>ZAPCMD_CL_KNOT</CLSNAME>
+     <CMPNAME>SPLIT_FULLNAME</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Splits filename in path, name and extension</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZAPCMD_CL_KNOT</CLSNAME>
      <CMPNAME>SPLIT_NAME</CMPNAME>
      <LANGU>D</LANGU>
      <DESCRIPT>Unterteilt einen Namen in Kurzname und Extension</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZAPCMD_CL_KNOT</CLSNAME>
+     <CMPNAME>SPLIT_NAME</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Splits name in short name and extension</DESCRIPT>
     </SEOCOMPOTX>
    </DESCRIPTIONS>
   </asx:values>

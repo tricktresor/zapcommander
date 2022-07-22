@@ -4,8 +4,8 @@
   <asx:values>
    <VSEOCLASS>
     <CLSNAME>ZAPCMD_CL_FRONTEND_DIR</CLSNAME>
-    <LANGU>D</LANGU>
-    <DESCRIPT>Verzeichnis auf dem Frontend</DESCRIPT>
+    <LANGU>E</LANGU>
+    <DESCRIPT>Directories of the frontend</DESCRIPT>
     <STATE>1</STATE>
     <CLSCCINCL>X</CLSCCINCL>
     <FIXPT>X</FIXPT>

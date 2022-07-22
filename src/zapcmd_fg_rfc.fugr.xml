@@ -11,7 +11,7 @@
     <item>
      <FUNCNAME>ZAPCMD_CHECK_DIR</FUNCNAME>
      <REMOTE_CALL>R</REMOTE_CALL>
-     <SHORT_TEXT>Prüft, ob ein Verzeichnis vorhanden ist</SHORT_TEXT>
+     <SHORT_TEXT>Check if directory exists</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>IV_DIR</PARAMETER>
@@ -28,19 +28,19 @@
       <RSFDO>
        <PARAMETER>IV_DIR</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Text, 255 Zeichen</STEXT>
+       <STEXT>Text, 255 chars</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>EV_REACHABLE</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Feld zum Ankreuzen</STEXT>
+       <STEXT>Field to mark</STEXT>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZAPCMD_DELETE_FILE</FUNCNAME>
      <REMOTE_CALL>R</REMOTE_CALL>
-     <SHORT_TEXT>Löscht eine Datei</SHORT_TEXT>
+     <SHORT_TEXT>Deletes a file</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>IV_FULL_NAME</PARAMETER>
@@ -56,7 +56,7 @@
       <RSFDO>
        <PARAMETER>IV_FULL_NAME</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Text, 255 Zeichen</STEXT>
+       <STEXT>Text, 255 chars</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOT_FOUND</PARAMETER>
@@ -67,7 +67,7 @@
     <item>
      <FUNCNAME>ZAPCMD_EXEC_ABAP</FUNCNAME>
      <REMOTE_CALL>R</REMOTE_CALL>
-     <SHORT_TEXT>Führt ABAP-Code per aus.</SHORT_TEXT>
+     <SHORT_TEXT>Executes ABAP Code</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>IV_FULL_NAME</PARAMETER>
@@ -90,12 +90,12 @@
       <RSFDO>
        <PARAMETER>IV_FULL_NAME</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Text, 255 Zeichen</STEXT>
+       <STEXT>Text, 255 chars</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>IV_SHORTNAME</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Text, 255 Zeichen</STEXT>
+       <STEXT>Text, 255 chars</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOT_FOUND</PARAMETER>
@@ -110,7 +110,7 @@
     <item>
      <FUNCNAME>ZAPCMD_EXEC_CMD</FUNCNAME>
      <REMOTE_CALL>R</REMOTE_CALL>
-     <SHORT_TEXT>Legt ein Verzeichnis an.</SHORT_TEXT>
+     <SHORT_TEXT>Creates a directory</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>IV_COMMAND</PARAMETER>
@@ -145,34 +145,34 @@
       <RSFDO>
        <PARAMETER>IV_COMMAND</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Text, 255 Zeichen</STEXT>
+       <STEXT>Text, 255 chars</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>IV_DIR</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Text, 255 Zeichen</STEXT>
+       <STEXT>Text, 255 chars</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>IV_PARAMETER</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Text, 255 Zeichen</STEXT>
+       <STEXT>Text, 255 chars</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>ET_OUTPUT</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Struktur für RFC-Übergabe</STEXT>
+       <STEXT>Structure for RFC handover</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOT_FOUND</PARAMETER>
        <KIND>X</KIND>
-       <STEXT>Verzeichnis nicht gefunden</STEXT>
+       <STEXT>Directory not found</STEXT>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZAPCMD_GET_HOMEDIR</FUNCNAME>
      <REMOTE_CALL>R</REMOTE_CALL>
-     <SHORT_TEXT>gibt das Heimatverzeichnis zurück</SHORT_TEXT>
+     <SHORT_TEXT>Returns the home directory</SHORT_TEXT>
      <EXPORT>
       <RSEXP>
        <PARAMETER>EV_FULLNAME</PARAMETER>
@@ -183,14 +183,14 @@
       <RSFDO>
        <PARAMETER>EV_FULLNAME</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Text, 255 Zeichen</STEXT>
+       <STEXT>Text, 255 chars</STEXT>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZAPCMD_GET_OPSYS</FUNCNAME>
      <REMOTE_CALL>R</REMOTE_CALL>
-     <SHORT_TEXT>gibt das Betriebssystem zurück</SHORT_TEXT>
+     <SHORT_TEXT>Returns the operating system</SHORT_TEXT>
      <EXPORT>
       <RSEXP>
        <PARAMETER>EV_OPSYS</PARAMETER>
@@ -201,14 +201,14 @@
       <RSFDO>
        <PARAMETER>EV_OPSYS</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Betriebssystem des Applikationsservers</STEXT>
+       <STEXT>Operating system of application server</STEXT>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZAPCMD_READ_BINFILE</FUNCNAME>
      <REMOTE_CALL>R</REMOTE_CALL>
-     <SHORT_TEXT>Liest eine Binärdatei ein.</SHORT_TEXT>
+     <SHORT_TEXT>Reads a binary file</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>IV_FULL_NAME</PARAMETER>
@@ -236,7 +236,7 @@
       <RSFDO>
        <PARAMETER>IV_FULL_NAME</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Text, 255 Zeichen</STEXT>
+       <STEXT>Text, 255 chars</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>EV_FILESIZE</PARAMETER>
@@ -245,7 +245,7 @@
       <RSFDO>
        <PARAMETER>ET_FILE</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Datenpuffer für RFC-Übertragung</STEXT>
+       <STEXT>Data buffer for RFC transmission</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOT_FOUND</PARAMETER>
@@ -256,7 +256,7 @@
     <item>
      <FUNCNAME>ZAPCMD_READ_DIR</FUNCNAME>
      <REMOTE_CALL>R</REMOTE_CALL>
-     <SHORT_TEXT>Liest ein Verzeichnis ein.</SHORT_TEXT>
+     <SHORT_TEXT>Reads a directory</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>IV_DIR</PARAMETER>
@@ -293,19 +293,19 @@
       <RSFDO>
        <PARAMETER>ET_FILE</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Struktur zur Beschreibung einer Datei</STEXT>
+       <STEXT>Structure to describe a file</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOT_FOUND</PARAMETER>
        <KIND>X</KIND>
-       <STEXT>Verzeichnis nicht gefunden</STEXT>
+       <STEXT>Directory not found</STEXT>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZAPCMD_READ_TEXTFILE</FUNCNAME>
      <REMOTE_CALL>R</REMOTE_CALL>
-     <SHORT_TEXT>liest eine textdatei ein</SHORT_TEXT>
+     <SHORT_TEXT>Reads a text file</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>IV_FULL_NAME</PARAMETER>
@@ -333,7 +333,7 @@
       <RSFDO>
        <PARAMETER>IV_FULL_NAME</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Text, 255 Zeichen</STEXT>
+       <STEXT>Text, 255 chars</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>EV_FILESIZE</PARAMETER>
@@ -342,19 +342,19 @@
       <RSFDO>
        <PARAMETER>ET_FILE</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Struktur für RFC-Übergabe</STEXT>
+       <STEXT>Structure for RFC handover</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOT_FOUND</PARAMETER>
        <KIND>X</KIND>
-       <STEXT>Datei nicht gefunden</STEXT>
+       <STEXT>File not found</STEXT>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZAPCMD_WRITE_BINFILE</FUNCNAME>
      <REMOTE_CALL>R</REMOTE_CALL>
-     <SHORT_TEXT>Schreibt eine Binärdatei</SHORT_TEXT>
+     <SHORT_TEXT>Writes a binary file</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>IV_FULL_NAME</PARAMETER>
@@ -380,7 +380,7 @@
       <RSFDO>
        <PARAMETER>IV_FULL_NAME</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Text, 255 Zeichen</STEXT>
+       <STEXT>Text, 255 chars</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>IV_FILESIZE</PARAMETER>
@@ -389,7 +389,7 @@
       <RSFDO>
        <PARAMETER>IT_FILE</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Datenpuffer für RFC-Übertragung</STEXT>
+       <STEXT>Data buffer for RFC transmission</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOT_FOUND</PARAMETER>
@@ -400,7 +400,7 @@
     <item>
      <FUNCNAME>ZAPCMD_WRITE_TEXTFILE</FUNCNAME>
      <REMOTE_CALL>R</REMOTE_CALL>
-     <SHORT_TEXT>Schreibt eine Binärdatei</SHORT_TEXT>
+     <SHORT_TEXT>Writes a binary file</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>IV_FULL_NAME</PARAMETER>
@@ -422,12 +422,12 @@
       <RSFDO>
        <PARAMETER>IV_FULL_NAME</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Text, 255 Zeichen</STEXT>
+       <STEXT>Text, 255 chars</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>IT_FILE</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Datenpuffer für RFC-Übertragung</STEXT>
+       <STEXT>Data buffer for RFC transmission</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOT_FOUND</PARAMETER>

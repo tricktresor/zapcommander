@@ -10,7 +10,7 @@
    <FUNCTIONS>
     <item>
      <FUNCNAME>ZAPCMD_CALL_EDITOR</FUNCNAME>
-     <SHORT_TEXT>Aufruf eines einfachen editors</SHORT_TEXT>
+     <SHORT_TEXT>Call of a simple editor</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>PF_EDITOR</PARAMETER>
@@ -23,17 +23,23 @@
       <RSFDO>
        <PARAMETER>PF_EDITOR</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Einfacher Editor</STEXT>
+       <STEXT>Simple editor</STEXT>
       </RSFDO>
      </DOCUMENTATION>
     </item>
    </FUNCTIONS>
+   <I18N_TPOOL>
+    <item>
+     <LANGUAGE>E</LANGUAGE>
+    </item>
+   </I18N_TPOOL>
    <DYNPROS>
     <item>
      <HEADER>
       <PROGRAM>SAPLZAPCMD_FG_EDITOR</PROGRAM>
       <SCREEN>0200</SCREEN>
-      <LANGUAGE>D</LANGUAGE>
+      <LANGUAGE>E</LANGUAGE>
+      <DESCRIPT>View Comand window</DESCRIPT>
       <TYPE>N</TYPE>
       <NEXTSCREEN>0200</NEXTSCREEN>
       <LINES>200</LINES>

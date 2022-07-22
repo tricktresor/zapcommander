@@ -4,8 +4,8 @@
   <asx:values>
    <VSEOCLASS>
     <CLSNAME>ZAPCMD_CL_SERVER_DIR</CLSNAME>
-    <LANGU>D</LANGU>
-    <DESCRIPT>Ein Verzeichnis auf dem Appl-Server</DESCRIPT>
+    <LANGU>E</LANGU>
+    <DESCRIPT>a directory on the application server</DESCRIPT>
     <STATE>1</STATE>
     <CLSCCINCL>X</CLSCCINCL>
     <FIXPT>X</FIXPT>

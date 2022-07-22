@@ -4,8 +4,8 @@
   <asx:values>
    <VSEOCLASS>
     <CLSNAME>ZAPCMD_CL_CMDLINE</CLSNAME>
-    <LANGU>D</LANGU>
-    <DESCRIPT>Kommandozeile</DESCRIPT>
+    <LANGU>E</LANGU>
+    <DESCRIPT>Command line</DESCRIPT>
     <STATE>1</STATE>
     <CLSCCINCL>X</CLSCCINCL>
     <FIXPT>X</FIXPT>

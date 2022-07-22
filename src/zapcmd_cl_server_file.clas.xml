@@ -4,8 +4,8 @@
   <asx:values>
    <VSEOCLASS>
     <CLSNAME>ZAPCMD_CL_SERVER_FILE</CLSNAME>
-    <LANGU>D</LANGU>
-    <DESCRIPT>Datei auf dem applikationsssever</DESCRIPT>
+    <LANGU>E</LANGU>
+    <DESCRIPT>File on application server</DESCRIPT>
     <STATE>1</STATE>
     <CLSCCINCL>X</CLSCCINCL>
     <FIXPT>X</FIXPT>

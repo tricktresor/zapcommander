@@ -10,7 +10,7 @@
    <FUNCTIONS>
     <item>
      <FUNCNAME>ZAPCMD_CALL_CMDLINE</FUNCNAME>
-     <SHORT_TEXT>Ruft die Ausgabe für eine Commandozeile auf</SHORT_TEXT>
+     <SHORT_TEXT>Calls the outpout for command line</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>PF_CMDLINE</PARAMETER>
@@ -23,18 +23,23 @@
       <RSFDO>
        <PARAMETER>PF_CMDLINE</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Kommandozeile</STEXT>
+       <STEXT>Command line</STEXT>
       </RSFDO>
      </DOCUMENTATION>
     </item>
    </FUNCTIONS>
+   <I18N_TPOOL>
+    <item>
+     <LANGUAGE>E</LANGUAGE>
+    </item>
+   </I18N_TPOOL>
    <DYNPROS>
     <item>
      <HEADER>
       <PROGRAM>SAPLZAPCMD_FG_CMDLINE</PROGRAM>
       <SCREEN>0300</SCREEN>
-      <LANGUAGE>D</LANGUAGE>
-      <DESCRIPT>Anzeige Commandfenster</DESCRIPT>
+      <LANGUAGE>E</LANGUAGE>
+      <DESCRIPT>View Comand window</DESCRIPT>
       <TYPE>M</TYPE>
       <NEXTSCREEN>0300</NEXTSCREEN>
       <LINES>026</LINES>

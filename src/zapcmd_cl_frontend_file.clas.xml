@@ -4,8 +4,8 @@
   <asx:values>
    <VSEOCLASS>
     <CLSNAME>ZAPCMD_CL_FRONTEND_FILE</CLSNAME>
-    <LANGU>D</LANGU>
-    <DESCRIPT>Datei auf dem Frontend</DESCRIPT>
+    <LANGU>E</LANGU>
+    <DESCRIPT>File on frontend</DESCRIPT>
     <STATE>1</STATE>
     <CLSCCINCL>X</CLSCCINCL>
     <FIXPT>X</FIXPT>

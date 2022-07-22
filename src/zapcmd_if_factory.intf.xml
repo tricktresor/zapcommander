@@ -4,8 +4,8 @@
   <asx:values>
    <VSEOINTERF>
     <CLSNAME>ZAPCMD_IF_FACTORY</CLSNAME>
-    <LANGU>D</LANGU>
-    <DESCRIPT>Factory zum erzeugen von Verzeichnissen</DESCRIPT>
+    <LANGU>E</LANGU>
+    <DESCRIPT>Factory to create directories</DESCRIPT>
     <EXPOSURE>2</EXPOSURE>
     <STATE>1</STATE>
     <UNICODE>X</UNICODE>
@@ -16,6 +16,12 @@
      <CMPNAME>GET_BUTTON</CMPNAME>
      <LANGU>D</LANGU>
      <DESCRIPT>Fügt Buttons zur Leiste hinzu.</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZAPCMD_IF_FACTORY</CLSNAME>
+     <CMPNAME>GET_BUTTON</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Add a button to the toolbar</DESCRIPT>
     </SEOCOMPOTX>
    </DESCRIPTIONS>
   </asx:values>

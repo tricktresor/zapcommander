@@ -4,8 +4,8 @@
   <asx:values>
    <VSEOCLASS>
     <CLSNAME>ZAPCMD_CL_KNOTLIST</CLSNAME>
-    <LANGU>D</LANGU>
-    <DESCRIPT>interne Tabelle mit Knoten</DESCRIPT>
+    <LANGU>E</LANGU>
+    <DESCRIPT>Internal table with nodes</DESCRIPT>
     <STATE>1</STATE>
     <CLSCCINCL>X</CLSCCINCL>
     <FIXPT>X</FIXPT>
@@ -20,9 +20,21 @@
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CLSNAME>ZAPCMD_CL_KNOTLIST</CLSNAME>
+     <CMPNAME>ADD</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>append</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZAPCMD_CL_KNOTLIST</CLSNAME>
      <CMPNAME>CT_LIST</CMPNAME>
      <LANGU>D</LANGU>
      <DESCRIPT>Tabelle mit Dateien und Verzeichnissen</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZAPCMD_CL_KNOTLIST</CLSNAME>
+     <CMPNAME>CT_LIST</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Table containing files and directories</DESCRIPT>
     </SEOCOMPOTX>
    </DESCRIPTIONS>
   </asx:values>

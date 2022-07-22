@@ -4,8 +4,8 @@
   <asx:values>
    <VSEOCLASS>
     <CLSNAME>ZAPCMD_CL_FRONTEND_FACTORY</CLSNAME>
-    <LANGU>D</LANGU>
-    <DESCRIPT>Erzeugt Verzeichnis Frontend</DESCRIPT>
+    <LANGU>E</LANGU>
+    <DESCRIPT>Creates directory on frontend</DESCRIPT>
     <STATE>1</STATE>
     <CLSCCINCL>X</CLSCCINCL>
     <FIXPT>X</FIXPT>

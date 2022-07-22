@@ -4,8 +4,8 @@
   <asx:values>
    <VSEOCLASS>
     <CLSNAME>ZAPCMD_CL_RFC_DIR</CLSNAME>
-    <LANGU>D</LANGU>
-    <DESCRIPT>Verzeichnis über RFC-Verbindung</DESCRIPT>
+    <LANGU>E</LANGU>
+    <DESCRIPT>Directory via RFC connection</DESCRIPT>
     <STATE>1</STATE>
     <CLSCCINCL>X</CLSCCINCL>
     <FIXPT>X</FIXPT>
@@ -50,6 +50,12 @@
      <CMPNAME>RFCDEST</CMPNAME>
      <LANGU>D</LANGU>
      <DESCRIPT>logische Destination (Wird bei Funktionsaufruf angegeben)</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZAPCMD_CL_RFC_DIR</CLSNAME>
+     <CMPNAME>RFCDEST</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>logical destination (will be passed by function call)</DESCRIPT>
     </SEOCOMPOTX>
    </DESCRIPTIONS>
   </asx:values>
