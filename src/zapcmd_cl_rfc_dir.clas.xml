@@ -46,13 +46,11 @@
    </I18N_TPOOL>
    <DESCRIPTIONS>
     <SEOCOMPOTX>
-     <CLSNAME>ZAPCMD_CL_RFC_DIR</CLSNAME>
      <CMPNAME>RFCDEST</CMPNAME>
      <LANGU>D</LANGU>
      <DESCRIPT>logische Destination (Wird bei Funktionsaufruf angegeben)</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
-     <CLSNAME>ZAPCMD_CL_RFC_DIR</CLSNAME>
      <CMPNAME>RFCDEST</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>logical destination (will be passed by function call)</DESCRIPT>

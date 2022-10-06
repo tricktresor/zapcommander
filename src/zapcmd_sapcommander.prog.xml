@@ -374,6 +374,9 @@
     </item>
    </DYNPROS>
    <CUA>
+    <ADM>
+     <PFKCODE>000002</PFKCODE>
+    </ADM>
     <STA>
      <RSMPE_STAT>
       <CODE>STATUS100</CODE>
