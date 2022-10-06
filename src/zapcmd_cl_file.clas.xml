@@ -34,25 +34,21 @@
    </I18N_TPOOL>
    <DESCRIPTIONS>
     <SEOCOMPOTX>
-     <CLSNAME>ZAPCMD_CL_FILE</CLSNAME>
      <CMPNAME>EXECUTE_ABAP</CMPNAME>
      <LANGU>D</LANGU>
      <DESCRIPT>Führt Abap-Reports aus Dateien aus</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
-     <CLSNAME>ZAPCMD_CL_FILE</CLSNAME>
      <CMPNAME>EXECUTE_ABAP</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Executes ABAP reports directly</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
-     <CLSNAME>ZAPCMD_CL_FILE</CLSNAME>
      <CMPNAME>GET_EXTENSION</CMPNAME>
      <LANGU>D</LANGU>
      <DESCRIPT>gibt die Dateierweiterung in Großbuchstaben aus.</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
-     <CLSNAME>ZAPCMD_CL_FILE</CLSNAME>
      <CMPNAME>GET_EXTENSION</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Return the file extension in upper case</DESCRIPT>

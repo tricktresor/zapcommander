@@ -13,13 +13,11 @@
    </VSEOCLASS>
    <DESCRIPTIONS>
     <SEOCOMPOTX>
-     <CLSNAME>ZAPCMD_CL_RFC_FILE</CLSNAME>
      <CMPNAME>RFCDEST</CMPNAME>
      <LANGU>D</LANGU>
      <DESCRIPT>logische Destination (Wird bei Funktionsaufruf angegeben)</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
-     <CLSNAME>ZAPCMD_CL_RFC_FILE</CLSNAME>
      <CMPNAME>RFCDEST</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Logical destination (will be passed by function call)</DESCRIPT>
