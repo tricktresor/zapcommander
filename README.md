@@ -11,6 +11,12 @@ You can switch right and left sides between application server, front-end, or an
 
 ![image](https://user-images.githubusercontent.com/59966492/194188073-d353bdd8-082c-4264-84c2-f77e996a6462.png)
 
+## Requirements
+
+SAP ECC Release 740
+
+# Credits
+
 Original by Achim von Lowtzow
 
 https://code.google.com/archive/p/sapcommander/
