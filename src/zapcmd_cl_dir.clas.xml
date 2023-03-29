@@ -83,6 +83,56 @@
      <DESCRIPT>Read all R3 RFC connections</DESCRIPT>
     </SEOCOMPOTX>
    </DESCRIPTIONS>
+   <DESCRIPTIONS_SUB>
+    <SEOSUBCOTX>
+     <CMPNAME>CREATE_NEW</CMPNAME>
+     <SCONAME>EO_DIR</SCONAME>
+     <LANGU>D</LANGU>
+     <DESCRIPT>Klasse für ein Verzeichnis</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CREATE_NEW</CMPNAME>
+     <SCONAME>EO_DIR</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Class for a directory</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CREATE_NEW</CMPNAME>
+     <SCONAME>I_FCODE</SCONAME>
+     <LANGU>D</LANGU>
+     <DESCRIPT>Funktionscode, der PAI ausgelöst hat</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CREATE_NEW</CMPNAME>
+     <SCONAME>I_FCODE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Function code</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>READ_DIR</CMPNAME>
+     <SCONAME>PF_MASK</SCONAME>
+     <LANGU>D</LANGU>
+     <DESCRIPT>Dateiname ohne Pfad</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>READ_DIR</CMPNAME>
+     <SCONAME>PF_MASK</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>File name w/o path</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>READ_RFC</CMPNAME>
+     <SCONAME>PT_FILELIST</SCONAME>
+     <LANGU>D</LANGU>
+     <DESCRIPT>Tabelle mit Dateien und Verzeichnissen</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>READ_RFC</CMPNAME>
+     <SCONAME>PT_FILELIST</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Table containing files and directories</DESCRIPT>
+    </SEOSUBCOTX>
+   </DESCRIPTIONS_SUB>
   </asx:values>
  </asx:abap>
 </abapGit>

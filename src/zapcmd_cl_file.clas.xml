@@ -54,6 +54,32 @@
      <DESCRIPT>Return the file extension in upper case</DESCRIPT>
     </SEOCOMPOTX>
    </DESCRIPTIONS>
+   <DESCRIPTIONS_SUB>
+    <SEOSUBCOTX>
+     <CMPNAME>STREAM2TEXT</CMPNAME>
+     <SCONAME>PTX_TEXT</SCONAME>
+     <LANGU>D</LANGU>
+     <DESCRIPT>Tabelle mit Zeichenketten</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>STREAM2TEXT</CMPNAME>
+     <SCONAME>PTX_TEXT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Table with strings</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>TEXT2STREAM</CMPNAME>
+     <SCONAME>PT_TEXT</SCONAME>
+     <LANGU>D</LANGU>
+     <DESCRIPT>Tabelle mit Zeichenketten</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>TEXT2STREAM</CMPNAME>
+     <SCONAME>PT_TEXT</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Table with strings</DESCRIPT>
+    </SEOSUBCOTX>
+   </DESCRIPTIONS_SUB>
   </asx:values>
  </asx:abap>
 </abapGit>

@@ -104,16 +104,16 @@ CLASS zapcmd_cl_knot IMPLEMENTATION.
     IF lf_size > 0.
       lf_kmg = 'B'.
     ENDIF.
-    IF lf_size > 1000.
-      lf_size = lf_size / 1000.
+    IF lf_size > 1024.
+      lf_size = lf_size / 1024.
       lf_kmg = 'kB'.
     ENDIF.
-    IF lf_size > 1000.
-      lf_size = lf_size / 1000.
+    IF lf_size > 1024.
+      lf_size = lf_size / 1024.
       lf_kmg = 'MB'.
     ENDIF.
-    IF lf_size > 1000.
-      lf_size = lf_size / 1000.
+    IF lf_size > 1024.
+      lf_size = lf_size / 1024.
       lf_kmg = 'GB'.
     ENDIF.
     DATA lf_temp(7) TYPE c.

@@ -23,6 +23,32 @@
      <DESCRIPT>Logical destination (will be passed by function call)</DESCRIPT>
     </SEOCOMPOTX>
    </DESCRIPTIONS>
+   <DESCRIPTIONS_SUB>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IV_RFCDEST</SCONAME>
+     <LANGU>D</LANGU>
+     <DESCRIPT>logische Destination (Wird bei Funktionsaufruf angegeben)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IV_RFCDEST</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Logical destination (will be passed by function call)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>NOT_INSTALLED</SCONAME>
+     <LANGU>D</LANGU>
+     <DESCRIPT>Die RFC-FuBas sind nicht installiert.</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>NOT_INSTALLED</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>RFC function module is not installed</DESCRIPT>
+    </SEOSUBCOTX>
+   </DESCRIPTIONS_SUB>
   </asx:values>
  </asx:abap>
 </abapGit>

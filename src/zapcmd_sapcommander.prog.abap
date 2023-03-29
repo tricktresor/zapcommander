@@ -4,70 +4,64 @@
 *& https://github.com/tricktresor/zapcommander
 *& https://code.google.com/archive/p/sapcommander/
 *&---------------------------------------------------------------------*
-REPORT  zapcmd_sapcommander.
+REPORT zapcmd_sapcommander.
 
 
-PARAMETER p_ltype TYPE syucomm DEFAULT zapcmd_cl_dir=>co_default NO-DISPLAY.
-PARAMETER p_ldir TYPE string DEFAULT space NO-DISPLAY.
-PARAMETER p_rtype TYPE syucomm DEFAULT zapcmd_cl_dir=>co_default NO-DISPLAY.
-PARAMETER p_rdir TYPE string DEFAULT space NO-DISPLAY.
+PARAMETERS p_ltype TYPE syucomm DEFAULT zapcmd_cl_dir=>co_default NO-DISPLAY.
+PARAMETERS p_ldir TYPE string DEFAULT space NO-DISPLAY.
+PARAMETERS p_rtype TYPE syucomm DEFAULT zapcmd_cl_dir=>co_default NO-DISPLAY.
+PARAMETERS p_rdir TYPE string DEFAULT space NO-DISPLAY.
 
 
 START-OF-SELECTION.
-  DATA lf_id TYPE indx_srtfd.
-  CONCATENATE 'ZAPCMD' sy-uname INTO lf_id.
+  DATA gf_id TYPE indx_srtfd.
+  CONCATENATE 'ZAPCMD' sy-uname INTO gf_id.
   IF p_ltype = zapcmd_cl_dir=>co_default OR p_rtype = zapcmd_cl_dir=>co_default.
-    DATA l_left TYPE zapcmd_t_dir.
-    DATA l_right TYPE zapcmd_t_dir.
-    IMPORT left = l_left
-    right = l_right
+    DATA gf_left TYPE zapcmd_t_dir.
+    DATA gf_right TYPE zapcmd_t_dir.
+    IMPORT left = gf_left
+    right = gf_right
     FROM DATABASE indx(zc)
-    ID lf_id.
+    ID gf_id.
     IF sy-subrc = 0.
       IF p_ltype = zapcmd_cl_dir=>co_default.
-
-        p_ltype = l_left-type.
-        p_ldir  = l_left-dir.
+        p_ltype = gf_left-type.
+        p_ldir  = gf_left-dir.
       ENDIF.
       IF p_rtype = zapcmd_cl_dir=>co_default.
-
-        p_rtype = l_right-type.
-        p_rdir  = l_right-dir.
-
+        p_rtype = gf_right-type.
+        p_rdir  = gf_right-dir.
       ENDIF.
     ENDIF.
   ENDIF.
 
-
   DATA ok_code100 LIKE sy-ucomm.
-  DATA gf_gui_commander_container TYPE REF TO cl_gui_custom_container.
-  DATA gf_gui_dirname_container TYPE REF TO cl_gui_custom_container.
-  DATA gf_commander TYPE REF TO zapcmd_cl_commander.
-  DATA gf_cmdline TYPE REF TO zapcmd_cl_cmdline.
-  DATA g_cmdline TYPE string.
-  DATA g_dirname TYPE string.
-  DATA lf_temp TYPE REF TO string.
-  DATA lf_dirname TYPE REF TO string.
+  DATA go_gui_commander_container TYPE REF TO cl_gui_custom_container.
+  DATA go_gui_dirname_container TYPE REF TO cl_gui_custom_container.
+  DATA go_commander TYPE REF TO zapcmd_cl_commander.
+  DATA go_cmdline TYPE REF TO zapcmd_cl_cmdline.
+  DATA gf_cmdline TYPE string.
+  DATA gf_dirname TYPE string.
+  DATA go_temp TYPE REF TO string.
+  DATA go_dirname TYPE REF TO string.
 
-  GET REFERENCE OF g_cmdline INTO lf_temp.
-  GET REFERENCE OF g_dirname INTO lf_dirname.
+  GET REFERENCE OF gf_cmdline INTO go_temp.
+  GET REFERENCE OF gf_dirname INTO go_dirname.
 
-  CREATE OBJECT gf_commander
-      EXPORTING
-        pf_left_type  = p_ltype
-        pf_left_dir   = p_ldir
-        pf_right_type = p_rtype
-        pf_right_dir  = p_rdir
-        pf_dirname    = lf_dirname.
+  go_commander = NEW #(
+      pf_left_type  = p_ltype
+      pf_left_dir   = p_ldir
+      pf_right_type = p_rtype
+      pf_right_dir  = p_rdir
+      pf_dirname    = go_dirname ).
 
-  DATA lf_activelist TYPE REF TO zapcmd_refref_filelist.
-  GET REFERENCE OF gf_commander->cf_activelist INTO lf_activelist.
+  DATA go_activelist TYPE REF TO zapcmd_refref_filelist.
+  GET REFERENCE OF go_commander->cf_activelist INTO go_activelist.
 
 
-  CREATE OBJECT gf_cmdline
-    EXPORTING
-      pf_cmdline = lf_temp
-      pf_dir = lf_activelist.
+  go_cmdline = NEW #(
+      pf_cmdline = go_temp
+      pf_dir     = go_activelist ).
 
 
   CALL SCREEN 110.
@@ -88,9 +82,19 @@ START-OF-SELECTION.
 *&---------------------------------------------------------------------*
 *&      Module  STATUS_0100  OUTPUT
 *&---------------------------------------------------------------------*
-*       text
-*----------------------------------------------------------------------*
 MODULE status_0100 OUTPUT.
+  PERFORM status_0100.
+ENDMODULE.                 " STATUS_0100  OUTPUT
+
+*&---------------------------------------------------------------------*
+*&      Module  USER_COMMAND_0100  INPUT
+*&---------------------------------------------------------------------*
+MODULE user_command_0100 INPUT.
+  PERFORM user_command_0100.
+ENDMODULE.                 " USER_COMMAND_0100  INPUT
+
+FORM status_0100.
+
   SET PF-STATUS 'STATUS100'.
   SET TITLEBAR 'TITLE100'.
 
@@ -103,49 +107,33 @@ MODULE status_0100 OUTPUT.
 *    EXPORTING
 *      pf_container = gf_gui_parent_container.
 
-  IF gf_gui_commander_container IS INITIAL.
-
-    CREATE OBJECT gf_gui_commander_container
-      EXPORTING
-       container_name = 'CUST100'.
-
+  IF go_gui_commander_container IS INITIAL.
+    go_gui_commander_container = NEW #( container_name = 'CUST100' ).
   ENDIF.
 
-  gf_commander->show( gf_gui_commander_container ).
+  go_commander->show( go_gui_commander_container ).
 
   DATA gs_dir TYPE REF TO zapcmd_cl_dir.
-  gs_dir = gf_commander->cf_activelist->get_dir( ).
-  g_dirname = gs_dir->full_name.
+  gs_dir = go_commander->cf_activelist->get_dir( ).
+  gf_dirname = gs_dir->full_name.
 
   IF sy-dynnr = '0100'.
-    IF gf_gui_dirname_container IS INITIAL.
-      CREATE OBJECT gf_gui_dirname_container
-        EXPORTING
-          container_name = 'CUST400'.
+    IF go_gui_dirname_container IS INITIAL.
+      go_gui_dirname_container = NEW #( container_name = 'CUST400' ).
     ENDIF.
 
-    gf_cmdline->show1( gf_gui_dirname_container ).
+    go_cmdline->show1( go_gui_dirname_container ).
   ENDIF.
 
+ENDFORM.
 
-ENDMODULE.                 " STATUS_0100  OUTPUT
-
-*&---------------------------------------------------------------------*
-*&      Module  USER_COMMAND_0100  INPUT
-*&---------------------------------------------------------------------*
-*       text
-*----------------------------------------------------------------------*
-MODULE user_command_0100 INPUT.
-
+FORM user_command_0100.
 *   to react on oi_custom_events:
-  CALL METHOD cl_gui_cfw=>dispatch.
-  CALL METHOD gf_commander->user_command
-    EXPORTING
-      e_ucomm = ok_code100.
+  cl_gui_cfw=>dispatch( ).
+  go_commander->user_command( ok_code100 ).
+
   IF sy-dynnr = '0100'.
-    CALL METHOD gf_cmdline->user_command
-      EXPORTING
-        e_ucomm = ok_code100.
+    go_cmdline->user_command( ok_code100 ).
   ENDIF.
 
   CASE ok_code100.
@@ -153,14 +141,12 @@ MODULE user_command_0100 INPUT.
       LEAVE TO SCREEN 0.
     WHEN 'ABORT'.
       LEAVE PROGRAM.
-    when 'CMDLINE'.
-      if sy-dynnr = '0100'.
-        leave to screen 110.
-      elseif sy-dynnr = '0110'.
-        leave to screen 100.
-      endif.
+    WHEN 'CMDLINE'.
+      IF sy-dynnr = '0100'.
+        LEAVE TO SCREEN 110.
+      ELSEIF sy-dynnr = '0110'.
+        LEAVE TO SCREEN 100.
+      ENDIF.
   ENDCASE.
   CLEAR ok_code100.
-
-
-ENDMODULE.                 " USER_COMMAND_0100  INPUT
+ENDFORM.
