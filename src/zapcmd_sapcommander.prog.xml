@@ -394,13 +394,13 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_CANCEL</TEXT_NAME>
       <ICON_ID>@0W@</ICON_ID>
-      <FUN_TEXT>Cancel</FUN_TEXT>
+      <FUN_TEXT>Cancelar</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>BACK</CODE>
       <TEXTNO>001</TEXTNO>
       <TEXT_TYPE>S</TEXT_TYPE>
-      <FUN_TEXT>Back</FUN_TEXT>
+      <FUN_TEXT>Volver</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>CMDLINE</CODE>
@@ -408,19 +408,19 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_TOGGLE_FUNCTION</TEXT_NAME>
       <ICON_ID>@K7@</ICON_ID>
-      <FUN_TEXT>Command line on/off</FUN_TEXT>
+      <FUN_TEXT>Línea de comando on/off</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>COPY</CODE>
       <TEXTNO>001</TEXTNO>
       <TEXT_TYPE>S</TEXT_TYPE>
-      <FUN_TEXT>Copy</FUN_TEXT>
+      <FUN_TEXT>Copiar</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>DEL</CODE>
       <TEXTNO>001</TEXTNO>
       <TEXT_TYPE>S</TEXT_TYPE>
-      <FUN_TEXT>Delete</FUN_TEXT>
+      <FUN_TEXT>Borrar</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>EXIT</CODE>
@@ -428,13 +428,13 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_CANCEL</TEXT_NAME>
       <ICON_ID>@0W@</ICON_ID>
-      <FUN_TEXT>Cancel</FUN_TEXT>
+      <FUN_TEXT>Cancelar</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>EXIT</CODE>
       <TEXTNO>002</TEXTNO>
       <TEXT_TYPE>S</TEXT_TYPE>
-      <FUN_TEXT>Close</FUN_TEXT>
+      <FUN_TEXT>Cerrar</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>INFO</CODE>
@@ -442,20 +442,20 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_INFORMATION</TEXT_NAME>
       <ICON_ID>@0S@</ICON_ID>
-      <FUN_TEXT>Help</FUN_TEXT>
-      <INFO_TEXT>Help and information</INFO_TEXT>
+      <FUN_TEXT>Ayuda</FUN_TEXT>
+      <INFO_TEXT>Ayuda e información</INFO_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>MOVE</CODE>
       <TEXTNO>001</TEXTNO>
       <TEXT_TYPE>S</TEXT_TYPE>
-      <FUN_TEXT>Move</FUN_TEXT>
+      <FUN_TEXT>Mover</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>NEWDIR</CODE>
       <TEXTNO>001</TEXTNO>
       <TEXT_TYPE>S</TEXT_TYPE>
-      <FUN_TEXT>New folder</FUN_TEXT>
+      <FUN_TEXT>Nuevo directorio</FUN_TEXT>
      </RSMPE_FUNT>
      <RSMPE_FUNT>
       <CODE>OK</CODE>
@@ -471,7 +471,7 @@
       <TEXT_TYPE>S</TEXT_TYPE>
       <TEXT_NAME>ICON_SYSTEM_SAVE</TEXT_NAME>
       <ICON_ID>@2L@</ICON_ID>
-      <FUN_TEXT>Save</FUN_TEXT>
+      <FUN_TEXT>Guardar</FUN_TEXT>
      </RSMPE_FUNT>
     </FUN>
     <BUT>

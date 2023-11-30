@@ -14,11 +14,25 @@ PARAMETER p_rdir TYPE string DEFAULT space NO-DISPLAY.
 
 
 START-OF-SELECTION.
+*Global data declaration
   DATA lf_id TYPE indx_srtfd.
+  DATA l_left TYPE zapcmd_t_dir.
+  DATA l_right TYPE zapcmd_t_dir.
+  DATA ok_code100 LIKE sy-ucomm.
+  DATA gf_gui_commander_container TYPE REF TO cl_gui_custom_container.
+  DATA gf_gui_dirname_container TYPE REF TO cl_gui_custom_container.
+  DATA gf_commander TYPE REF TO zapcmd_cl_commander.
+  DATA gf_cmdline TYPE REF TO zapcmd_cl_cmdline.
+  DATA g_cmdline TYPE string.
+  DATA g_dirname TYPE string.
+  DATA lf_temp TYPE REF TO string.
+  DATA lf_dirname TYPE REF TO string.
+*  DATA lf_activelist TYPE REF TO zapcmd_refref_filelist.
+
+**********************************************************************
   CONCATENATE 'ZAPCMD' sy-uname INTO lf_id.
   IF p_ltype = zapcmd_cl_dir=>co_default OR p_rtype = zapcmd_cl_dir=>co_default.
-    DATA l_left TYPE zapcmd_t_dir.
-    DATA l_right TYPE zapcmd_t_dir.
+
     IMPORT left = l_left
     right = l_right
     FROM DATABASE indx(zc)
@@ -38,36 +52,24 @@ START-OF-SELECTION.
     ENDIF.
   ENDIF.
 
-
-  DATA ok_code100 LIKE sy-ucomm.
-  DATA gf_gui_commander_container TYPE REF TO cl_gui_custom_container.
-  DATA gf_gui_dirname_container TYPE REF TO cl_gui_custom_container.
-  DATA gf_commander TYPE REF TO zapcmd_cl_commander.
-  DATA gf_cmdline TYPE REF TO zapcmd_cl_cmdline.
-  DATA g_cmdline TYPE string.
-  DATA g_dirname TYPE string.
-  DATA lf_temp TYPE REF TO string.
-  DATA lf_dirname TYPE REF TO string.
-
   GET REFERENCE OF g_cmdline INTO lf_temp.
   GET REFERENCE OF g_dirname INTO lf_dirname.
 
   CREATE OBJECT gf_commander
-      EXPORTING
-        pf_left_type  = p_ltype
-        pf_left_dir   = p_ldir
-        pf_right_type = p_rtype
-        pf_right_dir  = p_rdir
-        pf_dirname    = lf_dirname.
+    EXPORTING
+      pf_left_type  = p_ltype
+      pf_left_dir   = p_ldir
+      pf_right_type = p_rtype
+      pf_right_dir  = p_rdir
+      pf_dirname    = lf_dirname.
 
-  DATA lf_activelist TYPE REF TO zapcmd_refref_filelist.
-  GET REFERENCE OF gf_commander->cf_activelist INTO lf_activelist.
 
+  GET REFERENCE OF gf_commander->cf_activelist INTO DATA(lf_activelist).
 
   CREATE OBJECT gf_cmdline
     EXPORTING
       pf_cmdline = lf_temp
-      pf_dir = lf_activelist.
+      pf_dir     = lf_activelist.
 
 
   CALL SCREEN 110.
@@ -107,7 +109,7 @@ MODULE status_0100 OUTPUT.
 
     CREATE OBJECT gf_gui_commander_container
       EXPORTING
-       container_name = 'CUST100'.
+        container_name = 'CUST100'.
 
   ENDIF.
 
@@ -153,12 +155,12 @@ MODULE user_command_0100 INPUT.
       LEAVE TO SCREEN 0.
     WHEN 'ABORT'.
       LEAVE PROGRAM.
-    when 'CMDLINE'.
-      if sy-dynnr = '0100'.
-        leave to screen 110.
-      elseif sy-dynnr = '0110'.
-        leave to screen 100.
-      endif.
+    WHEN 'CMDLINE'.
+      IF sy-dynnr = '0100'.
+        LEAVE TO SCREEN 110.
+      ELSEIF sy-dynnr = '0110'.
+        LEAVE TO SCREEN 100.
+      ENDIF.
   ENDCASE.
   CLEAR ok_code100.
 
