@@ -374,6 +374,9 @@
     </item>
    </DYNPROS>
    <CUA>
+    <ADM>
+     <PFKCODE>000002</PFKCODE>
+    </ADM>
     <STA>
      <RSMPE_STAT>
       <CODE>STATUS100</CODE>
@@ -656,13 +659,6 @@
      </RSMPE_TITT>
     </TIT>
    </CUA>
-   <TPOOL>
-    <item>
-     <ID>R</ID>
-     <ENTRY>SAP-Commander</ENTRY>
-     <LENGTH>70</LENGTH>
-    </item>
-   </TPOOL>
    <I18N_TPOOL>
     <item>
      <LANGUAGE>D</LANGUAGE>
@@ -671,6 +667,46 @@
        <ID>R</ID>
        <ENTRY>SAP-Commander</ENTRY>
        <LENGTH>13</LENGTH>
+      </item>
+     </TEXTPOOL>
+    </item>
+    <item>
+     <LANGUAGE>E</LANGUAGE>
+     <TEXTPOOL>
+      <item>
+       <ID>R</ID>
+       <ENTRY>SAP-Commander</ENTRY>
+       <LENGTH>70</LENGTH>
+      </item>
+     </TEXTPOOL>
+    </item>
+    <item>
+     <LANGUAGE>F</LANGUAGE>
+     <TEXTPOOL>
+      <item>
+       <ID>R</ID>
+       <ENTRY>SAP-Commander</ENTRY>
+       <LENGTH>70</LENGTH>
+      </item>
+     </TEXTPOOL>
+    </item>
+    <item>
+     <LANGUAGE>I</LANGUAGE>
+     <TEXTPOOL>
+      <item>
+       <ID>R</ID>
+       <ENTRY>SAP-Commander</ENTRY>
+       <LENGTH>70</LENGTH>
+      </item>
+     </TEXTPOOL>
+    </item>
+    <item>
+     <LANGUAGE>P</LANGUAGE>
+     <TEXTPOOL>
+      <item>
+       <ID>R</ID>
+       <ENTRY>SAP-Commander</ENTRY>
+       <LENGTH>70</LENGTH>
       </item>
      </TEXTPOOL>
     </item>

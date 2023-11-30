@@ -11,39 +11,6 @@
     <FIXPT>X</FIXPT>
     <UNICODE>X</UNICODE>
    </VSEOCLASS>
-   <TPOOL>
-    <item>
-     <ID>I</ID>
-     <KEY>001</KEY>
-     <ENTRY>RFC-conn.</ENTRY>
-     <LENGTH>9</LENGTH>
-    </item>
-    <item>
-     <ID>I</ID>
-     <KEY>232</KEY>
-     <ENTRY>Drives</ENTRY>
-     <LENGTH>9</LENGTH>
-    </item>
-   </TPOOL>
-   <I18N_TPOOL>
-    <item>
-     <LANGUAGE>D</LANGUAGE>
-     <TEXTPOOL>
-      <item>
-       <ID>I</ID>
-       <KEY>001</KEY>
-       <ENTRY>RFC-Verb.</ENTRY>
-       <LENGTH>9</LENGTH>
-      </item>
-      <item>
-       <ID>I</ID>
-       <KEY>232</KEY>
-       <ENTRY>Laufwerke</ENTRY>
-       <LENGTH>9</LENGTH>
-      </item>
-     </TEXTPOOL>
-    </item>
-   </I18N_TPOOL>
    <DESCRIPTIONS>
     <SEOCOMPOTX>
      <CMPNAME>RFCDEST</CMPNAME>
@@ -55,33 +22,22 @@
      <LANGU>E</LANGU>
      <DESCRIPT>logical destination (will be passed by function call)</DESCRIPT>
     </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>RFCDEST</CMPNAME>
+     <LANGU>F</LANGU>
+     <DESCRIPT>logical destination (will be passed by function call)</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>RFCDEST</CMPNAME>
+     <LANGU>I</LANGU>
+     <DESCRIPT>logical destination (will be passed by function call)</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>RFCDEST</CMPNAME>
+     <LANGU>P</LANGU>
+     <DESCRIPT>logical destination (will be passed by function call)</DESCRIPT>
+    </SEOCOMPOTX>
    </DESCRIPTIONS>
-   <DESCRIPTIONS_SUB>
-    <SEOSUBCOTX>
-     <CMPNAME>CONSTRUCTOR</CMPNAME>
-     <SCONAME>IV_RFCDEST</SCONAME>
-     <LANGU>D</LANGU>
-     <DESCRIPT>logische Destination (Wird bei Funktionsaufruf angegeben)</DESCRIPT>
-    </SEOSUBCOTX>
-    <SEOSUBCOTX>
-     <CMPNAME>CONSTRUCTOR</CMPNAME>
-     <SCONAME>IV_RFCDEST</SCONAME>
-     <LANGU>E</LANGU>
-     <DESCRIPT>Logical destination (will be passed by function call)</DESCRIPT>
-    </SEOSUBCOTX>
-    <SEOSUBCOTX>
-     <CMPNAME>CONSTRUCTOR</CMPNAME>
-     <SCONAME>NOT_INSTALLED</SCONAME>
-     <LANGU>D</LANGU>
-     <DESCRIPT>Die RFC-FuBas sind nicht installiert.</DESCRIPT>
-    </SEOSUBCOTX>
-    <SEOSUBCOTX>
-     <CMPNAME>CONSTRUCTOR</CMPNAME>
-     <SCONAME>NOT_INSTALLED</SCONAME>
-     <LANGU>E</LANGU>
-     <DESCRIPT>RFC function modules not installed</DESCRIPT>
-    </SEOSUBCOTX>
-   </DESCRIPTIONS_SUB>
   </asx:values>
  </asx:abap>
 </abapGit>

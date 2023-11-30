@@ -4,9 +4,7 @@
   <asx:values>
    <DD02V>
     <TABNAME>ZAPCMD_DATA_BUFFER</TABNAME>
-    <DDLANGUAGE>E</DDLANGUAGE>
     <TABCLASS>INTTAB</TABCLASS>
-    <DDTEXT>Data buffer for RFC transmission</DDTEXT>
     <EXCLASS>1</EXCLASS>
    </DD02V>
    <DD03P_TABLE>
@@ -25,11 +23,31 @@
    </DD03P_TABLE>
    <I18N_LANGS>
     <LANGU>D</LANGU>
+    <LANGU>E</LANGU>
+    <LANGU>F</LANGU>
+    <LANGU>I</LANGU>
+    <LANGU>P</LANGU>
    </I18N_LANGS>
    <DD02_TEXTS>
     <item>
      <DDLANGUAGE>D</DDLANGUAGE>
      <DDTEXT>Datenpuffer für RFC-Übertragung</DDTEXT>
+    </item>
+    <item>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DDTEXT>Data buffer for RFC transmission</DDTEXT>
+    </item>
+    <item>
+     <DDLANGUAGE>F</DDLANGUAGE>
+     <DDTEXT>Data buffer for RFC transmission</DDTEXT>
+    </item>
+    <item>
+     <DDLANGUAGE>I</DDLANGUAGE>
+     <DDTEXT>Data buffer for RFC transmission</DDTEXT>
+    </item>
+    <item>
+     <DDLANGUAGE>P</DDLANGUAGE>
+     <DDTEXT>Data buffer for RFC transmission</DDTEXT>
     </item>
    </DD02_TEXTS>
   </asx:values>

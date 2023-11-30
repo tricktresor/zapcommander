@@ -4,22 +4,20 @@
   <asx:values>
    <DD04V>
     <ROLLNAME>ZAPCMD_FILENAME</ROLLNAME>
-    <DDLANGUAGE>E</DDLANGUAGE>
     <DOMNAME>ZAPCMD_FILENAME</DOMNAME>
     <HEADLEN>19</HEADLEN>
     <SCRLEN1>09</SCRLEN1>
     <SCRLEN2>19</SCRLEN2>
     <SCRLEN3>19</SCRLEN3>
-    <DDTEXT>File name without Path</DDTEXT>
-    <REPTEXT>File name w/o path</REPTEXT>
-    <SCRTEXT_S>Name</SCRTEXT_S>
-    <SCRTEXT_M>File name</SCRTEXT_M>
-    <SCRTEXT_L>File name</SCRTEXT_L>
     <DTELMASTER>E</DTELMASTER>
     <REFKIND>D</REFKIND>
    </DD04V>
    <I18N_LANGS>
     <LANGU>D</LANGU>
+    <LANGU>E</LANGU>
+    <LANGU>F</LANGU>
+    <LANGU>I</LANGU>
+    <LANGU>P</LANGU>
    </I18N_LANGS>
    <DD04_TEXTS>
     <item>
@@ -29,6 +27,38 @@
      <SCRTEXT_S>Name</SCRTEXT_S>
      <SCRTEXT_M>Dateiname</SCRTEXT_M>
      <SCRTEXT_L>Dateiname</SCRTEXT_L>
+    </item>
+    <item>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DDTEXT>File name without Path</DDTEXT>
+     <REPTEXT>File name w/o path</REPTEXT>
+     <SCRTEXT_S>Name</SCRTEXT_S>
+     <SCRTEXT_M>File name</SCRTEXT_M>
+     <SCRTEXT_L>File name</SCRTEXT_L>
+    </item>
+    <item>
+     <DDLANGUAGE>F</DDLANGUAGE>
+     <DDTEXT>File name without Path</DDTEXT>
+     <REPTEXT>File name w/o path</REPTEXT>
+     <SCRTEXT_S>Name</SCRTEXT_S>
+     <SCRTEXT_M>File name</SCRTEXT_M>
+     <SCRTEXT_L>File name</SCRTEXT_L>
+    </item>
+    <item>
+     <DDLANGUAGE>I</DDLANGUAGE>
+     <DDTEXT>File name without Path</DDTEXT>
+     <REPTEXT>File name w/o path</REPTEXT>
+     <SCRTEXT_S>Name</SCRTEXT_S>
+     <SCRTEXT_M>File name</SCRTEXT_M>
+     <SCRTEXT_L>File name</SCRTEXT_L>
+    </item>
+    <item>
+     <DDLANGUAGE>P</DDLANGUAGE>
+     <DDTEXT>File name without Path</DDTEXT>
+     <REPTEXT>File name w/o path</REPTEXT>
+     <SCRTEXT_S>Name</SCRTEXT_S>
+     <SCRTEXT_M>File name</SCRTEXT_M>
+     <SCRTEXT_L>File name</SCRTEXT_L>
     </item>
    </DD04_TEXTS>
   </asx:values>

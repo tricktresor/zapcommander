@@ -4,9 +4,7 @@
   <asx:values>
    <DD02V>
     <TABNAME>ZAPCMD_T_TEXT255</TABNAME>
-    <DDLANGUAGE>E</DDLANGUAGE>
     <TABCLASS>INTTAB</TABCLASS>
-    <DDTEXT>Structure for RFC handover</DDTEXT>
     <EXCLASS>1</EXCLASS>
    </DD02V>
    <DD03P_TABLE>
@@ -19,11 +17,31 @@
    </DD03P_TABLE>
    <I18N_LANGS>
     <LANGU>D</LANGU>
+    <LANGU>E</LANGU>
+    <LANGU>F</LANGU>
+    <LANGU>I</LANGU>
+    <LANGU>P</LANGU>
    </I18N_LANGS>
    <DD02_TEXTS>
     <item>
      <DDLANGUAGE>D</DDLANGUAGE>
      <DDTEXT>Struktur für RFC-Übergabe</DDTEXT>
+    </item>
+    <item>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DDTEXT>Structure for RFC handover</DDTEXT>
+    </item>
+    <item>
+     <DDLANGUAGE>F</DDLANGUAGE>
+     <DDTEXT>Structure for RFC handover</DDTEXT>
+    </item>
+    <item>
+     <DDLANGUAGE>I</DDLANGUAGE>
+     <DDTEXT>Structure for RFC handover</DDTEXT>
+    </item>
+    <item>
+     <DDLANGUAGE>P</DDLANGUAGE>
+     <DDTEXT>Structure for RFC handover</DDTEXT>
     </item>
    </DD02_TEXTS>
   </asx:values>

@@ -4,22 +4,20 @@
   <asx:values>
    <DD04V>
     <ROLLNAME>ZAPCMD_SHORTNAME</ROLLNAME>
-    <DDLANGUAGE>E</DDLANGUAGE>
     <DOMNAME>ZAPCMD_FILENAME</DOMNAME>
     <HEADLEN>26</HEADLEN>
     <SCRLEN1>04</SCRLEN1>
     <SCRLEN2>09</SCRLEN2>
     <SCRLEN3>19</SCRLEN3>
-    <DDTEXT>Filename without extension</DDTEXT>
-    <REPTEXT>Filename without extension</REPTEXT>
-    <SCRTEXT_S>Name</SCRTEXT_S>
-    <SCRTEXT_M>File name</SCRTEXT_M>
-    <SCRTEXT_L>Filename w/o ext.</SCRTEXT_L>
     <DTELMASTER>E</DTELMASTER>
     <REFKIND>D</REFKIND>
    </DD04V>
    <I18N_LANGS>
     <LANGU>D</LANGU>
+    <LANGU>E</LANGU>
+    <LANGU>F</LANGU>
+    <LANGU>I</LANGU>
+    <LANGU>P</LANGU>
    </I18N_LANGS>
    <DD04_TEXTS>
     <item>
@@ -29,6 +27,38 @@
      <SCRTEXT_S>Name</SCRTEXT_S>
      <SCRTEXT_M>Dateiname</SCRTEXT_M>
      <SCRTEXT_L>Dateiname ohne Erw.</SCRTEXT_L>
+    </item>
+    <item>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DDTEXT>Filename without extension</DDTEXT>
+     <REPTEXT>Filename without extension</REPTEXT>
+     <SCRTEXT_S>Name</SCRTEXT_S>
+     <SCRTEXT_M>File name</SCRTEXT_M>
+     <SCRTEXT_L>Filename w/o ext.</SCRTEXT_L>
+    </item>
+    <item>
+     <DDLANGUAGE>F</DDLANGUAGE>
+     <DDTEXT>Filename without extension</DDTEXT>
+     <REPTEXT>Filename without extension</REPTEXT>
+     <SCRTEXT_S>Name</SCRTEXT_S>
+     <SCRTEXT_M>File name</SCRTEXT_M>
+     <SCRTEXT_L>Filename w/o ext.</SCRTEXT_L>
+    </item>
+    <item>
+     <DDLANGUAGE>I</DDLANGUAGE>
+     <DDTEXT>Filename without extension</DDTEXT>
+     <REPTEXT>Filename without extension</REPTEXT>
+     <SCRTEXT_S>Name</SCRTEXT_S>
+     <SCRTEXT_M>File name</SCRTEXT_M>
+     <SCRTEXT_L>Filename w/o ext.</SCRTEXT_L>
+    </item>
+    <item>
+     <DDLANGUAGE>P</DDLANGUAGE>
+     <DDTEXT>Filename without extension</DDTEXT>
+     <REPTEXT>Filename without extension</REPTEXT>
+     <SCRTEXT_S>Name</SCRTEXT_S>
+     <SCRTEXT_M>File name</SCRTEXT_M>
+     <SCRTEXT_L>Filename w/o ext.</SCRTEXT_L>
     </item>
    </DD04_TEXTS>
   </asx:values>

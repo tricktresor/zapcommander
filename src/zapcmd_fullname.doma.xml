@@ -4,20 +4,38 @@
   <asx:values>
    <DD01V>
     <DOMNAME>ZAPCMD_FULLNAME</DOMNAME>
-    <DDLANGUAGE>E</DDLANGUAGE>
     <DATATYPE>CHAR</DATATYPE>
     <LENG>000255</LENG>
     <OUTPUTLEN>000255</OUTPUTLEN>
     <LOWERCASE>X</LOWERCASE>
-    <DDTEXT>Filename with path</DDTEXT>
    </DD01V>
    <I18N_LANGS>
     <LANGU>D</LANGU>
+    <LANGU>E</LANGU>
+    <LANGU>F</LANGU>
+    <LANGU>I</LANGU>
+    <LANGU>P</LANGU>
    </I18N_LANGS>
    <DD01_TEXTS>
     <item>
      <DDLANGUAGE>D</DDLANGUAGE>
      <DDTEXT>Dateiname mit Pfad</DDTEXT>
+    </item>
+    <item>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DDTEXT>Filename with path</DDTEXT>
+    </item>
+    <item>
+     <DDLANGUAGE>F</DDLANGUAGE>
+     <DDTEXT>Filename with path</DDTEXT>
+    </item>
+    <item>
+     <DDLANGUAGE>I</DDLANGUAGE>
+     <DDTEXT>Filename with path</DDTEXT>
+    </item>
+    <item>
+     <DDLANGUAGE>P</DDLANGUAGE>
+     <DDTEXT>Filename with path</DDTEXT>
     </item>
    </DD01_TEXTS>
   </asx:values>

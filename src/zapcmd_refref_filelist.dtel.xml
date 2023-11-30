@@ -4,17 +4,11 @@
   <asx:values>
    <DD04V>
     <ROLLNAME>ZAPCMD_REFREF_FILELIST</ROLLNAME>
-    <DDLANGUAGE>E</DDLANGUAGE>
     <DOMNAME>ZAPCMD_CL_FILELIST</DOMNAME>
     <HEADLEN>08</HEADLEN>
     <SCRLEN1>08</SCRLEN1>
     <SCRLEN2>08</SCRLEN2>
     <SCRLEN3>08</SCRLEN3>
-    <DDTEXT>References to the reference of the object FILELIST</DDTEXT>
-    <REPTEXT>Filelist</REPTEXT>
-    <SCRTEXT_S>Filelist</SCRTEXT_S>
-    <SCRTEXT_M>Filelist</SCRTEXT_M>
-    <SCRTEXT_L>Filelist</SCRTEXT_L>
     <DTELMASTER>E</DTELMASTER>
     <DATATYPE>REF</DATATYPE>
     <REFKIND>R</REFKIND>
@@ -22,11 +16,47 @@
    </DD04V>
    <I18N_LANGS>
     <LANGU>D</LANGU>
+    <LANGU>E</LANGU>
+    <LANGU>F</LANGU>
+    <LANGU>I</LANGU>
+    <LANGU>P</LANGU>
    </I18N_LANGS>
    <DD04_TEXTS>
     <item>
      <DDLANGUAGE>D</DDLANGUAGE>
      <DDTEXT>Referenz auf die Refernz des Objektes Filelist</DDTEXT>
+     <REPTEXT>Filelist</REPTEXT>
+     <SCRTEXT_S>Filelist</SCRTEXT_S>
+     <SCRTEXT_M>Filelist</SCRTEXT_M>
+     <SCRTEXT_L>Filelist</SCRTEXT_L>
+    </item>
+    <item>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DDTEXT>References to the reference of the object FILELIST</DDTEXT>
+     <REPTEXT>Filelist</REPTEXT>
+     <SCRTEXT_S>Filelist</SCRTEXT_S>
+     <SCRTEXT_M>Filelist</SCRTEXT_M>
+     <SCRTEXT_L>Filelist</SCRTEXT_L>
+    </item>
+    <item>
+     <DDLANGUAGE>F</DDLANGUAGE>
+     <DDTEXT>References to the reference of the object FILELIST</DDTEXT>
+     <REPTEXT>Filelist</REPTEXT>
+     <SCRTEXT_S>Filelist</SCRTEXT_S>
+     <SCRTEXT_M>Filelist</SCRTEXT_M>
+     <SCRTEXT_L>Filelist</SCRTEXT_L>
+    </item>
+    <item>
+     <DDLANGUAGE>I</DDLANGUAGE>
+     <DDTEXT>References to the reference of the object FILELIST</DDTEXT>
+     <REPTEXT>Filelist</REPTEXT>
+     <SCRTEXT_S>Filelist</SCRTEXT_S>
+     <SCRTEXT_M>Filelist</SCRTEXT_M>
+     <SCRTEXT_L>Filelist</SCRTEXT_L>
+    </item>
+    <item>
+     <DDLANGUAGE>P</DDLANGUAGE>
+     <DDTEXT>References to the reference of the object FILELIST</DDTEXT>
      <REPTEXT>Filelist</REPTEXT>
      <SCRTEXT_S>Filelist</SCRTEXT_S>
      <SCRTEXT_M>Filelist</SCRTEXT_M>

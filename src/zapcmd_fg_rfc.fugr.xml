@@ -2,7 +2,6 @@
 <abapGit version="v1.0.0" serializer="LCL_OBJECT_FUGR" serializer_version="v1.0.0">
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
-   <AREAT>RFC-Bausteine für die Dateibearbeitung</AREAT>
    <INCLUDES>
     <SOBJ_NAME>LZAPCMD_FG_RFCTOP</SOBJ_NAME>
     <SOBJ_NAME>SAPLZAPCMD_FG_RFC</SOBJ_NAME>
@@ -11,7 +10,6 @@
     <item>
      <FUNCNAME>ZAPCMD_CHECK_DIR</FUNCNAME>
      <REMOTE_CALL>R</REMOTE_CALL>
-     <SHORT_TEXT>Check if directory exists</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>IV_DIR</PARAMETER>
@@ -28,19 +26,16 @@
       <RSFDO>
        <PARAMETER>IV_DIR</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Text, 255 chars</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>EV_REACHABLE</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Field to mark</STEXT>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZAPCMD_DELETE_FILE</FUNCNAME>
      <REMOTE_CALL>R</REMOTE_CALL>
-     <SHORT_TEXT>Deletes a file</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>IV_FULL_NAME</PARAMETER>
@@ -56,7 +51,6 @@
       <RSFDO>
        <PARAMETER>IV_FULL_NAME</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Text, 255 chars</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOT_FOUND</PARAMETER>
@@ -67,7 +61,6 @@
     <item>
      <FUNCNAME>ZAPCMD_EXEC_ABAP</FUNCNAME>
      <REMOTE_CALL>R</REMOTE_CALL>
-     <SHORT_TEXT>Executes ABAP Code</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>IV_FULL_NAME</PARAMETER>
@@ -90,12 +83,10 @@
       <RSFDO>
        <PARAMETER>IV_FULL_NAME</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Text, 255 chars</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>IV_SHORTNAME</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Text, 255 chars</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOT_FOUND</PARAMETER>
@@ -110,7 +101,6 @@
     <item>
      <FUNCNAME>ZAPCMD_EXEC_CMD</FUNCNAME>
      <REMOTE_CALL>R</REMOTE_CALL>
-     <SHORT_TEXT>Creates a directory</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>IV_COMMAND</PARAMETER>
@@ -145,34 +135,28 @@
       <RSFDO>
        <PARAMETER>IV_COMMAND</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Text, 255 chars</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>IV_DIR</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Text, 255 chars</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>IV_PARAMETER</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Text, 255 chars</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>ET_OUTPUT</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Structure for RFC handover</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOT_FOUND</PARAMETER>
        <KIND>X</KIND>
-       <STEXT>Directory not found</STEXT>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZAPCMD_GET_HOMEDIR</FUNCNAME>
      <REMOTE_CALL>R</REMOTE_CALL>
-     <SHORT_TEXT>Returns the home directory</SHORT_TEXT>
      <EXPORT>
       <RSEXP>
        <PARAMETER>EV_FULLNAME</PARAMETER>
@@ -183,14 +167,12 @@
       <RSFDO>
        <PARAMETER>EV_FULLNAME</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Text, 255 chars</STEXT>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZAPCMD_GET_OPSYS</FUNCNAME>
      <REMOTE_CALL>R</REMOTE_CALL>
-     <SHORT_TEXT>Returns the operating system</SHORT_TEXT>
      <EXPORT>
       <RSEXP>
        <PARAMETER>EV_OPSYS</PARAMETER>
@@ -201,14 +183,12 @@
       <RSFDO>
        <PARAMETER>EV_OPSYS</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Operating system of application server</STEXT>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZAPCMD_READ_BINFILE</FUNCNAME>
      <REMOTE_CALL>R</REMOTE_CALL>
-     <SHORT_TEXT>Reads a binary file</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>IV_FULL_NAME</PARAMETER>
@@ -236,7 +216,6 @@
       <RSFDO>
        <PARAMETER>IV_FULL_NAME</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Text, 255 chars</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>EV_FILESIZE</PARAMETER>
@@ -245,7 +224,6 @@
       <RSFDO>
        <PARAMETER>ET_FILE</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Data buffer for RFC transmission</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOT_FOUND</PARAMETER>
@@ -256,7 +234,6 @@
     <item>
      <FUNCNAME>ZAPCMD_READ_DIR</FUNCNAME>
      <REMOTE_CALL>R</REMOTE_CALL>
-     <SHORT_TEXT>Reads a directory</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>IV_DIR</PARAMETER>
@@ -283,29 +260,24 @@
       <RSFDO>
        <PARAMETER>IV_DIR</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>char255</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>IV_FILTER</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>char255</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>ET_FILE</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Structure to describe a file</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOT_FOUND</PARAMETER>
        <KIND>X</KIND>
-       <STEXT>Directory not found</STEXT>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZAPCMD_READ_TEXTFILE</FUNCNAME>
      <REMOTE_CALL>R</REMOTE_CALL>
-     <SHORT_TEXT>Reads a text file</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>IV_FULL_NAME</PARAMETER>
@@ -333,7 +305,6 @@
       <RSFDO>
        <PARAMETER>IV_FULL_NAME</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Text, 255 chars</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>EV_FILESIZE</PARAMETER>
@@ -342,19 +313,16 @@
       <RSFDO>
        <PARAMETER>ET_FILE</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Structure for RFC handover</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOT_FOUND</PARAMETER>
        <KIND>X</KIND>
-       <STEXT>File not found</STEXT>
       </RSFDO>
      </DOCUMENTATION>
     </item>
     <item>
      <FUNCNAME>ZAPCMD_WRITE_BINFILE</FUNCNAME>
      <REMOTE_CALL>R</REMOTE_CALL>
-     <SHORT_TEXT>Writes a binary file</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>IV_FULL_NAME</PARAMETER>
@@ -380,7 +348,6 @@
       <RSFDO>
        <PARAMETER>IV_FULL_NAME</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Text, 255 chars</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>IV_FILESIZE</PARAMETER>
@@ -389,7 +356,6 @@
       <RSFDO>
        <PARAMETER>IT_FILE</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Data buffer for RFC transmission</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOT_FOUND</PARAMETER>
@@ -400,7 +366,6 @@
     <item>
      <FUNCNAME>ZAPCMD_WRITE_TEXTFILE</FUNCNAME>
      <REMOTE_CALL>R</REMOTE_CALL>
-     <SHORT_TEXT>Writes a binary file</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>IV_FULL_NAME</PARAMETER>
@@ -422,12 +387,10 @@
       <RSFDO>
        <PARAMETER>IV_FULL_NAME</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Text, 255 chars</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>IT_FILE</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Data buffer for RFC transmission</STEXT>
       </RSFDO>
       <RSFDO>
        <PARAMETER>NOT_FOUND</PARAMETER>
@@ -445,6 +408,62 @@
        <KEY>001</KEY>
        <ENTRY>Syntaxfehler in Zeile</ENTRY>
        <LENGTH>21</LENGTH>
+      </item>
+     </TEXTPOOL>
+    </item>
+    <item>
+     <LANGUAGE>E</LANGUAGE>
+     <TEXTPOOL>
+      <item>
+       <ID>I</ID>
+       <KEY>001</KEY>
+       <ENTRY>Syntax error in line</ENTRY>
+       <LENGTH>21</LENGTH>
+      </item>
+      <item>
+       <ID>R</ID>
+      </item>
+     </TEXTPOOL>
+    </item>
+    <item>
+     <LANGUAGE>F</LANGUAGE>
+     <TEXTPOOL>
+      <item>
+       <ID>I</ID>
+       <KEY>001</KEY>
+       <ENTRY>Syntax error in line</ENTRY>
+       <LENGTH>21</LENGTH>
+      </item>
+      <item>
+       <ID>R</ID>
+      </item>
+     </TEXTPOOL>
+    </item>
+    <item>
+     <LANGUAGE>I</LANGUAGE>
+     <TEXTPOOL>
+      <item>
+       <ID>I</ID>
+       <KEY>001</KEY>
+       <ENTRY>Syntax error in line</ENTRY>
+       <LENGTH>21</LENGTH>
+      </item>
+      <item>
+       <ID>R</ID>
+      </item>
+     </TEXTPOOL>
+    </item>
+    <item>
+     <LANGUAGE>P</LANGUAGE>
+     <TEXTPOOL>
+      <item>
+       <ID>I</ID>
+       <KEY>001</KEY>
+       <ENTRY>Syntax error in line</ENTRY>
+       <LENGTH>21</LENGTH>
+      </item>
+      <item>
+       <ID>R</ID>
       </item>
      </TEXTPOOL>
     </item>

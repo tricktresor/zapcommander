@@ -2,7 +2,6 @@
 <abapGit version="v1.0.0" serializer="LCL_OBJECT_FUGR" serializer_version="v1.0.0">
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
-   <AREAT>Dynpro für einen einfachen Editor</AREAT>
    <INCLUDES>
     <SOBJ_NAME>LZAPCMD_FG_EDITORTOP</SOBJ_NAME>
     <SOBJ_NAME>SAPLZAPCMD_FG_EDITOR</SOBJ_NAME>
@@ -10,7 +9,6 @@
    <FUNCTIONS>
     <item>
      <FUNCNAME>ZAPCMD_CALL_EDITOR</FUNCNAME>
-     <SHORT_TEXT>Call of a simple editor</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>PF_EDITOR</PARAMETER>
@@ -23,7 +21,6 @@
       <RSFDO>
        <PARAMETER>PF_EDITOR</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Simple editor</STEXT>
       </RSFDO>
      </DOCUMENTATION>
     </item>
@@ -80,6 +77,9 @@
     </item>
    </DYNPROS>
    <CUA>
+    <ADM>
+     <PFKCODE>000001</PFKCODE>
+    </ADM>
     <STA>
      <RSMPE_STAT>
       <CODE>STATUS200</CODE>

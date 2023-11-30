@@ -4,16 +4,10 @@
   <asx:values>
    <DD04V>
     <ROLLNAME>ZAPCMD_FILESIZE</ROLLNAME>
-    <DDLANGUAGE>E</DDLANGUAGE>
     <HEADLEN>19</HEADLEN>
     <SCRLEN1>10</SCRLEN1>
     <SCRLEN2>19</SCRLEN2>
     <SCRLEN3>19</SCRLEN3>
-    <DDTEXT>File size in Bytes</DDTEXT>
-    <REPTEXT>File size in Bytes</REPTEXT>
-    <SCRTEXT_S>Bytes</SCRTEXT_S>
-    <SCRTEXT_M>File size</SCRTEXT_M>
-    <SCRTEXT_L>File size in Bytes</SCRTEXT_L>
     <DTELMASTER>E</DTELMASTER>
     <DATATYPE>DEC</DATATYPE>
     <LENG>000014</LENG>
@@ -21,6 +15,10 @@
    </DD04V>
    <I18N_LANGS>
     <LANGU>D</LANGU>
+    <LANGU>E</LANGU>
+    <LANGU>F</LANGU>
+    <LANGU>I</LANGU>
+    <LANGU>P</LANGU>
    </I18N_LANGS>
    <DD04_TEXTS>
     <item>
@@ -30,6 +28,38 @@
      <SCRTEXT_S>Bytes</SCRTEXT_S>
      <SCRTEXT_M>Dateigröße</SCRTEXT_M>
      <SCRTEXT_L>Dateigröße in Bytes</SCRTEXT_L>
+    </item>
+    <item>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DDTEXT>File size in Bytes</DDTEXT>
+     <REPTEXT>File size in Bytes</REPTEXT>
+     <SCRTEXT_S>Bytes</SCRTEXT_S>
+     <SCRTEXT_M>File size</SCRTEXT_M>
+     <SCRTEXT_L>File size in Bytes</SCRTEXT_L>
+    </item>
+    <item>
+     <DDLANGUAGE>F</DDLANGUAGE>
+     <DDTEXT>File size in Bytes</DDTEXT>
+     <REPTEXT>File size in Bytes</REPTEXT>
+     <SCRTEXT_S>Bytes</SCRTEXT_S>
+     <SCRTEXT_M>File size</SCRTEXT_M>
+     <SCRTEXT_L>File size in Bytes</SCRTEXT_L>
+    </item>
+    <item>
+     <DDLANGUAGE>I</DDLANGUAGE>
+     <DDTEXT>File size in Bytes</DDTEXT>
+     <REPTEXT>File size in Bytes</REPTEXT>
+     <SCRTEXT_S>Bytes</SCRTEXT_S>
+     <SCRTEXT_M>File size</SCRTEXT_M>
+     <SCRTEXT_L>File size in Bytes</SCRTEXT_L>
+    </item>
+    <item>
+     <DDLANGUAGE>P</DDLANGUAGE>
+     <DDTEXT>File size in Bytes</DDTEXT>
+     <REPTEXT>File size in Bytes</REPTEXT>
+     <SCRTEXT_S>Bytes</SCRTEXT_S>
+     <SCRTEXT_M>File size</SCRTEXT_M>
+     <SCRTEXT_L>File size in Bytes</SCRTEXT_L>
     </item>
    </DD04_TEXTS>
   </asx:values>

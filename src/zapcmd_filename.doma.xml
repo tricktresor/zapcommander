@@ -4,19 +4,37 @@
   <asx:values>
    <DD01V>
     <DOMNAME>ZAPCMD_FILENAME</DOMNAME>
-    <DDLANGUAGE>E</DDLANGUAGE>
     <DATATYPE>CHAR</DATATYPE>
     <LENG>000128</LENG>
     <OUTPUTLEN>000128</OUTPUTLEN>
     <LOWERCASE>X</LOWERCASE>
-    <DDTEXT>filename</DDTEXT>
    </DD01V>
    <I18N_LANGS>
     <LANGU>D</LANGU>
+    <LANGU>E</LANGU>
+    <LANGU>F</LANGU>
+    <LANGU>I</LANGU>
+    <LANGU>P</LANGU>
    </I18N_LANGS>
    <DD01_TEXTS>
     <item>
      <DDLANGUAGE>D</DDLANGUAGE>
+     <DDTEXT>filename</DDTEXT>
+    </item>
+    <item>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DDTEXT>filename</DDTEXT>
+    </item>
+    <item>
+     <DDLANGUAGE>F</DDLANGUAGE>
+     <DDTEXT>filename</DDTEXT>
+    </item>
+    <item>
+     <DDLANGUAGE>I</DDLANGUAGE>
+     <DDTEXT>filename</DDTEXT>
+    </item>
+    <item>
+     <DDLANGUAGE>P</DDLANGUAGE>
      <DDTEXT>filename</DDTEXT>
     </item>
    </DD01_TEXTS>

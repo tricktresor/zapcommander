@@ -4,9 +4,7 @@
   <asx:values>
    <DD02V>
     <TABNAME>ZAPCMD_T_DIR</TABNAME>
-    <DDLANGUAGE>E</DDLANGUAGE>
     <TABCLASS>INTTAB</TABCLASS>
-    <DDTEXT>structure for handover to SAPcommander</DDTEXT>
     <EXCLASS>1</EXCLASS>
    </DD02V>
    <DD03P_TABLE>
@@ -25,11 +23,31 @@
    </DD03P_TABLE>
    <I18N_LANGS>
     <LANGU>D</LANGU>
+    <LANGU>E</LANGU>
+    <LANGU>F</LANGU>
+    <LANGU>I</LANGU>
+    <LANGU>P</LANGU>
    </I18N_LANGS>
    <DD02_TEXTS>
     <item>
      <DDLANGUAGE>D</DDLANGUAGE>
      <DDTEXT>struktur für übergabe an sapcommander</DDTEXT>
+    </item>
+    <item>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DDTEXT>structure for handover to SAPcommander</DDTEXT>
+    </item>
+    <item>
+     <DDLANGUAGE>F</DDLANGUAGE>
+     <DDTEXT>structure for handover to SAPcommander</DDTEXT>
+    </item>
+    <item>
+     <DDLANGUAGE>I</DDLANGUAGE>
+     <DDTEXT>structure for handover to SAPcommander</DDTEXT>
+    </item>
+    <item>
+     <DDLANGUAGE>P</DDLANGUAGE>
+     <DDTEXT>structure for handover to SAPcommander</DDTEXT>
     </item>
    </DD02_TEXTS>
   </asx:values>

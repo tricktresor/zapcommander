@@ -11,39 +11,6 @@
     <FIXPT>X</FIXPT>
     <UNICODE>X</UNICODE>
    </VSEOCLASS>
-   <TPOOL>
-    <item>
-     <ID>I</ID>
-     <KEY>220</KEY>
-     <ENTRY>Frontend</ENTRY>
-     <LENGTH>8</LENGTH>
-    </item>
-    <item>
-     <ID>I</ID>
-     <KEY>221</KEY>
-     <ENTRY>presentation server</ENTRY>
-     <LENGTH>19</LENGTH>
-    </item>
-   </TPOOL>
-   <I18N_TPOOL>
-    <item>
-     <LANGUAGE>D</LANGUAGE>
-     <TEXTPOOL>
-      <item>
-       <ID>I</ID>
-       <KEY>220</KEY>
-       <ENTRY>Frontend</ENTRY>
-       <LENGTH>8</LENGTH>
-      </item>
-      <item>
-       <ID>I</ID>
-       <KEY>221</KEY>
-       <ENTRY>Präsentationsserver</ENTRY>
-       <LENGTH>19</LENGTH>
-      </item>
-     </TEXTPOOL>
-    </item>
-   </I18N_TPOOL>
   </asx:values>
  </asx:abap>
 </abapGit>

@@ -11,279 +11,6 @@
     <FIXPT>X</FIXPT>
     <UNICODE>X</UNICODE>
    </VSEOCLASS>
-   <TPOOL>
-    <item>
-     <ID>I</ID>
-     <KEY>001</KEY>
-     <ENTRY>New File name</ENTRY>
-     <LENGTH>20</LENGTH>
-    </item>
-    <item>
-     <ID>I</ID>
-     <KEY>002</KEY>
-     <ENTRY>Path:</ENTRY>
-     <LENGTH>10</LENGTH>
-    </item>
-    <item>
-     <ID>I</ID>
-     <KEY>003</KEY>
-     <ENTRY>RFC-Dest</ENTRY>
-     <LENGTH>10</LENGTH>
-    </item>
-    <item>
-     <ID>I</ID>
-     <KEY>004</KEY>
-     <ENTRY>RFC-Destination:</ENTRY>
-     <LENGTH>20</LENGTH>
-    </item>
-    <item>
-     <ID>I</ID>
-     <KEY>005</KEY>
-     <ENTRY>RFC-Destination not reachable</ENTRY>
-     <LENGTH>35</LENGTH>
-    </item>
-    <item>
-     <ID>I</ID>
-     <KEY>006</KEY>
-     <ENTRY> exists.</ENTRY>
-     <LENGTH>15</LENGTH>
-    </item>
-    <item>
-     <ID>I</ID>
-     <KEY>007</KEY>
-     <ENTRY> Overwrite?</ENTRY>
-     <LENGTH>20</LENGTH>
-    </item>
-    <item>
-     <ID>I</ID>
-     <KEY>008</KEY>
-     <ENTRY>Yes</ENTRY>
-     <LENGTH>5</LENGTH>
-    </item>
-    <item>
-     <ID>I</ID>
-     <KEY>009</KEY>
-     <ENTRY>Yes to all</ENTRY>
-     <LENGTH>10</LENGTH>
-    </item>
-    <item>
-     <ID>I</ID>
-     <KEY>010</KEY>
-     <ENTRY> delete?</ENTRY>
-     <LENGTH>10</LENGTH>
-    </item>
-    <item>
-     <ID>I</ID>
-     <KEY>011</KEY>
-     <ENTRY>Delete</ENTRY>
-     <LENGTH>10</LENGTH>
-    </item>
-    <item>
-     <ID>I</ID>
-     <KEY>012</KEY>
-     <ENTRY>logical Path</ENTRY>
-     <LENGTH>15</LENGTH>
-    </item>
-    <item>
-     <ID>I</ID>
-     <KEY>013</KEY>
-     <ENTRY>logical Path</ENTRY>
-     <LENGTH>15</LENGTH>
-    </item>
-    <item>
-     <ID>I</ID>
-     <KEY>014</KEY>
-     <ENTRY>Appl. Serv.</ENTRY>
-     <LENGTH>15</LENGTH>
-    </item>
-    <item>
-     <ID>I</ID>
-     <KEY>015</KEY>
-     <ENTRY>Frontend</ENTRY>
-     <LENGTH>10</LENGTH>
-    </item>
-    <item>
-     <ID>I</ID>
-     <KEY>016</KEY>
-     <ENTRY>RFC</ENTRY>
-     <LENGTH>5</LENGTH>
-    </item>
-    <item>
-     <ID>I</ID>
-     <KEY>017</KEY>
-     <ENTRY>Directory could not read.</ENTRY>
-     <LENGTH>50</LENGTH>
-    </item>
-    <item>
-     <ID>I</ID>
-     <KEY>018</KEY>
-     <ENTRY>Insert value</ENTRY>
-     <LENGTH>15</LENGTH>
-    </item>
-    <item>
-     <ID>I</ID>
-     <KEY>201</KEY>
-     <ENTRY>Refresh</ENTRY>
-     <LENGTH>10</LENGTH>
-    </item>
-    <item>
-     <ID>I</ID>
-     <KEY>202</KEY>
-     <ENTRY>jump directly to path</ENTRY>
-     <LENGTH>25</LENGTH>
-    </item>
-    <item>
-     <ID>I</ID>
-     <KEY>231</KEY>
-     <ENTRY>Rename</ENTRY>
-     <LENGTH>15</LENGTH>
-    </item>
-    <item>
-     <ID>I</ID>
-     <KEY>500</KEY>
-     <ENTRY>Error in GUI</ENTRY>
-     <LENGTH>15</LENGTH>
-    </item>
-   </TPOOL>
-   <I18N_TPOOL>
-    <item>
-     <LANGUAGE>D</LANGUAGE>
-     <TEXTPOOL>
-      <item>
-       <ID>I</ID>
-       <KEY>001</KEY>
-       <ENTRY>Neuer Dateiname</ENTRY>
-       <LENGTH>20</LENGTH>
-      </item>
-      <item>
-       <ID>I</ID>
-       <KEY>002</KEY>
-       <ENTRY>Pfad:</ENTRY>
-       <LENGTH>10</LENGTH>
-      </item>
-      <item>
-       <ID>I</ID>
-       <KEY>003</KEY>
-       <ENTRY>RFC-Dest</ENTRY>
-       <LENGTH>10</LENGTH>
-      </item>
-      <item>
-       <ID>I</ID>
-       <KEY>004</KEY>
-       <ENTRY>RFC-Destination:</ENTRY>
-       <LENGTH>20</LENGTH>
-      </item>
-      <item>
-       <ID>I</ID>
-       <KEY>005</KEY>
-       <ENTRY>RFC-Destination nicht erreichbar</ENTRY>
-       <LENGTH>35</LENGTH>
-      </item>
-      <item>
-       <ID>I</ID>
-       <KEY>006</KEY>
-       <ENTRY> existiert.</ENTRY>
-       <LENGTH>15</LENGTH>
-      </item>
-      <item>
-       <ID>I</ID>
-       <KEY>007</KEY>
-       <ENTRY> Überschreiben?</ENTRY>
-       <LENGTH>20</LENGTH>
-      </item>
-      <item>
-       <ID>I</ID>
-       <KEY>008</KEY>
-       <ENTRY>Ja</ENTRY>
-       <LENGTH>5</LENGTH>
-      </item>
-      <item>
-       <ID>I</ID>
-       <KEY>009</KEY>
-       <ENTRY>Ja, Alle</ENTRY>
-       <LENGTH>10</LENGTH>
-      </item>
-      <item>
-       <ID>I</ID>
-       <KEY>010</KEY>
-       <ENTRY> löschen?</ENTRY>
-       <LENGTH>10</LENGTH>
-      </item>
-      <item>
-       <ID>I</ID>
-       <KEY>011</KEY>
-       <ENTRY>Löschen</ENTRY>
-       <LENGTH>10</LENGTH>
-      </item>
-      <item>
-       <ID>I</ID>
-       <KEY>012</KEY>
-       <ENTRY>Logischer Pfad</ENTRY>
-       <LENGTH>15</LENGTH>
-      </item>
-      <item>
-       <ID>I</ID>
-       <KEY>013</KEY>
-       <ENTRY>logischer Pfad</ENTRY>
-       <LENGTH>15</LENGTH>
-      </item>
-      <item>
-       <ID>I</ID>
-       <KEY>014</KEY>
-       <ENTRY>Appl. Serv.</ENTRY>
-       <LENGTH>15</LENGTH>
-      </item>
-      <item>
-       <ID>I</ID>
-       <KEY>015</KEY>
-       <ENTRY>Frontend</ENTRY>
-       <LENGTH>10</LENGTH>
-      </item>
-      <item>
-       <ID>I</ID>
-       <KEY>016</KEY>
-       <ENTRY>RFC</ENTRY>
-       <LENGTH>5</LENGTH>
-      </item>
-      <item>
-       <ID>I</ID>
-       <KEY>017</KEY>
-       <ENTRY>Verzeichnis konnte nicht eingelesen werden.</ENTRY>
-       <LENGTH>50</LENGTH>
-      </item>
-      <item>
-       <ID>I</ID>
-       <KEY>018</KEY>
-       <ENTRY>Werteingabe</ENTRY>
-       <LENGTH>15</LENGTH>
-      </item>
-      <item>
-       <ID>I</ID>
-       <KEY>201</KEY>
-       <ENTRY>Refresh</ENTRY>
-       <LENGTH>10</LENGTH>
-      </item>
-      <item>
-       <ID>I</ID>
-       <KEY>202</KEY>
-       <ENTRY>Direkte Pfadeingabe</ENTRY>
-       <LENGTH>25</LENGTH>
-      </item>
-      <item>
-       <ID>I</ID>
-       <KEY>231</KEY>
-       <ENTRY>Umbenennen</ENTRY>
-       <LENGTH>15</LENGTH>
-      </item>
-      <item>
-       <ID>I</ID>
-       <KEY>500</KEY>
-       <ENTRY>Fehler im GUI</ENTRY>
-       <LENGTH>15</LENGTH>
-      </item>
-     </TEXTPOOL>
-    </item>
-   </I18N_TPOOL>
    <DESCRIPTIONS>
     <SEOCOMPOTX>
      <CMPNAME>EDIT_DIR</CMPNAME>
@@ -293,6 +20,21 @@
     <SEOCOMPOTX>
      <CMPNAME>EDIT_DIR</CMPNAME>
      <LANGU>E</LANGU>
+     <DESCRIPT>Direct path entry</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>EDIT_DIR</CMPNAME>
+     <LANGU>F</LANGU>
+     <DESCRIPT>Direct path entry</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>EDIT_DIR</CMPNAME>
+     <LANGU>I</LANGU>
+     <DESCRIPT>Direct path entry</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>EDIT_DIR</CMPNAME>
+     <LANGU>P</LANGU>
      <DESCRIPT>Direct path entry</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
@@ -306,6 +48,21 @@
      <DESCRIPT>Returns buttons and implementations</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>GET_FACTORY_BUTTONS</CMPNAME>
+     <LANGU>F</LANGU>
+     <DESCRIPT>Returns buttons and implementations</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_FACTORY_BUTTONS</CMPNAME>
+     <LANGU>I</LANGU>
+     <DESCRIPT>Returns buttons and implementations</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_FACTORY_BUTTONS</CMPNAME>
+     <LANGU>P</LANGU>
+     <DESCRIPT>Returns buttons and implementations</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>GET_IMP</CMPNAME>
      <LANGU>D</LANGU>
      <DESCRIPT>Nur test</DESCRIPT>
@@ -313,6 +70,21 @@
     <SEOCOMPOTX>
      <CMPNAME>GET_IMP</CMPNAME>
      <LANGU>E</LANGU>
+     <DESCRIPT>test only</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_IMP</CMPNAME>
+     <LANGU>F</LANGU>
+     <DESCRIPT>test only</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_IMP</CMPNAME>
+     <LANGU>I</LANGU>
+     <DESCRIPT>test only</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_IMP</CMPNAME>
+     <LANGU>P</LANGU>
      <DESCRIPT>test only</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
@@ -326,6 +98,21 @@
      <DESCRIPT>Toolbarbuttons</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>GT_FACTORY_BUTTON</CMPNAME>
+     <LANGU>F</LANGU>
+     <DESCRIPT>Toolbarbuttons</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GT_FACTORY_BUTTON</CMPNAME>
+     <LANGU>I</LANGU>
+     <DESCRIPT>Toolbarbuttons</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GT_FACTORY_BUTTON</CMPNAME>
+     <LANGU>P</LANGU>
+     <DESCRIPT>Toolbarbuttons</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>GT_FCODE_FACTORY</CMPNAME>
      <LANGU>D</LANGU>
      <DESCRIPT>Zuoirdnung zwischen Funktionscode und Factory</DESCRIPT>
@@ -333,6 +120,21 @@
     <SEOCOMPOTX>
      <CMPNAME>GT_FCODE_FACTORY</CMPNAME>
      <LANGU>E</LANGU>
+     <DESCRIPT>Assignment function code and factory</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GT_FCODE_FACTORY</CMPNAME>
+     <LANGU>F</LANGU>
+     <DESCRIPT>Assignment function code and factory</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GT_FCODE_FACTORY</CMPNAME>
+     <LANGU>I</LANGU>
+     <DESCRIPT>Assignment function code and factory</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GT_FCODE_FACTORY</CMPNAME>
+     <LANGU>P</LANGU>
      <DESCRIPT>Assignment function code and factory</DESCRIPT>
     </SEOCOMPOTX>
    </DESCRIPTIONS>

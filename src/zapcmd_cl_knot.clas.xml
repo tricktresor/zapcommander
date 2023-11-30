@@ -11,27 +11,6 @@
     <FIXPT>X</FIXPT>
     <UNICODE>X</UNICODE>
    </VSEOCLASS>
-   <TPOOL>
-    <item>
-     <ID>I</ID>
-     <KEY>130</KEY>
-     <ENTRY>File not found.</ENTRY>
-     <LENGTH>21</LENGTH>
-    </item>
-   </TPOOL>
-   <I18N_TPOOL>
-    <item>
-     <LANGUAGE>D</LANGUAGE>
-     <TEXTPOOL>
-      <item>
-       <ID>I</ID>
-       <KEY>130</KEY>
-       <ENTRY>Datei nicht gefunden.</ENTRY>
-       <LENGTH>21</LENGTH>
-      </item>
-     </TEXTPOOL>
-    </item>
-   </I18N_TPOOL>
    <DESCRIPTIONS>
     <SEOCOMPOTX>
      <CMPNAME>CONVERT_SIZE</CMPNAME>
@@ -41,6 +20,21 @@
     <SEOCOMPOTX>
      <CMPNAME>CONVERT_SIZE</CMPNAME>
      <LANGU>E</LANGU>
+     <DESCRIPT>Writes file length in string</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>CONVERT_SIZE</CMPNAME>
+     <LANGU>F</LANGU>
+     <DESCRIPT>Writes file length in string</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>CONVERT_SIZE</CMPNAME>
+     <LANGU>I</LANGU>
+     <DESCRIPT>Writes file length in string</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>CONVERT_SIZE</CMPNAME>
+     <LANGU>P</LANGU>
      <DESCRIPT>Writes file length in string</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
@@ -54,6 +48,21 @@
      <DESCRIPT>delete file or dir</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>DELETE</CMPNAME>
+     <LANGU>F</LANGU>
+     <DESCRIPT>delete file or dir</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>DELETE</CMPNAME>
+     <LANGU>I</LANGU>
+     <DESCRIPT>delete file or dir</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>DELETE</CMPNAME>
+     <LANGU>P</LANGU>
+     <DESCRIPT>delete file or dir</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>EXECUTE</CMPNAME>
      <LANGU>D</LANGU>
      <DESCRIPT>Anzeigen oder Ausführen der Datei</DESCRIPT>
@@ -61,6 +70,21 @@
     <SEOCOMPOTX>
      <CMPNAME>EXECUTE</CMPNAME>
      <LANGU>E</LANGU>
+     <DESCRIPT>Display or execute file</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>EXECUTE</CMPNAME>
+     <LANGU>F</LANGU>
+     <DESCRIPT>Display or execute file</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>EXECUTE</CMPNAME>
+     <LANGU>I</LANGU>
+     <DESCRIPT>Display or execute file</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>EXECUTE</CMPNAME>
+     <LANGU>P</LANGU>
      <DESCRIPT>Display or execute file</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
@@ -74,6 +98,21 @@
      <DESCRIPT>Executes command on application server</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>EXEC_SERVER</CMPNAME>
+     <LANGU>F</LANGU>
+     <DESCRIPT>Executes command on application server</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>EXEC_SERVER</CMPNAME>
+     <LANGU>I</LANGU>
+     <DESCRIPT>Executes command on application server</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>EXEC_SERVER</CMPNAME>
+     <LANGU>P</LANGU>
+     <DESCRIPT>Executes command on application server</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>FILESIZE</CMPNAME>
      <LANGU>D</LANGU>
      <DESCRIPT>Dateigröße in Bytes</DESCRIPT>
@@ -81,6 +120,21 @@
     <SEOCOMPOTX>
      <CMPNAME>FILESIZE</CMPNAME>
      <LANGU>E</LANGU>
+     <DESCRIPT>File size in Bytes</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>FILESIZE</CMPNAME>
+     <LANGU>F</LANGU>
+     <DESCRIPT>File size in Bytes</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>FILESIZE</CMPNAME>
+     <LANGU>I</LANGU>
+     <DESCRIPT>File size in Bytes</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>FILESIZE</CMPNAME>
+     <LANGU>P</LANGU>
      <DESCRIPT>File size in Bytes</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
@@ -94,6 +148,21 @@
      <DESCRIPT>Returns information structure of file</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>GET_INFO</CMPNAME>
+     <LANGU>F</LANGU>
+     <DESCRIPT>Returns information structure of file</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_INFO</CMPNAME>
+     <LANGU>I</LANGU>
+     <DESCRIPT>Returns information structure of file</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_INFO</CMPNAME>
+     <LANGU>P</LANGU>
+     <DESCRIPT>Returns information structure of file</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>SPLIT_FULLNAME</CMPNAME>
      <LANGU>D</LANGU>
      <DESCRIPT>Unterteilt einen Dateinamen in Pfad, Name und Extension</DESCRIPT>
@@ -104,6 +173,21 @@
      <DESCRIPT>Splits filename in path, name and extension</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>SPLIT_FULLNAME</CMPNAME>
+     <LANGU>F</LANGU>
+     <DESCRIPT>Splits filename in path, name and extension</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>SPLIT_FULLNAME</CMPNAME>
+     <LANGU>I</LANGU>
+     <DESCRIPT>Splits filename in path, name and extension</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>SPLIT_FULLNAME</CMPNAME>
+     <LANGU>P</LANGU>
+     <DESCRIPT>Splits filename in path, name and extension</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>SPLIT_NAME</CMPNAME>
      <LANGU>D</LANGU>
      <DESCRIPT>Unterteilt einen Namen in Kurzname und Extension</DESCRIPT>
@@ -111,6 +195,21 @@
     <SEOCOMPOTX>
      <CMPNAME>SPLIT_NAME</CMPNAME>
      <LANGU>E</LANGU>
+     <DESCRIPT>Splits name in short name and extension</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>SPLIT_NAME</CMPNAME>
+     <LANGU>F</LANGU>
+     <DESCRIPT>Splits name in short name and extension</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>SPLIT_NAME</CMPNAME>
+     <LANGU>I</LANGU>
+     <DESCRIPT>Splits name in short name and extension</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>SPLIT_NAME</CMPNAME>
+     <LANGU>P</LANGU>
      <DESCRIPT>Splits name in short name and extension</DESCRIPT>
     </SEOCOMPOTX>
    </DESCRIPTIONS>

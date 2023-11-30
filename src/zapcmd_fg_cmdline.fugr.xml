@@ -2,7 +2,6 @@
 <abapGit version="v1.0.0" serializer="LCL_OBJECT_FUGR" serializer_version="v1.0.0">
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
-   <AREAT>Dynpro für eine Commandozeile</AREAT>
    <INCLUDES>
     <SOBJ_NAME>LZAPCMD_FG_CMDLINETOP</SOBJ_NAME>
     <SOBJ_NAME>SAPLZAPCMD_FG_CMDLINE</SOBJ_NAME>
@@ -10,7 +9,6 @@
    <FUNCTIONS>
     <item>
      <FUNCNAME>ZAPCMD_CALL_CMDLINE</FUNCNAME>
-     <SHORT_TEXT>Calls the outpout for command line</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>PF_CMDLINE</PARAMETER>
@@ -23,7 +21,6 @@
       <RSFDO>
        <PARAMETER>PF_CMDLINE</PARAMETER>
        <KIND>P</KIND>
-       <STEXT>Command line</STEXT>
       </RSFDO>
      </DOCUMENTATION>
     </item>
@@ -89,6 +86,9 @@
     </item>
    </DYNPROS>
    <CUA>
+    <ADM>
+     <PFKCODE>000001</PFKCODE>
+    </ADM>
     <STA>
      <RSMPE_STAT>
       <CODE>STATUS300</CODE>

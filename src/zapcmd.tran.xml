@@ -15,13 +15,28 @@
     <S_PLATIN>X</S_PLATIN>
    </TSTCC>
    <TSTCT>
-    <SPRSL>E</SPRSL>
+    <SPRSL>S</SPRSL>
     <TCODE>ZAPCMD</TCODE>
-    <TTEXT>SAPCommander</TTEXT>
    </TSTCT>
    <I18N_TPOOL>
     <TSTCT>
      <SPRSL>D</SPRSL>
+     <TTEXT>SAPCommander</TTEXT>
+    </TSTCT>
+    <TSTCT>
+     <SPRSL>E</SPRSL>
+     <TTEXT>SAPCommander</TTEXT>
+    </TSTCT>
+    <TSTCT>
+     <SPRSL>F</SPRSL>
+     <TTEXT>SAPCommander</TTEXT>
+    </TSTCT>
+    <TSTCT>
+     <SPRSL>I</SPRSL>
+     <TTEXT>SAPCommander</TTEXT>
+    </TSTCT>
+    <TSTCT>
+     <SPRSL>P</SPRSL>
      <TTEXT>SAPCommander</TTEXT>
     </TSTCT>
    </I18N_TPOOL>

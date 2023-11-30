@@ -822,7 +822,7 @@ METHOD read_logicaldir.
 
   SELECT *
      FROM filepath
-     INTO TABLE lt_path.
+     INTO TABLE lt_path.                                "#EC CI_NOWHERE
 
   LOOP AT lt_path INTO l_path.
 
@@ -832,25 +832,24 @@ METHOD read_logicaldir.
 
         CALL FUNCTION 'FILE_GET_NAME_USING_PATH'
           EXPORTING
-*     CLIENT                           = SY-MANDT
-            logical_path                     = l_path
-*     OPERATING_SYSTEM                 = SY-OPSYS
-         parameter_1                      = 'p1'
-         parameter_2                      = 'p2'
-         parameter_3                      = 'p3'
-*     USE_BUFFER                       = ' '
-            file_name                        = '°'
-*     USE_PRESENTATION_SERVER          = ' '
-*     ELEMINATE_BLANKS                 = 'X'
-         IMPORTING
-           file_name_with_path              = l_fullname
-         EXCEPTIONS
-           path_not_found                   = 1
-           missing_parameter                = 2
-           operating_system_not_found       = 3
-           file_system_not_found            = 4
-           OTHERS                           = 5
-                  .
+*           CLIENT                     = SY-MANDT
+            logical_path               = l_path
+*           OPERATING_SYSTEM           = SY-OPSYS
+            parameter_1                = 'p1'
+            parameter_2                = 'p2'
+            parameter_3                = 'p3'
+*           USE_BUFFER                 = ' '
+            file_name                  = '°'
+*           USE_PRESENTATION_SERVER    = ' '
+*           ELEMINATE_BLANKS           = 'X'
+          IMPORTING
+            file_name_with_path        = l_fullname
+          EXCEPTIONS
+            path_not_found             = 1
+            missing_parameter          = 2
+            operating_system_not_found = 3
+            file_system_not_found      = 4
+            OTHERS                     = 5.
         IF sy-subrc <> 0.
           CONTINUE.
         ENDIF.

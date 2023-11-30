@@ -23,6 +23,21 @@
      <DESCRIPT>append</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>ADD</CMPNAME>
+     <LANGU>F</LANGU>
+     <DESCRIPT>append</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>ADD</CMPNAME>
+     <LANGU>I</LANGU>
+     <DESCRIPT>append</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>ADD</CMPNAME>
+     <LANGU>P</LANGU>
+     <DESCRIPT>append</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>CT_LIST</CMPNAME>
      <LANGU>D</LANGU>
      <DESCRIPT>Tabelle mit Dateien und Verzeichnissen</DESCRIPT>
@@ -32,21 +47,22 @@
      <LANGU>E</LANGU>
      <DESCRIPT>Table containing files and directories</DESCRIPT>
     </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>CT_LIST</CMPNAME>
+     <LANGU>F</LANGU>
+     <DESCRIPT>Table containing files and directories</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>CT_LIST</CMPNAME>
+     <LANGU>I</LANGU>
+     <DESCRIPT>Table containing files and directories</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>CT_LIST</CMPNAME>
+     <LANGU>P</LANGU>
+     <DESCRIPT>Table containing files and directories</DESCRIPT>
+    </SEOCOMPOTX>
    </DESCRIPTIONS>
-   <DESCRIPTIONS_SUB>
-    <SEOSUBCOTX>
-     <CMPNAME>ADD</CMPNAME>
-     <SCONAME>PF_REF_KNOT</SCONAME>
-     <LANGU>D</LANGU>
-     <DESCRIPT>Knoten im Verzeichnisbaum</DESCRIPT>
-    </SEOSUBCOTX>
-    <SEOSUBCOTX>
-     <CMPNAME>ADD</CMPNAME>
-     <SCONAME>PF_REF_KNOT</SCONAME>
-     <LANGU>E</LANGU>
-     <DESCRIPT>nodes in directory tree</DESCRIPT>
-    </SEOSUBCOTX>
-   </DESCRIPTIONS_SUB>
   </asx:values>
  </asx:abap>
 </abapGit>

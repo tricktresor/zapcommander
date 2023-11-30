@@ -4,22 +4,20 @@
   <asx:values>
    <DD04V>
     <ROLLNAME>ZAPCMD_ATTR</ROLLNAME>
-    <DDLANGUAGE>E</DDLANGUAGE>
     <DOMNAME>CHAR10</DOMNAME>
     <HEADLEN>39</HEADLEN>
     <SCRLEN1>10</SCRLEN1>
     <SCRLEN2>15</SCRLEN2>
     <SCRLEN3>20</SCRLEN3>
-    <DDTEXT>File attributes (Operating System dependend)</DDTEXT>
-    <REPTEXT>File attributes (OS dependend)</REPTEXT>
-    <SCRTEXT_S>Attr.</SCRTEXT_S>
-    <SCRTEXT_M>File attributes</SCRTEXT_M>
-    <SCRTEXT_L>File attributes</SCRTEXT_L>
     <DTELMASTER>E</DTELMASTER>
     <REFKIND>D</REFKIND>
    </DD04V>
    <I18N_LANGS>
     <LANGU>D</LANGU>
+    <LANGU>E</LANGU>
+    <LANGU>F</LANGU>
+    <LANGU>I</LANGU>
+    <LANGU>P</LANGU>
    </I18N_LANGS>
    <DD04_TEXTS>
     <item>
@@ -29,6 +27,38 @@
      <SCRTEXT_S>Attr.</SCRTEXT_S>
      <SCRTEXT_M>Dateiattribute</SCRTEXT_M>
      <SCRTEXT_L>Dateiattribute</SCRTEXT_L>
+    </item>
+    <item>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <DDTEXT>File attributes (Operating System dependend)</DDTEXT>
+     <REPTEXT>File attributes (OS dependend)</REPTEXT>
+     <SCRTEXT_S>Attr.</SCRTEXT_S>
+     <SCRTEXT_M>File attributes</SCRTEXT_M>
+     <SCRTEXT_L>File attributes</SCRTEXT_L>
+    </item>
+    <item>
+     <DDLANGUAGE>F</DDLANGUAGE>
+     <DDTEXT>File attributes (Operating System dependend)</DDTEXT>
+     <REPTEXT>File attributes (OS dependend)</REPTEXT>
+     <SCRTEXT_S>Attr.</SCRTEXT_S>
+     <SCRTEXT_M>File attributes</SCRTEXT_M>
+     <SCRTEXT_L>File attributes</SCRTEXT_L>
+    </item>
+    <item>
+     <DDLANGUAGE>I</DDLANGUAGE>
+     <DDTEXT>File attributes (Operating System dependend)</DDTEXT>
+     <REPTEXT>File attributes (OS dependend)</REPTEXT>
+     <SCRTEXT_S>Attr.</SCRTEXT_S>
+     <SCRTEXT_M>File attributes</SCRTEXT_M>
+     <SCRTEXT_L>File attributes</SCRTEXT_L>
+    </item>
+    <item>
+     <DDLANGUAGE>P</DDLANGUAGE>
+     <DDTEXT>File attributes (Operating System dependend)</DDTEXT>
+     <REPTEXT>File attributes (OS dependend)</REPTEXT>
+     <SCRTEXT_S>Attr.</SCRTEXT_S>
+     <SCRTEXT_M>File attributes</SCRTEXT_M>
+     <SCRTEXT_L>File attributes</SCRTEXT_L>
     </item>
    </DD04_TEXTS>
   </asx:values>

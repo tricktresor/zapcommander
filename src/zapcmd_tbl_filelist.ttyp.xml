@@ -4,14 +4,12 @@
   <asx:values>
    <DD40V>
     <TYPENAME>ZAPCMD_TBL_FILELIST</TYPENAME>
-    <DDLANGUAGE>E</DDLANGUAGE>
     <ROWTYPE>ZAPCMD_CL_KNOT</ROWTYPE>
     <ROWKIND>R</ROWKIND>
     <DATATYPE>REF</DATATYPE>
     <ACCESSMODE>T</ACCESSMODE>
     <KEYDEF>D</KEYDEF>
     <KEYKIND>N</KEYKIND>
-    <DDTEXT>Table containing files and directories</DDTEXT>
     <REFTYPE>C</REFTYPE>
    </DD40V>
   </asx:values>
