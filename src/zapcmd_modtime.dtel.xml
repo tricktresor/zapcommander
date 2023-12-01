@@ -4,12 +4,18 @@
   <asx:values>
    <DD04V>
     <ROLLNAME>ZAPCMD_MODTIME</ROLLNAME>
+    <DDLANGUAGE>S</DDLANGUAGE>
     <DOMNAME>TIME</DOMNAME>
     <HEADLEN>40</HEADLEN>
     <SCRLEN1>10</SCRLEN1>
     <SCRLEN2>20</SCRLEN2>
     <SCRLEN3>30</SCRLEN3>
-    <DTELMASTER>E</DTELMASTER>
+    <DDTEXT>Hora de modificación</DDTEXT>
+    <REPTEXT>Hora de modificación</REPTEXT>
+    <SCRTEXT_S>H.Modif.</SCRTEXT_S>
+    <SCRTEXT_M>Hora modificación</SCRTEXT_M>
+    <SCRTEXT_L>Hora de modificación</SCRTEXT_L>
+    <DTELMASTER>S</DTELMASTER>
     <REFKIND>D</REFKIND>
    </DD04V>
    <I18N_LANGS>
