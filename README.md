@@ -13,7 +13,7 @@ You can switch right and left sides between application server, front-end, or an
 
 ## Requirements
 
-SAP ECC Release 740
+SAP ECC Release 731
 
 # Credits
 
