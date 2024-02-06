@@ -48,21 +48,21 @@ START-OF-SELECTION.
   GET REFERENCE OF gf_cmdline INTO go_temp.
   GET REFERENCE OF gf_dirname INTO go_dirname.
 
-  go_commander = NEW #(
+  CREATE OBJECT go_commander
+    EXPORTING
       pf_left_type  = p_ltype
       pf_left_dir   = p_ldir
       pf_right_type = p_rtype
       pf_right_dir  = p_rdir
-      pf_dirname    = go_dirname ).
+      pf_dirname    = go_dirname.
 
   DATA go_activelist TYPE REF TO zapcmd_refref_filelist.
   GET REFERENCE OF go_commander->cf_activelist INTO go_activelist.
 
-
-  go_cmdline = NEW #(
+  CREATE OBJECT go_cmdline
+    EXPORTING
       pf_cmdline = go_temp
-      pf_dir     = go_activelist ).
-
+      pf_dir     = go_activelist.
 
   CALL SCREEN 110.
 
@@ -108,7 +108,9 @@ FORM status_0100.
 *      pf_container = gf_gui_parent_container.
 
   IF go_gui_commander_container IS INITIAL.
-    go_gui_commander_container = NEW #( container_name = 'CUST100' ).
+    CREATE OBJECT go_gui_commander_container
+      EXPORTING
+        container_name = 'CUST100'.
   ENDIF.
 
   go_commander->show( go_gui_commander_container ).
@@ -119,7 +121,9 @@ FORM status_0100.
 
   IF sy-dynnr = '0100'.
     IF go_gui_dirname_container IS INITIAL.
-      go_gui_dirname_container = NEW #( container_name = 'CUST400' ).
+      CREATE OBJECT go_gui_dirname_container
+        EXPORTING
+          container_name = 'CUST400'.
     ENDIF.
 
     go_cmdline->show1( go_gui_dirname_container ).
