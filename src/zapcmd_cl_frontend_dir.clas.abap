@@ -86,7 +86,9 @@ CLASS ZAPCMD_CL_FRONTEND_DIR IMPLEMENTATION.
         OTHERS                   = 10 ).
     IF sy-subrc <> 0.
       IF sy-msgno IS INITIAL.
-        MESSAGE |error Directory_Create { sy-subrc }| TYPE 'I'.
+        DATA: l_subrc TYPE char30.
+        WRITE sy-subrc TO l_subrc.
+        CONCATENATE `error Directory_Create` l_subrc INTO l_subrc SEPARATED BY space.
       ELSE.
         MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
                    WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
