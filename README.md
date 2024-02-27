@@ -13,10 +13,14 @@ You can switch right and left sides between application server, front-end, or an
 
 ## Requirements
 
-SAP ECC Release 740
+SAP ECC Release 731
 
 # Credits
 
 Original by Achim von Lowtzow
 
 https://code.google.com/archive/p/sapcommander/
+
+# ZAL11
+
+Also have look at [ZAL11](https://github.com/MikeSidorochkin/ZAL11)

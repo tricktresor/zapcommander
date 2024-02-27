@@ -65,7 +65,6 @@ START-OF-SELECTION.
 
   gf_cmdline = NEW #( pf_cmdline = lf_temp
                       pf_dir     = lf_activelist ).
-
   CALL SCREEN 110.
 
 *type-pools: cntl.
