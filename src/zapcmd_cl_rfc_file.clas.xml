@@ -11,6 +11,12 @@
     <FIXPT>X</FIXPT>
     <UNICODE>X</UNICODE>
    </VSEOCLASS>
+   <DESCRIPTIONS_CLASS>
+    <SEOCLASSTX>
+     <LANGU>S</LANGU>
+     <DESCRIPT>Archivo en el servidor de aplicaciones</DESCRIPT>
+    </SEOCLASSTX>
+   </DESCRIPTIONS_CLASS>
    <DESCRIPTIONS>
     <SEOCOMPOTX>
      <CMPNAME>RFCDEST</CMPNAME>
@@ -21,6 +27,11 @@
      <CMPNAME>RFCDEST</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Logical destination (will be passed by function call)</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>RFCDEST</CMPNAME>
+     <LANGU>S</LANGU>
+     <DESCRIPT>Destino lógico (será pasado por la llamada a la función)</DESCRIPT>
     </SEOCOMPOTX>
    </DESCRIPTIONS>
    <DESCRIPTIONS_SUB>
@@ -38,6 +49,12 @@
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>IV_RFCDEST</SCONAME>
+     <LANGU>S</LANGU>
+     <DESCRIPT>Destino lógico (será pasado por la llamada a la función)</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
      <SCONAME>NOT_INSTALLED</SCONAME>
      <LANGU>D</LANGU>
      <DESCRIPT>Die RFC-FuBas sind nicht installiert.</DESCRIPT>
@@ -47,6 +64,12 @@
      <SCONAME>NOT_INSTALLED</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>RFC function module is not installed</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>NOT_INSTALLED</SCONAME>
+     <LANGU>S</LANGU>
+     <DESCRIPT>El módulo de función RFC no está instalado</DESCRIPT>
     </SEOSUBCOTX>
    </DESCRIPTIONS_SUB>
   </asx:values>

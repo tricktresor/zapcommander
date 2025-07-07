@@ -10,6 +10,12 @@
     <STATE>1</STATE>
     <UNICODE>X</UNICODE>
    </VSEOINTERF>
+   <DESCRIPTIONS_INTERFACE>
+    <SEOCLASSTX>
+     <LANGU>S</LANGU>
+     <DESCRIPT>Factory para creación de directorios</DESCRIPT>
+    </SEOCLASSTX>
+   </DESCRIPTIONS_INTERFACE>
    <DESCRIPTIONS>
     <SEOCOMPOTX>
      <CMPNAME>GET_BUTTON</CMPNAME>
@@ -20,6 +26,11 @@
      <CMPNAME>GET_BUTTON</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Add a button to the toolbar</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_BUTTON</CMPNAME>
+     <LANGU>S</LANGU>
+     <DESCRIPT>Añadir un botón a la barra de herramientas</DESCRIPT>
     </SEOCOMPOTX>
    </DESCRIPTIONS>
    <DESCRIPTIONS_SUB>
@@ -37,6 +48,12 @@
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>CREATE_DIR</CMPNAME>
+     <SCONAME>EO_DIR</SCONAME>
+     <LANGU>S</LANGU>
+     <DESCRIPT>Clase para el directorio</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CREATE_DIR</CMPNAME>
      <SCONAME>I_DIR</SCONAME>
      <LANGU>D</LANGU>
      <DESCRIPT>Dateiname mit Pfad</DESCRIPT>
@@ -46,6 +63,12 @@
      <SCONAME>I_DIR</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Filename with path</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CREATE_DIR</CMPNAME>
+     <SCONAME>I_DIR</SCONAME>
+     <LANGU>S</LANGU>
+     <DESCRIPT>Nombre de archivo con ruta</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>CREATE_DIR</CMPNAME>
@@ -60,6 +83,12 @@
      <DESCRIPT>Function code</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
+     <CMPNAME>CREATE_DIR</CMPNAME>
+     <SCONAME>I_FCODE</SCONAME>
+     <LANGU>S</LANGU>
+     <DESCRIPT>Código de función</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
      <CMPNAME>GET_BUTTON</CMPNAME>
      <SCONAME>ET_BUTTON</SCONAME>
      <LANGU>D</LANGU>
@@ -70,6 +99,12 @@
      <SCONAME>ET_BUTTON</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Toolbarbuttons</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_BUTTON</CMPNAME>
+     <SCONAME>ET_BUTTON</SCONAME>
+     <LANGU>S</LANGU>
+     <DESCRIPT>Botones de la barra de herramientas</DESCRIPT>
     </SEOSUBCOTX>
    </DESCRIPTIONS_SUB>
   </asx:values>
