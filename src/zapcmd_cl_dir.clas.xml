@@ -11,6 +11,12 @@
     <FIXPT>X</FIXPT>
     <UNICODE>X</UNICODE>
    </VSEOCLASS>
+   <DESCRIPTIONS_CLASS>
+    <SEOCLASSTX>
+     <LANGU>S</LANGU>
+     <DESCRIPT>Clase para un directorio</DESCRIPT>
+    </SEOCLASSTX>
+   </DESCRIPTIONS_CLASS>
    <DESCRIPTIONS>
     <SEOCOMPOTX>
      <CMPNAME>CLASS_CONSTRUCTOR</CMPNAME>
@@ -33,6 +39,11 @@
      <DESCRIPT>Function code</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>CO_DELETE</CMPNAME>
+     <LANGU>S</LANGU>
+     <DESCRIPT>Código de función</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>CO_EDIT_DIR</CMPNAME>
      <LANGU>D</LANGU>
      <DESCRIPT>Direkte Pfadeingabe</DESCRIPT>
@@ -41,6 +52,11 @@
      <CMPNAME>CO_EDIT_DIR</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Direct directory entry</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>CO_EDIT_DIR</CMPNAME>
+     <LANGU>S</LANGU>
+     <DESCRIPT>Entrada directa en el directorio</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CMPNAME>CO_LOGICALFILE</CMPNAME>
@@ -53,6 +69,11 @@
      <DESCRIPT>Logical path</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>CO_LOGICALFILE</CMPNAME>
+     <LANGU>S</LANGU>
+     <DESCRIPT>Ruta lógica</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>CO_RFC</CMPNAME>
      <LANGU>D</LANGU>
      <DESCRIPT>Über RFC-Verbindung</DESCRIPT>
@@ -61,6 +82,11 @@
      <CMPNAME>CO_RFC</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>via RFC connection</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>CO_RFC</CMPNAME>
+     <LANGU>S</LANGU>
+     <DESCRIPT>vía conexión RFC</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CMPNAME>CREATE_NEW</CMPNAME>
@@ -73,6 +99,11 @@
      <DESCRIPT>Creates a new directory</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>CREATE_NEW</CMPNAME>
+     <LANGU>S</LANGU>
+     <DESCRIPT>Crea un nuevo directorio</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>READ_RFC</CMPNAME>
      <LANGU>D</LANGU>
      <DESCRIPT>Liest alle R3-RFC-Verbindungen ein.</DESCRIPT>
@@ -81,6 +112,11 @@
      <CMPNAME>READ_RFC</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Read all R3 RFC connections</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>READ_RFC</CMPNAME>
+     <LANGU>S</LANGU>
+     <DESCRIPT>Leer todas las conexiones R3 RFC</DESCRIPT>
     </SEOCOMPOTX>
    </DESCRIPTIONS>
    <DESCRIPTIONS_SUB>
@@ -98,6 +134,12 @@
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>CREATE_NEW</CMPNAME>
+     <SCONAME>EO_DIR</SCONAME>
+     <LANGU>S</LANGU>
+     <DESCRIPT>Clase para un directorio</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CREATE_NEW</CMPNAME>
      <SCONAME>I_FCODE</SCONAME>
      <LANGU>D</LANGU>
      <DESCRIPT>Funktionscode, der PAI ausgelöst hat</DESCRIPT>
@@ -107,6 +149,12 @@
      <SCONAME>I_FCODE</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Function code</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CREATE_NEW</CMPNAME>
+     <SCONAME>I_FCODE</SCONAME>
+     <LANGU>S</LANGU>
+     <DESCRIPT>Código de función</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>READ_DIR</CMPNAME>
@@ -121,6 +169,12 @@
      <DESCRIPT>File name w/o path</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
+     <CMPNAME>READ_DIR</CMPNAME>
+     <SCONAME>PF_MASK</SCONAME>
+     <LANGU>S</LANGU>
+     <DESCRIPT>Nombre de archivo sin ruta</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
      <CMPNAME>READ_RFC</CMPNAME>
      <SCONAME>PT_FILELIST</SCONAME>
      <LANGU>D</LANGU>
@@ -131,6 +185,12 @@
      <SCONAME>PT_FILELIST</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Table containing files and directories</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>READ_RFC</CMPNAME>
+     <SCONAME>PT_FILELIST</SCONAME>
+     <LANGU>S</LANGU>
+     <DESCRIPT>Tabla que contiene archivos y directorios</DESCRIPT>
     </SEOSUBCOTX>
    </DESCRIPTIONS_SUB>
   </asx:values>

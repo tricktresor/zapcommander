@@ -31,7 +31,24 @@
       </item>
      </TEXTPOOL>
     </item>
+    <item>
+     <LANGUAGE>S</LANGUAGE>
+     <TEXTPOOL>
+      <item>
+       <ID>I</ID>
+       <KEY>130</KEY>
+       <ENTRY>Archivo no encontrado</ENTRY>
+       <LENGTH>21</LENGTH>
+      </item>
+     </TEXTPOOL>
+    </item>
    </I18N_TPOOL>
+   <DESCRIPTIONS_CLASS>
+    <SEOCLASSTX>
+     <LANGU>S</LANGU>
+     <DESCRIPT>Nodo en el árbol de directorios</DESCRIPT>
+    </SEOCLASSTX>
+   </DESCRIPTIONS_CLASS>
    <DESCRIPTIONS>
     <SEOCOMPOTX>
      <CMPNAME>CONVERT_SIZE</CMPNAME>
@@ -44,6 +61,11 @@
      <DESCRIPT>Writes file length in string</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>CONVERT_SIZE</CMPNAME>
+     <LANGU>S</LANGU>
+     <DESCRIPT>Escribe la longitud del archivo en una cadena</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>DELETE</CMPNAME>
      <LANGU>D</LANGU>
      <DESCRIPT>Löschen der Datei oder Verzeichnis</DESCRIPT>
@@ -52,6 +74,11 @@
      <CMPNAME>DELETE</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>delete file or dir</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>DELETE</CMPNAME>
+     <LANGU>S</LANGU>
+     <DESCRIPT>borrar archivo o dir</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CMPNAME>EXECUTE</CMPNAME>
@@ -64,6 +91,11 @@
      <DESCRIPT>Display or execute file</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>EXECUTE</CMPNAME>
+     <LANGU>S</LANGU>
+     <DESCRIPT>Visualizar o ejecutar archivo</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>EXEC_SERVER</CMPNAME>
      <LANGU>D</LANGU>
      <DESCRIPT>Führt einen Befehl auf dem Applikationsserver aus.</DESCRIPT>
@@ -72,6 +104,11 @@
      <CMPNAME>EXEC_SERVER</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Executes command on application server</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>EXEC_SERVER</CMPNAME>
+     <LANGU>S</LANGU>
+     <DESCRIPT>Ejecuta el comando en el servidor de aplicaciones</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CMPNAME>FILESIZE</CMPNAME>
@@ -84,6 +121,11 @@
      <DESCRIPT>File size in Bytes</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>FILESIZE</CMPNAME>
+     <LANGU>S</LANGU>
+     <DESCRIPT>Tamaño del archivo en Bytes</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>GET_INFO</CMPNAME>
      <LANGU>D</LANGU>
      <DESCRIPT>Liefert eine Informationsstruktur über die Datei</DESCRIPT>
@@ -92,6 +134,11 @@
      <CMPNAME>GET_INFO</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Returns information structure of file</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_INFO</CMPNAME>
+     <LANGU>S</LANGU>
+     <DESCRIPT>Devuelve la estructura de información del archivo</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CMPNAME>SPLIT_FULLNAME</CMPNAME>
@@ -104,6 +151,11 @@
      <DESCRIPT>Splits filename in path, name and extension</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>SPLIT_FULLNAME</CMPNAME>
+     <LANGU>S</LANGU>
+     <DESCRIPT>Divide el nombre de archivo en ruta, nombre y extensión</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>SPLIT_NAME</CMPNAME>
      <LANGU>D</LANGU>
      <DESCRIPT>Unterteilt einen Namen in Kurzname und Extension</DESCRIPT>
@@ -112,6 +164,11 @@
      <CMPNAME>SPLIT_NAME</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Splits name in short name and extension</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>SPLIT_NAME</CMPNAME>
+     <LANGU>S</LANGU>
+     <DESCRIPT>Divide el nombre en nombre corto y extensión</DESCRIPT>
     </SEOCOMPOTX>
    </DESCRIPTIONS>
   </asx:values>

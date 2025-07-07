@@ -24,6 +24,10 @@
      <SPRSL>D</SPRSL>
      <TTEXT>SAPCommander</TTEXT>
     </TSTCT>
+    <TSTCT>
+     <SPRSL>S</SPRSL>
+     <TTEXT>SAPCommander</TTEXT>
+    </TSTCT>
    </I18N_TPOOL>
   </asx:values>
  </asx:abap>

@@ -11,6 +11,12 @@
     <FIXPT>X</FIXPT>
     <UNICODE>X</UNICODE>
    </VSEOCLASS>
+   <DESCRIPTIONS_CLASS>
+    <SEOCLASSTX>
+     <LANGU>S</LANGU>
+     <DESCRIPT>Tabla interna con nodos</DESCRIPT>
+    </SEOCLASSTX>
+   </DESCRIPTIONS_CLASS>
    <DESCRIPTIONS>
     <SEOCOMPOTX>
      <CMPNAME>ADD</CMPNAME>
@@ -23,6 +29,11 @@
      <DESCRIPT>append</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
+     <CMPNAME>ADD</CMPNAME>
+     <LANGU>S</LANGU>
+     <DESCRIPT>añadir</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
      <CMPNAME>CT_LIST</CMPNAME>
      <LANGU>D</LANGU>
      <DESCRIPT>Tabelle mit Dateien und Verzeichnissen</DESCRIPT>
@@ -31,6 +42,11 @@
      <CMPNAME>CT_LIST</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Table containing files and directories</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>CT_LIST</CMPNAME>
+     <LANGU>S</LANGU>
+     <DESCRIPT>Tabla que contiene archivos y directorios</DESCRIPT>
     </SEOCOMPOTX>
    </DESCRIPTIONS>
    <DESCRIPTIONS_SUB>
@@ -45,6 +61,12 @@
      <SCONAME>PF_REF_KNOT</SCONAME>
      <LANGU>E</LANGU>
      <DESCRIPT>nodes in directory tree</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>ADD</CMPNAME>
+     <SCONAME>PF_REF_KNOT</SCONAME>
+     <LANGU>S</LANGU>
+     <DESCRIPT>nodos del árbol de directorios</DESCRIPT>
     </SEOSUBCOTX>
    </DESCRIPTIONS_SUB>
   </asx:values>
