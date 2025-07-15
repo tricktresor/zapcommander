@@ -5,7 +5,7 @@
    <PROGDIR>
     <NAME>ZAPCMD_SAPCOMMANDER</NAME>
     <SUBC>1</SUBC>
-    <RLOAD>D</RLOAD>
+    <RLOAD>E</RLOAD>
     <FIXPT>X</FIXPT>
     <UCCHECK>X</UCCHECK>
    </PROGDIR>
@@ -14,8 +14,8 @@
      <HEADER>
       <PROGRAM>ZAPCMD_SAPCOMMANDER</PROGRAM>
       <SCREEN>0100</SCREEN>
-      <LANGUAGE>D</LANGUAGE>
-      <DESCRIPT>Hauptfenster des SAP-Commanders</DESCRIPT>
+      <LANGUAGE>E</LANGUAGE>
+      <DESCRIPT>Main window of the SAP Commander</DESCRIPT>
       <TYPE>N</TYPE>
       <NEXTSCREEN>0100</NEXTSCREEN>
       <LINES>080</LINES>
@@ -74,7 +74,7 @@
        <CONT_NAME>SCREEN</CONT_NAME>
        <TYPE>PUSH</TYPE>
        <NAME>SHOW</NAME>
-       <TEXT>F3_Anzeigen</TEXT>
+       <TEXT>F3_Display_</TEXT>
        <LINE>080</LINE>
        <COLUMN>001</COLUMN>
        <LENGTH>011</LENGTH>
@@ -89,7 +89,7 @@
        <CONT_NAME>SCREEN</CONT_NAME>
        <TYPE>PUSH</TYPE>
        <NAME>EDIT</NAME>
-       <TEXT>F4_Bearbeiten</TEXT>
+       <TEXT>F4_Edit______</TEXT>
        <LINE>080</LINE>
        <COLUMN>014</COLUMN>
        <LENGTH>013</LENGTH>
@@ -104,7 +104,7 @@
        <CONT_NAME>SCREEN</CONT_NAME>
        <TYPE>PUSH</TYPE>
        <NAME>COPY</NAME>
-       <TEXT>F5_Kopieren</TEXT>
+       <TEXT>F5_Copy____</TEXT>
        <LINE>080</LINE>
        <COLUMN>029</COLUMN>
        <LENGTH>011</LENGTH>
@@ -119,7 +119,7 @@
        <CONT_NAME>SCREEN</CONT_NAME>
        <TYPE>PUSH</TYPE>
        <NAME>MOVE</NAME>
-       <TEXT>F6_Bewegen</TEXT>
+       <TEXT>F6_Move___</TEXT>
        <LINE>080</LINE>
        <COLUMN>042</COLUMN>
        <LENGTH>010</LENGTH>
@@ -134,7 +134,7 @@
        <CONT_NAME>SCREEN</CONT_NAME>
        <TYPE>PUSH</TYPE>
        <NAME>NEWDIR</NAME>
-       <TEXT>F7_Neuer_Ordner_</TEXT>
+       <TEXT>F7_New_folder___</TEXT>
        <LINE>080</LINE>
        <COLUMN>054</COLUMN>
        <LENGTH>016</LENGTH>
@@ -149,7 +149,7 @@
        <CONT_NAME>SCREEN</CONT_NAME>
        <TYPE>PUSH</TYPE>
        <NAME>DEL</NAME>
-       <TEXT>F8_Löschen</TEXT>
+       <TEXT>F8_Delete_</TEXT>
        <LINE>080</LINE>
        <COLUMN>071</COLUMN>
        <LENGTH>010</LENGTH>
@@ -164,7 +164,7 @@
        <CONT_NAME>SCREEN</CONT_NAME>
        <TYPE>PUSH</TYPE>
        <NAME>EXIT</NAME>
-       <TEXT>F10_Beenden</TEXT>
+       <TEXT>F10_Exit___</TEXT>
        <LINE>080</LINE>
        <COLUMN>083</COLUMN>
        <LENGTH>011</LENGTH>
@@ -192,8 +192,8 @@
      <HEADER>
       <PROGRAM>ZAPCMD_SAPCOMMANDER</PROGRAM>
       <SCREEN>0110</SCREEN>
-      <LANGUAGE>D</LANGUAGE>
-      <DESCRIPT>Hauptfenster des SAP-Commanders</DESCRIPT>
+      <LANGUAGE>E</LANGUAGE>
+      <DESCRIPT>Main window of the SAP Commander</DESCRIPT>
       <TYPE>N</TYPE>
       <NEXTSCREEN>0110</NEXTSCREEN>
       <LINES>080</LINES>
@@ -224,7 +224,7 @@
        <CONT_NAME>SCREEN</CONT_NAME>
        <TYPE>PUSH</TYPE>
        <NAME>SHOW</NAME>
-       <TEXT>F3_Anzeigen</TEXT>
+       <TEXT>F3_Display_</TEXT>
        <LINE>080</LINE>
        <COLUMN>001</COLUMN>
        <LENGTH>011</LENGTH>
@@ -239,7 +239,7 @@
        <CONT_NAME>SCREEN</CONT_NAME>
        <TYPE>PUSH</TYPE>
        <NAME>EDIT</NAME>
-       <TEXT>F4_Bearbeiten</TEXT>
+       <TEXT>F4_Edit______</TEXT>
        <LINE>080</LINE>
        <COLUMN>014</COLUMN>
        <LENGTH>013</LENGTH>
@@ -254,7 +254,7 @@
        <CONT_NAME>SCREEN</CONT_NAME>
        <TYPE>PUSH</TYPE>
        <NAME>COPY</NAME>
-       <TEXT>F5_Kopieren</TEXT>
+       <TEXT>F5_Copy____</TEXT>
        <LINE>080</LINE>
        <COLUMN>029</COLUMN>
        <LENGTH>011</LENGTH>
@@ -269,7 +269,7 @@
        <CONT_NAME>SCREEN</CONT_NAME>
        <TYPE>PUSH</TYPE>
        <NAME>MOVE</NAME>
-       <TEXT>F6_Bewegen</TEXT>
+       <TEXT>F6_Move___</TEXT>
        <LINE>080</LINE>
        <COLUMN>042</COLUMN>
        <LENGTH>010</LENGTH>
@@ -284,7 +284,7 @@
        <CONT_NAME>SCREEN</CONT_NAME>
        <TYPE>PUSH</TYPE>
        <NAME>NEWDIR</NAME>
-       <TEXT>F7_Neuer_Ordner_</TEXT>
+       <TEXT>F7_New_folder___</TEXT>
        <LINE>080</LINE>
        <COLUMN>054</COLUMN>
        <LENGTH>016</LENGTH>
@@ -299,7 +299,7 @@
        <CONT_NAME>SCREEN</CONT_NAME>
        <TYPE>PUSH</TYPE>
        <NAME>DEL</NAME>
-       <TEXT>F8_Löschen</TEXT>
+       <TEXT>F8_Delete_</TEXT>
        <LINE>080</LINE>
        <COLUMN>071</COLUMN>
        <LENGTH>010</LENGTH>
@@ -314,7 +314,7 @@
        <CONT_NAME>SCREEN</CONT_NAME>
        <TYPE>PUSH</TYPE>
        <NAME>EXIT</NAME>
-       <TEXT>F10_Beenden</TEXT>
+       <TEXT>F10_Exit___</TEXT>
        <LINE>080</LINE>
        <COLUMN>083</COLUMN>
        <LENGTH>011</LENGTH>
@@ -350,7 +350,7 @@
       <ACTCODE>000001</ACTCODE>
       <PFKCODE>000001</PFKCODE>
       <BUTCODE>0001</BUTCODE>
-      <INT_NOTE>Hauptstatus</INT_NOTE>
+      <INT_NOTE>Main status</INT_NOTE>
      </RSMPE_STAT>
     </STA>
     <FUN>
@@ -583,20 +583,20 @@
       <OBJ_TYPE>A</OBJ_TYPE>
       <OBJ_CODE>000001</OBJ_CODE>
       <MODAL>D</MODAL>
-      <INT_NOTE>Hauptstatus</INT_NOTE>
+      <INT_NOTE>Main status</INT_NOTE>
      </RSMPE_ATRT>
      <RSMPE_ATRT>
       <OBJ_TYPE>P</OBJ_TYPE>
       <OBJ_CODE>000001</OBJ_CODE>
       <MODAL>P</MODAL>
-      <INT_NOTE>Status300</INT_NOTE>
+      <INT_NOTE>Status 100</INT_NOTE>
      </RSMPE_ATRT>
      <RSMPE_ATRT>
       <OBJ_TYPE>B</OBJ_TYPE>
       <OBJ_CODE>000001</OBJ_CODE>
       <SUB_CODE>0001</SUB_CODE>
       <MODAL>P</MODAL>
-      <INT_NOTE>Status300</INT_NOTE>
+      <INT_NOTE>Status 100</INT_NOTE>
      </RSMPE_ATRT>
      <RSMPE_ATRT>
       <OBJ_TYPE>A</OBJ_TYPE>
