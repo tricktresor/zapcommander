@@ -8,15 +8,18 @@ class ZAPCMD_CL_SERVER_FACTORY definition
 public section.
 
   interfaces ZAPCMD_IF_FACTORY .
+
+  CONSTANTS: BEGIN OF gc_fcode,
+               application_server TYPE syucomm VALUE 'APPLSERV',
+*               logical_file       TYPE syucomm VALUE 'LOGICALF',
+             END OF gc_fcode.
+
 protected section.
 *"* protected components of class ZAPCMD_CL_FRONTEND_FACTORY
 *"* do not include other source files here!!!
 private section.
 *"* private components of class ZAPCMD_CL_SERVER_FACTORY
 *"* do not include other source files here!!!
-
-  data CO_APPLSERV type SYUCOMM value 'APPLSERV'. "#EC NOTEXT .
-  data CO_LOGICALFILE type SYUCOMM value 'LOGICALF'. "#EC NOTEXT .
 ENDCLASS.
 
 
@@ -27,7 +30,7 @@ CLASS ZAPCMD_CL_SERVER_FACTORY IMPLEMENTATION.
 METHOD zapcmd_if_factory~create_dir.
 
   CASE i_fcode.
-    WHEN co_applserv.
+    WHEN gc_fcode-application_server.
 
       CREATE OBJECT eo_dir TYPE zapcmd_cl_server_dir.
       eo_dir->init( pf_full_name = i_dir ).
@@ -138,7 +141,7 @@ method ZAPCMD_IF_FACTORY~GET_BUTTON.
 
      CLEAR ls_toolbar.
     MOVE 0 TO ls_toolbar-butn_type.
-    MOVE CO_APPLSERV TO ls_toolbar-function.
+    MOVE gc_fcode-application_server TO ls_toolbar-function.
     MOVE ICON_SYM_REAL_SERVER TO ls_toolbar-icon.
     MOVE 'Appl. Server'(210) to ls_toolbar-text.
     MOVE 'Applikationsserver'(211) TO ls_toolbar-quickinfo.

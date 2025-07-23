@@ -8,6 +8,11 @@ CLASS zapcmd_cl_frontend_factory DEFINITION
   PUBLIC SECTION.
 
     INTERFACES zapcmd_if_factory .
+
+  CONSTANTS: BEGIN OF gc_fcode,
+               frontend TYPE syucomm VALUE 'FRONTEND',
+             END OF gc_fcode.
+
   PROTECTED SECTION.
 *"* protected components of class ZAPCMD_CL_FRONTEND_FACTORY
 *"* do not include other source files here!!!
@@ -23,7 +28,7 @@ CLASS ZAPCMD_CL_FRONTEND_FACTORY IMPLEMENTATION.
 
   METHOD zapcmd_if_factory~create_dir.
 
-    IF i_fcode = 'FRONTEND'.
+    IF i_fcode = gc_fcode-frontend.
 
       CREATE OBJECT eo_dir TYPE zapcmd_cl_frontend_dir.
       eo_dir->init( pf_full_name = i_dir ).
@@ -38,7 +43,7 @@ CLASS ZAPCMD_CL_FRONTEND_FACTORY IMPLEMENTATION.
 
     CLEAR ls_toolbar.
     MOVE 0 TO ls_toolbar-butn_type.
-    MOVE 'FRONTEND' TO ls_toolbar-function.
+    MOVE gc_fcode-frontend TO ls_toolbar-function.
     MOVE icon_workplace TO ls_toolbar-icon.
     MOVE 'Frontend'(220) TO ls_toolbar-text.
     MOVE 'Präsentationsserver'(221) TO ls_toolbar-quickinfo.

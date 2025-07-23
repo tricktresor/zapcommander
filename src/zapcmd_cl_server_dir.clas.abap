@@ -1,7 +1,6 @@
 class ZAPCMD_CL_SERVER_DIR definition
   public
   inheriting from ZAPCMD_CL_DIR
-  final
   create public .
 
 *"* public components of class ZAPCMD_CL_SERVER_DIR
@@ -32,9 +31,6 @@ public section.
 protected section.
 *"* protected components of class ZAPCMD_CL_SERVER_DIR
 *"* do not include other source files here!!!
-private section.
-*"* private components of class ZAPCMD_CL_SERVER_DIR
-*"* do not include other source files here!!!
 
   methods READ_DRIVES
     exporting
@@ -48,6 +44,9 @@ private section.
   methods READ_LOGICALDIR
     exporting
       value(PT_FILELIST) type ZAPCMD_TBL_FILELIST .
+private section.
+*"* private components of class ZAPCMD_CL_SERVER_DIR
+*"* do not include other source files here!!!
 ENDCLASS.
 
 

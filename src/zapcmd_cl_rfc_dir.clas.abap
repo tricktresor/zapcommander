@@ -32,15 +32,19 @@ public section.
 protected section.
 *"* protected components of class ZAPCMD_CL_RFC_DIR
 *"* do not include other source files here!!!
+
+  methods GET_RFCDEST final
+    returning
+      value(RESULT) type RFCDEST.
+
+  methods READ_DRIVES
+    exporting
+      value(PT_FILELIST) type ZAPCMD_TBL_FILELIST .
 private section.
 *"* private components of class ZAPCMD_CL_RFC_DIR
 *"* do not include other source files here!!!
 
   data RFCDEST type RFCDEST .
-
-  methods READ_DRIVES
-    exporting
-      value(PT_FILELIST) type ZAPCMD_TBL_FILELIST .
 ENDCLASS.
 
 
@@ -342,6 +346,13 @@ METHOD read_dir.
 
   endloop.
 
+
+ENDMETHOD.
+
+
+METHOD get_rfcdest.
+
+  result = rfcdest.
 
 ENDMETHOD.
 

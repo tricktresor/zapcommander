@@ -145,21 +145,33 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 
   METHOD constructor.
 
+    DATA l_fcode      TYPE syucomm.
+    DATA l_directory  TYPE string.
+    DATA li_user_exit TYPE REF TO zapcmd_if_user_exit.
+
     SET HANDLER handle_activate FOR ALL INSTANCES.
 
-    DATA l_fcode TYPE syucomm.
+    l_directory = pf_dir.
+
     IF pf_type = 'DEFAULT'.
-      l_fcode = 'FRONTEND'.
+
+      l_fcode = zapcmd_cl_frontend_factory=>gc_fcode-frontend.
+
+      li_user_exit = zapcmd_cl_user_exit_factory=>get( ).
+      IF li_user_exit IS BOUND.
+        li_user_exit->change_default_directory( CHANGING cv_function_code = l_fcode
+                                                         cv_directory     = l_directory ).
+      ENDIF.
+
     ELSE.
       l_fcode = pf_type.
     ENDIF.
-
 
     DATA lt_imp TYPE zapcmd_tbl_factory.
     lt_imp = get_factories( ).
     DATA l_imp TYPE REF TO zapcmd_if_factory.
     LOOP AT lt_imp INTO l_imp.
-      cf_ref_dir = l_imp->create_dir( i_fcode = l_fcode  i_dir = pf_dir ).
+      cf_ref_dir = l_imp->create_dir( i_fcode = l_fcode i_dir = l_directory ).
       IF cf_ref_dir IS BOUND.
         EXIT.
       ENDIF.
@@ -168,8 +180,6 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
     IF cf_ref_dir IS BOUND.
       reload_dir( ).
     ENDIF.
-
-
 
   ENDMETHOD.
 
@@ -438,8 +448,8 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 
   METHOD get_factories.
 
-
-    DATA lt_imp TYPE TABLE OF seoclsname.
+    DATA lt_imp       TYPE TABLE OF seoclsname.
+    DATA li_user_exit TYPE REF TO zapcmd_if_user_exit.
 
     DATA: BEGIN OF ls_para_tab,
             name      TYPE abap_parmname,
@@ -447,7 +457,6 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
             fieldname TYPE fieldname,
           END OF ls_para_tab.
     DATA lt_para_tab LIKE TABLE OF ls_para_tab.
-
 
     SELECT clsname FROM seometarel INTO TABLE lt_imp
       WHERE refclsname = 'ZAPCMD_IF_FACTORY'.
@@ -469,6 +478,11 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
       CREATE OBJECT lo_object TYPE (l_imp).
       APPEND lo_object TO et_imp.
     ENDLOOP.
+
+    li_user_exit = zapcmd_cl_user_exit_factory=>get( ).
+    IF li_user_exit IS BOUND.
+      li_user_exit->change_factories( CHANGING ct_factories = et_imp ).
+    ENDIF.
 
   ENDMETHOD.
 

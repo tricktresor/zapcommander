@@ -1,7 +1,6 @@
 CLASS zapcmd_cl_frontend_dir DEFINITION
   PUBLIC
   INHERITING FROM zapcmd_cl_dir
-  FINAL
   CREATE PUBLIC .
 
 *"* public components of class ZAPCMD_CL_FRONTEND_DIR
@@ -32,13 +31,13 @@ CLASS zapcmd_cl_frontend_dir DEFINITION
   PROTECTED SECTION.
 *"* protected components of class ZAPCMD_CL_FRONTEND_DIR
 *"* do not include other source files here!!!
-  PRIVATE SECTION.
-*"* private components of class ZAPCMD_CL_FRONTEND_DIR
-*"* do not include other source files here!!!
 
     METHODS read_drives
       EXPORTING
         VALUE(pt_filelist) TYPE zapcmd_tbl_filelist .
+  PRIVATE SECTION.
+*"* private components of class ZAPCMD_CL_FRONTEND_DIR
+*"* do not include other source files here!!!
 ENDCLASS.
 
 
