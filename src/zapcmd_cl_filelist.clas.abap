@@ -146,9 +146,12 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
   METHOD constructor.
 
     DATA l_fcode      TYPE syucomm.
+    DATA l_directory  TYPE string.
     DATA li_user_exit TYPE REF TO zapcmd_if_user_exit.
 
     SET HANDLER handle_activate FOR ALL INSTANCES.
+
+    l_directory = pf_dir.
 
     IF pf_type = 'DEFAULT'.
 
@@ -156,7 +159,8 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 
       li_user_exit = zapcmd_cl_user_exit_factory=>get( ).
       IF li_user_exit IS BOUND.
-        li_user_exit->change_default_function_code( CHANGING cv_function_code = l_fcode ).
+        li_user_exit->change_default_directory( CHANGING cv_function_code = l_fcode
+                                                         cv_directory     = l_directory ).
       ENDIF.
 
     ELSE.
@@ -167,7 +171,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
     lt_imp = get_factories( ).
     DATA l_imp TYPE REF TO zapcmd_if_factory.
     LOOP AT lt_imp INTO l_imp.
-      cf_ref_dir = l_imp->create_dir( i_fcode = l_fcode  i_dir = pf_dir ).
+      cf_ref_dir = l_imp->create_dir( i_fcode = l_fcode i_dir = l_directory ).
       IF cf_ref_dir IS BOUND.
         EXIT.
       ENDIF.
