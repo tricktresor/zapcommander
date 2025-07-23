@@ -11,6 +11,10 @@ You can switch right and left sides between application server, front-end, or an
 
 ![image](https://user-images.githubusercontent.com/59966492/194188073-d353bdd8-082c-4264-84c2-f77e996a6462.png)
 
+## Enhancements (User exit)
+
+Create a class with the fixed name `zapcmd_cl_user_exit` that implements the interface `zapcmd_if_user_exit`.
+
 ## Requirements
 
 SAP ECC Release 731
