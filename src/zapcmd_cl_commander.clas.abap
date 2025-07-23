@@ -12,8 +12,8 @@ CLASS zapcmd_cl_commander DEFINITION
     DATA cf_container_left TYPE REF TO cl_gui_container .
     DATA cf_container_right TYPE REF TO cl_gui_container .
     DATA cf_dirname TYPE REF TO string .
-    DATA cf_filesleft TYPE REF TO zapcmd_cl_filelist .
-    DATA cf_filesright TYPE REF TO zapcmd_cl_filelist .
+    DATA cf_filesleft TYPE REF TO zapcmd_cl_filelist_left .
+    DATA cf_filesright TYPE REF TO zapcmd_cl_filelist_right .
     DATA cf_activelist TYPE REF TO zapcmd_cl_filelist .
 
     METHODS show

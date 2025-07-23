@@ -1,12 +1,18 @@
 CLASS zapcmd_cl_filelist DEFINITION
   PUBLIC
-  FINAL
+  ABSTRACT
   CREATE PUBLIC .
 
 *"* public components of class ZAPCMD_CL_FILELIST
 *"* do not include other source files here!!!
   PUBLIC SECTION.
+
     TYPE-POOLS icon .
+
+    CONSTANTS: BEGIN OF gc_side,
+                 left  TYPE string VALUE `LEFT`,
+                 right TYPE string VALUE `RIGHT`,
+               END OF gc_side.
 
     DATA cf_active TYPE xfeld .
     DATA cf_ref_dir TYPE REF TO zapcmd_cl_dir .
@@ -27,8 +33,9 @@ CLASS zapcmd_cl_filelist DEFINITION
         !pf_container TYPE REF TO cl_gui_container .
     METHODS constructor
       IMPORTING
+        !iv_side TYPE string
         !pf_type TYPE syucomm DEFAULT 'FRONTEND'
-        !pf_dir  TYPE string OPTIONAL .
+        !pf_dir  TYPE string OPTIONAL.
     METHODS refresh .
     METHODS handle_activate
         FOR EVENT set_active OF zapcmd_cl_filelist
@@ -56,6 +63,10 @@ CLASS zapcmd_cl_filelist DEFINITION
   PROTECTED SECTION.
 *"* protected components of class ZAPCMD_CL_FILELIST
 *"* do not include other source files here!!!
+
+    METHODS get_side
+      RETURNING VALUE(result) TYPE string.
+
   PRIVATE SECTION.
     CONSTANTS c_field_sort_prio TYPE lvc_s_sort-fieldname VALUE 'SORT_PRIO' ##NO_TEXT.
 *"* private components of class ZAPCMD_CL_FILELIST
@@ -65,10 +76,10 @@ CLASS zapcmd_cl_filelist DEFINITION
     DATA ct_files TYPE zapcmd_tbl_filelist .
     DATA ct_fileinfo TYPE zapcmd_tbl_file_info .
     DATA temp_non_sort LIKE ct_fileinfo.
-    DATA:
-      ct_undo TYPE TABLE OF REF TO zapcmd_cl_dir .
-    CLASS-DATA gt_fcode_factory TYPE zapcmd_tbl_fcode_factory .
-    CLASS-DATA gt_factory_button TYPE ttb_button .
+    DATA ct_undo TYPE TABLE OF REF TO zapcmd_cl_dir .
+    DATA gv_side TYPE string.
+    DATA gt_fcode_factory TYPE zapcmd_tbl_fcode_factory .
+    DATA gt_factory_button TYPE ttb_button .
 
     METHODS handle_doubleclick
         FOR EVENT double_click OF cl_gui_alv_grid
@@ -151,16 +162,26 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 
     SET HANDLER handle_activate FOR ALL INSTANCES.
 
+    gv_side = iv_side.
+
     l_directory = pf_dir.
 
     IF pf_type = 'DEFAULT'.
 
-      l_fcode = zapcmd_cl_frontend_factory=>gc_fcode-frontend.
+      CASE iv_side.
+        WHEN zapcmd_cl_filelist=>gc_side-left.
+          l_fcode = zapcmd_cl_frontend_factory=>gc_fcode-frontend.
+
+        WHEN zapcmd_cl_filelist=>gc_side-right.
+          l_fcode = zapcmd_cl_server_factory=>gc_fcode-application_server.
+
+      ENDCASE.
 
       li_user_exit = zapcmd_cl_user_exit_factory=>get( ).
       IF li_user_exit IS BOUND.
-        li_user_exit->change_default_directory( CHANGING cv_function_code = l_fcode
-                                                         cv_directory     = l_directory ).
+        li_user_exit->change_default_directory( EXPORTING iv_side          = get_side( )
+                                                CHANGING  cv_function_code = l_fcode
+                                                          cv_directory     = l_directory ).
       ENDIF.
 
     ELSE.
@@ -481,7 +502,8 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 
     li_user_exit = zapcmd_cl_user_exit_factory=>get( ).
     IF li_user_exit IS BOUND.
-      li_user_exit->change_factories( CHANGING ct_factories = et_imp ).
+      li_user_exit->change_factories( EXPORTING iv_side      = get_side( )
+                                      CHANGING  ct_factories = et_imp ).
     ENDIF.
 
   ENDMETHOD.
@@ -818,6 +840,13 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
           ).
 
 
+
+  ENDMETHOD.
+
+
+  METHOD get_side.
+
+    result = gv_side.
 
   ENDMETHOD.
 
