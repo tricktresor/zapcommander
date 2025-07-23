@@ -27,7 +27,7 @@ CLASS ZAPCMD_CL_RFC_FACTORY IMPLEMENTATION.
 
 method ZAPCMD_IF_FACTORY~CREATE_DIR.
 
-  if gc_fcode-rfc = 'RFC'.
+  if i_fcode = gc_fcode-rfc.
 
 
     DATA values TYPE TABLE OF sval.
