@@ -8,6 +8,10 @@ class ZAPCMD_CL_RFC_FACTORY definition
 public section.
 
   interfaces ZAPCMD_IF_FACTORY .
+
+  CONSTANTS: BEGIN OF gc_fcode,
+               rfc TYPE syucomm VALUE 'RFC',
+             END OF gc_fcode.
 protected section.
 *"* protected components of class ZAPCMD_CL_FRONTEND_FACTORY
 *"* do not include other source files here!!!
@@ -23,7 +27,7 @@ CLASS ZAPCMD_CL_RFC_FACTORY IMPLEMENTATION.
 
 method ZAPCMD_IF_FACTORY~CREATE_DIR.
 
-  if i_fcode = 'RFC'.
+  if gc_fcode-rfc = 'RFC'.
 
 
     DATA values TYPE TABLE OF sval.
@@ -96,7 +100,7 @@ method ZAPCMD_IF_FACTORY~GET_BUTTON.
 
     CLEAR ls_toolbar.
     MOVE 0 TO ls_toolbar-butn_type.
-    MOVE 'RFC' TO ls_toolbar-function.
+    MOVE gc_fcode-rfc TO ls_toolbar-function.
     MOVE ICON_CONNECT TO ls_toolbar-icon.
     MOVE 'RFC'(001) to ls_toolbar-text.
     MOVE 'Verzeichnisse über RFC'(002) TO ls_toolbar-quickinfo.

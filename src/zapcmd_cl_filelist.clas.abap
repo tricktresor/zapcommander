@@ -152,7 +152,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 
     IF pf_type = 'DEFAULT'.
 
-      l_fcode = 'FRONTEND'.
+      l_fcode = zapcmd_cl_frontend_factory=>gc_fcode-frontend.
 
       li_user_exit = zapcmd_cl_user_exit_factory=>get( ).
       IF li_user_exit IS BOUND.

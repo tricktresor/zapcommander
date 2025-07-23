@@ -67,38 +67,6 @@
      <DESCRIPT>Directorio creado en frontend</DESCRIPT>
     </SEOCLASSTX>
    </DESCRIPTIONS_CLASS>
-   <DESCRIPTIONS>
-    <SEOCOMPOTX>
-     <CMPNAME>CO_APPLSERV</CMPNAME>
-     <LANGU>D</LANGU>
-     <DESCRIPT>Funktionscode, der PAI ausgelöst hat</DESCRIPT>
-    </SEOCOMPOTX>
-    <SEOCOMPOTX>
-     <CMPNAME>CO_APPLSERV</CMPNAME>
-     <LANGU>E</LANGU>
-     <DESCRIPT>Function code</DESCRIPT>
-    </SEOCOMPOTX>
-    <SEOCOMPOTX>
-     <CMPNAME>CO_APPLSERV</CMPNAME>
-     <LANGU>S</LANGU>
-     <DESCRIPT>Código de función</DESCRIPT>
-    </SEOCOMPOTX>
-    <SEOCOMPOTX>
-     <CMPNAME>CO_LOGICALFILE</CMPNAME>
-     <LANGU>D</LANGU>
-     <DESCRIPT>logischer Pfad</DESCRIPT>
-    </SEOCOMPOTX>
-    <SEOCOMPOTX>
-     <CMPNAME>CO_LOGICALFILE</CMPNAME>
-     <LANGU>E</LANGU>
-     <DESCRIPT>Logical path</DESCRIPT>
-    </SEOCOMPOTX>
-    <SEOCOMPOTX>
-     <CMPNAME>CO_LOGICALFILE</CMPNAME>
-     <LANGU>S</LANGU>
-     <DESCRIPT>Ruta lógica</DESCRIPT>
-    </SEOCOMPOTX>
-   </DESCRIPTIONS>
   </asx:values>
  </asx:abap>
 </abapGit>
