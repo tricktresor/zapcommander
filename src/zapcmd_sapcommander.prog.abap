@@ -95,8 +95,15 @@ ENDMODULE.                 " USER_COMMAND_0100  INPUT
 
 FORM status_0100.
 
+  DATA li_user_exit TYPE REF TO zapcmd_if_user_exit.
+
   SET PF-STATUS 'STATUS100'.
   SET TITLEBAR 'TITLE100'.
+
+  li_user_exit = zapcmd_cl_user_exit_factory=>get( ).
+  IF li_user_exit IS BOUND.
+    li_user_exit->commander_set_pfstatus( ).
+  ENDIF.
 
 *  IF gf_gui_parent_container IS INITIAL.
 *    CREATE OBJECT gf_gui_parent_container

@@ -104,7 +104,8 @@ CLASS ZAPCMD_CL_COMMANDER IMPLEMENTATION.
 
   METHOD user_command.
 
-    DATA lf_gui_comp TYPE REF TO cl_gui_control.
+    DATA lf_gui_comp  TYPE REF TO cl_gui_control.
+    DATA li_user_exit TYPE REF TO zapcmd_if_user_exit.
 
     cl_gui_control=>get_focus(
       IMPORTING
@@ -294,6 +295,16 @@ CLASS ZAPCMD_CL_COMMANDER IMPLEMENTATION.
            WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
           RETURN.
         ENDIF.
+
+      WHEN OTHERS.
+
+        li_user_exit = zapcmd_cl_user_exit_factory=>get( ).
+        IF li_user_exit IS BOUND.
+          li_user_exit->commander_user_command( iv_function_code  = e_ucomm
+                                                io_filelist_left  = cf_filesleft
+                                                io_filelist_right = cf_filesright ).
+        ENDIF.
+
     ENDCASE.
 
   ENDMETHOD.

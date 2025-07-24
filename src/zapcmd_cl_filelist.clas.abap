@@ -554,12 +554,6 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 
 *  append lines of gt_factory_button TO CT_BUTTON.
 
-
-
-
-
-
-
   ENDMETHOD.
 
 
@@ -980,7 +974,10 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 
   METHOD handle_set_toolbar.
 
-    DATA: ls_toolbar TYPE stb_button.
+    DATA ls_toolbar     TYPE stb_button.
+    DATA lt_toolbar     TYPE ttb_button.
+    DATA lt_toolbar_uex TYPE ttb_button.
+    DATA li_user_exit   TYPE REF TO zapcmd_if_user_exit.
 
     CLEAR ls_toolbar.
     MOVE 3 TO ls_toolbar-butn_type.
@@ -1002,16 +999,23 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
       MOVE icon_refresh TO ls_toolbar-icon.
       MOVE 'Refresh'(201) TO ls_toolbar-quickinfo.
       MOVE space TO ls_toolbar-disabled.
-      APPEND ls_toolbar TO e_object->mt_toolbar.
+      APPEND ls_toolbar TO lt_toolbar_uex.
 
       MOVE 0 TO ls_toolbar-butn_type.
       MOVE zapcmd_cl_dir=>co_edit_dir TO ls_toolbar-function.
       MOVE icon_fast_entry TO ls_toolbar-icon.
       MOVE 'Direkte Pfadeingabe'(202) TO ls_toolbar-quickinfo.
       MOVE space TO ls_toolbar-disabled.
-      APPEND ls_toolbar TO e_object->mt_toolbar.
+      APPEND ls_toolbar TO lt_toolbar_uex.
 
-      DATA lt_toolbar TYPE ttb_button.
+      li_user_exit = zapcmd_cl_user_exit_factory=>get( ).
+      IF li_user_exit IS BOUND.
+        li_user_exit->change_toolbar( EXPORTING iv_side    = get_side( )
+                                      CHANGING  ct_buttons = lt_toolbar_uex ).
+      ENDIF.
+
+      APPEND LINES OF lt_toolbar_uex TO e_object->mt_toolbar.
+
       CALL METHOD cf_ref_dir->get_toolbar
         IMPORTING
           pt_toolbar = lt_toolbar.
@@ -1033,9 +1037,11 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 
 
   METHOD handle_usercommand.
-    RAISE EVENT set_active.
 
-    DATA l_dir_temp TYPE REF TO zapcmd_cl_dir.
+    DATA l_dir_temp   TYPE REF TO zapcmd_cl_dir.
+    DATA li_user_exit TYPE REF TO zapcmd_if_user_exit.
+
+    RAISE EVENT set_active.
 
     DATA ls_factory TYPE zapcmd_str_fcode_factory.
     READ TABLE gt_fcode_factory INTO ls_factory
@@ -1069,7 +1075,6 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
       CALL METHOD refresh.
       RETURN.
     ENDIF.
-
 
     CASE e_ucomm.
       WHEN zapcmd_cl_dir=>co_refresh.
@@ -1125,6 +1130,13 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
         lt_file = me->get_files( ).
         delete( lt_file ).
 
+      WHEN OTHERS.
+
+        li_user_exit = zapcmd_cl_user_exit_factory=>get( ).
+        IF li_user_exit IS BOUND.
+          li_user_exit->filelist_user_command( iv_function_code = e_ucomm
+                                               io_directory     = cf_ref_dir ).
+        ENDIF.
 
     ENDCASE.
 
