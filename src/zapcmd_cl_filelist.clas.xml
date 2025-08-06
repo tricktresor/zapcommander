@@ -144,6 +144,36 @@
      <ENTRY>Error in GUI</ENTRY>
      <LENGTH>15</LENGTH>
     </item>
+    <item>
+     <ID>I</ID>
+     <KEY>501</KEY>
+     <ENTRY>To current directory</ENTRY>
+     <LENGTH>50</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
+     <KEY>502</KEY>
+     <ENTRY>or</ENTRY>
+     <LENGTH>12</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
+     <KEY>503</KEY>
+     <ENTRY>to subdirectory</ENTRY>
+     <LENGTH>25</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
+     <KEY>504</KEY>
+     <ENTRY>Current</ENTRY>
+     <LENGTH>17</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
+     <KEY>505</KEY>
+     <ENTRY>Create file</ENTRY>
+     <LENGTH>21</LENGTH>
+    </item>
    </TPOOL>
    <I18N_TPOOL>
     <item>
@@ -307,7 +337,7 @@
       <item>
        <ID>I</ID>
        <KEY>004</KEY>
-       <ENTRY>RFC-Destino:</ENTRY>
+       <ENTRY>Destino RFC:</ENTRY>
        <LENGTH>20</LENGTH>
       </item>
       <item>
@@ -417,6 +447,36 @@
        <KEY>500</KEY>
        <ENTRY>Error en GUI</ENTRY>
        <LENGTH>15</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>501</KEY>
+       <ENTRY>Al directorio actual</ENTRY>
+       <LENGTH>50</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>502</KEY>
+       <ENTRY>o</ENTRY>
+       <LENGTH>12</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>503</KEY>
+       <ENTRY>al subdirectorio</ENTRY>
+       <LENGTH>25</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>504</KEY>
+       <ENTRY>Actual</ENTRY>
+       <LENGTH>17</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>505</KEY>
+       <ENTRY>Crear fichero</ENTRY>
+       <LENGTH>21</LENGTH>
       </item>
      </TEXTPOOL>
     </item>
