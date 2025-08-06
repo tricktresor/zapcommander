@@ -8,6 +8,8 @@ CLASS zapcmd_cl_frontend_dir DEFINITION
   PUBLIC SECTION.
     TYPE-POOLS icon .
 
+    CONSTANTS co_browse TYPE syucomm VALUE 'BROWSE' ##NO_TEXT.
+
     METHODS constructor .
 
     METHODS create_dir
@@ -114,15 +116,37 @@ CLASS ZAPCMD_CL_FRONTEND_DIR IMPLEMENTATION.
 
   METHOD create_new.
 
+    DATA lv_path TYPE string.
+
     CASE i_fcode.
       WHEN co_drives.
 
-        DATA lf_rootdir TYPE string.
-        lf_rootdir = me->separator.
-        CREATE OBJECT eo_dir TYPE zapcmd_cl_frontend_dir.
+        lv_path = me->separator.
+        eo_dir = NEW zapcmd_cl_frontend_dir( ).
 
-        eo_dir->init(
-            pf_full_name = lf_rootdir ).
+        eo_dir->init( pf_full_name = lv_path ).
+
+      WHEN co_browse.
+
+        cl_gui_frontend_services=>directory_browse( EXPORTING  initial_folder       = full_name
+                                                    CHANGING   selected_folder      = lv_path
+                                                    EXCEPTIONS cntl_error           = 1
+                                                               error_no_gui         = 2
+                                                               not_supported_by_gui = 3
+                                                               OTHERS               = 4 ).
+        IF sy-subrc <> 0.
+          MESSAGE ID sy-msgid TYPE 'I' NUMBER sy-msgno
+                  WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4
+                  DISPLAY LIKE sy-msgty.
+          RETURN.
+        ELSEIF lv_path IS INITIAL.
+          RETURN.
+        ENDIF.
+
+        eo_dir = NEW zapcmd_cl_frontend_dir( ).
+
+        eo_dir->init( pf_full_name = lv_path ).
+
     ENDCASE.
 
   ENDMETHOD.
@@ -199,12 +223,21 @@ CLASS ZAPCMD_CL_FRONTEND_DIR IMPLEMENTATION.
     DATA ls_toolbar TYPE stb_button.
 
     CLEAR ls_toolbar.
-    MOVE 0 TO ls_toolbar-butn_type.
-    MOVE co_drives TO ls_toolbar-function.
-    MOVE icon_system_save TO ls_toolbar-icon.
-    MOVE 'Laufwerke'(232) TO ls_toolbar-text.
-    MOVE 'Laufwerke'(232) TO ls_toolbar-quickinfo.
-    MOVE space TO ls_toolbar-disabled.
+    ls_toolbar-butn_type = 0.
+    ls_toolbar-function  = co_drives.
+    ls_toolbar-icon      = icon_system_save.
+    ls_toolbar-text      = 'Drives'(232).
+    ls_toolbar-quickinfo = 'Drives'(232).
+    ls_toolbar-disabled  = space.
+    APPEND ls_toolbar TO pt_toolbar.
+
+    CLEAR ls_toolbar.
+    ls_toolbar-butn_type = 0.
+    ls_toolbar-function  = co_browse.
+    ls_toolbar-icon      = icon_open_linked_folder.
+    ls_toolbar-text      = 'Browse'(233).
+    ls_toolbar-quickinfo = 'Browse'(233).
+    ls_toolbar-disabled  = space.
     APPEND ls_toolbar TO pt_toolbar.
 
   ENDMETHOD.
