@@ -24,6 +24,12 @@
      <ENTRY>Drives</ENTRY>
      <LENGTH>9</LENGTH>
     </item>
+    <item>
+     <ID>I</ID>
+     <KEY>233</KEY>
+     <ENTRY>Browse</ENTRY>
+     <LENGTH>16</LENGTH>
+    </item>
    </TPOOL>
    <I18N_TPOOL>
     <item>
@@ -55,8 +61,14 @@
       <item>
        <ID>I</ID>
        <KEY>232</KEY>
-       <ENTRY>Drives</ENTRY>
+       <ENTRY>Unidades</ENTRY>
        <LENGTH>9</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>233</KEY>
+       <ENTRY>Explorar</ENTRY>
+       <LENGTH>16</LENGTH>
       </item>
      </TEXTPOOL>
     </item>
