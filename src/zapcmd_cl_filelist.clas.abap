@@ -948,21 +948,104 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 
   METHOD handle_drop.
 
-    DATA lo_list TYPE REF TO zapcmd_cl_knotlist.
+    DATA lo_knot          TYPE REF TO zapcmd_cl_knot.
+    DATA lo_dir           TYPE REF TO zapcmd_cl_dir.
+    DATA lo_destination           TYPE REF TO zapcmd_cl_dir.
+    DATA lo_list          TYPE REF TO zapcmd_cl_knotlist.
+    DATA lt_selected_rows TYPE lvc_t_row.
+    DATA l_row            TYPE lvc_s_row.
+    DATA lv_question TYPE string.
+    DATA lv_answer TYPE c LENGTH 1.
 
     IF e_dragdropobj->droptargetctrl = e_dragdropobj->dragsourcectrl.
       e_dragdropobj->abort( ).
       RETURN.
     ENDIF.
 
-    DATA lf_file TYPE REF TO zapcmd_cl_knot.
+    cf_gui_alv->get_selected_rows( IMPORTING et_index_rows = lt_selected_rows ).
+
+    IF lt_selected_rows IS NOT INITIAL.
+
+      IF NOT line_exists( lt_selected_rows[ table_line = e_row ] ).
+        e_dragdropobj->abort( ).
+        RETURN.
+      ENDIF.
+
+      LOOP AT lt_selected_rows INTO l_row.
+
+        DATA ls_fileinfo TYPE zapcmd_file_descr.
+        READ TABLE ct_fileinfo INDEX l_row-index INTO ls_fileinfo.
+        READ TABLE ct_files INDEX ls_fileinfo-indx INTO lo_knot.
+
+      ENDLOOP.
+
+    ELSE.
+
+      READ TABLE ct_fileinfo INDEX e_row-index INTO ls_fileinfo.
+      READ TABLE ct_files INDEX ls_fileinfo-indx INTO lo_knot.
+
+    ENDIF.
+
+    IF lo_knot IS BOUND.
+
+      TRY.
+          lo_dir ?= lo_knot.
+
+          lv_question = |{ 'To current directory'(501) }| &&
+                        | { 'or'(502) }| &&
+                        | { 'to subdirectory'(503) }: { lo_dir->name }|.
+
+          CALL FUNCTION 'POPUP_TO_CONFIRM'
+            EXPORTING
+              titlebar              = 'Create file'(505)
+              text_question         = lv_question
+              text_button_1         = 'Current'(504)
+              icon_button_1         = ' '
+              text_button_2         = lo_dir->name
+              icon_button_2         = ' '
+              default_button        = '1'
+              display_cancel_button = 'X'
+            IMPORTING
+              answer                = lv_answer
+            EXCEPTIONS
+              text_not_found        = 1
+              OTHERS                = 2.
+          IF sy-subrc <> 0.
+            MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+                    WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+          ENDIF.
+
+          CASE lv_answer.
+            WHEN '1'.
+              lo_destination = cf_ref_dir.
+
+            WHEN '2'.
+              lo_destination = lo_dir.
+
+            WHEN 'A'.
+              RETURN.
+
+          ENDCASE.
+
+        CATCH cx_sy_move_cast_error.
+          CLEAR lo_dir.
+          CLEAR lo_destination.
+      ENDTRY.
+
+    ENDIF.
+
+    IF lo_destination IS NOT BOUND.
+      lo_destination = cf_ref_dir.
+    ENDIF.
+
     TRY.
+
         lo_list ?= e_dragdropobj->object.
 
         CALL METHOD copy
           EXPORTING
             pt_files   = lo_list->ct_list
-            pf_destdir = cf_ref_dir.
+            pf_destdir = lo_destination.
 
 
       CATCH cx_root.
