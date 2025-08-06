@@ -1,7 +1,6 @@
 class ZAPCMD_CL_FRONTEND_FILE definition
   public
   inheriting from ZAPCMD_CL_FILE
-  final
   create public .
 
 *"* public components of class ZAPCMD_CL_FRONTEND_FILE
