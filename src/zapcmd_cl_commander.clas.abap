@@ -253,7 +253,7 @@ CLASS ZAPCMD_CL_COMMANDER IMPLEMENTATION.
         lf_dir = cf_filesleft->get_dir( ).
         DATA l_left TYPE zapcmd_t_dir.
 
-        IF lf_dir->server_area = 'P'.
+        IF lf_dir->server_area = zapcmd_cl_knot=>co_area_frontend.
           l_left-type = zapcmd_cl_dir=>co_frontend.
         ELSE.
           l_left-type = zapcmd_cl_dir=>co_applserv.
@@ -264,7 +264,7 @@ CLASS ZAPCMD_CL_COMMANDER IMPLEMENTATION.
 
         DATA l_right TYPE zapcmd_t_dir.
 
-        IF lf_dir->server_area = 'P'.
+        IF lf_dir->server_area = zapcmd_cl_knot=>co_area_frontend.
           l_right-type = zapcmd_cl_dir=>co_frontend.
         ELSE.
           l_right-type = zapcmd_cl_dir=>co_applserv.

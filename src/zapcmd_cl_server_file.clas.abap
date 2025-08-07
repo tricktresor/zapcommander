@@ -38,14 +38,14 @@ CLASS ZAPCMD_CL_SERVER_FILE IMPLEMENTATION.
 
 method CONSTRUCTOR.
 
-* ...
     call method super->constructor.
     if sy-opsys = 'Windows NT' or sy-opsys = 'DOS'. "#EC NOTEXT
       separator = '\'.
     else.
       separator = '/'.
     endif.
-    server_area = 'A'.
+    server_area = zapcmd_cl_knot=>co_area_applserv.
+
 endmethod.
 
 

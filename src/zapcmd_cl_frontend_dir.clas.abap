@@ -48,10 +48,11 @@ CLASS ZAPCMD_CL_FRONTEND_DIR IMPLEMENTATION.
 
 
   METHOD constructor.
-* ...
+
     super->constructor( ).
-    separator = '\'.
-    server_area = 'P'.
+
+    separator   = '\'.
+    server_area = zapcmd_cl_knot=>co_area_frontend.
     area_string = 'Frontend'(003).
 
   ENDMETHOD.
