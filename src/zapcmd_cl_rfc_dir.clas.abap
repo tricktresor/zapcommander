@@ -55,8 +55,8 @@ CLASS ZAPCMD_CL_RFC_DIR IMPLEMENTATION.
 method CONSTRUCTOR.
     call method super->constructor.
 
-    server_area = 'R'.
-    rfcdest = iv_rfcdest.
+    server_area = zapcmd_cl_knot=>co_area_rfc.
+    rfcdest     = iv_rfcdest.
 
     try.
 

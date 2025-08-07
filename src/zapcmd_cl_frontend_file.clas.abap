@@ -40,10 +40,10 @@ CLASS ZAPCMD_CL_FRONTEND_FILE IMPLEMENTATION.
 
 method CONSTRUCTOR.
 
-* ...
     call method super->constructor.
-    separator = '\'.
-    server_area = 'P'.
+
+    separator   = '\'.
+    server_area = zapcmd_cl_knot=>co_area_frontend.
 
 endmethod.
 

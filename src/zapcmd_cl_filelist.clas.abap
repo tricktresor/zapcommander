@@ -59,6 +59,10 @@ CLASS zapcmd_cl_filelist DEFINITION
       IMPORTING
         !pt_files   TYPE zapcmd_tbl_filelist
         !pf_destdir TYPE REF TO zapcmd_cl_dir .
+    METHODS move
+      IMPORTING
+        !it_files   TYPE zapcmd_tbl_filelist
+        !io_destdir TYPE REF TO zapcmd_cl_dir .
     CLASS-METHODS get_imp .
   PROTECTED SECTION.
 *"* protected components of class ZAPCMD_CL_FILELIST
@@ -92,12 +96,16 @@ CLASS zapcmd_cl_filelist DEFINITION
     METHODS handle_usercommand
         FOR EVENT user_command OF cl_gui_alv_grid
       IMPORTING
-        !e_ucomm .
-
+        !e_ucomm.
 
     METHODS get_title
       EXPORTING
         !pf_title TYPE string .
+
+    METHODS get_selected_files
+      IMPORTING is_row        TYPE lvc_s_row
+      RETURNING VALUE(result) TYPE REF TO zapcmd_cl_knotlist.
+
     METHODS handle_drag
         FOR EVENT ondrag OF cl_gui_alv_grid
       IMPORTING
@@ -105,6 +113,7 @@ CLASS zapcmd_cl_filelist DEFINITION
         !e_column
         !es_row_no
         !e_dragdropobj .
+
     METHODS handle_drop
         FOR EVENT ondrop OF cl_gui_alv_grid
       IMPORTING
@@ -113,9 +122,11 @@ CLASS zapcmd_cl_filelist DEFINITION
         !e_column
         !es_row_no
         !e_dragdropobj .
+
     METHODS get_factories
       RETURNING
         VALUE(et_imp) TYPE zapcmd_tbl_factory .
+
     METHODS get_factory_buttons
       CHANGING
         ct_button TYPE ttb_button .
@@ -230,7 +241,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
       IF pf_destdir->check_fileexist( lf_sourcefile->name ) = abap_true.
         IF lf_answer <> '2'.
 
-          CONCATENATE '"' lf_sourcefile->name '"' ' existiert.'(006) ' Überschreiben?'(007) INTO
+          CONCATENATE '"' lf_sourcefile->name '"' ' existiert'(006) '. ' 'Überschreiben'(007) '?' INTO
             lf_string.
 
           CALL FUNCTION 'POPUP_TO_CONFIRM'
@@ -326,6 +337,71 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
     CALL METHOD reload_dir.
     CALL METHOD refresh.
 
+
+  ENDMETHOD.
+
+
+  METHOD move.
+
+    DATA lv_answer     TYPE c LENGTH 1.
+    DATA lo_file       TYPE REF TO zapcmd_cl_knot.
+    DATA lv_string     TYPE string.
+    DATA lo_destfile   TYPE REF TO zapcmd_cl_file.
+    DATA lt_file       TYPE zapcmd_tbl_xstring.
+    DATA lv_filesize   TYPE i.
+
+    lv_answer = '1'.
+
+    LOOP AT it_files INTO lo_file
+         WHERE table_line->filetype <> 'UP'.
+
+      lv_string = |MOVE: { lo_file->name }|.
+
+      CALL FUNCTION 'SAPGUI_PROGRESS_INDICATOR'
+        EXPORTING
+          percentage = 0
+          text       = lv_string.
+
+      IF io_destdir->check_fileexist( lo_file->name ) = abap_true.
+
+        IF lv_answer <> '2'.
+
+          lv_string = |"{ lo_file->name }" { 'exists'(006) } { 'Overwrite'(007) }?|.
+
+          CALL FUNCTION 'POPUP_TO_CONFIRM'
+            EXPORTING
+              titlebar              = lo_file->full_name
+              text_question         = lv_string
+              text_button_1         = 'Yes'(008)
+              icon_button_1         = ' '
+              text_button_2         = 'Yes to all'(009)
+              icon_button_2         = ' '
+              default_button        = '1'
+              display_cancel_button = abap_true
+            IMPORTING
+              answer                = lv_answer
+            EXCEPTIONS
+              text_not_found        = 1
+              OTHERS                = 2.
+          IF sy-subrc <> 0.
+            MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+                    WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+          ENDIF.
+
+          IF lv_answer = 'A'.
+            RETURN.
+          ENDIF.
+
+        ENDIF.
+
+      ENDIF.
+
+      lo_file->move( io_destdir->full_name ).
+
+    ENDLOOP.
+
+    reload_dir( ).
+    refresh( ).
 
   ENDMETHOD.
 
@@ -900,157 +976,171 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
   ENDMETHOD.
 
 
-  METHOD handle_drag.
+  METHOD get_selected_files.
 
-    DATA lo_list TYPE REF TO zapcmd_cl_knotlist.
-    DATA lo_knot TYPE REF TO zapcmd_cl_knot.
-
-    CREATE OBJECT lo_list.
-
+    DATA lo_list          TYPE REF TO zapcmd_cl_knotlist.
     DATA lt_selected_rows TYPE lvc_t_row.
-    DATA l_row TYPE lvc_s_row.
+    DATA ls_row           TYPE lvc_s_row.
+    DATA ls_fileinfo      TYPE zapcmd_file_descr.
+    DATA lo_knot          TYPE REF TO zapcmd_cl_knot.
 
-    cf_gui_alv->get_selected_rows(
-      IMPORTING
-        et_index_rows = lt_selected_rows
-    ).
+    lo_list = NEW #( ).
+
+    cf_gui_alv->get_selected_rows( IMPORTING et_index_rows = lt_selected_rows ).
 
     IF lt_selected_rows IS NOT INITIAL.
-      READ TABLE lt_selected_rows TRANSPORTING NO FIELDS
-        WITH KEY table_line = e_row.
-      IF sy-subrc <> 0.
-        e_dragdropobj->abort( ).
+
+      IF NOT line_exists( lt_selected_rows[ table_line = is_row ] ).
         RETURN.
       ENDIF.
-      LOOP AT lt_selected_rows INTO l_row.
 
-        DATA ls_fileinfo TYPE zapcmd_file_descr.
-        READ TABLE ct_fileinfo INDEX l_row-index INTO ls_fileinfo.
+      LOOP AT lt_selected_rows INTO ls_row.
+
+        READ TABLE ct_fileinfo INDEX ls_row-index INTO ls_fileinfo.
         READ TABLE ct_files INDEX ls_fileinfo-indx INTO lo_knot.
 
         lo_list->add( lo_knot ).
 
       ENDLOOP.
+
     ELSE.
-      READ TABLE ct_fileinfo INDEX e_row-index INTO ls_fileinfo.
+
+      READ TABLE ct_fileinfo INDEX is_row-index INTO ls_fileinfo.
       READ TABLE ct_files INDEX ls_fileinfo-indx INTO lo_knot.
 
       lo_list->add( lo_knot ).
 
-
     ENDIF.
 
+    result = lo_list.
 
-    e_dragdropobj->object = lo_list.
+  ENDMETHOD.
+
+
+  METHOD handle_drag.
+
+    e_dragdropobj->object = get_selected_files( e_row ).
 
   ENDMETHOD.
 
 
   METHOD handle_drop.
 
-    DATA lo_knot          TYPE REF TO zapcmd_cl_knot.
-    DATA lo_dir           TYPE REF TO zapcmd_cl_dir.
-    DATA lo_destination           TYPE REF TO zapcmd_cl_dir.
-    DATA lo_list          TYPE REF TO zapcmd_cl_knotlist.
-    DATA lt_selected_rows TYPE lvc_t_row.
-    DATA l_row            TYPE lvc_s_row.
-    DATA lv_question TYPE string.
-    DATA lv_answer TYPE c LENGTH 1.
+    DATA lo_dir         TYPE REF TO zapcmd_cl_dir.
+    DATA lo_destination TYPE REF TO zapcmd_cl_dir.
+    DATA lo_list        TYPE REF TO zapcmd_cl_knotlist.
+    DATA lv_question    TYPE string.
+    DATA lv_answer      TYPE c LENGTH 1.
 
-    IF e_dragdropobj->droptargetctrl = e_dragdropobj->dragsourcectrl.
-      e_dragdropobj->abort( ).
-      RETURN.
-    ENDIF.
-
-    cf_gui_alv->get_selected_rows( IMPORTING et_index_rows = lt_selected_rows ).
-
-    IF lt_selected_rows IS NOT INITIAL.
-
-      IF NOT line_exists( lt_selected_rows[ table_line = e_row ] ).
+    TRY.
+        lo_list ?= e_dragdropobj->object.
+      CATCH cx_root.
         e_dragdropobj->abort( ).
         RETURN.
-      ENDIF.
+    ENDTRY.
 
-      LOOP AT lt_selected_rows INTO l_row.
+    DATA(lo_files) = get_selected_files( e_row ).
 
-        DATA ls_fileinfo TYPE zapcmd_file_descr.
-        READ TABLE ct_fileinfo INDEX l_row-index INTO ls_fileinfo.
-        READ TABLE ct_files INDEX ls_fileinfo-indx INTO lo_knot.
-
-      ENDLOOP.
-
-    ELSE.
-
-      READ TABLE ct_fileinfo INDEX e_row-index INTO ls_fileinfo.
-      READ TABLE ct_files INDEX ls_fileinfo-indx INTO lo_knot.
-
-    ENDIF.
-
-    IF lo_knot IS BOUND.
+    IF lo_files IS BOUND AND lo_files->ct_list IS NOT INITIAL.
 
       TRY.
-          lo_dir ?= lo_knot.
-
-          lv_question = |{ 'To current directory'(501) }| &&
-                        | { 'or'(502) }| &&
-                        | { 'to subdirectory'(503) }: { lo_dir->name }|.
-
-          CALL FUNCTION 'POPUP_TO_CONFIRM'
-            EXPORTING
-              titlebar              = 'Create file'(505)
-              text_question         = lv_question
-              text_button_1         = 'Current'(504)
-              icon_button_1         = ' '
-              text_button_2         = lo_dir->name
-              icon_button_2         = ' '
-              default_button        = '1'
-              display_cancel_button = 'X'
-            IMPORTING
-              answer                = lv_answer
-            EXCEPTIONS
-              text_not_found        = 1
-              OTHERS                = 2.
-          IF sy-subrc <> 0.
-            MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
-                    WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
-          ENDIF.
-
-          CASE lv_answer.
-            WHEN '1'.
-              lo_destination = cf_ref_dir.
-
-            WHEN '2'.
-              lo_destination = lo_dir.
-
-            WHEN 'A'.
-              RETURN.
-
-          ENDCASE.
-
+          lo_dir ?= lo_files->ct_list[ 1 ].
         CATCH cx_sy_move_cast_error.
           CLEAR lo_dir.
-          CLEAR lo_destination.
       ENDTRY.
 
     ENDIF.
 
-    IF lo_destination IS NOT BOUND.
-      lo_destination = cf_ref_dir.
-    ENDIF.
+    IF e_dragdropobj->droptargetctrl = e_dragdropobj->dragsourcectrl.
 
-    TRY.
-
-        lo_list ?= e_dragdropobj->object.
-
-        CALL METHOD copy
-          EXPORTING
-            pt_files   = lo_list->ct_list
-            pf_destdir = lo_destination.
-
-
-      CATCH cx_root.
+      IF lo_dir IS NOT BOUND.
         e_dragdropobj->abort( ).
-    ENDTRY.
+        RETURN.
+      ELSEIF lo_dir->server_area <> zapcmd_cl_knot=>co_area_applserv.
+        MESSAGE ID '00' TYPE 'I' NUMBER '001'
+                WITH 'MOVE is not yet supported for this area'(507)
+                DISPLAY LIKE 'E'.
+        e_dragdropobj->abort( ).
+        RETURN.
+      ENDIF.
+
+      lv_question = |{ 'Move to'(506) } '{ lo_dir->name }'?|.
+
+      CALL FUNCTION 'POPUP_TO_CONFIRM'
+        EXPORTING
+          titlebar              = 'Move'
+          text_question         = lv_question
+          default_button        = '1'
+          display_cancel_button = abap_false
+        IMPORTING
+          answer                = lv_answer
+        EXCEPTIONS
+          text_not_found        = 1
+          OTHERS                = 2.
+      IF sy-subrc <> 0.
+        MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+                WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+      ENDIF.
+
+      IF lv_answer = 'A' OR lv_answer = '2'.
+        e_dragdropobj->abort( ).
+        RETURN.
+      ENDIF.
+
+      move( it_files   = lo_list->ct_list
+            io_destdir = lo_dir ).
+
+    ELSE.
+
+      IF lo_dir IS BOUND.
+
+        lv_question = |{ 'To current directory'(501) }| &&
+                      | { 'or'(502) }| &&
+                      | { 'to subdirectory'(503) } '{ lo_dir->name }'|.
+
+        CALL FUNCTION 'POPUP_TO_CONFIRM'
+          EXPORTING
+            titlebar              = 'Create file'(505)
+            text_question         = lv_question
+            text_button_1         = 'Current'(504)
+            icon_button_1         = ' '
+            text_button_2         = lo_dir->name
+            icon_button_2         = ' '
+            default_button        = '1'
+            display_cancel_button = abap_true
+          IMPORTING
+            answer                = lv_answer
+          EXCEPTIONS
+            text_not_found        = 1
+            OTHERS                = 2.
+        IF sy-subrc <> 0.
+          MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+                  WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+        ENDIF.
+
+        CASE lv_answer.
+          WHEN '1'.
+            lo_destination = cf_ref_dir.
+
+          WHEN '2'.
+            lo_destination = lo_dir.
+
+          WHEN 'A'.
+            e_dragdropobj->abort( ).
+            RETURN.
+
+        ENDCASE.
+
+        IF lo_destination IS NOT BOUND.
+          lo_destination = cf_ref_dir.
+        ENDIF.
+
+      ENDIF.
+
+      copy( pt_files   = lo_list->ct_list
+            pf_destdir = lo_destination ).
+
+    ENDIF.
 
   ENDMETHOD.
 

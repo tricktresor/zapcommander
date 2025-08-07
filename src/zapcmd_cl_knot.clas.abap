@@ -10,6 +10,7 @@ CLASS zapcmd_cl_knot DEFINITION
 
     CONSTANTS co_area_applserv TYPE zapcmd_server_area VALUE 'A'. "#EC NOTEXT
     CONSTANTS co_area_frontend TYPE zapcmd_server_area VALUE 'P'. "#EC NOTEXT
+    CONSTANTS co_area_rfc      TYPE zapcmd_server_area VALUE 'R'. "#EC NOTEXT
     DATA name TYPE string .
     DATA extension TYPE string .
     DATA shortname TYPE string .
@@ -39,11 +40,12 @@ CLASS zapcmd_cl_knot DEFINITION
         !pfx_sizestr TYPE string .
     CLASS-METHODS exec_server
       IMPORTING
-        !pf_command   TYPE csequence DEFAULT 'mkdir'
-        !pf_dir       TYPE csequence OPTIONAL
-        !pf_parameter TYPE csequence OPTIONAL
+        !pf_command     TYPE csequence DEFAULT 'mkdir'
+        !pf_dir         TYPE csequence OPTIONAL
+        !pf_parameter   TYPE csequence OPTIONAL
       EXPORTING
-        !ptx_output   TYPE zapcmd_tbl_string .
+        !ptx_output     TYPE zapcmd_tbl_string
+        !pf_return_code TYPE i.
     METHODS get_info
       RETURNING
         VALUE(psx_fileinfo) TYPE zapcmd_file_descr .
@@ -63,6 +65,11 @@ CLASS zapcmd_cl_knot DEFINITION
     METHODS rename
       IMPORTING
         !pf_newname TYPE zapcmd_filename .
+
+    METHODS move
+      IMPORTING pf_dir        TYPE string
+      RETURNING VALUE(result) TYPE i.
+
   PROTECTED SECTION.
 *"* protected components of class ZAPCMD_KNOT
 *"* do not include other source files here!!!
@@ -142,9 +149,11 @@ CLASS zapcmd_cl_knot IMPLEMENTATION.
         ID 'TAB' FIELD l_lines.
     ENDIF.
 
+    pf_return_code = sy-subrc.
+
 * Check any files exits in the directory.......................
-    IF sy-subrc <> 0.
-      APPEND 'Datei nicht gefunden.'(130) TO ptx_output.
+    IF pf_return_code <> 0.
+      APPEND 'File not found.'(130) TO ptx_output.
       RETURN.
     ENDIF.
 
@@ -191,7 +200,9 @@ CLASS zapcmd_cl_knot IMPLEMENTATION.
 
 
     ENDLOOP.
+
     ptx_output[] = l_lines[].
+
   ENDMETHOD.
 
 
@@ -367,6 +378,28 @@ CLASS zapcmd_cl_knot IMPLEMENTATION.
 
 
 
+
+  ENDMETHOD.
+
+
+  METHOD move.
+
+    CASE server_area.
+      WHEN zapcmd_cl_knot=>co_area_applserv.
+
+        exec_server( EXPORTING pf_command     = 'mv'
+                               pf_parameter   = |{ full_name } { pf_dir }{ separator }|
+                     IMPORTING pf_return_code = result ).
+
+*      WHEN zapcmd_cl_knot=>co_area_frontend.
+*
+*      WHEN zapcmd_cl_knot=>co_area_rfc.
+
+      WHEN OTHERS.
+
+        result = 4.
+
+    ENDCASE.
 
   ENDMETHOD.
 
