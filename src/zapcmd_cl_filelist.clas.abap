@@ -1031,6 +1031,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
     DATA lo_list        TYPE REF TO zapcmd_cl_knotlist.
     DATA lv_question    TYPE string.
     DATA lv_answer      TYPE c LENGTH 1.
+    DATA lv_file_ask    TYPE string.
 
     TRY.
         lo_list ?= e_dragdropobj->object.
@@ -1064,7 +1065,20 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
         RETURN.
       ENDIF.
 
-      lv_question = |{ 'Move to'(506) } '{ lo_dir->name }'?|.
+      CASE lines( lo_list->ct_list ).
+        WHEN 0.
+        e_dragdropobj->abort( ).
+        RETURN.
+
+        WHEN 1.
+          lv_file_ask = lo_list->ct_list[ 1 ]->name.
+
+        WHEN OTHERS.
+          lv_file_ask = |{ lines( lo_list->ct_list ) } { 'files'(509) }|.
+
+      ENDCASE.
+
+      lv_question = |{ 'Move'(510) } '{ lv_file_ask }' { 'to'(511) } '{ lo_dir->name }'?|.
 
       CALL FUNCTION 'POPUP_TO_CONFIRM'
         EXPORTING
