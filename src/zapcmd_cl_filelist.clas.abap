@@ -1145,10 +1145,10 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 
         ENDCASE.
 
-        IF lo_destination IS NOT BOUND.
-          lo_destination = cf_ref_dir.
-        ENDIF.
+      ENDIF.
 
+      IF lo_destination IS NOT BOUND.
+        lo_destination = cf_ref_dir.
       ENDIF.
 
       copy( pt_files   = lo_list->ct_list
