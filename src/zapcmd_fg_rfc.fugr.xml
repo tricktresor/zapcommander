@@ -65,49 +65,6 @@
      </DOCUMENTATION>
     </item>
     <item>
-     <FUNCNAME>ZAPCMD_EXEC_ABAP</FUNCNAME>
-     <REMOTE_CALL>R</REMOTE_CALL>
-     <SHORT_TEXT>Executes ABAP Code</SHORT_TEXT>
-     <IMPORT>
-      <RSIMP>
-       <PARAMETER>IV_FULL_NAME</PARAMETER>
-       <TYP>TEXT255</TYP>
-      </RSIMP>
-      <RSIMP>
-       <PARAMETER>IV_SHORTNAME</PARAMETER>
-       <TYP>TEXT255</TYP>
-      </RSIMP>
-     </IMPORT>
-     <EXCEPTION>
-      <RSEXC>
-       <EXCEPTION>NOT_FOUND</EXCEPTION>
-      </RSEXC>
-      <RSEXC>
-       <EXCEPTION>NO_EXEC</EXCEPTION>
-      </RSEXC>
-     </EXCEPTION>
-     <DOCUMENTATION>
-      <RSFDO>
-       <PARAMETER>IV_FULL_NAME</PARAMETER>
-       <KIND>P</KIND>
-       <STEXT>Text, 255 chars</STEXT>
-      </RSFDO>
-      <RSFDO>
-       <PARAMETER>IV_SHORTNAME</PARAMETER>
-       <KIND>P</KIND>
-       <STEXT>Text, 255 chars</STEXT>
-      </RSFDO>
-      <RSFDO>
-       <PARAMETER>NOT_FOUND</PARAMETER>
-       <KIND>X</KIND>
-      </RSFDO>
-      <RSFDO>
-       <PARAMETER>NO_EXEC</PARAMETER>
-       <KIND>X</KIND>
-      </RSFDO>
-     </DOCUMENTATION>
-    </item>
-    <item>
      <FUNCNAME>ZAPCMD_EXEC_CMD</FUNCNAME>
      <REMOTE_CALL>R</REMOTE_CALL>
      <SHORT_TEXT>Creates a directory</SHORT_TEXT>
