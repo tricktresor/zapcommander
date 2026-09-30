@@ -58,7 +58,9 @@ CLASS zapcmd_cl_filelist DEFINITION
     METHODS copy
       IMPORTING
         !pt_files   TYPE zapcmd_tbl_filelist
-        !pf_destdir TYPE REF TO zapcmd_cl_dir .
+        !pf_destdir TYPE REF TO zapcmd_cl_dir
+      EXPORTING
+        !et_copied  TYPE zapcmd_tbl_filelist .
     METHODS move
       IMPORTING
         !it_files   TYPE zapcmd_tbl_filelist
@@ -225,6 +227,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
     DATA lf_answer     TYPE c LENGTH 1.
     DATA lf_filesize   TYPE i.
 
+    CLEAR et_copied.
     lf_answer = '1'.
 
     LOOP AT pt_files INTO lf_file
@@ -294,12 +297,24 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
       CALL METHOD lf_sourcefile->read_bin
         IMPORTING
           pt_file     = lt_file
-          pf_filesize = lf_filesize.
+          pf_filesize = lf_filesize
+        EXCEPTIONS
+          failed      = 1.
+      IF sy-subrc <> 0.
+        CONTINUE.
+      ENDIF.
 
       CALL METHOD lf_destfile->write_bin
         EXPORTING
           pt_file     = lt_file
-          pf_filesize = lf_filesize.
+          pf_filesize = lf_filesize
+        EXCEPTIONS
+          failed      = 1.
+      IF sy-subrc <> 0.
+        CONTINUE.
+      ENDIF.
+
+      APPEND lf_file TO et_copied.
 
 
     ENDLOOP.
@@ -310,14 +325,21 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 *          message lf_file->name type 'S'.
       DATA lf_destdir TYPE REF TO zapcmd_cl_dir.
 
+      CLEAR lf_destdir.
       CALL METHOD pf_destdir->create_dir
         EXPORTING
           pf_filename = lf_file->name
         IMPORTING
           pf_file     = lf_destdir.
+      IF lf_destdir IS NOT BOUND.
+        CONTINUE.
+      ENDIF.
 
       DATA lf_files TYPE zapcmd_tbl_filelist.
       DATA lf_dir TYPE REF TO zapcmd_cl_dir.
+      DATA lt_sub_copied TYPE zapcmd_tbl_filelist.
+      DATA lf_sub_file TYPE REF TO zapcmd_cl_knot.
+      DATA lf_sub_count TYPE i.
       lf_dir ?= lf_file.
       CALL METHOD lf_dir->read_dir
         IMPORTING
@@ -331,7 +353,20 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
         CALL METHOD copy
           EXPORTING
             pt_files   = lf_files
-            pf_destdir = lf_destdir.
+            pf_destdir = lf_destdir
+          IMPORTING
+            et_copied  = lt_sub_copied.
+
+        " a directory only counts as copied if all of its entries were copied
+        lf_sub_count = 0.
+        LOOP AT lf_files INTO lf_sub_file
+          WHERE table_line->filetype <> 'UP'
+            AND table_line->name <> '..'.
+          lf_sub_count = lf_sub_count + 1.
+        ENDLOOP.
+        IF lines( lt_sub_copied ) = lf_sub_count.
+          APPEND lf_file TO et_copied.
+        ENDIF.
       ENDIF.
 
 
@@ -1275,6 +1310,8 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 
           DATA lt_fields TYPE TABLE OF sval.
           DATA ls_field TYPE sval.
+          DATA lf_returncode TYPE c LENGTH 1.
+          CLEAR: lt_fields, ls_field.
           ls_field-tabname = 'ZAPCMD_FILE_DESCR'.
           ls_field-fieldname = 'NAME'.
           ls_field-field_obl = 'X'.
@@ -1287,17 +1324,15 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
               popup_title = 'Neuer Dateiname'(001)
 *             START_COLUMN          = '5'
 *             START_ROW   = '5'
-*           IMPORTING
-*             RETURNCODE  = RETURNCODE
+            IMPORTING
+              returncode  = lf_returncode
             TABLES
               fields      = lt_fields
-*           EXCEPTIONS
-*             ERROR_IN_FIELDS       = 1
-*             OTHERS      = 2
-            .
-          IF sy-subrc <> 0.
-* MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
-*         WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
+            EXCEPTIONS
+              error_in_fields = 1
+              OTHERS          = 2.
+          IF sy-subrc <> 0 OR lf_returncode = 'A'.
+            EXIT.
           ENDIF.
           DATA lf_newname TYPE zapcmd_filename.
           READ TABLE lt_fields INDEX 1 INTO ls_field.

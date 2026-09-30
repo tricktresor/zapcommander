@@ -174,17 +174,33 @@ CLASS ZAPCMD_CL_COMMANDER IMPLEMENTATION.
 
       WHEN 'MOVE'.
 
+        " copy( ) activates the target list, so remember the source list
+        DATA lo_sourcelist TYPE REF TO zapcmd_cl_filelist.
+        DATA lt_copied TYPE zapcmd_tbl_filelist.
+        lo_sourcelist = cf_activelist.
+
         IF cf_filesleft->cf_active = 'X'.
           cf_filesright->copy(
+            EXPORTING
               pt_files   = lt_files
-              pf_destdir = lf_destdir ).
+              pf_destdir = lf_destdir
+            IMPORTING
+              et_copied  = lt_copied ).
         ELSE.
           cf_filesleft->copy(
-           pt_files   = lt_files
-           pf_destdir = lf_destdir ).
+            EXPORTING
+              pt_files   = lt_files
+              pf_destdir = lf_destdir
+            IMPORTING
+              et_copied  = lt_copied ).
         ENDIF.
 
-        cf_activelist->delete( lt_files ).
+        " only delete what was copied successfully
+        IF lt_copied IS NOT INITIAL.
+          lo_sourcelist->delete( lt_copied ).
+        ELSE.
+          lo_sourcelist->refresh( ).
+        ENDIF.
 
       WHEN 'NEWDIR'.
 
