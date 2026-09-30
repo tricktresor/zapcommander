@@ -64,6 +64,13 @@ CLASS zapcmd_cl_dir DEFINITION
         !i_fcode      TYPE syucomm OPTIONAL
       RETURNING
         VALUE(eo_dir) TYPE REF TO zapcmd_cl_dir .
+    "! Creates a directory object of the same kind for another path.
+    "! Returns nothing if the object cannot be created.
+    METHODS new_instance
+      IMPORTING
+        !pf_full_name TYPE csequence
+      RETURNING
+        VALUE(eo_dir) TYPE REF TO zapcmd_cl_dir .
 
     METHODS execute
         REDEFINITION .
@@ -216,4 +223,23 @@ CLASS ZAPCMD_CL_DIR IMPLEMENTATION.
     ENDLOOP.
 
   ENDMETHOD.
+
+
+  METHOD new_instance.
+
+    DATA l_class TYPE abap_abstypename.
+    l_class = cl_abap_classdescr=>get_class_name( me ).
+
+    TRY.
+        CREATE OBJECT eo_dir TYPE (l_class).
+      CATCH cx_sy_create_object_error.
+        MESSAGE 'Directory cannot be opened'(001) TYPE 'S' DISPLAY LIKE 'E'.
+        RETURN.
+    ENDTRY.
+
+    eo_dir->init( pf_full_name = pf_full_name ).
+
+  ENDMETHOD.
+
+
 ENDCLASS.

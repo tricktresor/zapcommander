@@ -135,7 +135,7 @@ CLASS zapcmd_cl_server_dir IMPLEMENTATION.
           EXCEPTIONS
             error_in_fields = 1
             OTHERS          = 2.
-        IF sy-subrc <> 0 AND l_subrc <> ''.
+        IF sy-subrc <> 0 OR l_subrc = 'A'.
           CLEAR eo_dir.
           RETURN.
         ENDIF.
@@ -796,7 +796,13 @@ CLASS zapcmd_cl_server_dir IMPLEMENTATION.
         lf_rfcdest = ls_server-name.
         CREATE OBJECT lf_ref_file TYPE ZAPCMD_CL_rfc_DIR
           EXPORTING
-            iv_rfcdest = lf_rfcdest.
+            iv_rfcdest    = lf_rfcdest
+          EXCEPTIONS
+            not_installed = 1.
+        IF sy-subrc <> 0.
+          " instance not reachable or ZAPCommander not installed there
+          CONTINUE.
+        ENDIF.
       ELSE.
         CREATE OBJECT lf_ref_file TYPE zapcmd_cl_server_dir.
       ENDIF.
