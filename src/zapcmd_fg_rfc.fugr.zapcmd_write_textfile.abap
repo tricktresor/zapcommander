@@ -17,10 +17,9 @@ FUNCTION ZAPCMD_WRITE_TEXTFILE.
     data lf_string like line of lt_file.
     data lf_subrc type sysubrc.
     data lf_mess(100) type c.
-    refresh lt_file.
 *** Datei oeffen ***
-    open dataset iv_full_name for output in binary mode
-      message lf_mess. "encoding default.
+    open dataset iv_full_name for output in text mode encoding default
+      message lf_mess.
     if sy-subrc eq 0.
        loop at lt_file into lf_string.
         transfer lf_string to iv_full_name.
