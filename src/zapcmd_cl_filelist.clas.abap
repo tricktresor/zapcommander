@@ -492,6 +492,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 
     DATA values TYPE TABLE OF sval.
     DATA value TYPE sval.
+    DATA lf_returncode TYPE c LENGTH 1.
     value-tabname = 'ZAPCMD_FILE_DESCR'.
     value-fieldname = 'FULL_NAME'.
     value-fieldtext = 'Pfad:'(002).
@@ -504,33 +505,30 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
         popup_title = 'Direkte Pfadeingabe'(202)
 *       START_COLUMN          = '5'
 *       START_ROW   = '5'
-*  IMPORTING
-*       RETURNCODE  =
+      IMPORTING
+        returncode  = lf_returncode
       TABLES
         fields      = values
-*  EXCEPTIONS
-*       ERROR_IN_FIELDS       = 1
-*       OTHERS      = 2
-      .
-    IF sy-subrc <> 0.
-* MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
-*         WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
+      EXCEPTIONS
+        error_in_fields = 1
+        OTHERS          = 2.
+    IF sy-subrc <> 0 OR lf_returncode = 'A'.
+      RETURN.
     ENDIF.
 
-    LOOP AT values INTO value.
-    ENDLOOP.
+    READ TABLE values INTO value INDEX 1.
 
     DATA lf_rootdir TYPE string.
     lf_rootdir = value-value.
 
-    DATA l_class TYPE abap_abstypename.
-    l_class = cl_abap_classdescr=>get_class_name( cf_ref_dir ).
+    DATA lo_dir TYPE REF TO zapcmd_cl_dir.
+    lo_dir = cf_ref_dir->new_instance( lf_rootdir ).
+    IF lo_dir IS NOT BOUND.
+      RETURN.
+    ENDIF.
 
-    CREATE OBJECT cf_ref_dir TYPE (l_class).
-
-    CALL METHOD cf_ref_dir->init
-      EXPORTING
-        pf_full_name = lf_rootdir.
+    APPEND cf_ref_dir TO ct_undo.
+    cf_ref_dir = lo_dir.
 
     CALL METHOD reload_dir.
 
@@ -1330,22 +1328,21 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 
   METHOD load_dir.
 
+    DATA lo_dir TYPE REF TO zapcmd_cl_dir.
+
     IF cf_ref_dir IS BOUND.
+      lo_dir = cf_ref_dir->new_instance( pf_dir ).
+      IF lo_dir IS NOT BOUND.
+        RETURN.
+      ENDIF.
       APPEND cf_ref_dir TO ct_undo.
-    ENDIF.
-
-    IF cf_ref_dir IS BOUND.
-      DATA l_class TYPE abap_abstypename.
-      l_class = cl_abap_classdescr=>get_class_name( cf_ref_dir ).
-
-      CREATE OBJECT cf_ref_dir TYPE (l_class).
+      cf_ref_dir = lo_dir.
     ELSE.
       CREATE OBJECT cf_ref_dir TYPE zapcmd_cl_frontend_dir.
+      CALL METHOD cf_ref_dir->init
+        EXPORTING
+          pf_full_name = pf_dir.
     ENDIF.
-
-    CALL METHOD cf_ref_dir->init
-      EXPORTING
-        pf_full_name = pf_dir.
 
     CALL METHOD reload_dir.
 
@@ -1428,21 +1425,14 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 
   METHOD root_dir.
 
-    IF cf_ref_dir IS BOUND.
-      APPEND cf_ref_dir TO ct_undo.
+    DATA lo_dir TYPE REF TO zapcmd_cl_dir.
+    lo_dir = cf_ref_dir->new_instance( cf_ref_dir->separator ).
+    IF lo_dir IS NOT BOUND.
+      RETURN.
     ENDIF.
 
-    DATA lf_rootdir TYPE string.
-    lf_rootdir = cf_ref_dir->separator.
-
-    DATA l_class TYPE abap_abstypename.
-    l_class = cl_abap_classdescr=>get_class_name( cf_ref_dir ).
-
-    CREATE OBJECT cf_ref_dir TYPE (l_class).
-
-    CALL METHOD cf_ref_dir->init
-      EXPORTING
-        pf_full_name = lf_rootdir.
+    APPEND cf_ref_dir TO ct_undo.
+    cf_ref_dir = lo_dir.
 
     CALL METHOD reload_dir.
 
