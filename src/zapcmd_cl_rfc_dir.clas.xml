@@ -20,6 +20,12 @@
     </item>
     <item>
      <ID>I</ID>
+     <KEY>005</KEY>
+     <ENTRY>RFC-Destination not reachable</ENTRY>
+     <LENGTH>32</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
      <KEY>232</KEY>
      <ENTRY>Drives</ENTRY>
      <LENGTH>9</LENGTH>
@@ -37,6 +43,12 @@
       </item>
       <item>
        <ID>I</ID>
+       <KEY>005</KEY>
+       <ENTRY>RFC-Destination nicht erreichbar</ENTRY>
+       <LENGTH>32</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
        <KEY>232</KEY>
        <ENTRY>Laufwerke</ENTRY>
        <LENGTH>9</LENGTH>
@@ -51,6 +63,12 @@
        <KEY>001</KEY>
        <ENTRY>RFC-conn.</ENTRY>
        <LENGTH>9</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>005</KEY>
+       <ENTRY>Destino RFC no alcanzable</ENTRY>
+       <LENGTH>32</LENGTH>
       </item>
       <item>
        <ID>I</ID>

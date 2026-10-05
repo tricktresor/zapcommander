@@ -11,6 +11,38 @@
     <FIXPT>X</FIXPT>
     <UNICODE>X</UNICODE>
    </VSEOCLASS>
+   <TPOOL>
+    <item>
+     <ID>I</ID>
+     <KEY>001</KEY>
+     <ENTRY>Directory cannot be opened</ENTRY>
+     <LENGTH>40</LENGTH>
+    </item>
+   </TPOOL>
+   <I18N_TPOOL>
+    <item>
+     <LANGUAGE>D</LANGUAGE>
+     <TEXTPOOL>
+      <item>
+       <ID>I</ID>
+       <KEY>001</KEY>
+       <ENTRY>Verzeichnis kann nicht geöffnet werden</ENTRY>
+       <LENGTH>40</LENGTH>
+      </item>
+     </TEXTPOOL>
+    </item>
+    <item>
+     <LANGUAGE>S</LANGUAGE>
+     <TEXTPOOL>
+      <item>
+       <ID>I</ID>
+       <KEY>001</KEY>
+       <ENTRY>No se puede abrir el directorio</ENTRY>
+       <LENGTH>40</LENGTH>
+      </item>
+     </TEXTPOOL>
+    </item>
+   </I18N_TPOOL>
    <DESCRIPTIONS_CLASS>
     <SEOCLASSTX>
      <LANGU>S</LANGU>
@@ -102,6 +134,21 @@
      <CMPNAME>CREATE_NEW</CMPNAME>
      <LANGU>S</LANGU>
      <DESCRIPT>Crea un nuevo directorio</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>NEW_INSTANCE</CMPNAME>
+     <LANGU>D</LANGU>
+     <DESCRIPT>Neue Instanz für anderen Pfad</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>NEW_INSTANCE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>New instance for another path</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>NEW_INSTANCE</CMPNAME>
+     <LANGU>S</LANGU>
+     <DESCRIPT>Nueva instancia para otra ruta</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CMPNAME>READ_RFC</CMPNAME>

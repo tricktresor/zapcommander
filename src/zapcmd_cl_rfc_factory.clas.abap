@@ -50,11 +50,11 @@ method ZAPCMD_IF_FACTORY~CREATE_DIR.
       RETURNCODE            = l_subrc
     TABLES
       fields                = values
-*  EXCEPTIONS
-*    ERROR_IN_FIELDS       = 1
-*    OTHERS                = 2
+    EXCEPTIONS
+      ERROR_IN_FIELDS       = 1
+      OTHERS                = 2
             .
-  IF sy-subrc <> 0 and l_subrc <> ''.
+  IF sy-subrc <> 0 or l_subrc = 'A'.
     clear eo_dir.
     return.
   ENDIF.
