@@ -39,6 +39,16 @@ CLASS zapcmd_cl_commander DEFINITION
   PRIVATE SECTION.
 *"* private components of class ZAPCMD_CL_COMMANDER
 *"* do not include other source files here!!!
+
+    "! Stores both panes' directories for the next start
+    METHODS save_last_dirs.
+    "! Only frontend and application server can be restored; for other
+    "! areas (RFC, custom factories) the previously stored entry is kept
+    METHODS set_last_dir
+      IMPORTING
+        !io_dir TYPE REF TO zapcmd_cl_dir
+      CHANGING
+        !cs_dir TYPE zapcmd_t_dir.
 ENDCLASS.
 
 
@@ -296,36 +306,8 @@ CLASS ZAPCMD_CL_COMMANDER IMPLEMENTATION.
           cf_filesright->undo( ).
         ENDIF.
 
-      WHEN 'EXIT'.
-        DATA lf_id TYPE indx_srtfd.
-        CONCATENATE 'ZAPCMD' sy-uname INTO lf_id.
-        DATA lf_dir TYPE REF TO zapcmd_cl_dir.
-        lf_dir = cf_filesleft->get_dir( ).
-        DATA l_left TYPE zapcmd_t_dir.
-
-        IF lf_dir->server_area = zapcmd_cl_knot=>co_area_frontend.
-          l_left-type = zapcmd_cl_dir=>co_frontend.
-        ELSE.
-          l_left-type = zapcmd_cl_dir=>co_applserv.
-        ENDIF.
-        l_left-dir = lf_dir->full_name.
-
-        lf_dir = cf_filesright->get_dir( ).
-
-        DATA l_right TYPE zapcmd_t_dir.
-
-        IF lf_dir->server_area = zapcmd_cl_knot=>co_area_frontend.
-          l_right-type = zapcmd_cl_dir=>co_frontend.
-        ELSE.
-          l_right-type = zapcmd_cl_dir=>co_applserv.
-        ENDIF.
-        l_right-dir = lf_dir->full_name.
-
-        EXPORT
-           left = l_left
-           right = l_right
-        TO DATABASE indx(zc)
-        ID lf_id.
+      WHEN 'EXIT' OR 'ABORT'.
+        save_last_dirs( ).
 
       WHEN 'INFO'.
 
@@ -358,4 +340,51 @@ CLASS ZAPCMD_CL_COMMANDER IMPLEMENTATION.
     ENDCASE.
 
   ENDMETHOD.
+
+
+  METHOD save_last_dirs.
+
+    DATA lf_id TYPE indx_srtfd.
+    DATA l_left TYPE zapcmd_t_dir.
+    DATA l_right TYPE zapcmd_t_dir.
+
+    CONCATENATE 'ZAPCMD' sy-uname INTO lf_id.
+
+    IMPORT left = l_left
+           right = l_right
+      FROM DATABASE indx(zc)
+      ID lf_id.                                         "#EC CI_SUBRC
+
+    set_last_dir( EXPORTING io_dir = cf_filesleft->get_dir( )
+                  CHANGING  cs_dir = l_left ).
+    set_last_dir( EXPORTING io_dir = cf_filesright->get_dir( )
+                  CHANGING  cs_dir = l_right ).
+
+    EXPORT
+       left = l_left
+       right = l_right
+    TO DATABASE indx(zc)
+    ID lf_id.
+
+  ENDMETHOD.
+
+
+  METHOD set_last_dir.
+
+    IF io_dir IS NOT BOUND.
+      RETURN.
+    ENDIF.
+
+    CASE io_dir->server_area.
+      WHEN zapcmd_cl_knot=>co_area_frontend.
+        cs_dir-type = zapcmd_cl_dir=>co_frontend.
+        cs_dir-dir  = io_dir->full_name.
+      WHEN zapcmd_cl_knot=>co_area_applserv.
+        cs_dir-type = zapcmd_cl_dir=>co_applserv.
+        cs_dir-dir  = io_dir->full_name.
+    ENDCASE.
+
+  ENDMETHOD.
+
+
 ENDCLASS.
