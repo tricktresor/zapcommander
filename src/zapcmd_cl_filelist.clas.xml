@@ -122,6 +122,30 @@
     </item>
     <item>
      <ID>I</ID>
+     <KEY>019</KEY>
+     <ENTRY>No</ENTRY>
+     <LENGTH>10</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
+     <KEY>020</KEY>
+     <ENTRY>No to all</ENTRY>
+     <LENGTH>20</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
+     <KEY>022</KEY>
+     <ENTRY>Directory including its contents</ENTRY>
+     <LENGTH>50</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
+     <KEY>023</KEY>
+     <ENTRY>File too large to copy (max. 2 GB)</ENTRY>
+     <LENGTH>50</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
      <KEY>201</KEY>
      <ENTRY>Refresh</ENTRY>
      <LENGTH>10</LENGTH>
@@ -331,6 +355,30 @@
       </item>
       <item>
        <ID>I</ID>
+       <KEY>019</KEY>
+       <ENTRY>Nein</ENTRY>
+       <LENGTH>10</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>020</KEY>
+       <ENTRY>Nein, alle</ENTRY>
+       <LENGTH>20</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>022</KEY>
+       <ENTRY>Verzeichnis mit gesamtem Inhalt</ENTRY>
+       <LENGTH>50</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>023</KEY>
+       <ENTRY>Datei zu groß zum Kopieren (max. 2 GB)</ENTRY>
+       <LENGTH>50</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
        <KEY>201</KEY>
        <ENTRY>Refresh</ENTRY>
        <LENGTH>10</LENGTH>
@@ -537,6 +585,30 @@
        <KEY>018</KEY>
        <ENTRY>Insertar valor</ENTRY>
        <LENGTH>15</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>019</KEY>
+       <ENTRY>No</ENTRY>
+       <LENGTH>10</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>020</KEY>
+       <ENTRY>No a todos</ENTRY>
+       <LENGTH>20</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>022</KEY>
+       <ENTRY>Directorio con todo su contenido</ENTRY>
+       <LENGTH>50</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>023</KEY>
+       <ENTRY>Archivo demasiado grande para copiar (máx. 2 GB)</ENTRY>
+       <LENGTH>50</LENGTH>
       </item>
       <item>
        <ID>I</ID>

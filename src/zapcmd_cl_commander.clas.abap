@@ -246,10 +246,21 @@ CLASS ZAPCMD_CL_COMMANDER IMPLEMENTATION.
 
       WHEN 'SHOW'.
 
+        " only files can be shown in the editor, not directories
+        CLEAR lf_editorfile.
         READ TABLE lt_files INDEX 1
         INTO lf_file.
-
-        lf_editorfile ?= lf_file.
+        IF sy-subrc = 0.
+          TRY.
+              lf_editorfile ?= lf_file.
+            CATCH cx_sy_move_cast_error.
+              CLEAR lf_editorfile.
+          ENDTRY.
+        ENDIF.
+        IF lf_editorfile IS NOT BOUND.
+          MESSAGE 'Please select a file'(006) TYPE 'S' DISPLAY LIKE 'E'.
+          RETURN.
+        ENDIF.
 
         zapcmd_cl_editor=>call_editor(
           pf_file     = lf_editorfile
@@ -257,10 +268,21 @@ CLASS ZAPCMD_CL_COMMANDER IMPLEMENTATION.
 
       WHEN 'EDIT'.
 
+        " only files can be shown in the editor, not directories
+        CLEAR lf_editorfile.
         READ TABLE lt_files INDEX 1
         INTO lf_file.
-
-        lf_editorfile ?= lf_file.
+        IF sy-subrc = 0.
+          TRY.
+              lf_editorfile ?= lf_file.
+            CATCH cx_sy_move_cast_error.
+              CLEAR lf_editorfile.
+          ENDTRY.
+        ENDIF.
+        IF lf_editorfile IS NOT BOUND.
+          MESSAGE 'Please select a file'(006) TYPE 'S' DISPLAY LIKE 'E'.
+          RETURN.
+        ENDIF.
 
         zapcmd_cl_editor=>call_editor(
           pf_file     = lf_editorfile
