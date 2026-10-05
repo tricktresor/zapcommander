@@ -64,7 +64,6 @@ CLASS ZAPCMD_CL_FRONTEND_DIR IMPLEMENTATION.
 
     pf_file->init(
         pf_name    = pf_filename
-        pf_size    = 0
         pf_dir     = full_name
         pf_moddate = sy-datum
         pf_modtime = sy-uzeit
@@ -106,7 +105,6 @@ CLASS ZAPCMD_CL_FRONTEND_DIR IMPLEMENTATION.
 
     pf_file->init(
         pf_name    = pf_filename
-        pf_size    = 0
         pf_dir     = full_name
         pf_moddate = sy-datum
         pf_modtime = sy-uzeit
@@ -123,7 +121,7 @@ CLASS ZAPCMD_CL_FRONTEND_DIR IMPLEMENTATION.
       WHEN co_drives.
 
         lv_path = me->separator.
-        eo_dir = NEW zapcmd_cl_frontend_dir( ).
+        CREATE OBJECT eo_dir TYPE zapcmd_cl_frontend_dir.
 
         eo_dir->init( pf_full_name = lv_path ).
 
@@ -144,7 +142,7 @@ CLASS ZAPCMD_CL_FRONTEND_DIR IMPLEMENTATION.
           RETURN.
         ENDIF.
 
-        eo_dir = NEW zapcmd_cl_frontend_dir( ).
+        CREATE OBJECT eo_dir TYPE zapcmd_cl_frontend_dir.
 
         eo_dir->init( pf_full_name = lv_path ).
 
@@ -317,7 +315,6 @@ CLASS ZAPCMD_CL_FRONTEND_DIR IMPLEMENTATION.
     IF lf_filter CA '*'.
       lf_ref_file->init(
           pf_name = '..'
-          pf_size = 0
           pf_dir  = full_name ).
       APPEND lf_ref_file TO pt_filelist.
     ENDIF.
@@ -476,7 +473,6 @@ CLASS ZAPCMD_CL_FRONTEND_DIR IMPLEMENTATION.
         lf_ref_file->init(
             pf_full_name = lf_drive
             pf_name      = lf_name
-            pf_size      = 0
             pf_dir       = full_name ).
         APPEND lf_ref_file TO pt_filelist.
       ENDIF.

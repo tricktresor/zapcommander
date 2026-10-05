@@ -77,7 +77,6 @@ CLASS zapcmd_cl_server_dir IMPLEMENTATION.
 
     pf_file->init(
         pf_name    = pf_filename
-        pf_size    = 0
         pf_dir     = full_name
         pf_moddate = sy-datum
         pf_modtime = sy-uzeit
@@ -108,7 +107,6 @@ CLASS zapcmd_cl_server_dir IMPLEMENTATION.
 
     pf_file->init(
          pf_name    = pf_filename
-         pf_size    = 0
          pf_dir     = full_name
          pf_moddate = sy-datum
          pf_modtime = sy-uzeit
@@ -446,7 +444,6 @@ CLASS zapcmd_cl_server_dir IMPLEMENTATION.
       lf_ref_file->init(
           pf_full_name = ls_names-dirname
           pf_name      = ls_names-name
-          pf_size      = 0
           pf_dir       = full_name ).
 
       APPEND lf_ref_file TO pt_filelist.
@@ -515,7 +512,6 @@ CLASS zapcmd_cl_server_dir IMPLEMENTATION.
       lf_ref_file->init(
            pf_name      = ' )..'
            pf_full_name = '\'
-           pf_size      = 0
            pf_dir       = full_name ).
       APPEND lf_ref_file TO pt_filelist.
 
@@ -712,7 +708,6 @@ CLASS zapcmd_cl_server_dir IMPLEMENTATION.
           lf_ref_file->init(
               pf_full_name = lf_drive
               pf_name      = lf_name
-              pf_size      = 0
               pf_dir       = full_name ).
 
           APPEND lf_ref_file TO pt_filelist.
@@ -782,7 +777,6 @@ CLASS zapcmd_cl_server_dir IMPLEMENTATION.
       lf_ref_file->init(
           pf_full_name = l_fullname
           pf_name      = l_name
-          pf_size      = 0
           pf_dir       = full_name ).
 
       APPEND lf_ref_file TO pt_filelist.
@@ -834,7 +828,6 @@ CLASS zapcmd_cl_server_dir IMPLEMENTATION.
       lf_ref_file->init(
           pf_full_name = separator
           pf_name      = lf_name
-          pf_size      = 0
           pf_dir       = full_name ).
 
       APPEND lf_ref_file TO pt_filelist.
