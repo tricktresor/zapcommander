@@ -26,6 +26,12 @@
     </item>
     <item>
      <ID>I</ID>
+     <KEY>006</KEY>
+     <ENTRY>OS command failed</ENTRY>
+     <LENGTH>40</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
      <KEY>232</KEY>
      <ENTRY>Drives</ENTRY>
      <LENGTH>9</LENGTH>
@@ -49,6 +55,12 @@
       </item>
       <item>
        <ID>I</ID>
+       <KEY>006</KEY>
+       <ENTRY>Betriebssystembefehl fehlgeschlagen</ENTRY>
+       <LENGTH>40</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
        <KEY>232</KEY>
        <ENTRY>Laufwerke</ENTRY>
        <LENGTH>9</LENGTH>
@@ -69,6 +81,12 @@
        <KEY>005</KEY>
        <ENTRY>Destino RFC no alcanzable</ENTRY>
        <LENGTH>32</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>006</KEY>
+       <ENTRY>Error en comando del sistema</ENTRY>
+       <LENGTH>40</LENGTH>
       </item>
       <item>
        <ID>I</ID>

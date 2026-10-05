@@ -64,6 +64,13 @@ CLASS zapcmd_cl_dir DEFINITION
         !i_fcode      TYPE syucomm OPTIONAL
       RETURNING
         VALUE(eo_dir) TYPE REF TO zapcmd_cl_dir .
+    "! Runs an OS command in this directory
+    METHODS execute_command
+      IMPORTING
+        !pf_command     TYPE csequence
+      EXPORTING
+        !et_output      TYPE zapcmd_tbl_string
+        !ev_return_code TYPE i .
     "! Creates a directory object of the same kind for another path.
     "! Returns nothing if the object cannot be created.
     METHODS new_instance
@@ -241,5 +248,13 @@ CLASS ZAPCMD_CL_DIR IMPLEMENTATION.
 
   ENDMETHOD.
 
+
+  METHOD execute_command.
+
+    CLEAR et_output.
+    APPEND 'Command line not supported here'(002) TO et_output.
+    ev_return_code = 4.
+
+  ENDMETHOD.
 
 ENDCLASS.

@@ -97,6 +97,9 @@
       <RSEXC>
        <EXCEPTION>NOT_FOUND</EXCEPTION>
       </RSEXC>
+      <RSEXC>
+       <EXCEPTION>COMMAND_TOO_LONG</EXCEPTION>
+      </RSEXC>
      </EXCEPTION>
      <DOCUMENTATION>
       <RSFDO>
@@ -123,6 +126,11 @@
        <PARAMETER>NOT_FOUND</PARAMETER>
        <KIND>X</KIND>
        <STEXT>Directory not found</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>COMMAND_TOO_LONG</PARAMETER>
+       <KIND>X</KIND>
+       <STEXT>Command longer than 255 characters</STEXT>
       </RSFDO>
      </DOCUMENTATION>
     </item>

@@ -69,6 +69,15 @@ CLASS zapcmd_cl_knot DEFINITION
     METHODS move
       IMPORTING pf_dir        TYPE string
       RETURNING VALUE(result) TYPE i.
+    "! Checks that a value fits into a 255 character OS command
+    "! parameter, shows a message if not
+    CLASS-METHODS fits_os_command
+      IMPORTING pf_value      TYPE csequence
+      RETURNING VALUE(result) TYPE abap_bool.
+    "! Quotes a file name as one argument for the shell of this node's OS
+    METHODS quote_os_arg
+      IMPORTING pf_arg        TYPE csequence
+      RETURNING VALUE(result) TYPE string.
 
   PROTECTED SECTION.
 *"* protected components of class ZAPCMD_KNOT
@@ -135,8 +144,16 @@ CLASS zapcmd_cl_knot IMPLEMENTATION.
     DATA: lf_command(255) TYPE c.
     DATA: l_lines TYPE TABLE OF char255.
     FIELD-SYMBOLS: <l_line> TYPE char255.
+    DATA lf_command_string TYPE string.
     CONCATENATE pf_command pf_parameter
-      INTO lf_command SEPARATED BY space.
+      INTO lf_command_string SEPARATED BY space.
+    " never run a truncated command
+    IF strlen( lf_command_string ) > 255 OR strlen( pf_dir ) > 255.
+      pf_return_code = 8.
+      APPEND 'Command or path too long'(131) TO ptx_output.
+      RETURN.
+    ENDIF.
+    lf_command = lf_command_string.
     DATA: lf_dir(255) TYPE c.
     lf_dir = pf_dir.
 
@@ -179,13 +196,21 @@ CLASS zapcmd_cl_knot IMPLEMENTATION.
 
 
 
+    " only the Windows console writes in the DOS codepage 850 (SAP 1103)
+    IF NOT ( sy-opsys CS 'Windows' OR sy-opsys = 'DOS' ).   "#EC NOTEXT
+      ptx_output[] = l_lines[].
+      RETURN.
+    ENDIF.
+
     lf_conv1 = cl_abap_conv_out_ce=>create(
-            encoding = 'NON-UNICODE'
-            endian = 'L'
+            encoding    = 'NON-UNICODE'
+            endian      = 'L'
+            ignore_cerr = abap_true
           ).
     lf_conv2 = cl_abap_conv_in_ce=>create(
-             encoding = '1103'
-             endian = 'L'
+             encoding    = '1103'
+             endian      = 'L'
+             ignore_cerr = abap_true
            ).
 
     LOOP AT l_lines ASSIGNING <l_line>.
@@ -387,8 +412,10 @@ CLASS zapcmd_cl_knot IMPLEMENTATION.
     CASE server_area.
       WHEN zapcmd_cl_knot=>co_area_applserv.
 
+        DATA lv_target TYPE string.
+        CONCATENATE pf_dir separator INTO lv_target.
         exec_server( EXPORTING pf_command     = 'mv'
-                               pf_parameter   = |{ full_name } { pf_dir }{ separator }|
+                               pf_parameter   = |{ quote_os_arg( full_name ) } { quote_os_arg( lv_target ) }|
                      IMPORTING pf_return_code = result ).
 
 *      WHEN zapcmd_cl_knot=>co_area_frontend.
@@ -477,4 +504,34 @@ CLASS zapcmd_cl_knot IMPLEMENTATION.
     ENDIF.
 
   ENDMETHOD.
+
+
+  METHOD fits_os_command.
+
+    IF strlen( pf_value ) > 255.
+      MESSAGE 'Command or path too long'(131) TYPE 'S' DISPLAY LIKE 'E'.
+      result = abap_false.
+    ELSE.
+      result = abap_true.
+    ENDIF.
+
+  ENDMETHOD.
+
+
+  METHOD quote_os_arg.
+
+    result = pf_arg.
+    IF separator = '\'.
+      " cmd.exe: double quotes (not allowed in Windows file names)
+      REPLACE ALL OCCURRENCES OF `"` IN result WITH ``.
+      CONCATENATE `"` result `"` INTO result.
+    ELSE.
+      " POSIX shell: single quotes, embedded quotes as '\''
+      REPLACE ALL OCCURRENCES OF `'` IN result WITH `'\''`.
+      CONCATENATE `'` result `'` INTO result.
+    ENDIF.
+
+  ENDMETHOD.
+
+
 ENDCLASS.

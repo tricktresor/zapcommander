@@ -28,6 +28,8 @@ CLASS zapcmd_cl_server_dir DEFINITION
         REDEFINITION .
     METHODS create_new
         REDEFINITION .
+    METHODS execute_command
+        REDEFINITION .
   PROTECTED SECTION.
 *"* protected components of class ZAPCMD_CL_SERVER_DIR
 *"* do not include other source files here!!!
@@ -81,9 +83,21 @@ CLASS zapcmd_cl_server_dir IMPLEMENTATION.
         pf_modtime = sy-uzeit
         pf_attr    = space ).
 
+    DATA lt_output TYPE zapcmd_tbl_string.
+    DATA lv_return_code TYPE i.
+    DATA lv_output TYPE string.
     exec_server(
-        pf_command   = 'mkdir'
-        pf_parameter = pf_file->full_name ).
+      EXPORTING
+        pf_command      = 'mkdir'
+        pf_parameter    = quote_os_arg( pf_file->full_name )
+      IMPORTING
+        ptx_output      = lt_output
+        pf_return_code  = lv_return_code ).
+    IF lv_return_code <> 0.
+      CLEAR pf_file.
+      READ TABLE lt_output INDEX 1 INTO lv_output.
+      MESSAGE lv_output TYPE 'S' DISPLAY LIKE 'E'.
+    ENDIF.
 
   ENDMETHOD.
 
@@ -189,9 +203,20 @@ CLASS zapcmd_cl_server_dir IMPLEMENTATION.
 
   METHOD delete.
 
+    DATA lt_output TYPE zapcmd_tbl_string.
+    DATA lv_return_code TYPE i.
+    DATA lv_output TYPE string.
     exec_server(
-        pf_command = 'rmdir'
-        pf_parameter = full_name ).
+      EXPORTING
+        pf_command     = 'rmdir'
+        pf_parameter   = quote_os_arg( full_name )
+      IMPORTING
+        ptx_output     = lt_output
+        pf_return_code = lv_return_code ).
+    IF lv_return_code <> 0.
+      READ TABLE lt_output INDEX 1 INTO lv_output.
+      MESSAGE lv_output TYPE 'S' DISPLAY LIKE 'E'.
+    ENDIF.
 
   ENDMETHOD.
 
@@ -822,24 +847,50 @@ CLASS zapcmd_cl_server_dir IMPLEMENTATION.
   METHOD rename.
 
     DATA lf_oldlongname TYPE zapcmd_fullname.
+    DATA lf_oldname TYPE zapcmd_filename.
+    DATA lt_output TYPE zapcmd_tbl_string.
+    DATA lv_return_code TYPE i.
+    DATA lv_output TYPE string.
 
     lf_oldlongname = me->full_name.
+    lf_oldname = me->name.
 
     super->rename( pf_newname = pf_newname ).
 
     DATA lf_command TYPE string.
     DATA lf_parameter TYPE string.
     IF separator = '\'.
-      CONCATENATE lf_oldlongname name INTO lf_parameter
-        SEPARATED BY space.
+      lf_parameter = |{ quote_os_arg( lf_oldlongname ) } { quote_os_arg( name ) }|.
       lf_command = 'ren'.
     ELSE.
-      CONCATENATE lf_oldlongname full_name INTO lf_parameter
-        SEPARATED BY space.
+      lf_parameter = |{ quote_os_arg( lf_oldlongname ) } { quote_os_arg( full_name ) }|.
       lf_command = 'mv'.
     ENDIF.
     exec_server(
-        pf_command   = lf_command
-        pf_parameter = lf_parameter ).
+      EXPORTING
+        pf_command     = lf_command
+        pf_parameter   = lf_parameter
+      IMPORTING
+        ptx_output     = lt_output
+        pf_return_code = lv_return_code ).
+    IF lv_return_code <> 0.
+      super->rename( pf_newname = lf_oldname ).
+      READ TABLE lt_output INDEX 1 INTO lv_output.
+      MESSAGE lv_output TYPE 'S' DISPLAY LIKE 'E'.
+    ENDIF.
   ENDMETHOD.
+
+
+  METHOD execute_command.
+
+    exec_server(
+      EXPORTING
+        pf_command     = pf_command
+        pf_dir         = full_name
+      IMPORTING
+        ptx_output     = et_output
+        pf_return_code = ev_return_code ).
+
+  ENDMETHOD.
+
 ENDCLASS.
