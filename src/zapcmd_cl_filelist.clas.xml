@@ -380,13 +380,13 @@
       <item>
        <ID>I</ID>
        <KEY>505</KEY>
-       <ENTRY>Create file</ENTRY>
+       <ENTRY>Datei erstellen</ENTRY>
        <LENGTH>21</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>506</KEY>
-       <ENTRY>Datei erstellen</ENTRY>
+       <ENTRY>Verschieben nach</ENTRY>
        <LENGTH>40</LENGTH>
       </item>
       <item>
@@ -404,19 +404,19 @@
       <item>
        <ID>I</ID>
        <KEY>509</KEY>
-       <ENTRY>dateien</ENTRY>
+       <ENTRY>Dateien</ENTRY>
        <LENGTH>15</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>510</KEY>
-       <ENTRY>Bewegen</ENTRY>
+       <ENTRY>Verschieben</ENTRY>
        <LENGTH>14</LENGTH>
       </item>
       <item>
        <ID>I</ID>
        <KEY>511</KEY>
-       <ENTRY>zu</ENTRY>
+       <ENTRY>nach</ENTRY>
        <LENGTH>12</LENGTH>
       </item>
       <item>
