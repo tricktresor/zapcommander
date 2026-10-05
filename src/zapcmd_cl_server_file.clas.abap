@@ -63,11 +63,17 @@ method DELETE.
 *         DB_ERROR                          = 5
 *         OTHERS                            = 6
 *                .
-    delete dataset full_name.
-    IF SY-SUBRC <> 0.
-      MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
-           WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
-    ENDIF.
+    DATA lx_error TYPE REF TO cx_root.
+    DATA lv_text TYPE string.
+    TRY.
+        delete dataset full_name.
+        IF sy-subrc <> 0.
+          MESSAGE 'File could not be deleted'(003) TYPE 'S' DISPLAY LIKE 'E'.
+        ENDIF.
+      CATCH cx_sy_file_access_error INTO lx_error.
+        lv_text = lx_error->get_text( ).
+        MESSAGE lv_text TYPE 'S' DISPLAY LIKE 'E'.
+    ENDTRY.
 
 
 endmethod.
@@ -199,28 +205,39 @@ method READ_BIN.
     data lf_subrc type sysubrc.
     data lf_length type i.
     data lf_mess(100) type c.
+    data lx_error type ref to cx_root.
+    data lv_text type string.
     refresh pt_file.
 *** Datei oeffen ***
     pf_filesize = 0.
-    open dataset full_name for input in binary mode
-      message lf_mess. "encoding default.
-    if sy-subrc eq 0.
-      do.
+    try.
+        open dataset full_name for input in binary mode
+          message lf_mess. "encoding default.
+        if sy-subrc eq 0.
+          do.
 *** jede Zeile einzeln einlesen ***
-        clear lf_string.
-        read dataset full_name into lf_string length lf_length.
-        lf_subrc = sy-subrc.
-        append lf_string to pt_file.
-        pf_filesize = pf_filesize + lf_length.
-        if lf_subrc ne 0.
-          exit.
+            clear lf_string.
+            read dataset full_name into lf_string length lf_length.
+            lf_subrc = sy-subrc.
+            append lf_string to pt_file.
+            pf_filesize = pf_filesize + lf_length.
+            if lf_subrc ne 0.
+              exit.
+            endif.
+          enddo.
+          close dataset full_name.
+        else.
+          message lf_mess type 'I'.
+          raise failed.
         endif.
-      enddo.
-      close dataset full_name.
-    else.
-      message lf_mess type 'I'.
-      raise failed.
-    endif.
+      " no authority, I/O error, or file too large for type I (2 GB)
+      catch cx_sy_file_access_error cx_sy_arithmetic_overflow into lx_error.
+        close dataset full_name.
+        refresh pt_file.
+        lv_text = lx_error->get_text( ).
+        message lv_text type 'I'.
+        raise failed.
+    endtry.
 
 endmethod.
 
@@ -230,27 +247,40 @@ method READ_TEXT.
     data lf_string type line of zapcmd_tbl_string.
     data lf_length type i.
     data lf_mess type c length 100.
+    data lx_error type ref to cx_root.
+    data lv_text type string.
     refresh pt_file.
     pf_filesize = 0.
 *** Datei oeffen ***
-    open dataset full_name for input in text mode encoding default
-      message lf_mess.
-    if sy-subrc eq 0.
-      do.
+    try.
+        open dataset full_name for input in text mode encoding default
+          with smart linefeed
+          message lf_mess.
+        if sy-subrc eq 0.
+          do.
 *** jede Zeile einzeln einlesen ***
-        read dataset full_name into lf_string length lf_length.
-        if sy-subrc ne 0.
-          exit.
+            read dataset full_name into lf_string length lf_length.
+            if sy-subrc ne 0.
+              exit.
+            else.
+              append lf_string to pt_file.
+              pf_filesize = pf_filesize + lf_length.
+            endif.
+          enddo.
+          close dataset full_name.
         else.
-          append lf_string to pt_file.
-          pf_filesize = pf_filesize + lf_length.
+          message lf_mess type 'I'.
+          exit.
         endif.
-      enddo.
-      close dataset full_name.
-    else.
-      message lf_mess type 'I'.
-      exit.
-    endif.
+      " no authority, I/O error, file too large, or not in the system code
+      " page; nothing is shown then, so a later save cannot destroy the file
+      catch cx_sy_file_access_error cx_sy_conversion_codepage
+            cx_sy_arithmetic_overflow into lx_error.
+        close dataset full_name.
+        refresh pt_file.
+        lv_text = lx_error->get_text( ).
+        message lv_text type 'I'.
+    endtry.
 
 
 endmethod.
@@ -291,23 +321,32 @@ method WRITE_BIN.
     data lf_string like line of pt_file.
     data lf_filesize type i.
     data lf_mess type c length 100.
+    data lx_error type ref to cx_root.
+    data lv_text type string.
     lf_filesize = pf_filesize.
-    open dataset full_name for output in binary mode
-      message lf_mess.
-    if sy-subrc eq 0.
-      loop at pt_file into lf_string.
-        if lf_filesize >= 1024.
-          transfer lf_string to full_name.
-          lf_filesize = lf_filesize - 1024.
+    try.
+        open dataset full_name for output in binary mode
+          message lf_mess.
+        if sy-subrc eq 0.
+          loop at pt_file into lf_string.
+            if lf_filesize >= 1024.
+              transfer lf_string to full_name.
+              lf_filesize = lf_filesize - 1024.
+            else.
+              transfer lf_string to full_name length lf_filesize.
+            endif.
+          endloop.
+          close dataset full_name.
         else.
-          transfer lf_string to full_name length lf_filesize.
+          message lf_mess type 'I'.
+          raise failed.
         endif.
-      endloop.
-      close dataset full_name.
-    else.
-      message lf_mess type 'I'.
-      raise failed.
-    endif.
+      catch cx_sy_file_access_error into lx_error.
+        close dataset full_name.
+        lv_text = lx_error->get_text( ).
+        message lv_text type 'I'.
+        raise failed.
+    endtry.
 
 endmethod.
 
@@ -316,18 +355,26 @@ method WRITE_TEXT.
 
     data lf_string type string.
     data lf_mess type c length 100.
+    data lx_error type ref to cx_root.
+    data lv_text type string.
 
-    open dataset full_name for output in text mode encoding default
-      message lf_mess.
-    if sy-subrc eq 0.
-      loop at pt_file into lf_string.
-        transfer lf_string to full_name.
-      endloop.
-      close dataset full_name.
-    else.
-      message lf_mess type 'I'.
-      exit.
-    endif.
+    try.
+        open dataset full_name for output in text mode encoding default
+          message lf_mess.
+        if sy-subrc eq 0.
+          loop at pt_file into lf_string.
+            transfer lf_string to full_name.
+          endloop.
+          close dataset full_name.
+        else.
+          message lf_mess type 'I'.
+          exit.
+        endif.
+      catch cx_sy_file_access_error cx_sy_conversion_codepage into lx_error.
+        close dataset full_name.
+        lv_text = lx_error->get_text( ).
+        message lv_text type 'I'.
+    endtry.
 
 endmethod.
 ENDCLASS.
