@@ -107,7 +107,7 @@ METHOD EXECUTE.
   l_extension = extension.
   TRANSLATE l_extension TO UPPER CASE.
 
-  IF l_extension(3) = 'ABA'.
+  IF strlen( l_extension ) >= 3 AND l_extension(3) = 'ABA'.
 
    execute_abap( ).
 

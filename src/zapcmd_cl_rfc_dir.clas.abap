@@ -29,6 +29,8 @@ public section.
     redefinition .
   methods CREATE_NEW
     redefinition .
+  methods NEW_INSTANCE
+    redefinition .
 protected section.
 *"* protected components of class ZAPCMD_CL_RFC_DIR
 *"* do not include other source files here!!!
@@ -89,9 +91,18 @@ endmethod.
 
 method CREATE_DIR.
 
+    data l_parameter type text255.
+    data l_message type c length 255.
+
     create object pf_file type Zapcmd_CL_RFC_DIR
       exporting
-       iv_rfcdest = rfcdest.
+       iv_rfcdest = rfcdest
+      exceptions
+       not_installed = 1.
+    if sy-subrc <> 0.
+      clear pf_file.
+      return.
+    endif.
 
     call method pf_file->init
       EXPORTING
@@ -102,11 +113,19 @@ method CREATE_DIR.
         pf_modtime = sy-uzeit
         pf_attr    = space.
 
+    l_parameter = pf_file->full_name.
     call function 'ZAPCMD_EXEC_CMD'
       DESTINATION rfcdest
       exporting
-        pf_command = 'mkdir'
-        pf_parameter = pf_file->full_name.
+        iv_command   = 'mkdir'
+        iv_parameter = l_parameter
+      exceptions
+        system_failure        = 1 message l_message
+        communication_failure = 2 message l_message.
+    if sy-subrc <> 0.
+      clear pf_file.
+      message l_message type 'S' display like 'E'.
+    endif.
 
 
 endmethod.
@@ -116,7 +135,13 @@ method CREATE_FILE.
 
    create object pf_file type ZAPCMD_CL_RFC_FILE
      EXPORTING
-       iv_rfcdest = rfcdest.
+       iv_rfcdest = rfcdest
+     EXCEPTIONS
+       not_installed = 1.
+    if sy-subrc <> 0.
+      clear pf_file.
+      return.
+    endif.
 
     call method pf_file->init
       EXPORTING
@@ -133,11 +158,26 @@ endmethod.
 METHOD create_new.
   CASE i_fcode.
     WHEN co_drives.
-      CREATE OBJECT eo_dir TYPE zapcmd_cl_rfc_dir
-        EXPORTING
-          iv_rfcdest = me->rfcdest.
-      eo_dir->init( pf_full_name = me->separator ).
+      eo_dir = new_instance( me->separator ).
   ENDCASE.
+ENDMETHOD.
+
+
+METHOD new_instance.
+
+  CREATE OBJECT eo_dir TYPE zapcmd_cl_rfc_dir
+    EXPORTING
+      iv_rfcdest    = me->rfcdest
+    EXCEPTIONS
+      not_installed = 1.
+  IF sy-subrc <> 0.
+    CLEAR eo_dir.
+    MESSAGE 'RFC-Destination not reachable'(005) TYPE 'S' DISPLAY LIKE 'E'.
+    RETURN.
+  ENDIF.
+
+  eo_dir->init( pf_full_name = pf_full_name ).
+
 ENDMETHOD.
 
 
@@ -288,7 +328,13 @@ METHOD read_dir.
 
     CREATE OBJECT lf_ref_file TYPE zapcmd_cl_rfc_dir
       EXPORTING
-        iv_rfcdest = rfcdest.
+        iv_rfcdest    = rfcdest
+      EXCEPTIONS
+        not_installed = 1.
+    IF sy-subrc <> 0.
+      MESSAGE 'RFC-Destination not reachable'(005) TYPE 'S' DISPLAY LIKE 'E'.
+      RETURN.
+    ENDIF.
     CALL METHOD lf_ref_file->init
       EXPORTING
         pf_name      = '..'
@@ -302,6 +348,7 @@ METHOD read_dir.
 
   data lt_dir type table of ZAPCMD_FILE_DESCR.
   data ls_dir type ZAPCMD_FILE_DESCR.
+  data l_message type c length 255.
 
   CALL FUNCTION 'ZAPCMD_READ_DIR'
     DESTINATION rfcdest
@@ -312,9 +359,14 @@ METHOD read_dir.
       et_file         = lt_dir
  EXCEPTIONS
    NOT_FOUND       = 1
-   OTHERS          = 2
+   SYSTEM_FAILURE        = 2 MESSAGE l_message
+   COMMUNICATION_FAILURE = 3 MESSAGE l_message
+   OTHERS          = 4
             .
-  IF sy-subrc <> 0.
+  IF sy-subrc = 2 OR sy-subrc = 3.
+    MESSAGE l_message TYPE 'S' DISPLAY LIKE 'E'.
+    RETURN.
+  ELSEIF sy-subrc <> 0.
     MESSAGE ID SY-MSGID TYPE 'I' NUMBER SY-MSGNO display like SY-MSGTY
          WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
   ENDIF.
@@ -326,12 +378,20 @@ METHOD read_dir.
         when  'DIR' or 'UP'.
           create object lf_ref_file type ZAPCMD_CL_RFC_DIR
             EXPORTING
-              iv_RFCDEST = RFCDEST.
+              iv_RFCDEST = RFCDEST
+            EXCEPTIONS
+              not_installed = 1.
         when others.
           create object lf_ref_file type ZAPCMD_CL_RFC_FILE
              EXPORTING
-              iv_RFCDEST = RFCDEST.
+              iv_RFCDEST = RFCDEST
+            EXCEPTIONS
+              not_installed = 1.
       endcase.
+      if sy-subrc <> 0.
+        MESSAGE 'RFC-Destination not reachable'(005) TYPE 'S' DISPLAY LIKE 'E'.
+        return.
+      endif.
       if ls_dir-name <> space and ls_dir-name <> '.'.
         call method lf_ref_file->init
           EXPORTING
@@ -377,13 +437,20 @@ method READ_DRIVES.
       data l_reachable type xfeld.
       clear l_reachable.
 
+      data l_message type c length 255.
       CALL FUNCTION 'ZAPCMD_CHECK_DIR'
         DESTINATION rfcdest
         EXPORTING
           iv_dir             = lf_temp
        IMPORTING
          EV_REACHABLE       = l_reachable
-                .
+       EXCEPTIONS
+         system_failure        = 1 MESSAGE l_message
+         communication_failure = 2 MESSAGE l_message.
+      if sy-subrc <> 0.
+        message l_message type 'S' display like 'E'.
+        exit.
+      endif.
 
 
        if l_reachable = 'X'.
@@ -391,7 +458,12 @@ method READ_DRIVES.
         concatenate lf_drive space into lf_name.
         create object lf_ref_file type Zapcmd_CL_rfc_DIR
           EXPORTING
-            iv_rfcdest = rfcdest.
+            iv_rfcdest = rfcdest
+          EXCEPTIONS
+            not_installed = 1.
+        if sy-subrc <> 0.
+          exit.
+        endif.
         call method lf_ref_file->init
           EXPORTING
             pf_full_name = lf_drive
