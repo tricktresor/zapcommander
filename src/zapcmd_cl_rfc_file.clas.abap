@@ -132,12 +132,22 @@ METHOD EXECUTE.
     CALL METHOD me->read_bin
       IMPORTING
         pt_file     = lt_file
-        pf_filesize = lf_filesize.
+        pf_filesize = lf_filesize
+      EXCEPTIONS
+        failed      = 1.
+    IF sy-subrc <> 0.
+      RETURN.
+    ENDIF.
 
     CALL METHOD lf_destfile->write_bin
       EXPORTING
         pt_file     = lt_file
-        pf_filesize = lf_filesize.
+        pf_filesize = lf_filesize
+      EXCEPTIONS
+        failed      = 1.
+    IF sy-subrc <> 0.
+      RETURN.
+    ENDIF.
 
     lf_destfile->execute( ).
 
@@ -165,9 +175,9 @@ method READ_BIN.
        OTHERS             = 2
               .
     IF sy-subrc <> 0.
-      MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
+      MESSAGE ID SY-MSGID TYPE 'I' NUMBER SY-MSGNO
          WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
-      return.
+      raise failed.
     ENDIF.
 
     import bin = pt_file from INTERNAL TABLE lt_file.
@@ -267,8 +277,9 @@ METHOD write_bin.
       not_found    = 1
       OTHERS       = 2.
   IF sy-subrc <> 0.
-    MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
+    MESSAGE ID sy-msgid TYPE 'I' NUMBER sy-msgno
             WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+    RAISE failed.
   ENDIF.
 
 

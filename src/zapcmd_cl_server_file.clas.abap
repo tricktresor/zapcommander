@@ -109,12 +109,22 @@ METHOD execute.
     CALL METHOD me->read_bin
       IMPORTING
         pt_file     = lt_file
-        pf_filesize = lf_filesize.
+        pf_filesize = lf_filesize
+      EXCEPTIONS
+        failed      = 1.
+    IF sy-subrc <> 0.
+      RETURN.
+    ENDIF.
 
     CALL METHOD lf_destfile->write_bin
       EXPORTING
         pt_file     = lt_file
-        pf_filesize = lf_filesize.
+        pf_filesize = lf_filesize
+      EXCEPTIONS
+        failed      = 1.
+    IF sy-subrc <> 0.
+      RETURN.
+    ENDIF.
 
     lf_destfile->execute( ).
 
@@ -208,9 +218,8 @@ method READ_BIN.
       enddo.
       close dataset full_name.
     else.
-      message id sy-msgid type 'I' number sy-msgno
-      with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
-      exit.
+      message lf_mess type 'I'.
+      raise failed.
     endif.
 
 endmethod.
@@ -220,10 +229,12 @@ method READ_TEXT.
 
     data lf_string type line of zapcmd_tbl_string.
     data lf_length type i.
+    data lf_mess type c length 100.
     refresh pt_file.
     pf_filesize = 0.
 *** Datei oeffen ***
-    open dataset full_name for input in text mode encoding default.
+    open dataset full_name for input in text mode encoding default
+      message lf_mess.
     if sy-subrc eq 0.
       do.
 *** jede Zeile einzeln einlesen ***
@@ -237,8 +248,7 @@ method READ_TEXT.
       enddo.
       close dataset full_name.
     else.
-      message id sy-msgid type 'I' number sy-msgno
-      with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+      message lf_mess type 'I'.
       exit.
     endif.
 
@@ -280,8 +290,10 @@ method WRITE_BIN.
 
     data lf_string like line of pt_file.
     data lf_filesize type i.
+    data lf_mess type c length 100.
     lf_filesize = pf_filesize.
-    open dataset full_name for output in binary mode. "encoding default.
+    open dataset full_name for output in binary mode
+      message lf_mess.
     if sy-subrc eq 0.
       loop at pt_file into lf_string.
         if lf_filesize >= 1024.
@@ -293,9 +305,8 @@ method WRITE_BIN.
       endloop.
       close dataset full_name.
     else.
-      message id sy-msgid type 'I' number sy-msgno
-      with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
-      exit.
+      message lf_mess type 'I'.
+      raise failed.
     endif.
 
 endmethod.
@@ -304,16 +315,17 @@ endmethod.
 method WRITE_TEXT.
 
     data lf_string type string.
+    data lf_mess type c length 100.
 
-    open dataset full_name for output in text mode encoding default.
+    open dataset full_name for output in text mode encoding default
+      message lf_mess.
     if sy-subrc eq 0.
       loop at pt_file into lf_string.
         transfer lf_string to full_name.
       endloop.
       close dataset full_name.
     else.
-      message id sy-msgid type 'I' number sy-msgno
-      with sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+      message lf_mess type 'I'.
       exit.
     endif.
 

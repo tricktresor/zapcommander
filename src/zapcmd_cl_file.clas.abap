@@ -17,7 +17,9 @@ public section.
   abstract
     exporting
       !PF_FILESIZE type I
-      !PT_FILE type ZAPCMD_TBL_XSTRING .
+      !PT_FILE type ZAPCMD_TBL_XSTRING
+    exceptions
+      FAILED .
   methods WRITE_TEXT
   abstract
     importing
@@ -26,7 +28,9 @@ public section.
   abstract
     importing
       !PT_FILE type ZAPCMD_TBL_XSTRING
-      !PF_FILESIZE type I .
+      !PF_FILESIZE type I
+    exceptions
+      FAILED .
   class-methods TEXT2STREAM
     importing
       !PT_TEXT type ZAPCMD_TBL_STRING

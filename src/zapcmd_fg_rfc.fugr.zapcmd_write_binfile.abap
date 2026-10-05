@@ -20,7 +20,6 @@ FUNCTION ZAPCMD_WRITE_BINFILE.
     data lf_filesize type i.
     data lf_mess(100) type c.
     lf_filesize = iv_filesize.
-    refresh lt_file.
 *** Datei oeffen ***
     open dataset iv_full_name for output in binary mode
       message lf_mess. "encoding default.

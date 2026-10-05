@@ -167,7 +167,7 @@ method READ_BIN.
     IF SY-SUBRC <> 0.
       MESSAGE ID SY-MSGID TYPE 'I' NUMBER SY-MSGNO
                  WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
-      exit.
+      raise failed.
     ENDIF.
 
 endmethod.
@@ -273,7 +273,7 @@ method WRITE_BIN.
     IF SY-SUBRC <> 0.
       MESSAGE ID SY-MSGID TYPE 'I' NUMBER SY-MSGNO
                  WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
-      exit.
+      raise failed.
     ENDIF.
 
 endmethod.
