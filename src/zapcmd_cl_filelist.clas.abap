@@ -623,13 +623,17 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
           END OF ls_para_tab.
     DATA lt_para_tab LIKE TABLE OF ls_para_tab.
 
+    " active versions only: creating an inactive class with syntax
+    " errors would end in an uncatchable runtime error
     SELECT clsname FROM seometarel INTO TABLE lt_imp
-      WHERE refclsname = 'ZAPCMD_IF_FACTORY'.
+      WHERE refclsname = 'ZAPCMD_IF_FACTORY'
+        AND version    = '1'.
 
     IF lt_imp IS NOT INITIAL.
       SELECT clsname FROM seometarel APPENDING TABLE lt_imp
         FOR ALL ENTRIES IN lt_imp
-        WHERE refclsname = lt_imp-table_line.
+        WHERE refclsname = lt_imp-table_line
+          AND version    = '1'.
     ENDIF.
 
     SORT lt_imp.
@@ -640,8 +644,13 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
     DATA l_imp TYPE seoclsname.
     DATA lo_object TYPE REF TO zapcmd_if_factory.
     LOOP AT lt_imp INTO l_imp.
-      CREATE OBJECT lo_object TYPE (l_imp).
-      APPEND lo_object TO et_imp.
+      " skips abstract classes and classes that cannot be instantiated
+      TRY.
+          CREATE OBJECT lo_object TYPE (l_imp).
+          APPEND lo_object TO et_imp.
+        CATCH cx_sy_create_object_error.
+          CONTINUE.
+      ENDTRY.
     ENDLOOP.
 
     li_user_exit = zapcmd_cl_user_exit_factory=>get( ).
@@ -1144,7 +1153,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 
       CALL FUNCTION 'POPUP_TO_CONFIRM'
         EXPORTING
-          titlebar              = 'Move'
+          titlebar              = 'Move'(510)
           text_question         = lv_question
           default_button        = '1'
           display_cancel_button = abap_false
