@@ -9,14 +9,21 @@ FUNCTION ZAPCMD_EXEC_CMD.
 *"      ET_OUTPUT STRUCTURE  ZAPCMD_T_TEXT255 OPTIONAL
 *"  EXCEPTIONS
 *"      NOT_FOUND
+*"      COMMAND_TOO_LONG
 *"----------------------------------------------------------------------
 
 
  DATA: lf_command(255) TYPE c.
   DATA: l_lines TYPE TABLE OF char255.
   FIELD-SYMBOLS: <l_line> TYPE char255.
+  DATA lf_command_string TYPE string.
   CONCATENATE iv_command iv_parameter
-    INTO lf_command SEPARATED BY space.
+    INTO lf_command_string SEPARATED BY space.
+  " never run a truncated command
+  IF strlen( lf_command_string ) > 255.
+    RAISE command_too_long.
+  ENDIF.
+  lf_command = lf_command_string.
   DATA: lf_dir(255) TYPE c.
   lf_dir = iv_dir.
 
@@ -56,13 +63,21 @@ FUNCTION ZAPCMD_EXEC_CMD.
 
 
 
+  " only the Windows console writes in the DOS codepage 850 (SAP 1103)
+  IF NOT ( sy-opsys CS 'Windows' OR sy-opsys = 'DOS' ).     "#EC NOTEXT
+    et_output[] = l_lines[].
+    RETURN.
+  ENDIF.
+
    lf_conv1 = cl_abap_conv_out_ce=>create(
-           encoding = 'NON-UNICODE'
-           endian = 'L'
+           encoding    = 'NON-UNICODE'
+           endian      = 'L'
+           ignore_cerr = abap_true
          ).
   lf_conv2 = cl_abap_conv_in_ce=>create(
-           encoding = '1103'
-           endian = 'L'
+           encoding    = '1103'
+           endian      = 'L'
+           ignore_cerr = abap_true
          ).
 
   LOOP AT l_lines ASSIGNING <l_line>.

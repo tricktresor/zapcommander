@@ -136,13 +136,12 @@ CLASS ZAPCMD_CL_CMDLINE IMPLEMENTATION.
 *      concatenate ls_dir->full_name ls_dir->separator pf_cmdline
 *        into lf_cmdline.
         lf_cmdline = pf_cmdline.
-        zapcmd_cl_knot=>exec_server(
+        " runs on the system the pane shows (local server or RFC destination)
+        ls_dir->execute_command(
           EXPORTING
             pf_command = lf_cmdline
-            pf_dir = ls_dir->full_name
           IMPORTING
-            ptx_output = lt_output
-            ).
+            et_output  = lt_output ).
         APPEND LINES OF lt_output TO ct_line.
 
 *       CALL SCREEN 300 STARTING AT 10 3 ENDING AT 100 27.

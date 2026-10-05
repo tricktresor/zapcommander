@@ -259,8 +259,13 @@ endmethod.
 method RENAME.
 
 data lf_oldlongname type zapcmd_fullname.
+data lf_oldname type zapcmd_filename.
+data lt_output type zapcmd_tbl_string.
+data lv_return_code type i.
+data lv_output type string.
 
  lf_oldlongname = me->full_name.
+ lf_oldname = me->name.
 
 CALL METHOD SUPER->RENAME
   EXPORTING
@@ -270,18 +275,24 @@ CALL METHOD SUPER->RENAME
 data lf_command type string.
 data lf_parameter type string.
 if separator = '\'.
-  concatenate lf_oldlongname name into lf_parameter
-    separated by space.
+  lf_parameter = |{ quote_os_arg( lf_oldlongname ) } { quote_os_arg( name ) }|.
   lf_command = 'ren'.
 else.
-  concatenate lf_oldlongname full_name into lf_parameter
-    separated by space.
+  lf_parameter = |{ quote_os_arg( lf_oldlongname ) } { quote_os_arg( full_name ) }|.
   lf_command = 'mv'.
 endif.
  call method exec_server
       exporting
         pf_command = lf_command
-        pf_parameter = lf_parameter .
+        pf_parameter = lf_parameter
+      importing
+        ptx_output = lt_output
+        pf_return_code = lv_return_code.
+ if lv_return_code <> 0.
+   super->rename( pf_newname = lf_oldname ).
+   read table lt_output index 1 into lv_output.
+   message lv_output type 'S' display like 'E'.
+ endif.
 
 endmethod.
 

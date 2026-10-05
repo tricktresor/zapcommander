@@ -18,6 +18,12 @@
      <ENTRY>Directory cannot be opened</ENTRY>
      <LENGTH>40</LENGTH>
     </item>
+    <item>
+     <ID>I</ID>
+     <KEY>002</KEY>
+     <ENTRY>Command line not supported here</ENTRY>
+     <LENGTH>50</LENGTH>
+    </item>
    </TPOOL>
    <I18N_TPOOL>
     <item>
@@ -29,6 +35,12 @@
        <ENTRY>Verzeichnis kann nicht geöffnet werden</ENTRY>
        <LENGTH>40</LENGTH>
       </item>
+      <item>
+       <ID>I</ID>
+       <KEY>002</KEY>
+       <ENTRY>Befehlszeile hier nicht unterstützt</ENTRY>
+       <LENGTH>50</LENGTH>
+      </item>
      </TEXTPOOL>
     </item>
     <item>
@@ -39,6 +51,12 @@
        <KEY>001</KEY>
        <ENTRY>No se puede abrir el directorio</ENTRY>
        <LENGTH>40</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>002</KEY>
+       <ENTRY>Línea de comandos no soportada aquí</ENTRY>
+       <LENGTH>50</LENGTH>
       </item>
      </TEXTPOOL>
     </item>

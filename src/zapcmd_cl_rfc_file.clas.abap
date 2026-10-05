@@ -218,8 +218,11 @@ endmethod.
 method RENAME.
 
 data lf_oldlongname type zapcmd_fullname.
+data lf_oldname type zapcmd_filename.
+data l_message type c length 255.
 
  lf_oldlongname = me->full_name.
+ lf_oldname = me->name.
 
 CALL METHOD SUPER->RENAME
   EXPORTING
@@ -227,32 +230,45 @@ CALL METHOD SUPER->RENAME
     .
 
 data lf_command type text255.
-data lf_parameter type text255.
+data lf_parameter type string.
+data lf_rfc_parameter type text255.
+data lf_subrc type sysubrc.
 if separator = '\'.
-  concatenate lf_oldlongname name into lf_parameter
-    separated by space.
+  lf_parameter = |{ quote_os_arg( lf_oldlongname ) } { quote_os_arg( name ) }|.
   lf_command = 'ren'.
 else.
-  concatenate lf_oldlongname full_name into lf_parameter
-    separated by space.
+  lf_parameter = |{ quote_os_arg( lf_oldlongname ) } { quote_os_arg( full_name ) }|.
   lf_command = 'mv'.
 endif.
+
+ if fits_os_command( lf_parameter ) = abap_false.
+   super->rename( pf_newname = lf_oldname ).
+   return.
+ endif.
+ lf_rfc_parameter = lf_parameter.
 
  call function 'ZAPCMD_EXEC_CMD'
    DESTINATION rfcdest
   EXPORTING
     IV_COMMAND         = lf_command
 *    IV_DIR             =
-    IV_PARAMETER       = lf_parameter
+    IV_PARAMETER       = lf_rfc_parameter
 *  TABLES
 *    ET_OUTPUT          =
   EXCEPTIONS
     NOT_FOUND          = 1
-    OTHERS             = 2
+    system_failure        = 2 MESSAGE l_message
+    communication_failure = 3 MESSAGE l_message
+    OTHERS             = 4
            .
- if sy-subrc <> 0.
-  MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
-          WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
+ lf_subrc = sy-subrc.
+ if lf_subrc <> 0.
+   super->rename( pf_newname = lf_oldname ).
+   if lf_subrc = 2 or lf_subrc = 3.
+     MESSAGE l_message TYPE 'S' DISPLAY LIKE 'E'.
+   else.
+     MESSAGE 'OS command failed'(006) TYPE 'S' DISPLAY LIKE 'E'.
+   endif.
  endif.
 
 

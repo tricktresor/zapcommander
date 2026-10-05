@@ -18,6 +18,12 @@
      <ENTRY>File not found.</ENTRY>
      <LENGTH>21</LENGTH>
     </item>
+    <item>
+     <ID>I</ID>
+     <KEY>131</KEY>
+     <ENTRY>Command or path too long</ENTRY>
+     <LENGTH>30</LENGTH>
+    </item>
    </TPOOL>
    <I18N_TPOOL>
     <item>
@@ -29,6 +35,12 @@
        <ENTRY>Datei nicht gefunden.</ENTRY>
        <LENGTH>21</LENGTH>
       </item>
+      <item>
+       <ID>I</ID>
+       <KEY>131</KEY>
+       <ENTRY>Befehl oder Pfad zu lang</ENTRY>
+       <LENGTH>30</LENGTH>
+      </item>
      </TEXTPOOL>
     </item>
     <item>
@@ -39,6 +51,12 @@
        <KEY>130</KEY>
        <ENTRY>Archivo no encontrado</ENTRY>
        <LENGTH>21</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>131</KEY>
+       <ENTRY>Comando o ruta demasiado largo</ENTRY>
+       <LENGTH>30</LENGTH>
       </item>
      </TEXTPOOL>
     </item>

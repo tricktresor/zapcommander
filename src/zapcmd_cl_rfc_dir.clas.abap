@@ -31,6 +31,8 @@ public section.
     redefinition .
   methods NEW_INSTANCE
     redefinition .
+  methods EXECUTE_COMMAND
+    redefinition .
 protected section.
 *"* protected components of class ZAPCMD_CL_RFC_DIR
 *"* do not include other source files here!!!
@@ -113,18 +115,27 @@ method CREATE_DIR.
         pf_modtime = sy-uzeit
         pf_attr    = space.
 
-    l_parameter = pf_file->full_name.
+    if fits_os_command( quote_os_arg( pf_file->full_name ) ) = abap_false.
+      clear pf_file.
+      return.
+    endif.
+    l_parameter = quote_os_arg( pf_file->full_name ).
     call function 'ZAPCMD_EXEC_CMD'
       DESTINATION rfcdest
       exporting
         iv_command   = 'mkdir'
         iv_parameter = l_parameter
       exceptions
-        system_failure        = 1 message l_message
-        communication_failure = 2 message l_message.
-    if sy-subrc <> 0.
+        not_found             = 1
+        system_failure        = 2 message l_message
+        communication_failure = 3 message l_message
+        others                = 4.
+    if sy-subrc = 2 or sy-subrc = 3.
       clear pf_file.
       message l_message type 'S' display like 'E'.
+    elseif sy-subrc <> 0.
+      clear pf_file.
+      message 'OS command failed'(006) type 'S' display like 'E'.
     endif.
 
 
@@ -183,21 +194,32 @@ ENDMETHOD.
 
 method DELETE.
 
+  data l_parameter type text255.
+  data l_message type c length 255.
+
+  if fits_os_command( quote_os_arg( full_name ) ) = abap_false.
+    return.
+  endif.
+  l_parameter = quote_os_arg( full_name ).
+
   call function 'ZAPCMD_EXEC_CMD'
    DESTINATION rfcdest
    EXPORTING
      IV_COMMAND         = 'rmdir'
 *     IV_DIR             =
-     IV_PARAMETER       = full_name
+     IV_PARAMETER       = l_parameter
 *   TABLES
 *     ET_OUTPUT          =
    EXCEPTIONS
      NOT_FOUND          = 1
-     OTHERS             = 2
+     system_failure        = 2 MESSAGE l_message
+     communication_failure = 3 MESSAGE l_message
+     OTHERS             = 4
             .
-  if sy-subrc <> 0.
-   MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
-           WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
+  if sy-subrc = 2 or sy-subrc = 3.
+    MESSAGE l_message TYPE 'S' DISPLAY LIKE 'E'.
+  elseif sy-subrc <> 0.
+    MESSAGE 'OS command failed'(006) TYPE 'S' DISPLAY LIKE 'E'.
   endif.
 
 
@@ -478,4 +500,52 @@ method READ_DRIVES.
     enddo.
 
 endmethod.
+
+
+METHOD execute_command.
+
+  DATA l_command TYPE text255.
+  DATA l_dir TYPE text255.
+  DATA l_message TYPE c LENGTH 255.
+  DATA lt_output TYPE STANDARD TABLE OF zapcmd_t_text255.
+  DATA ls_output TYPE zapcmd_t_text255.
+  DATA l_line TYPE string.
+
+  CLEAR et_output.
+  IF fits_os_command( pf_command ) = abap_false
+  OR fits_os_command( full_name ) = abap_false.
+    ev_return_code = 8.
+    RETURN.
+  ENDIF.
+  l_command = pf_command.
+  l_dir = full_name.
+
+  CALL FUNCTION 'ZAPCMD_EXEC_CMD'
+    DESTINATION rfcdest
+    EXPORTING
+      iv_command            = l_command
+      iv_dir                = l_dir
+    TABLES
+      et_output             = lt_output
+    EXCEPTIONS
+      not_found             = 1
+      system_failure        = 2 MESSAGE l_message
+      communication_failure = 3 MESSAGE l_message
+      OTHERS                = 4.
+  ev_return_code = sy-subrc.
+  CASE ev_return_code.
+    WHEN 0.
+      LOOP AT lt_output INTO ls_output.
+        l_line = ls_output-text.
+        APPEND l_line TO et_output.
+      ENDLOOP.
+    WHEN 2 OR 3.
+      l_line = l_message.
+      APPEND l_line TO et_output.
+    WHEN OTHERS.
+      APPEND 'OS command failed'(006) TO et_output.
+  ENDCASE.
+
+ENDMETHOD.
+
 ENDCLASS.
