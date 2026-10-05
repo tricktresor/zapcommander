@@ -36,7 +36,9 @@ CLASS zapcmd_cl_filelist DEFINITION
         !iv_side TYPE string
         !pf_type TYPE syucomm DEFAULT 'FRONTEND'
         !pf_dir  TYPE string OPTIONAL.
-    METHODS refresh .
+    METHODS refresh
+      IMPORTING
+        !pf_activate TYPE abap_bool DEFAULT abap_true .
     METHODS handle_activate
         FOR EVENT set_active OF zapcmd_cl_filelist
       IMPORTING
@@ -75,6 +77,14 @@ CLASS zapcmd_cl_filelist DEFINITION
 
   PRIVATE SECTION.
     CONSTANTS c_field_sort_prio TYPE lvc_s_sort-fieldname VALUE 'SORT_PRIO' ##NO_TEXT.
+    "! State of a confirmation dialog during copy/move/delete,
+    "! passed down into subdirectories
+    CONSTANTS: BEGIN OF gc_confirm,
+                 ask     TYPE c LENGTH 1 VALUE ' ',
+                 yes_all TYPE c LENGTH 1 VALUE 'R',
+                 no_all  TYPE c LENGTH 1 VALUE 'S',
+                 cancel  TYPE c LENGTH 1 VALUE 'A',
+               END OF gc_confirm.
 *"* private components of class ZAPCMD_CL_FILELIST
 *"* do not include other source files here!!!
 
@@ -128,6 +138,32 @@ CLASS zapcmd_cl_filelist DEFINITION
     METHODS get_factories
       RETURNING
         VALUE(et_imp) TYPE zapcmd_tbl_factory .
+
+    "! Asks Yes / Yes to all / No / No to all; cancel sets cv_mode to cancel
+    METHODS confirm
+      IMPORTING
+        !pf_title     TYPE csequence
+        !pf_question  TYPE csequence
+        !pf_info      TYPE csequence OPTIONAL
+      EXPORTING
+        !ef_confirmed TYPE abap_bool
+      CHANGING
+        !cv_mode      TYPE c .
+
+    METHODS copy_entries
+      IMPORTING
+        !pt_files   TYPE zapcmd_tbl_filelist
+        !pf_destdir TYPE REF TO zapcmd_cl_dir
+      EXPORTING
+        !et_copied  TYPE zapcmd_tbl_filelist
+      CHANGING
+        !cv_mode    TYPE c .
+
+    METHODS delete_entries
+      IMPORTING
+        !pt_files TYPE zapcmd_tbl_filelist
+      CHANGING
+        !cv_mode  TYPE c .
 
     METHODS get_factory_buttons
       CHANGING
@@ -220,15 +256,35 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 
   METHOD copy.
 
+    DATA lv_mode TYPE c LENGTH 1.
+
+    lv_mode = gc_confirm-ask.
+    copy_entries(
+      EXPORTING
+        pt_files   = pt_files
+        pf_destdir = pf_destdir
+      IMPORTING
+        et_copied  = et_copied
+      CHANGING
+        cv_mode    = lv_mode ).
+
+    " copying into this list must not make it the active one
+    reload_dir( ).
+    refresh( pf_activate = abap_false ).
+
+  ENDMETHOD.
+
+
+  METHOD copy_entries.
+
     DATA lf_file       TYPE REF TO zapcmd_cl_knot.
     DATA lf_sourcefile TYPE REF TO zapcmd_cl_file.
     DATA lf_destfile   TYPE REF TO zapcmd_cl_file.
     DATA lt_file       TYPE zapcmd_tbl_xstring.
-    DATA lf_answer     TYPE c LENGTH 1.
     DATA lf_filesize   TYPE i.
+    DATA lf_confirmed  TYPE abap_bool.
 
     CLEAR et_copied.
-    lf_answer = '1'.
 
     LOOP AT pt_files INTO lf_file
        WHERE table_line->filetype <> 'DIR'
@@ -236,6 +292,14 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 
       lf_sourcefile ?= lf_file.
       DATA lf_string TYPE string.
+
+      " files are copied in memory with sizes of type I
+      IF lf_sourcefile->filesize > 2147483647.
+        CONCATENATE '"' lf_sourcefile->name '": ' 'File too large to copy (max. 2 GB)'(023) INTO lf_string.
+        MESSAGE lf_string TYPE 'I' DISPLAY LIKE 'E'.
+        CONTINUE.
+      ENDIF.
+
       CONCATENATE 'COPY: ' lf_sourcefile->name INTO lf_string.
 
       CALL FUNCTION 'SAPGUI_PROGRESS_INDICATOR'
@@ -244,44 +308,23 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
           text       = lf_string.
 
       IF pf_destdir->check_fileexist( lf_sourcefile->name ) = abap_true.
-        IF lf_answer <> '2'.
 
-          CONCATENATE '"' lf_sourcefile->name '"' ' existiert'(006) '. ' 'Überschreiben'(007) '?' INTO
-            lf_string.
-
-          CALL FUNCTION 'POPUP_TO_CONFIRM'
-            EXPORTING
-              titlebar              = lf_sourcefile->full_name
-*             DIAGNOSE_OBJECT       = ' '
-              text_question         = lf_string
-              text_button_1         = 'Ja'(008)
-              icon_button_1         = ' '
-              text_button_2         = 'Ja, Alle'(009)
-              icon_button_2         = ' '
-              default_button        = '1'
-              display_cancel_button = 'X'
-*             USERDEFINED_F1_HELP   = ' '
-*             START_COLUMN          = 25
-*             START_ROW             = 6
-*             POPUP_TYPE            =
-            IMPORTING
-              answer                = lf_answer
-*           TABLES
-*             PARAMETER             =
-            EXCEPTIONS
-              text_not_found        = 1
-              OTHERS                = 2.
-          IF sy-subrc <> 0.
-            MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
-                    WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
-          ENDIF.
-          IF lf_answer = 'A'.
-**          Abbruch.
-            RETURN.
-          ENDIF.
-
+        CONCATENATE '"' lf_sourcefile->name '"' ' existiert'(006) '. ' 'Überschreiben'(007) '?' INTO
+          lf_string.
+        confirm(
+          EXPORTING
+            pf_title     = lf_sourcefile->full_name
+            pf_question  = lf_string
+          IMPORTING
+            ef_confirmed = lf_confirmed
+          CHANGING
+            cv_mode      = cv_mode ).
+        IF cv_mode = gc_confirm-cancel.
+          RETURN.
         ENDIF.
-
+        IF lf_confirmed = abap_false.
+          CONTINUE.
+        ENDIF.
 
       ENDIF.
 
@@ -316,13 +359,12 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 
       APPEND lf_file TO et_copied.
 
-
     ENDLOOP.
+
     LOOP AT pt_files INTO lf_file
       WHERE table_line->filetype = 'DIR'
       AND   table_line->name <> '..'.
 
-*          message lf_file->name type 'S'.
       DATA lf_destdir TYPE REF TO zapcmd_cl_dir.
 
       CLEAR lf_destdir.
@@ -350,12 +392,17 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
         MESSAGE ID sy-msgid TYPE 'I' NUMBER sy-msgno
           WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
       ELSE.
-        CALL METHOD copy
+        copy_entries(
           EXPORTING
             pt_files   = lf_files
             pf_destdir = lf_destdir
           IMPORTING
-            et_copied  = lt_sub_copied.
+            et_copied  = lt_sub_copied
+          CHANGING
+            cv_mode    = cv_mode ).
+        IF cv_mode = gc_confirm-cancel.
+          RETURN.
+        ENDIF.
 
         " a directory only counts as copied if all of its entries were copied
         lf_sub_count = 0.
@@ -369,29 +416,23 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
         ENDIF.
       ENDIF.
 
-
     ENDLOOP.
-
-    CALL METHOD reload_dir.
-    CALL METHOD refresh.
-
 
   ENDMETHOD.
 
 
   METHOD move.
 
-    DATA lv_answer     TYPE c LENGTH 1.
+    DATA lv_mode       TYPE c LENGTH 1.
+    DATA lv_confirmed  TYPE abap_bool.
     DATA lo_file       TYPE REF TO zapcmd_cl_knot.
     DATA lv_string     TYPE string.
-    DATA lo_destfile   TYPE REF TO zapcmd_cl_file.
-    DATA lt_file       TYPE zapcmd_tbl_xstring.
-    DATA lv_filesize   TYPE i.
 
-    lv_answer = '1'.
+    lv_mode = gc_confirm-ask.
 
     LOOP AT it_files INTO lo_file
-         WHERE table_line->filetype <> 'UP'.
+         WHERE table_line->filetype <> 'UP'
+           AND table_line->name <> '..'.
 
       lv_string = |MOVE: { lo_file->name }|.
 
@@ -402,39 +443,27 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 
       IF io_destdir->check_fileexist( lo_file->name ) = abap_true.
 
-        IF lv_answer <> '2'.
-
-          lv_string = |"{ lo_file->name }" { 'exists'(006) } { 'Overwrite'(007) }?|.
-
-          CALL FUNCTION 'POPUP_TO_CONFIRM'
-            EXPORTING
-              titlebar              = lo_file->full_name
-              text_question         = lv_string
-              text_button_1         = 'Yes'(008)
-              icon_button_1         = ' '
-              text_button_2         = 'Yes to all'(009)
-              icon_button_2         = ' '
-              default_button        = '1'
-              display_cancel_button = abap_true
-            IMPORTING
-              answer                = lv_answer
-            EXCEPTIONS
-              text_not_found        = 1
-              OTHERS                = 2.
-          IF sy-subrc <> 0.
-            MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
-                    WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
-          ENDIF.
-
-          IF lv_answer = 'A'.
-            RETURN.
-          ENDIF.
-
+        lv_string = |"{ lo_file->name }" { 'exists'(006) } { 'Overwrite'(007) }?|.
+        confirm(
+          EXPORTING
+            pf_title     = lo_file->full_name
+            pf_question  = lv_string
+          IMPORTING
+            ef_confirmed = lv_confirmed
+          CHANGING
+            cv_mode      = lv_mode ).
+        IF lv_mode = gc_confirm-cancel.
+          EXIT.
+        ENDIF.
+        IF lv_confirmed = abap_false.
+          CONTINUE.
         ENDIF.
 
       ENDIF.
 
-      lo_file->move( io_destdir->full_name ).
+      IF lo_file->move( io_destdir->full_name ) <> 0.
+        MESSAGE 'MOVE failed'(508) TYPE 'S' DISPLAY LIKE 'E'.
+      ENDIF.
 
     ENDLOOP.
 
@@ -446,77 +475,80 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 
   METHOD delete.
 
-    DATA lf_file TYPE REF TO zapcmd_cl_knot.
-    DATA lf_answer TYPE c.
+    DATA lv_mode TYPE c LENGTH 1.
 
-    LOOP AT pt_files INTO lf_file.
-
-      IF lf_file->name <> '..'.
-
-        IF lf_answer <> '2'.
-
-          DATA lf_string TYPE string.
-          CONCATENATE '"' lf_file->name '"' ' löschen?'(010) INTO
-            lf_string.
-
-          CALL FUNCTION 'POPUP_TO_CONFIRM'
-            EXPORTING
-              titlebar              = lf_file->full_name
-*             DIAGNOSE_OBJECT       = ' '
-              text_question         = lf_string
-              text_button_1         = 'Ja'(008)
-              icon_button_1         = ' '
-              text_button_2         = 'Ja, Alle'(009)
-              icon_button_2         = ' '
-              default_button        = '1'
-              display_cancel_button = 'X'
-*             USERDEFINED_F1_HELP   = ' '
-*             START_COLUMN          = 25
-*             START_ROW             = 6
-*             POPUP_TYPE            =
-            IMPORTING
-              answer                = lf_answer
-*           TABLES
-*             PARAMETER             =
-            EXCEPTIONS
-              text_not_found        = 1
-              OTHERS                = 2.
-          IF sy-subrc <> 0.
-            MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
-                    WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
-          ENDIF.
-
-        ENDIF.
-
-        IF lf_answer = '1' OR lf_answer = '2'.
-          IF lf_file->filetype = 'DIR'.
-            DATA lf_files TYPE zapcmd_tbl_filelist.
-            DATA lf_dir TYPE REF TO zapcmd_cl_dir.
-            lf_dir ?= lf_file.
-            CALL METHOD lf_dir->read_dir
-              IMPORTING
-                pt_filelist       = lf_files
-              EXCEPTIONS
-                permission_denied = 1.
-            IF sy-subrc <> 0.
-              MESSAGE ID sy-msgid TYPE 'I' NUMBER sy-msgno
-                WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
-              EXIT.
-            ENDIF.
-            CALL METHOD delete
-              EXPORTING
-                pt_files = lf_files.
-
-          ENDIF.
-          CALL METHOD lf_file->delete.
-        ELSEIF lf_answer = 'A'.
-          EXIT.
-        ENDIF.
-      ENDIF.
-    ENDLOOP.
+    lv_mode = gc_confirm-ask.
+    delete_entries(
+      EXPORTING
+        pt_files = pt_files
+      CHANGING
+        cv_mode  = lv_mode ).
 
     CALL METHOD reload_dir.
     CALL METHOD refresh.
+
+  ENDMETHOD.
+
+
+  METHOD delete_entries.
+
+    DATA lf_file TYPE REF TO zapcmd_cl_knot.
+    DATA lf_string TYPE string.
+    DATA lf_info TYPE string.
+    DATA lf_confirmed TYPE abap_bool.
+    DATA lf_files TYPE zapcmd_tbl_filelist.
+    DATA lf_dir TYPE REF TO zapcmd_cl_dir.
+    DATA lv_sub_mode TYPE c LENGTH 1.
+
+    LOOP AT pt_files INTO lf_file.
+
+      IF lf_file->name = '..' OR lf_file->filetype = 'UP'.
+        CONTINUE.
+      ENDIF.
+
+      CONCATENATE '"' lf_file->name '"' ' löschen?'(010) INTO lf_string.
+      CLEAR lf_info.
+      IF lf_file->filetype = 'DIR'.
+        lf_info = 'Directory including its contents'(022).
+      ENDIF.
+      confirm(
+        EXPORTING
+          pf_title     = lf_file->full_name
+          pf_question  = lf_string
+          pf_info      = lf_info
+        IMPORTING
+          ef_confirmed = lf_confirmed
+        CHANGING
+          cv_mode      = cv_mode ).
+      IF cv_mode = gc_confirm-cancel.
+        RETURN.
+      ENDIF.
+      IF lf_confirmed = abap_false.
+        CONTINUE.
+      ENDIF.
+
+      IF lf_file->filetype = 'DIR'.
+        lf_dir ?= lf_file.
+        CALL METHOD lf_dir->read_dir
+          IMPORTING
+            pt_filelist       = lf_files
+          EXCEPTIONS
+            permission_denied = 1.
+        IF sy-subrc <> 0.
+          MESSAGE ID sy-msgid TYPE 'I' NUMBER sy-msgno
+            WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+          CONTINUE.
+        ENDIF.
+        " the directory was confirmed, so its contents go without asking
+        lv_sub_mode = gc_confirm-yes_all.
+        delete_entries(
+          EXPORTING
+            pt_files = lf_files
+          CHANGING
+            cv_mode  = lv_sub_mode ).
+      ENDIF.
+      CALL METHOD lf_file->delete.
+    ENDLOOP.
 
   ENDMETHOD.
 
@@ -1420,7 +1452,9 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
           txt1  = 'Error in FLush'(500).
     ENDIF.
 
-    RAISE EVENT set_active.
+    IF pf_activate = abap_true.
+      RAISE EVENT set_active.
+    ENDIF.
 
   ENDMETHOD.
 
@@ -1683,5 +1717,66 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
     ENDIF.
 
   ENDMETHOD.
+
+
+  METHOD confirm.
+
+    DATA lt_options TYPE STANDARD TABLE OF spopli.
+    DATA ls_option TYPE spopli.
+    DATA lv_answer TYPE c LENGTH 1.
+
+    ef_confirmed = abap_false.
+    CASE cv_mode.
+      WHEN gc_confirm-yes_all.
+        ef_confirmed = abap_true.
+        RETURN.
+      WHEN gc_confirm-no_all OR gc_confirm-cancel.
+        RETURN.
+    ENDCASE.
+
+    ls_option-varoption = 'Yes'(008).
+    APPEND ls_option TO lt_options.
+    ls_option-varoption = 'Yes to all'(009).
+    APPEND ls_option TO lt_options.
+    ls_option-varoption = 'No'(019).
+    APPEND ls_option TO lt_options.
+    ls_option-varoption = 'No to all'(020).
+    APPEND ls_option TO lt_options.
+
+    CALL FUNCTION 'POPUP_TO_DECIDE_LIST'
+      EXPORTING
+        textline1          = pf_question
+        textline2          = pf_info
+        titel              = pf_title
+      IMPORTING
+        answer             = lv_answer
+      TABLES
+        t_spopli           = lt_options
+      EXCEPTIONS
+        not_enough_answers = 1
+        too_much_answers   = 2
+        too_much_marks     = 3
+        OTHERS             = 4.
+    IF sy-subrc <> 0.
+      cv_mode = gc_confirm-cancel.
+      RETURN.
+    ENDIF.
+
+    CASE lv_answer.
+      WHEN '1'.
+        ef_confirmed = abap_true.
+      WHEN '2'.
+        ef_confirmed = abap_true.
+        cv_mode = gc_confirm-yes_all.
+      WHEN '3'.
+        " skip this entry
+      WHEN '4'.
+        cv_mode = gc_confirm-no_all.
+      WHEN OTHERS.
+        cv_mode = gc_confirm-cancel.
+    ENDCASE.
+
+  ENDMETHOD.
+
 
 ENDCLASS.

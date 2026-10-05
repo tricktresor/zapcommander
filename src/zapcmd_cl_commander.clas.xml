@@ -17,6 +17,12 @@
      <ENTRY>Create new directory:</ENTRY>
      <LENGTH>30</LENGTH>
     </item>
+    <item>
+     <ID>I</ID>
+     <KEY>006</KEY>
+     <ENTRY>Please select a file</ENTRY>
+     <LENGTH>30</LENGTH>
+    </item>
    </TPOOL>
    <I18N_TPOOL>
     <item>
@@ -28,6 +34,12 @@
        <ENTRY>Neues Verzeichnis anlegen:</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
+      <item>
+       <ID>I</ID>
+       <KEY>006</KEY>
+       <ENTRY>Bitte eine Datei auswählen</ENTRY>
+       <LENGTH>30</LENGTH>
+      </item>
      </TEXTPOOL>
     </item>
     <item>
@@ -37,6 +49,12 @@
        <ID>I</ID>
        <KEY>005</KEY>
        <ENTRY>Crear nuevo directorio:</ENTRY>
+       <LENGTH>30</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>006</KEY>
+       <ENTRY>Seleccione un archivo</ENTRY>
        <LENGTH>30</LENGTH>
       </item>
      </TEXTPOOL>
