@@ -108,15 +108,6 @@ METHOD EXECUTE.
 *          pf_readonly = 'X'
 *        ).
 
-  DATA l_extension TYPE string.
-  l_extension = extension.
-  TRANSLATE l_extension TO UPPER CASE.
-
-  IF strlen( l_extension ) >= 3 AND l_extension(3) = 'ABA'.
-
-   execute_abap( ).
-
-  ELSE.
 
 
     DATA lf_destfile TYPE REF TO zapcmd_cl_file.
@@ -156,7 +147,6 @@ METHOD EXECUTE.
 
     lf_destfile->execute( ).
 
-  ENDIF.
 
 ENDMETHOD.
 

@@ -11,54 +11,7 @@
     <FIXPT>X</FIXPT>
     <UNICODE>X</UNICODE>
    </VSEOCLASS>
-   <TPOOL>
-    <item>
-     <ID>I</ID>
-     <KEY>001</KEY>
-     <ENTRY>Syntax error in line</ENTRY>
-     <LENGTH>21</LENGTH>
-    </item>
-   </TPOOL>
-   <I18N_TPOOL>
-    <item>
-     <LANGUAGE>D</LANGUAGE>
-     <TEXTPOOL>
-      <item>
-       <ID>I</ID>
-       <KEY>001</KEY>
-       <ENTRY>Syntaxfehler in Zeile</ENTRY>
-       <LENGTH>21</LENGTH>
-      </item>
-     </TEXTPOOL>
-    </item>
-    <item>
-     <LANGUAGE>S</LANGUAGE>
-     <TEXTPOOL>
-      <item>
-       <ID>I</ID>
-       <KEY>001</KEY>
-       <ENTRY>Error sintaxis línea</ENTRY>
-       <LENGTH>21</LENGTH>
-      </item>
-     </TEXTPOOL>
-    </item>
-   </I18N_TPOOL>
    <DESCRIPTIONS>
-    <SEOCOMPOTX>
-     <CMPNAME>EXECUTE_ABAP</CMPNAME>
-     <LANGU>D</LANGU>
-     <DESCRIPT>Führt Abap-Reports aus Dateien aus</DESCRIPT>
-    </SEOCOMPOTX>
-    <SEOCOMPOTX>
-     <CMPNAME>EXECUTE_ABAP</CMPNAME>
-     <LANGU>E</LANGU>
-     <DESCRIPT>Executes ABAP reports directly</DESCRIPT>
-    </SEOCOMPOTX>
-    <SEOCOMPOTX>
-     <CMPNAME>EXECUTE_ABAP</CMPNAME>
-     <LANGU>S</LANGU>
-     <DESCRIPT>Ejecuta directamente programa ABAP</DESCRIPT>
-    </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CMPNAME>GET_EXTENSION</CMPNAME>
      <LANGU>D</LANGU>
