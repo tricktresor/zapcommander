@@ -88,10 +88,10 @@ method DELETE.
      NOT_FOUND             = 1
      system_failure        = 2 MESSAGE l_message
      communication_failure = 3 MESSAGE l_message
-     resource_failure      = 4 MESSAGE l_message
+     resource_failure      = 4
      OTHERS                = 5
             .
-  IF sy-subrc BETWEEN 2 AND 4.
+  IF sy-subrc BETWEEN 2 AND 3.
     MESSAGE l_message TYPE 'S' DISPLAY LIKE 'E'.
   ELSEIF sy-subrc <> 0.
     MESSAGE 'File could not be deleted'(007) TYPE 'S' DISPLAY LIKE 'E'.
@@ -180,10 +180,10 @@ method READ_BIN.
        NOT_FOUND             = 1
        system_failure        = 2 MESSAGE l_message
        communication_failure = 3 MESSAGE l_message
-       resource_failure      = 4 MESSAGE l_message
+       resource_failure      = 4
        OTHERS                = 5
               .
-    IF sy-subrc BETWEEN 2 AND 4.
+    IF sy-subrc BETWEEN 2 AND 3.
       MESSAGE l_message TYPE 'I' DISPLAY LIKE 'E'.
       raise failed.
     ELSEIF sy-subrc <> 0.
@@ -215,10 +215,10 @@ method READ_TEXT.
        NOT_FOUND             = 1
        system_failure        = 2 MESSAGE l_message
        communication_failure = 3 MESSAGE l_message
-       resource_failure      = 4 MESSAGE l_message
+       resource_failure      = 4
        OTHERS                = 5
               .
-    IF sy-subrc BETWEEN 2 AND 4.
+    IF sy-subrc BETWEEN 2 AND 3.
       MESSAGE l_message TYPE 'I' DISPLAY LIKE 'E'.
       return.
     ELSEIF sy-subrc <> 0.
@@ -276,13 +276,13 @@ endif.
     NOT_FOUND          = 1
     system_failure        = 2 MESSAGE l_message
     communication_failure = 3 MESSAGE l_message
-    resource_failure      = 4 MESSAGE l_message
+    resource_failure      = 4
     OTHERS             = 5
            .
  lf_subrc = sy-subrc.
  if lf_subrc <> 0.
    super->rename( pf_newname = lf_oldname ).
-   if lf_subrc between 2 and 4.
+   if lf_subrc between 2 and 3.
      MESSAGE l_message TYPE 'S' DISPLAY LIKE 'E'.
    else.
      MESSAGE 'OS command failed'(006) TYPE 'S' DISPLAY LIKE 'E'.
@@ -312,9 +312,9 @@ METHOD write_bin.
       not_found             = 1
       system_failure        = 2 MESSAGE l_message
       communication_failure = 3 MESSAGE l_message
-      resource_failure      = 4 MESSAGE l_message
+      resource_failure      = 4
       OTHERS                = 5.
-  IF sy-subrc BETWEEN 2 AND 4.
+  IF sy-subrc BETWEEN 2 AND 3.
     MESSAGE l_message TYPE 'I' DISPLAY LIKE 'E'.
     RAISE failed.
   ELSEIF sy-subrc <> 0.
@@ -343,9 +343,9 @@ METHOD write_text.
       not_found             = 1
       system_failure        = 2 MESSAGE l_message
       communication_failure = 3 MESSAGE l_message
-      resource_failure      = 4 MESSAGE l_message
+      resource_failure      = 4
       OTHERS                = 5.
-  IF sy-subrc BETWEEN 2 AND 4.
+  IF sy-subrc BETWEEN 2 AND 3.
     MESSAGE l_message TYPE 'I' DISPLAY LIKE 'E'.
   ELSEIF sy-subrc <> 0.
     MESSAGE 'File could not be written'(009) TYPE 'I' DISPLAY LIKE 'E'.
