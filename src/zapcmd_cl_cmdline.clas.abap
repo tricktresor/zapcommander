@@ -50,6 +50,11 @@ CLASS zapcmd_cl_cmdline DEFINITION
 *"* private components of class ZAPCMD_CL_CMDLINE
 *"* do not include other source files here!!!
 
+    "! Prompt in front of the command line: where the command runs and in
+    "! which directory, e.g. "Appl. Server A4H (host) /usr/sap >"
+    METHODS build_prompt
+      RETURNING
+        VALUE(rv_prompt) TYPE string.
     "! Target directory of "cd ARG": absolute paths as they are,
     "! ".." is the parent, everything else is relative to io_dir
     METHODS resolve_cd_target
@@ -102,12 +107,35 @@ CLASS ZAPCMD_CL_CMDLINE IMPLEMENTATION.
         RETURN.
       ENDIF.
       IF ls_dir->server_area = zapcmd_cl_knot=>co_area_frontend.
+        " the PC command line uses cmd.exe and needs SAP GUI for Windows
+        DATA lf_platform TYPE i.
+        cl_gui_frontend_services=>get_platform(
+          RECEIVING
+            platform             = lf_platform
+          EXCEPTIONS
+            error_no_gui         = 1
+            cntl_error           = 2
+            not_supported_by_gui = 3
+            OTHERS               = 4 ).
+        IF sy-subrc = 0.
+          cl_gui_cfw=>flush( ).
+        ENDIF.
+        IF sy-subrc <> 0
+        OR NOT ( lf_platform = cl_gui_frontend_services=>platform_windows95
+              OR lf_platform = cl_gui_frontend_services=>platform_windows98
+              OR lf_platform = cl_gui_frontend_services=>platform_nt351
+              OR lf_platform = cl_gui_frontend_services=>platform_nt40
+              OR lf_platform = cl_gui_frontend_services=>platform_nt50
+              OR lf_platform = cl_gui_frontend_services=>platform_windowsxp ).
+          MESSAGE 'Command line on the PC needs SAP GUI for Windows'(001) TYPE 'S' DISPLAY LIKE 'E'.
+          RETURN.
+        ENDIF.
         DATA lf_params TYPE string.
         CONCATENATE '/k' pf_cmdline
           INTO lf_params SEPARATED BY space.
         CALL METHOD cl_gui_frontend_services=>execute
           EXPORTING
-            application            = 'c:\WINDOWS\system32\cmd.exe'
+            application            = 'cmd.exe'
             parameter              = lf_params
             default_directory      = ls_dir->full_name
             synchronous            = 'X'
@@ -176,10 +204,7 @@ CLASS ZAPCMD_CL_CMDLINE IMPLEMENTATION.
 
   METHOD handle_doubleclick.
 
-    FIELD-SYMBOLS: <filelist> TYPE REF TO zapcmd_cl_filelist.
-    ASSIGN cf_filelist->* TO <filelist>.
-    cf_dirname = <filelist>->cf_ref_dir->full_name.
-
+    cf_dirname = build_prompt( ).
     cf_gui_dirname->set_textstream( text = cf_dirname ).
 
   ENDMETHOD.
@@ -235,9 +260,7 @@ CLASS ZAPCMD_CL_CMDLINE IMPLEMENTATION.
 
     cf_gui_dirname->set_readonly_mode( 1 ).
 
-    FIELD-SYMBOLS: <filelist> TYPE REF TO zapcmd_cl_filelist.
-    ASSIGN cf_filelist->* TO <filelist>.
-    cf_dirname = <filelist>->cf_ref_dir->full_name.
+    cf_dirname = build_prompt( ).
     cf_gui_dirname->set_textstream( text = cf_dirname ).
 
   ENDMETHOD.
@@ -301,6 +324,21 @@ CLASS ZAPCMD_CL_CMDLINE IMPLEMENTATION.
         CONCATENATE rv_dir lv_sep iv_arg INTO rv_dir.
       ENDIF.
     ENDIF.
+
+  ENDMETHOD.
+
+
+  METHOD build_prompt.
+
+    FIELD-SYMBOLS <filelist> TYPE REF TO zapcmd_cl_filelist.
+    ASSIGN cf_filelist->* TO <filelist>.
+    IF sy-subrc <> 0.
+      RETURN.
+    ENDIF.
+    IF <filelist> IS NOT BOUND OR <filelist>->cf_ref_dir IS NOT BOUND.
+      RETURN.
+    ENDIF.
+    rv_prompt = |{ <filelist>->cf_ref_dir->get_command_target( ) } { <filelist>->cf_ref_dir->full_name } >|.
 
   ENDMETHOD.
 

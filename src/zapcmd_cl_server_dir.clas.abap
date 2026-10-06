@@ -30,6 +30,8 @@ CLASS zapcmd_cl_server_dir DEFINITION
         REDEFINITION .
     METHODS execute_command
         REDEFINITION .
+    METHODS get_command_target
+        REDEFINITION .
   PROTECTED SECTION.
 *"* protected components of class ZAPCMD_CL_SERVER_DIR
 *"* do not include other source files here!!!
@@ -880,5 +882,13 @@ CLASS zapcmd_cl_server_dir IMPLEMENTATION.
         pf_return_code = ev_return_code ).
 
   ENDMETHOD.
+
+
+  METHOD get_command_target.
+
+    rv_target = |{ area_string } { sy-sysid } ({ sy-host })|.
+
+  ENDMETHOD.
+
 
 ENDCLASS.
