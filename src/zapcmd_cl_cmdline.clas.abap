@@ -50,7 +50,7 @@ CLASS zapcmd_cl_cmdline DEFINITION
 *"* private components of class ZAPCMD_CL_CMDLINE
 *"* do not include other source files here!!!
 
-    "! Target directory of "cd <arg>": absolute paths as they are,
+    "! Target directory of "cd ARG": absolute paths as they are,
     "! ".." is the parent, everything else is relative to io_dir
     METHODS resolve_cd_target
       IMPORTING
