@@ -79,15 +79,6 @@ endmethod.
 METHOD execute.
 
 * ...
-  DATA l_extension TYPE string.
-  l_extension = extension.
-  TRANSLATE l_extension TO UPPER CASE.
-
-  IF strlen( l_extension ) >= 3 and l_extension(3) = 'ABA'.
-
-     execute_abap( ).
-
-  ELSE.
 
     CALL METHOD cl_gui_frontend_services=>execute
       EXPORTING
@@ -112,7 +103,6 @@ METHOD execute.
       MESSAGE ID sy-msgid TYPE 'I' NUMBER sy-msgno
                  WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
     ENDIF.
-  ENDIF.
 
 ENDMETHOD.
 

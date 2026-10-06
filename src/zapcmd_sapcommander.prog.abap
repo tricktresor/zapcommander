@@ -40,12 +40,13 @@ START-OF-SELECTION.
   DATA go_gui_dirname_container TYPE REF TO cl_gui_custom_container.
   DATA go_commander TYPE REF TO zapcmd_cl_commander.
   DATA go_cmdline TYPE REF TO zapcmd_cl_cmdline.
-  DATA gf_cmdline TYPE string.
+  " same name as the input field on screen 0100
+  DATA g_cmdline TYPE string.
   DATA gf_dirname TYPE string.
   DATA go_temp TYPE REF TO string.
   DATA go_dirname TYPE REF TO string.
 
-  GET REFERENCE OF gf_cmdline INTO go_temp.
+  GET REFERENCE OF g_cmdline INTO go_temp.
   GET REFERENCE OF gf_dirname INTO go_dirname.
 
   CREATE OBJECT go_commander
@@ -114,10 +115,25 @@ FORM status_0100.
 *    EXPORTING
 *      pf_container = gf_gui_parent_container.
 
+  " screens 0100 and 0110 both have the area CUST100; the container is
+  " created once and must be linked to the current screen after a switch
+  STATICS sv_container_dynnr TYPE sy-dynnr.
   IF go_gui_commander_container IS INITIAL.
     CREATE OBJECT go_gui_commander_container
       EXPORTING
         container_name = 'CUST100'.
+    sv_container_dynnr = sy-dynnr.
+  ELSEIF sv_container_dynnr <> sy-dynnr.
+    go_gui_commander_container->link(
+      EXPORTING
+        repid     = sy-repid
+        dynnr     = sy-dynnr
+        container = 'CUST100'
+      EXCEPTIONS
+        OTHERS    = 1 ).
+    IF sy-subrc = 0.
+      sv_container_dynnr = sy-dynnr.
+    ENDIF.
   ENDIF.
 
   go_commander->show( go_gui_commander_container ).
@@ -139,15 +155,21 @@ FORM status_0100.
 ENDFORM.
 
 FORM user_command_0100.
+  " clear the OK field first: LEAVE TO SCREEN below skips the end of the
+  " form, and a stale CMDLINE would otherwise fire again on the next Enter
+  DATA lv_ucomm TYPE syucomm.
+  lv_ucomm = ok_code100.
+  CLEAR ok_code100.
+
 *   to react on oi_custom_events:
   cl_gui_cfw=>dispatch( ).
-  go_commander->user_command( ok_code100 ).
+  go_commander->user_command( lv_ucomm ).
 
   IF sy-dynnr = '0100'.
-    go_cmdline->user_command( ok_code100 ).
+    go_cmdline->user_command( lv_ucomm ).
   ENDIF.
 
-  CASE ok_code100.
+  CASE lv_ucomm.
     WHEN 'EXIT'.
       LEAVE TO SCREEN 0.
     WHEN 'ABORT'.
@@ -159,5 +181,4 @@ FORM user_command_0100.
         LEAVE TO SCREEN 100.
       ENDIF.
   ENDCASE.
-  CLEAR ok_code100.
 ENDFORM.

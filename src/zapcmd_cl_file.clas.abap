@@ -41,7 +41,6 @@ public section.
       !PF_STREAM type STRING
     returning
       value(PTX_TEXT) type ZAPCMD_TBL_STRING .
-  methods EXECUTE_ABAP .
   methods GET_EXTENSION
     returning
       value(R_EXTENSION) type STRING .
@@ -59,52 +58,6 @@ ENDCLASS.
 
 
 CLASS ZAPCMD_CL_FILE IMPLEMENTATION.
-
-
-METHOD execute_abap.
-
-  DATA l_repname TYPE syrepid.
-data: syn_err_mess(240),                       "Syntax-check
-      syn_err_line type i,                     "Syntax-check
-      syn_err_word(72).                        "Syntax-check
-
-  CONCATENATE 'ZTMP_' shortname INTO l_repname.
-  DATA lt_code TYPE TABLE OF string.
-  read_text(
-    IMPORTING
-      pt_file = lt_code
-   ).
-
-  SYNTAX-CHECK FOR lt_code
-    program 'ZAPCMD_SAPCOMMANDER'
-    MESSAGE syn_err_mess
-    LINE   syn_err_line
-    WORD   syn_err_word.
-
-  IF sy-subrc EQ 0.
-
-    INSERT REPORT l_repname FROM lt_code.
-    IF sy-subrc EQ 0.
-*     Modifzierter i_code zu Report generieren
-      GENERATE REPORT l_repname.
-
-*     generierter i_code aufrufen
-      SUBMIT (l_repname) VIA SELECTION-SCREEN
-        AND RETURN.
-    ENDIF.
-  ELSE.
-
-    data l_errortext type string.
-    data l_line type string.
-    l_line = syn_err_line.
-    concatenate 'Syntax error in line'(001) l_line ':"' syn_err_mess '"' into l_errortext.
-
-
-    message l_errortext type 'I' DISPLAY LIKE 'E'.
-
-  ENDIF.
-
-ENDMETHOD.
 
 
 method GET_EXTENSION.

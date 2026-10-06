@@ -537,7 +537,7 @@ CLASS zapcmd_cl_server_dir IMPLEMENTATION.
     CONSTANTS: c_true(1)  TYPE c VALUE 'X',
                c_false(1) TYPE c VALUE ' '.
 
-    DATA: l_errcnt(2) TYPE p VALUE 0.
+    DATA l_errcnt TYPE i VALUE 0.
 
     g_file-rec_level = g_rec_level_120.
 
@@ -722,12 +722,14 @@ CLASS zapcmd_cl_server_dir IMPLEMENTATION.
 
   METHOD read_logicaldir.
 
-    DATA lt_path TYPE TABLE OF filepath.
-    DATA l_path TYPE filepath.
+    " one entry per logical path; FILEPATH has one row per syntax group
+    DATA lt_path TYPE STANDARD TABLE OF filepath-pathintern.
+    DATA l_path TYPE filepath-pathintern.
 
-    SELECT *
+    SELECT DISTINCT pathintern
        FROM filepath
-       INTO TABLE lt_path.
+       INTO TABLE lt_path
+       ORDER BY pathintern.
 
     LOOP AT lt_path INTO l_path.
 
