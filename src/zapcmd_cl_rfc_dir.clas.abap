@@ -39,7 +39,7 @@ protected section.
 
   methods GET_RFCDEST final
     returning
-      value(RESULT) type RFCDEST.
+      value(RESULT) type RFCDEST ##CALLED.
 
   methods READ_DRIVES
     exporting
@@ -72,7 +72,6 @@ method CONSTRUCTOR.
       EXCEPTIONS
         SYSTEM_FAILURE = 1
         COMMUNICATION_failure = 2.
-      .
     if sy-subrc <> 0.
       raise not_installed.
     endif.
@@ -240,7 +239,7 @@ method GET_FREESPACE.
         free_space = lf_freespace
      EXCEPTIONS
        cant_find_destination    = 1
-       cant_get_destinations    = 1
+       cant_get_destinations    = 2
        OTHERS                   = 4.
     if sy-subrc <> 0.
       lf_freespace = 0.
@@ -292,7 +291,6 @@ METHOD init.
       EXCEPTIONS
         SYSTEM_FAILURE = 1
         COMMUNICATION_failure = 2.
-      .
     if sy-subrc <> 0.
     endif.
 
@@ -333,7 +331,6 @@ METHOD read_dir.
   lf_dir = full_name.
 
 
-  DATA lf_server TYPE string.
   DATA lf_strlen TYPE i.
   lf_strlen = STRLEN( full_name ).
 
@@ -443,7 +440,6 @@ method READ_DRIVES.
     data lf_index type i value 0.
     data lf_drive type string.
     data lf_name type string.
-    data lf_drivetype type string.
 
     data lf_ref_file type ref to Zapcmd_CL_KNOT.
 

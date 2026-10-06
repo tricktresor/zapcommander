@@ -16,7 +16,6 @@ FUNCTION ZAPCMD_WRITE_BINFILE.
   import bin = lt_file from INTERNAL TABLE it_file[].
 
     data lf_string like line of lt_file.
-    data lf_subrc type sysubrc.
     data lf_filesize type i.
     data lf_mess(100) type c.
     lf_filesize = iv_filesize.

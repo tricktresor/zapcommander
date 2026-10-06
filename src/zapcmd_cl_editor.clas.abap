@@ -101,6 +101,7 @@ CLASS ZAPCMD_CL_EDITOR IMPLEMENTATION.
   METHOD get_title.
 
     pf_title1 = cf_file->name.
+    CLEAR: pf_title2, pf_title3, pf_title4.
 
   ENDMETHOD.
 

@@ -58,7 +58,6 @@ method CONSTRUCTOR.
       EXCEPTIONS
         SYSTEM_FAILURE = 1
         COMMUNICATION_failure = 2.
-      .
     if sy-subrc <> 0.
       raise not_installed.
     endif.
@@ -78,18 +77,22 @@ endmethod.
 method DELETE.
 
     data l_full_name type text255.
+    data l_message type c length 255.
     l_full_name = full_name.
   CALL FUNCTION 'ZAPCMD_DELETE_FILE'
   DESTINATION rfcdest
     EXPORTING
       iv_full_name       = l_full_name
    EXCEPTIONS
-     NOT_FOUND          = 1
-     OTHERS             = 2
+     NOT_FOUND             = 1
+     system_failure        = 2 MESSAGE l_message
+     communication_failure = 3 MESSAGE l_message
+     OTHERS                = 4
             .
-  IF sy-subrc <> 0.
- MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
-         WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
+  IF sy-subrc = 2 OR sy-subrc = 3.
+    MESSAGE l_message TYPE 'S' DISPLAY LIKE 'E'.
+  ELSEIF sy-subrc <> 0.
+    MESSAGE 'File could not be deleted'(007) TYPE 'S' DISPLAY LIKE 'E'.
   ENDIF.
 
 

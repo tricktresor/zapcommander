@@ -91,7 +91,6 @@ CLASS zapcmd_cl_filelist DEFINITION
     DATA cf_gui_alv TYPE REF TO cl_gui_alv_grid .
     DATA ct_files TYPE zapcmd_tbl_filelist .
     DATA ct_fileinfo TYPE zapcmd_tbl_file_info .
-    DATA temp_non_sort LIKE ct_fileinfo.
     DATA ct_undo TYPE TABLE OF REF TO zapcmd_cl_dir .
     DATA gv_side TYPE string.
     DATA gt_fcode_factory TYPE zapcmd_tbl_fcode_factory .
@@ -615,13 +614,6 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 
     DATA lt_imp       TYPE TABLE OF seoclsname.
     DATA li_user_exit TYPE REF TO zapcmd_if_user_exit.
-
-    DATA: BEGIN OF ls_para_tab,
-            name      TYPE abap_parmname,
-            tabname   TYPE tabname,
-            fieldname TYPE fieldname,
-          END OF ls_para_tab.
-    DATA lt_para_tab LIKE TABLE OF ls_para_tab.
 
     " active versions only: creating an inactive class with syntax
     " errors would end in an uncatchable runtime error
@@ -1318,11 +1310,10 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 
         CALL METHOD reload_dir.
         CALL METHOD refresh.
-        RETURN.
       ELSE.
         MESSAGE 'Verzeichnis konnte nicht eingelesen werden.'(017) TYPE 'I' DISPLAY LIKE 'E'.
-        RETURN.
       ENDIF.
+      RETURN.
 
     ENDIF.
 
@@ -1540,7 +1531,6 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
       SET HANDLER handle_drag FOR cf_gui_alv.
       SET HANDLER handle_drop FOR cf_gui_alv.
 
-      DATA ls_fileinto TYPE zapcmd_file_descr.
 
 
 

@@ -157,13 +157,9 @@ CLASS zapcmd_cl_server_dir IMPLEMENTATION.
 
         DATA l_path TYPE filepath-pathintern.
         l_path = value-value.
+        DATA lf_dir TYPE string.
+        CREATE OBJECT eo_dir TYPE zapcmd_cl_server_dir.
         IF l_path IS NOT INITIAL.
-
-          CREATE OBJECT eo_dir
-            TYPE
-            zapcmd_cl_server_dir.
-
-          DATA lf_dir TYPE string.
 
           CALL FUNCTION 'FILE_GET_NAME_USING_PATH'
             EXPORTING
@@ -186,13 +182,10 @@ CLASS zapcmd_cl_server_dir IMPLEMENTATION.
           IF sy-subrc = 0.
             lf_dir = lf_dir(l_offset).
           ENDIF.
-
-          eo_dir->init( pf_full_name = lf_dir ).
         ELSE.
-          CREATE OBJECT eo_dir TYPE zapcmd_cl_server_dir.
           lf_dir = eo_dir->co_logicaldir.
-          eo_dir->init( pf_full_name = lf_dir ).
         ENDIF.
+        eo_dir->init( pf_full_name = lf_dir ).
 
     ENDCASE.
 
@@ -233,7 +226,7 @@ CLASS zapcmd_cl_server_dir IMPLEMENTATION.
         free_space            = lf_freespace
       EXCEPTIONS
         cant_find_destination = 1
-        cant_get_destinations = 1
+        cant_get_destinations = 2
         OTHERS                = 4.
     IF sy-subrc <> 0.
       lf_freespace = 0.

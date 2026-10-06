@@ -294,7 +294,6 @@ CLASS ZAPCMD_CL_FRONTEND_DIR IMPLEMENTATION.
 
     DATA lt_fileinfo TYPE TABLE OF file_info.
     DATA ls_fileinfo TYPE file_info.
-    FIELD-SYMBOLS <ls_fileinfo> TYPE file_info.
     DATA lf_count TYPE i.
 
     IF full_name = separator OR full_name = co_rootdir.

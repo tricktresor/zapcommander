@@ -18,7 +18,7 @@ CLASS zapcmd_cl_dir DEFINITION
     CONSTANTS co_refresh TYPE syucomm VALUE 'REFRESH' ##NO_TEXT.
     CONSTANTS co_al11 TYPE syucomm VALUE 'AL11' ##NO_TEXT.
     CONSTANTS co_edit_dir TYPE syucomm VALUE 'EDDIR' ##NO_TEXT.
-    CONSTANTS co_rfc TYPE syucomm VALUE 'RFC' ##NO_TEXT.
+    CONSTANTS co_rfc TYPE syucomm VALUE 'RFC' ##NO_TEXT ##NEEDED.
     CONSTANTS co_logicalfile TYPE syucomm VALUE 'LOGICALF' ##NO_TEXT.
     DATA filter TYPE string .
     DATA area_string TYPE string .
