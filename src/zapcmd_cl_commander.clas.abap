@@ -306,6 +306,13 @@ CLASS ZAPCMD_CL_COMMANDER IMPLEMENTATION.
           cf_filesright->undo( ).
         ENDIF.
 
+      WHEN 'SWITCH'.
+        IF cf_filesleft->cf_active = abap_true.
+          cf_filesright->activate( ).
+        ELSE.
+          cf_filesleft->activate( ).
+        ENDIF.
+
       WHEN 'EXIT' OR 'ABORT'.
         save_last_dirs( ).
 

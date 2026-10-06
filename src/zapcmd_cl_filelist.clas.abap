@@ -53,6 +53,8 @@ CLASS zapcmd_cl_filelist DEFINITION
       IMPORTING
         !pf_control TYPE REF TO cl_gui_control OPTIONAL .
     METHODS undo .
+    "! Makes this list the active one (commands and the command line work on it)
+    METHODS activate .
     METHODS handle_contextmenu
         FOR EVENT context_menu_request OF cl_gui_alv_grid
       IMPORTING
@@ -100,6 +102,9 @@ CLASS zapcmd_cl_filelist DEFINITION
         FOR EVENT double_click OF cl_gui_alv_grid
       IMPORTING
         !e_row .
+    "! Selecting rows makes the list active without waiting for the focus
+    METHODS handle_selection_changed
+        FOR EVENT delayed_changed_sel_callback OF cl_gui_alv_grid.
     METHODS handle_set_toolbar
         FOR EVENT toolbar OF cl_gui_alv_grid
       IMPORTING
@@ -928,17 +933,56 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
     ELSE.
         pf_title = |<{ cf_ref_dir->area_string }> { cf_ref_dir->full_name }|.
     ENDIF.
+    IF cf_active = abap_true.
+      pf_title = |▶ { pf_title }|.
+    ENDIF.
 
   ENDMETHOD.
 
 
   METHOD handle_activate.
 
+    DATA lf_title TYPE string.
+    DATA lf_gridtitle TYPE lvc_title.
+
     IF me = sender.
       cf_active = abap_true.
     ELSE.
       cf_active = abap_false.
     ENDIF.
+
+    " the title marks the active list
+    IF cf_gui_alv IS BOUND.
+      get_title( IMPORTING pf_title = lf_title ).
+      lf_gridtitle = lf_title.
+      cf_gui_alv->set_gridtitle( i_gridtitle = lf_gridtitle ).
+    ENDIF.
+
+  ENDMETHOD.
+
+
+  METHOD activate.
+
+    RAISE EVENT set_active.
+    IF cf_gui_alv IS BOUND.
+      cl_gui_control=>set_focus(
+        EXPORTING
+          control           = cf_gui_alv
+        EXCEPTIONS
+          cntl_error        = 1
+          cntl_system_error = 2
+          OTHERS            = 3 ).
+      IF sy-subrc <> 0.
+        RETURN.
+      ENDIF.
+    ENDIF.
+
+  ENDMETHOD.
+
+
+  METHOD handle_selection_changed.
+
+    RAISE EVENT set_active.
 
   ENDMETHOD.
 
@@ -1548,6 +1592,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
       SET HANDLER handle_contextmenu  FOR cf_gui_alv.
       SET HANDLER handle_drag FOR cf_gui_alv.
       SET HANDLER handle_drop FOR cf_gui_alv.
+      SET HANDLER handle_selection_changed FOR cf_gui_alv.
 
 
 
@@ -1680,6 +1725,13 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
           it_fieldcatalog      = lt_fieldcatalog
           it_outtab            = ct_fileinfo
           it_sort              = lt_sort.
+      " if the registration fails, the list is still activated by focus
+      cf_gui_alv->register_delayed_event(
+        EXPORTING
+          i_event_id = cl_gui_alv_grid=>mc_evt_delayed_change_select
+        EXCEPTIONS
+          error      = 1
+          OTHERS     = 2 ).
     ELSE.
       " SET_ADJUST_DESIGN (inherited from CL_GUI_CONTROL) does not exist
       " in every release, so it is called dynamically
