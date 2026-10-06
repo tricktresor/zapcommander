@@ -49,6 +49,15 @@ CLASS zapcmd_cl_cmdline DEFINITION
   PRIVATE SECTION.
 *"* private components of class ZAPCMD_CL_CMDLINE
 *"* do not include other source files here!!!
+
+    "! Target directory of "cd <arg>": absolute paths as they are,
+    "! ".." is the parent, everything else is relative to io_dir
+    METHODS resolve_cd_target
+      IMPORTING
+        !io_dir       TYPE REF TO zapcmd_cl_dir
+        !iv_arg       TYPE string
+      RETURNING
+        VALUE(rv_dir) TYPE string.
 ENDCLASS.
 
 
@@ -70,19 +79,26 @@ CLASS ZAPCMD_CL_CMDLINE IMPLEMENTATION.
       DATA ls_dir TYPE REF TO zapcmd_cl_dir.
       DATA lf_cmdline TYPE string.
       ls_dir ?= pf_filelist->get_dir( ).
-      DATA lf_cd(3) TYPE c.
-      IF strlen( pf_cmdline ) > 2.
-        lf_cd = pf_cmdline(3).
-        CONDENSE lf_cd.
-        TRANSLATE lf_cd TO UPPER CASE.
-      ENDIF.
-      IF lf_cd = 'CD'.
-        DATA lf_dirname TYPE string.
-        lf_dirname = pf_cmdline+3.
-        pf_filelist->load_dir(
-          EXPORTING
-           pf_dir = lf_dirname
-        ).
+      " cd, cd <dir>, cd.., cd\dir and cd/dir change the directory of the list
+      DATA lf_upper TYPE string.
+      DATA lf_arg TYPE string.
+      lf_upper = pf_cmdline.
+      SHIFT lf_upper LEFT DELETING LEADING space.
+      TRANSLATE lf_upper TO UPPER CASE.
+      IF lf_upper = 'CD' OR lf_upper CP 'CD *' OR lf_upper CP 'CD.*'
+      OR lf_upper CP 'CD\*' OR lf_upper CP 'CD/*'.
+        lf_arg = pf_cmdline.
+        SHIFT lf_arg LEFT DELETING LEADING space.
+        SHIFT lf_arg LEFT BY 2 PLACES.
+        SHIFT lf_arg LEFT DELETING LEADING space.
+        SHIFT lf_arg RIGHT DELETING TRAILING space.
+        SHIFT lf_arg LEFT DELETING LEADING space.
+        IF lf_arg IS INITIAL.
+          MESSAGE ls_dir->full_name TYPE 'S'.
+        ELSE.
+          pf_filelist->load_dir( pf_dir = resolve_cd_target( io_dir = ls_dir
+                                                             iv_arg = lf_arg ) ).
+        ENDIF.
         RETURN.
       ENDIF.
       IF ls_dir->server_area = zapcmd_cl_knot=>co_area_frontend.
@@ -240,4 +256,52 @@ CLASS ZAPCMD_CL_CMDLINE IMPLEMENTATION.
       CLEAR <cmdline>.
     ENDIF.
   ENDMETHOD.
+
+
+  METHOD resolve_cd_target.
+
+    DATA lv_sep TYPE string.
+    DATA lv_len TYPE i.
+    DATA lv_off TYPE i.
+    DATA lt_results TYPE match_result_tab.
+    DATA ls_result TYPE match_result.
+
+    lv_sep = io_dir->separator.
+    rv_dir = io_dir->full_name.
+
+    IF iv_arg = '..'.
+      " parent: drop a trailing separator, then the last path segment
+      lv_len = strlen( rv_dir ) - 1.
+      IF lv_len > 0 AND rv_dir+lv_len(1) = lv_sep.
+        rv_dir = rv_dir(lv_len).
+      ENDIF.
+      FIND ALL OCCURRENCES OF lv_sep IN rv_dir RESULTS lt_results.
+      IF sy-subrc <> 0.
+        RETURN.
+      ENDIF.
+      DESCRIBE TABLE lt_results LINES lv_len.
+      READ TABLE lt_results INDEX lv_len INTO ls_result ##SUBRC_OK.
+      lv_off = ls_result-offset.
+      IF lv_off = 0.
+        rv_dir = lv_sep.                     " Unix root
+      ELSEIF lv_off = 2 AND rv_dir+1(1) = ':'.
+        rv_dir = rv_dir(3).                  " Windows drive, e.g. C:\
+      ELSE.
+        rv_dir = rv_dir(lv_off).
+      ENDIF.
+    ELSEIF iv_arg(1) = '/' OR iv_arg(1) = '\'
+        OR ( strlen( iv_arg ) >= 2 AND iv_arg+1(1) = ':' ).
+      rv_dir = iv_arg.
+    ELSE.
+      lv_len = strlen( rv_dir ) - 1.
+      IF lv_len >= 0 AND rv_dir+lv_len(1) = lv_sep.
+        CONCATENATE rv_dir iv_arg INTO rv_dir.
+      ELSE.
+        CONCATENATE rv_dir lv_sep iv_arg INTO rv_dir.
+      ENDIF.
+    ENDIF.
+
+  ENDMETHOD.
+
+
 ENDCLASS.
