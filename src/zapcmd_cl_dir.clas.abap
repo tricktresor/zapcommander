@@ -221,7 +221,6 @@ CLASS ZAPCMD_CL_DIR IMPLEMENTATION.
         lf_ref_file->init(
             pf_full_name = separator
             pf_name      = lf_name
-            pf_size      = 0
             pf_dir       = full_name ).
 
         APPEND lf_ref_file TO pt_filelist.

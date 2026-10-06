@@ -1,0 +1,161 @@
+{
+  "global": {
+    "files": "/src/**/*.*",
+    "exclude": [],
+    "noIssues": [],
+    "skipGeneratedFunctionGroups": false
+  },
+  "dependencies": [
+    {
+      "url": "https://github.com/abaplint/deps",
+      "folder": "/deps",
+      "files": "/src/**/*.*"
+    }
+  ],
+  "syntax": {
+    "version": {
+      "release": "v702",
+      "language": "Normal"
+    },
+    "errorNamespace": "^(Z|Y|LCL_|TY_|LIF_)",
+    "globalConstants": [
+      "icon_open_linked_folder",
+      "icon_sym_alt_server",
+      "icon_sym_real_server"
+    ],
+    "ambigiousVoids": [],
+    "globalMacros": []
+  },
+  "rules": {
+    "parser_error": {
+      "exclude": [],
+      "severity": "Error"
+    },
+    "parser_702_chaining": {
+      "exclude": [],
+      "severity": "Error"
+    },
+    "parser_missing_space": {
+      "exclude": [],
+      "severity": "Error"
+    },
+    "check_syntax": {
+      "exclude": [],
+      "severity": "Error"
+    },
+    "unknown_types": {
+      "exclude": [],
+      "severity": "Error"
+    },
+    "check_abstract": {
+      "exclude": [],
+      "severity": "Error"
+    },
+    "check_ddic": {
+      "exclude": [],
+      "severity": "Error"
+    },
+    "check_include": {
+      "exclude": [],
+      "severity": "Error",
+      "allowUnused": false
+    },
+    "check_transformation_exists": {
+      "exclude": [],
+      "severity": "Error"
+    },
+    "implement_methods": {
+      "exclude": [],
+      "severity": "Error"
+    },
+    "method_implemented_twice": {
+      "exclude": [],
+      "severity": "Error"
+    },
+    "method_overwrites_builtin": {
+      "exclude": [],
+      "severity": "Error"
+    },
+    "message_exists": {
+      "exclude": [],
+      "severity": "Error",
+      "checkPlaceholders": true
+    },
+    "msag_consistency": {
+      "exclude": [],
+      "severity": "Error",
+      "numericParameters": true
+    },
+    "xml_consistency": {
+      "exclude": [],
+      "severity": "Error",
+      "textAndTranslationLengthSeverity": "Error",
+      "dataElementSeverity": "Error",
+      "transparentTableSeverity": "Error"
+    },
+    "main_file_contents": {
+      "exclude": [],
+      "severity": "Error"
+    },
+    "identical_conditions": {
+      "exclude": [],
+      "severity": "Error"
+    },
+    "identical_form_names": {
+      "exclude": [],
+      "severity": "Error"
+    },
+    "identical_move": {
+      "exclude": [],
+      "severity": "Error"
+    },
+    "invalid_table_index": {
+      "exclude": [],
+      "severity": "Error"
+    },
+    "try_without_catch": {
+      "exclude": [],
+      "severity": "Error"
+    },
+    "uncaught_exception": {
+      "exclude": [],
+      "severity": "Error",
+      "reportDynamic": false,
+      "reportNoCheck": false
+    },
+    "unreachable_code": {
+      "exclude": [],
+      "severity": "Error"
+    },
+    "superclass_final": {
+      "exclude": [],
+      "severity": "Error"
+    },
+    "when_others_last": {
+      "exclude": [],
+      "severity": "Error"
+    },
+    "sy_modification": {
+      "exclude": [],
+      "severity": "Error"
+    },
+    "modify_only_own_db_tables": {
+      "exclude": [],
+      "severity": "Error",
+      "reportDynamic": true,
+      "ownTables": "^[yz]"
+    },
+    "call_transaction_authority_check": {
+      "exclude": [],
+      "severity": "Error"
+    },
+    "empty_event": {
+      "exclude": [],
+      "severity": "Error"
+    },
+    "colon_missing_space": {
+      "exclude": [],
+      "severity": "Error"
+    }
+  }
+}

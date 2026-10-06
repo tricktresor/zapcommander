@@ -77,8 +77,8 @@ CLASS zapcmd_cl_filelist DEFINITION
 
   PRIVATE SECTION.
     CONSTANTS c_field_sort_prio TYPE lvc_s_sort-fieldname VALUE 'SORT_PRIO' ##NO_TEXT.
-    "! State of a confirmation dialog during copy/move/delete,
-    "! passed down into subdirectories
+    " State of a confirmation dialog during copy/move/delete,
+    " passed down into subdirectories
     CONSTANTS: BEGIN OF gc_confirm,
                  ask     TYPE c LENGTH 1 VALUE ' ',
                  yes_all TYPE c LENGTH 1 VALUE 'R',
@@ -1052,13 +1052,15 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
     DATA ls_fileinfo      TYPE zapcmd_file_descr.
     DATA lo_knot          TYPE REF TO zapcmd_cl_knot.
 
-    lo_list = NEW #( ).
+    CREATE OBJECT lo_list.
 
     cf_gui_alv->get_selected_rows( IMPORTING et_index_rows = lt_selected_rows ).
 
     IF lt_selected_rows IS NOT INITIAL.
 
-      IF NOT line_exists( lt_selected_rows[ table_line = is_row ] ).
+      READ TABLE lt_selected_rows TRANSPORTING NO FIELDS
+        WITH KEY table_line = is_row.
+      IF sy-subrc <> 0.
         RETURN.
       ENDIF.
 
@@ -1142,7 +1144,9 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
           RETURN.
 
         WHEN 1.
-          lv_file_ask = lo_list->ct_list[ 1 ]->name.
+          DATA lo_ask_knot TYPE REF TO zapcmd_cl_knot.
+          READ TABLE lo_list->ct_list INDEX 1 INTO lo_ask_knot.
+          lv_file_ask = lo_ask_knot->name.
 
         WHEN OTHERS.
           lv_file_ask = |{ lines( lo_list->ct_list ) } { 'files'(509) }|.
@@ -1669,14 +1673,14 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
           it_outtab            = ct_fileinfo
           it_sort              = lt_sort.
     ELSE.
-      cf_gui_alv->set_adjust_design(
-        EXPORTING
-          adjust_design     = 1
-*        EXCEPTIONS
-*          CNTL_ERROR        = 1
-*          CNTL_SYSTEM_ERROR = 2
-*          others            = 3
-             ).
+      " SET_ADJUST_DESIGN (inherited from CL_GUI_CONTROL) does not exist
+      " in every release, so it is called dynamically
+      TRY.
+          CALL METHOD cf_gui_alv->('SET_ADJUST_DESIGN')
+            EXPORTING
+              adjust_design = 1.
+        CATCH cx_sy_dyn_call_error.                     "#EC NO_HANDLER
+      ENDTRY.
 
       CALL METHOD cf_gui_alv->get_frontend_layout
         IMPORTING

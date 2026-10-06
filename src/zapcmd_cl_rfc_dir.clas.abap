@@ -109,7 +109,6 @@ method CREATE_DIR.
     call method pf_file->init
       EXPORTING
         pf_name    = pf_filename
-        pf_size    = 0
         pf_dir     = full_name
         pf_moddate = sy-datum
         pf_modtime = sy-uzeit
@@ -157,7 +156,6 @@ method CREATE_FILE.
     call method pf_file->init
       EXPORTING
         pf_name    = pf_filename
-        pf_size    = 0
         pf_dir     = full_name
         pf_moddate = sy-datum
         pf_modtime = sy-uzeit
@@ -361,7 +359,6 @@ METHOD read_dir.
       EXPORTING
         pf_name      = '..'
         pf_full_name = '\'
-        pf_size      = 0
         pf_dir       = full_name.
     APPEND lf_ref_file TO pt_filelist.
 
@@ -490,7 +487,6 @@ method READ_DRIVES.
           EXPORTING
             pf_full_name = lf_drive
             pf_name      = lf_name
-            pf_size      = 0
             pf_dir       = full_name.
 
         append lf_ref_file to pt_filelist.

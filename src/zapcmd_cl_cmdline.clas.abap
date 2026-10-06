@@ -60,6 +60,7 @@ CLASS ZAPCMD_CL_CMDLINE IMPLEMENTATION.
 
     cf_cmdline = pf_cmdline.
     cf_filelist = pf_dir.
+    
 
   ENDMETHOD.
 
