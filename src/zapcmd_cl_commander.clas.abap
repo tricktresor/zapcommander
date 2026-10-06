@@ -87,8 +87,10 @@ CLASS ZAPCMD_CL_COMMANDER IMPLEMENTATION.
   METHOD show.
 
     DATA li_user_exit TYPE REF TO zapcmd_if_user_exit.
+    DATA lf_first_show TYPE abap_bool.
 
     IF cf_gui_splitter_container IS INITIAL.
+      lf_first_show = abap_true.
 
       li_user_exit = zapcmd_cl_user_exit_factory=>get( ).
       IF li_user_exit IS BOUND.
@@ -115,6 +117,10 @@ CLASS ZAPCMD_CL_COMMANDER IMPLEMENTATION.
       cf_activelist = cf_filesleft.
     ELSE.
       cf_activelist = cf_filesright.
+    ENDIF.
+    " mark the initially active list once (later PBOs must keep the focus)
+    IF lf_first_show = abap_true.
+      cf_activelist->activate( ).
     ENDIF.
 
     FIELD-SYMBOLS <dirname> TYPE string.
