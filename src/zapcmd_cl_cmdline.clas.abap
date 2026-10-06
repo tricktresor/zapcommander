@@ -245,7 +245,8 @@ CLASS ZAPCMD_CL_CMDLINE IMPLEMENTATION.
 
   METHOD user_command.
 
-    IF e_ucomm IS INITIAL.
+    " Enter is function code OK in STATUS100
+    IF e_ucomm IS INITIAL OR e_ucomm = 'OK'.
       FIELD-SYMBOLS: <cmdline> TYPE string.
       ASSIGN cf_cmdline->* TO <cmdline>.
       FIELD-SYMBOLS: <filelist> TYPE REF TO zapcmd_cl_filelist.
