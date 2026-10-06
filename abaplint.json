@@ -193,6 +193,21 @@
     "rfc_error_handling": {
       "exclude": [],
       "severity": "Error"
+    },
+    "check_subrc": {
+      "exclude": [],
+      "severity": "Error",
+      "openDataset": true,
+      "authorityCheck": true,
+      "selectSingle": true,
+      "selectTable": false,
+      "updateDatabase": true,
+      "insertDatabase": true,
+      "modifyDatabase": true,
+      "deleteDatabase": true,
+      "readTable": true,
+      "assign": true,
+      "find": true
     }
   }
 }

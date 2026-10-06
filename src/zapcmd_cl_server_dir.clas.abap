@@ -94,7 +94,7 @@ CLASS zapcmd_cl_server_dir IMPLEMENTATION.
         pf_return_code  = lv_return_code ).
     IF lv_return_code <> 0.
       CLEAR pf_file.
-      READ TABLE lt_output INDEX 1 INTO lv_output.
+      READ TABLE lt_output INDEX 1 INTO lv_output ##SUBRC_OK.
       MESSAGE lv_output TYPE 'S' DISPLAY LIKE 'E'.
     ENDIF.
 
@@ -205,7 +205,7 @@ CLASS zapcmd_cl_server_dir IMPLEMENTATION.
         ptx_output     = lt_output
         pf_return_code = lv_return_code ).
     IF lv_return_code <> 0.
-      READ TABLE lt_output INDEX 1 INTO lv_output.
+      READ TABLE lt_output INDEX 1 INTO lv_output ##SUBRC_OK.
       MESSAGE lv_output TYPE 'S' DISPLAY LIKE 'E'.
     ENDIF.
 
@@ -861,7 +861,7 @@ CLASS zapcmd_cl_server_dir IMPLEMENTATION.
         pf_return_code = lv_return_code ).
     IF lv_return_code <> 0.
       super->rename( pf_newname = lf_oldname ).
-      READ TABLE lt_output INDEX 1 INTO lv_output.
+      READ TABLE lt_output INDEX 1 INTO lv_output ##SUBRC_OK.
       MESSAGE lv_output TYPE 'S' DISPLAY LIKE 'E'.
     ENDIF.
   ENDMETHOD.

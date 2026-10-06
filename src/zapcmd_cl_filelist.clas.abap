@@ -581,7 +581,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
       RETURN.
     ENDIF.
 
-    READ TABLE values INTO value INDEX 1.
+    READ TABLE values INTO value INDEX 1 ##SUBRC_OK.
 
     DATA lf_rootdir TYPE string.
     lf_rootdir = value-value.
@@ -730,8 +730,9 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
       DATA ls_fileinfo TYPE zapcmd_file_descr.
       DATA lf_file TYPE REF TO zapcmd_cl_knot.
       READ TABLE ct_fileinfo INDEX ls_row-index INTO ls_fileinfo.
-
+      CHECK sy-subrc = 0.
       READ TABLE ct_files INDEX ls_fileinfo-indx INTO lf_file.
+      CHECK sy-subrc = 0.
       APPEND lf_file TO ptx_files.
 
     ENDLOOP.
@@ -988,9 +989,15 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
     DATA lf_file TYPE REF TO zapcmd_cl_knot.
     DATA ls_fileinto TYPE zapcmd_file_descr.
     DATA ls_fileinfo TYPE zapcmd_file_descr.
+    " e.g. a double-click on a row that no longer exists
     READ TABLE ct_fileinfo INDEX e_row-index INTO ls_fileinfo.
-
+    IF sy-subrc <> 0.
+      RETURN.
+    ENDIF.
     READ TABLE ct_files INDEX ls_fileinfo-indx INTO lf_file.
+    IF sy-subrc <> 0.
+      RETURN.
+    ENDIF.
 
     IF lf_file->is_dir = abap_true.
       IF cf_ref_dir IS BOUND.
@@ -1058,7 +1065,9 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
       LOOP AT lt_selected_rows INTO ls_row.
 
         READ TABLE ct_fileinfo INDEX ls_row-index INTO ls_fileinfo.
+        CHECK sy-subrc = 0.
         READ TABLE ct_files INDEX ls_fileinfo-indx INTO lo_knot.
+        CHECK sy-subrc = 0.
 
         lo_list->add( lo_knot ).
 
@@ -1067,9 +1076,12 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
     ELSE.
 
       READ TABLE ct_fileinfo INDEX is_row-index INTO ls_fileinfo.
-      READ TABLE ct_files INDEX ls_fileinfo-indx INTO lo_knot.
-
-      lo_list->add( lo_knot ).
+      IF sy-subrc = 0.
+        READ TABLE ct_files INDEX ls_fileinfo-indx INTO lo_knot.
+        IF sy-subrc = 0.
+          lo_list->add( lo_knot ).
+        ENDIF.
+      ENDIF.
 
     ENDIF.
 
@@ -1103,8 +1115,15 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
         RETURN.
     ENDTRY.
 
+    " dropped on a file/directory row, or on the empty area of the list
+    CLEAR lo_knot.
     READ TABLE ct_fileinfo INDEX e_row-index INTO ls_fileinfo.
-    READ TABLE ct_files INDEX ls_fileinfo-indx INTO lo_knot.
+    IF sy-subrc = 0.
+      READ TABLE ct_files INDEX ls_fileinfo-indx INTO lo_knot.
+      IF sy-subrc <> 0.
+        CLEAR lo_knot.
+      ENDIF.
+    ENDIF.
 
     IF lo_knot IS BOUND.
 
@@ -1136,7 +1155,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 
         WHEN 1.
           DATA lo_ask_knot TYPE REF TO zapcmd_cl_knot.
-          READ TABLE lo_list->ct_list INDEX 1 INTO lo_ask_knot.
+          READ TABLE lo_list->ct_list INDEX 1 INTO lo_ask_knot ##SUBRC_OK.
           lv_file_ask = lo_ask_knot->name.
 
         WHEN OTHERS.
@@ -1368,7 +1387,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
             EXIT.
           ENDIF.
           DATA lf_newname TYPE zapcmd_filename.
-          READ TABLE lt_fields INDEX 1 INTO ls_field.
+          READ TABLE lt_fields INDEX 1 INTO ls_field ##SUBRC_OK.
           lf_newname = ls_field-value.
           IF lf_newname <> lf_file->name.
             lf_file->rename( lf_newname ).
@@ -1712,7 +1731,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
       RETURN.
     ELSE.
       READ TABLE ct_undo INDEX l_lines
-        INTO cf_ref_dir.
+        INTO cf_ref_dir ##SUBRC_OK.
       DELETE ct_undo INDEX l_lines.
       CALL METHOD reload_dir.
       CALL METHOD refresh.
