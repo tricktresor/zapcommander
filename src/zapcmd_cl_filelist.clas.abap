@@ -308,8 +308,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 
       IF pf_destdir->check_fileexist( lf_sourcefile->name ) = abap_true.
 
-        CONCATENATE '"' lf_sourcefile->name '"' ' existiert'(006) '. ' 'Überschreiben'(007) '?' INTO
-          lf_string.
+        lf_string = |"{ lf_sourcefile->name }" { 'exists'(006) }. { 'Overwrite'(007) }?|.
         confirm(
           EXPORTING
             pf_title     = lf_sourcefile->full_name
@@ -442,7 +441,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 
       IF io_destdir->check_fileexist( lo_file->name ) = abap_true.
 
-        lv_string = |"{ lo_file->name }" { 'exists'(006) } { 'Overwrite'(007) }?|.
+        lv_string = |"{ lo_file->name }" { 'exists'(006) }. { 'Overwrite'(007) }?|.
         confirm(
           EXPORTING
             pf_title     = lo_file->full_name
@@ -505,7 +504,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
         CONTINUE.
       ENDIF.
 
-      CONCATENATE '"' lf_file->name '"' ' löschen?'(010) INTO lf_string.
+      CONCATENATE '"' lf_file->name '"' ' delete?'(010) INTO lf_string.
       CLEAR lf_info.
       IF lf_file->filetype = 'DIR'.
         lf_info = 'Directory including its contents'(022).
@@ -561,14 +560,14 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
     DATA lf_returncode TYPE c LENGTH 1.
     value-tabname = 'ZAPCMD_FILE_DESCR'.
     value-fieldname = 'FULL_NAME'.
-    value-fieldtext = 'Pfad:'(002).
+    value-fieldtext = 'Path:'(002).
     APPEND value TO values.
 
 
     CALL FUNCTION 'POPUP_GET_VALUES'
       EXPORTING
 *       NO_VALUE_CHECK        = ' '
-        popup_title = 'Direkte Pfadeingabe'(202)
+        popup_title = 'jump directly to path'(202)
 *       START_COLUMN          = '5'
 *       START_ROW   = '5'
       IMPORTING
@@ -851,7 +850,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
         CALL FUNCTION 'POPUP_GET_VALUES'
           EXPORTING
 *           NO_VALUE_CHECK        = ' '
-            popup_title = 'Werteingabe'(018)
+            popup_title = 'Insert value'(018)
 *           START_COLUMN          = '5'
 *           START_ROW   = '5'
 *       IMPORTING
@@ -949,7 +948,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 
     e_object->add_function(
         fcode       = zapcmd_cl_dir=>co_rename
-        text        = 'Umbenennen'(231)
+        text        = 'Rename'(231)
         icon        = icon_rename
 *      FTYPE       = FTYPE
 *      DISABLED    = DISABLED
@@ -960,7 +959,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 
     e_object->add_function(
        fcode       = zapcmd_cl_dir=>co_delete
-       text        = 'Löschen'(011)
+       text        = 'Delete'(011)
        icon        = icon_delete
 *      FTYPE       = FTYPE
 *      DISABLED    = DISABLED
@@ -1258,7 +1257,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
       MOVE 0 TO ls_toolbar-butn_type.
       MOVE zapcmd_cl_dir=>co_edit_dir TO ls_toolbar-function.
       MOVE icon_fast_entry TO ls_toolbar-icon.
-      MOVE 'Direkte Pfadeingabe'(202) TO ls_toolbar-quickinfo.
+      MOVE 'jump directly to path'(202) TO ls_toolbar-quickinfo.
       MOVE space TO ls_toolbar-disabled.
       APPEND ls_toolbar TO lt_toolbar_uex.
 
@@ -1281,7 +1280,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 *    MOVE co_server TO ls_toolbar-function.
 *    MOVE ICON_SYM_ALT_SERVER TO ls_toolbar-icon.
 *    MOVE 'Server/Laufwerke'(230) to ls_toolbar-text.
-*    MOVE 'Server/Laufmerke'(231) TO ls_toolbar-quickinfo.
+*    MOVE 'Rename'(231) TO ls_toolbar-quickinfo.
 *    MOVE SPACE TO ls_toolbar-disabled.
 *    APPEND ls_toolbar TO e_object->mt_toolbar.
 *
@@ -1311,7 +1310,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
         CALL METHOD reload_dir.
         CALL METHOD refresh.
       ELSE.
-        MESSAGE 'Verzeichnis konnte nicht eingelesen werden.'(017) TYPE 'I' DISPLAY LIKE 'E'.
+        MESSAGE 'Directory could not be read.'(017) TYPE 'I' DISPLAY LIKE 'E'.
       ENDIF.
       RETURN.
 
@@ -1355,7 +1354,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
           CALL FUNCTION 'POPUP_GET_VALUES'
             EXPORTING
 *             NO_VALUE_CHECK        = ' '
-              popup_title = 'Neuer Dateiname'(001)
+              popup_title = 'New File name'(001)
 *             START_COLUMN          = '5'
 *             START_ROW   = '5'
             IMPORTING
@@ -1453,7 +1452,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
         EXPORTING
           titel = lf_repid
           txt2  = sy-subrc
-          txt1  = 'Error in FLush'(500).
+          txt1  = 'Error in GUI'(500).
     ENDIF.
 
     IF pf_activate = abap_true.
@@ -1699,7 +1698,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
         EXPORTING
           titel = lf_repid
           txt2  = sy-subrc
-          txt1  = 'Error in FLush'(500).
+          txt1  = 'Error in GUI'(500).
     ENDIF.
 
   ENDMETHOD.

@@ -185,6 +185,10 @@
     "classic_exceptions_overlap": {
       "exclude": [],
       "severity": "Error"
+    },
+    "check_text_elements": {
+      "exclude": [],
+      "severity": "Error"
     }
   }
 }

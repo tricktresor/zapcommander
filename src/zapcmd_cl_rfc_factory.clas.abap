@@ -77,7 +77,7 @@ method ZAPCMD_IF_FACTORY~CREATE_DIR.
     IF sy-subrc = 0.
       CALL METHOD eo_dir->init( pf_full_name = i_dir ).
     else.
-      MESSAGE 'RFC-Destination nicht erreichbar'(005) type 'S' DISPLAY LIKE 'E'.
+      MESSAGE 'RFC-Destination not reachable'(005) type 'S' DISPLAY LIKE 'E'.
       clear eo_dir.
       return.
     ENDIF.
@@ -103,7 +103,7 @@ method ZAPCMD_IF_FACTORY~GET_BUTTON.
     MOVE gc_fcode-rfc TO ls_toolbar-function.
     MOVE ICON_CONNECT TO ls_toolbar-icon.
     MOVE 'RFC'(001) to ls_toolbar-text.
-    MOVE 'Verzeichnisse über RFC'(002) TO ls_toolbar-quickinfo.
+    MOVE 'Directories over RFC'(002) TO ls_toolbar-quickinfo.
     MOVE SPACE TO ls_toolbar-disabled.
     APPEND ls_toolbar TO et_button.
 

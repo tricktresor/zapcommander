@@ -283,8 +283,8 @@ CLASS ZAPCMD_CL_EDITOR IMPLEMENTATION.
           IF lf_is_modified <> 0.
             CALL FUNCTION 'POPUP_TO_CONFIRM'
               EXPORTING
-                titlebar      = 'Text verändert.'(300)
-                text_question = 'Soll der Text gespeichert werden?'(301)
+                titlebar      = 'Text changed.'(300)
+                text_question = 'Save the changed text?'(301)
               IMPORTING
                 answer        = lf_answer.
             IF sy-subrc <> 0.

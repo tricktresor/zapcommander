@@ -111,7 +111,7 @@
     <item>
      <ID>I</ID>
      <KEY>017</KEY>
-     <ENTRY>Directory could not read.</ENTRY>
+     <ENTRY>Directory could not be read.</ENTRY>
      <LENGTH>50</LENGTH>
     </item>
     <item>

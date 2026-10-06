@@ -132,14 +132,14 @@ CLASS zapcmd_cl_server_dir IMPLEMENTATION.
         DATA value TYPE sval.
         value-tabname = 'PATH'.
         value-fieldname = 'PATHINTERN'.
-        value-fieldtext = 'Logischer Pfad'(012).
+        value-fieldtext = 'logical Path'(012).
         APPEND value TO values.
 
 
         DATA l_subrc TYPE char1.
         CALL FUNCTION 'POPUP_GET_VALUES'
           EXPORTING
-            popup_title     = 'logischer Pfad'(013)
+            popup_title     = 'logical Path'(013)
           IMPORTING
             returncode      = l_subrc
           TABLES
@@ -246,7 +246,7 @@ CLASS zapcmd_cl_server_dir IMPLEMENTATION.
     MOVE co_server TO ls_toolbar-function.
     MOVE icon_sym_alt_server TO ls_toolbar-icon.
     MOVE 'Server'(234) TO ls_toolbar-text.
-    MOVE 'Liste verbundener Server'(235) TO ls_toolbar-quickinfo.
+    MOVE 'List of connected servers'(235) TO ls_toolbar-quickinfo.
     MOVE space TO ls_toolbar-disabled.
     APPEND ls_toolbar TO pt_toolbar.
 
@@ -255,7 +255,7 @@ CLASS zapcmd_cl_server_dir IMPLEMENTATION.
     MOVE co_al11 TO ls_toolbar-function.
     MOVE icon_open_linked_folder TO ls_toolbar-icon.
     MOVE 'AL11'(236) TO ls_toolbar-text.
-    MOVE 'Verzeichnisse aus der AL11'(237) TO ls_toolbar-quickinfo.
+    MOVE 'Directories from AL11'(237) TO ls_toolbar-quickinfo.
     MOVE space TO ls_toolbar-disabled.
     APPEND ls_toolbar TO pt_toolbar.
 
@@ -265,8 +265,8 @@ CLASS zapcmd_cl_server_dir IMPLEMENTATION.
       MOVE 0 TO ls_toolbar-butn_type.
       MOVE co_drives TO ls_toolbar-function.
       MOVE icon_system_save TO ls_toolbar-icon.
-      MOVE 'Laufwerke'(232) TO ls_toolbar-text.
-      MOVE 'Laufwerke'(232) TO ls_toolbar-quickinfo.
+      MOVE 'Drives'(232) TO ls_toolbar-text.
+      MOVE 'Drives'(232) TO ls_toolbar-quickinfo.
       MOVE space TO ls_toolbar-disabled.
       APPEND ls_toolbar TO pt_toolbar.
     ENDIF.
@@ -275,8 +275,8 @@ CLASS zapcmd_cl_server_dir IMPLEMENTATION.
     MOVE 0 TO ls_toolbar-butn_type.
     MOVE co_logicalfile TO ls_toolbar-function.
     MOVE icon_public_files TO ls_toolbar-icon.
-    MOVE 'log. Datei'(003) TO ls_toolbar-text.
-    MOVE 'logische Pfade und Dateien'(004) TO ls_toolbar-quickinfo.
+    MOVE 'log. file'(003) TO ls_toolbar-text.
+    MOVE 'logical paths and files'(004) TO ls_toolbar-quickinfo.
     MOVE space TO ls_toolbar-disabled.
     APPEND ls_toolbar TO pt_toolbar.
 

@@ -144,7 +144,7 @@ method ZAPCMD_IF_FACTORY~GET_BUTTON.
     MOVE gc_fcode-application_server TO ls_toolbar-function.
     MOVE ICON_SYM_REAL_SERVER TO ls_toolbar-icon.
     MOVE 'Appl. Server'(210) to ls_toolbar-text.
-    MOVE 'Applikationsserver'(211) TO ls_toolbar-quickinfo.
+    MOVE 'Application server'(211) TO ls_toolbar-quickinfo.
     MOVE SPACE TO ls_toolbar-disabled.
     APPEND ls_toolbar TO et_button.
 

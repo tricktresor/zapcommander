@@ -85,7 +85,7 @@ method CONSTRUCTOR.
       separator = '/'.
     endif.
 
-    AREA_STRING = 'RFC-Verb.'(001).
+    AREA_STRING = 'RFC-conn.'(001).
 
 endmethod.
 
@@ -260,8 +260,8 @@ method GET_TOOLBAR.
       MOVE 0 TO ls_toolbar-butn_type.
       MOVE co_drives TO ls_toolbar-function.
       MOVE ICON_SYSTEM_SAVE TO ls_toolbar-icon.
-      MOVE 'Laufwerke'(232) to ls_toolbar-text.
-      MOVE 'Laufwerke'(232) TO ls_toolbar-quickinfo.
+      MOVE 'Drives'(232) to ls_toolbar-text.
+      MOVE 'Drives'(232) TO ls_toolbar-quickinfo.
       MOVE SPACE TO ls_toolbar-disabled.
       APPEND ls_toolbar TO pt_toolbar.
     endif.
