@@ -114,10 +114,25 @@ FORM status_0100.
 *    EXPORTING
 *      pf_container = gf_gui_parent_container.
 
+  " screens 0100 and 0110 both have the area CUST100; the container is
+  " created once and must be linked to the current screen after a switch
+  STATICS sv_container_dynnr TYPE sy-dynnr.
   IF go_gui_commander_container IS INITIAL.
     CREATE OBJECT go_gui_commander_container
       EXPORTING
         container_name = 'CUST100'.
+    sv_container_dynnr = sy-dynnr.
+  ELSEIF sv_container_dynnr <> sy-dynnr.
+    go_gui_commander_container->link(
+      EXPORTING
+        repid     = sy-repid
+        dynnr     = sy-dynnr
+        container = 'CUST100'
+      EXCEPTIONS
+        OTHERS    = 1 ).
+    IF sy-subrc = 0.
+      sv_container_dynnr = sy-dynnr.
+    ENDIF.
   ENDIF.
 
   go_commander->show( go_gui_commander_container ).
