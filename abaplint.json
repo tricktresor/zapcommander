@@ -189,6 +189,10 @@
     "check_text_elements": {
       "exclude": [],
       "severity": "Error"
+    },
+    "rfc_error_handling": {
+      "exclude": [],
+      "severity": "Error"
     }
   }
 }

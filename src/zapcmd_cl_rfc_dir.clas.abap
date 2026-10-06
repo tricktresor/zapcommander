@@ -71,7 +71,8 @@ method CONSTRUCTOR.
          EV_OPSYS       = l_opsys
       EXCEPTIONS
         SYSTEM_FAILURE = 1
-        COMMUNICATION_failure = 2.
+        COMMUNICATION_failure = 2
+        RESOURCE_FAILURE = 3.
     if sy-subrc <> 0.
       raise not_installed.
     endif.
@@ -127,8 +128,9 @@ method CREATE_DIR.
         not_found             = 1
         system_failure        = 2 message l_message
         communication_failure = 3 message l_message
-        others                = 4.
-    if sy-subrc = 2 or sy-subrc = 3.
+        resource_failure      = 4 message l_message
+        others                = 5.
+    if sy-subrc between 2 and 4.
       clear pf_file.
       message l_message type 'S' display like 'E'.
     elseif sy-subrc <> 0.
@@ -211,9 +213,10 @@ method DELETE.
      NOT_FOUND          = 1
      system_failure        = 2 MESSAGE l_message
      communication_failure = 3 MESSAGE l_message
-     OTHERS             = 4
+     resource_failure      = 4 MESSAGE l_message
+     OTHERS             = 5
             .
-  if sy-subrc = 2 or sy-subrc = 3.
+  if sy-subrc between 2 and 4.
     MESSAGE l_message TYPE 'S' DISPLAY LIKE 'E'.
   elseif sy-subrc <> 0.
     MESSAGE 'OS command failed'(006) TYPE 'S' DISPLAY LIKE 'E'.
@@ -290,7 +293,8 @@ METHOD init.
         ev_fullname = lf_temp
       EXCEPTIONS
         SYSTEM_FAILURE = 1
-        COMMUNICATION_failure = 2.
+        COMMUNICATION_failure = 2
+        RESOURCE_FAILURE = 3.
     if sy-subrc <> 0.
     endif.
 
@@ -377,9 +381,10 @@ METHOD read_dir.
    NOT_FOUND       = 1
    SYSTEM_FAILURE        = 2 MESSAGE l_message
    COMMUNICATION_FAILURE = 3 MESSAGE l_message
-   OTHERS          = 4
+   RESOURCE_FAILURE      = 4 MESSAGE l_message
+   OTHERS          = 5
             .
-  IF sy-subrc = 2 OR sy-subrc = 3.
+  IF sy-subrc BETWEEN 2 AND 4.
     MESSAGE l_message TYPE 'S' DISPLAY LIKE 'E'.
     RETURN.
   ELSEIF sy-subrc <> 0.
@@ -461,7 +466,8 @@ method READ_DRIVES.
          EV_REACHABLE       = l_reachable
        EXCEPTIONS
          system_failure        = 1 MESSAGE l_message
-         communication_failure = 2 MESSAGE l_message.
+         communication_failure = 2 MESSAGE l_message
+         resource_failure      = 3 MESSAGE l_message.
       if sy-subrc <> 0.
         message l_message type 'S' display like 'E'.
         exit.
@@ -523,7 +529,8 @@ METHOD execute_command.
       not_found             = 1
       system_failure        = 2 MESSAGE l_message
       communication_failure = 3 MESSAGE l_message
-      OTHERS                = 4.
+      resource_failure      = 4 MESSAGE l_message
+      OTHERS                = 5.
   ev_return_code = sy-subrc.
   CASE ev_return_code.
     WHEN 0.
@@ -531,7 +538,7 @@ METHOD execute_command.
         l_line = ls_output-text.
         APPEND l_line TO et_output.
       ENDLOOP.
-    WHEN 2 OR 3.
+    WHEN 2 OR 3 OR 4.
       l_line = l_message.
       APPEND l_line TO et_output.
     WHEN OTHERS.

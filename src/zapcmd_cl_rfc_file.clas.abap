@@ -57,7 +57,8 @@ method CONSTRUCTOR.
          EV_OPSYS       = l_opsys
       EXCEPTIONS
         SYSTEM_FAILURE = 1
-        COMMUNICATION_failure = 2.
+        COMMUNICATION_failure = 2
+        RESOURCE_FAILURE = 3.
     if sy-subrc <> 0.
       raise not_installed.
     endif.
@@ -87,9 +88,10 @@ method DELETE.
      NOT_FOUND             = 1
      system_failure        = 2 MESSAGE l_message
      communication_failure = 3 MESSAGE l_message
-     OTHERS                = 4
+     resource_failure      = 4 MESSAGE l_message
+     OTHERS                = 5
             .
-  IF sy-subrc = 2 OR sy-subrc = 3.
+  IF sy-subrc BETWEEN 2 AND 4.
     MESSAGE l_message TYPE 'S' DISPLAY LIKE 'E'.
   ELSEIF sy-subrc <> 0.
     MESSAGE 'File could not be deleted'(007) TYPE 'S' DISPLAY LIKE 'E'.
@@ -162,6 +164,7 @@ ENDMETHOD.
 method READ_BIN.
 
     data lt_file type TABLE OF ZAPCMD_DATA_BUFFER.
+    data l_message type c length 255.
 
     data l_full_name type text255.
     l_full_name = full_name.
@@ -174,12 +177,17 @@ method READ_BIN.
       tables
         et_file            = lt_file
      EXCEPTIONS
-       NOT_FOUND          = 1
-       OTHERS             = 2
+       NOT_FOUND             = 1
+       system_failure        = 2 MESSAGE l_message
+       communication_failure = 3 MESSAGE l_message
+       resource_failure      = 4 MESSAGE l_message
+       OTHERS                = 5
               .
-    IF sy-subrc <> 0.
-      MESSAGE ID SY-MSGID TYPE 'I' NUMBER SY-MSGNO
-         WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
+    IF sy-subrc BETWEEN 2 AND 4.
+      MESSAGE l_message TYPE 'I' DISPLAY LIKE 'E'.
+      raise failed.
+    ELSEIF sy-subrc <> 0.
+      MESSAGE 'File could not be read'(008) TYPE 'I' DISPLAY LIKE 'E'.
       raise failed.
     ENDIF.
 
@@ -192,6 +200,7 @@ endmethod.
 method READ_TEXT.
 
     data lt_file type table of ZAPCMD_DATA_BUFFER.
+    data l_message type c length 255.
     data l_full_name type text255.
     l_full_name = full_name.
     CALL FUNCTION 'ZAPCMD_READ_TEXTFILE'
@@ -203,13 +212,18 @@ method READ_TEXT.
       tables
         et_file            = lt_file
      EXCEPTIONS
-       NOT_FOUND          = 1
-       OTHERS             = 2
+       NOT_FOUND             = 1
+       system_failure        = 2 MESSAGE l_message
+       communication_failure = 3 MESSAGE l_message
+       resource_failure      = 4 MESSAGE l_message
+       OTHERS                = 5
               .
-    IF sy-subrc <> 0.
-       MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
-         WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
-       return.
+    IF sy-subrc BETWEEN 2 AND 4.
+      MESSAGE l_message TYPE 'I' DISPLAY LIKE 'E'.
+      return.
+    ELSEIF sy-subrc <> 0.
+      MESSAGE 'File could not be read'(008) TYPE 'I' DISPLAY LIKE 'E'.
+      return.
     ENDIF.
 
     import text = pt_file from INTERNAL TABLE lt_file.
@@ -262,12 +276,13 @@ endif.
     NOT_FOUND          = 1
     system_failure        = 2 MESSAGE l_message
     communication_failure = 3 MESSAGE l_message
-    OTHERS             = 4
+    resource_failure      = 4 MESSAGE l_message
+    OTHERS             = 5
            .
  lf_subrc = sy-subrc.
  if lf_subrc <> 0.
    super->rename( pf_newname = lf_oldname ).
-   if lf_subrc = 2 or lf_subrc = 3.
+   if lf_subrc between 2 and 4.
      MESSAGE l_message TYPE 'S' DISPLAY LIKE 'E'.
    else.
      MESSAGE 'OS command failed'(006) TYPE 'S' DISPLAY LIKE 'E'.
@@ -281,6 +296,7 @@ endmethod.
 METHOD write_bin.
 
   DATA lt_file TYPE TABLE OF zapcmd_data_buffer.
+  DATA l_message TYPE c LENGTH 255.
 
   EXPORT bin = pt_file TO INTERNAL TABLE lt_file[].
 
@@ -293,11 +309,16 @@ METHOD write_bin.
     TABLES
       it_file      = lt_file
     EXCEPTIONS
-      not_found    = 1
-      OTHERS       = 2.
-  IF sy-subrc <> 0.
-    MESSAGE ID sy-msgid TYPE 'I' NUMBER sy-msgno
-            WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+      not_found             = 1
+      system_failure        = 2 MESSAGE l_message
+      communication_failure = 3 MESSAGE l_message
+      resource_failure      = 4 MESSAGE l_message
+      OTHERS                = 5.
+  IF sy-subrc BETWEEN 2 AND 4.
+    MESSAGE l_message TYPE 'I' DISPLAY LIKE 'E'.
+    RAISE failed.
+  ELSEIF sy-subrc <> 0.
+    MESSAGE 'File could not be written'(009) TYPE 'I' DISPLAY LIKE 'E'.
     RAISE failed.
   ENDIF.
 
@@ -308,6 +329,7 @@ ENDMETHOD.
 METHOD write_text.
 
   DATA lt_file TYPE TABLE OF zapcmd_data_buffer.
+  DATA l_message TYPE c LENGTH 255.
 
   EXPORT text = pt_file TO INTERNAL TABLE lt_file[].
 
@@ -318,11 +340,15 @@ METHOD write_text.
     TABLES
       it_file      = lt_file
     EXCEPTIONS
-      not_found    = 1
-      OTHERS       = 2.
-  IF sy-subrc <> 0.
-    MESSAGE ID sy-msgid TYPE sy-msgty NUMBER sy-msgno
-            WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
+      not_found             = 1
+      system_failure        = 2 MESSAGE l_message
+      communication_failure = 3 MESSAGE l_message
+      resource_failure      = 4 MESSAGE l_message
+      OTHERS                = 5.
+  IF sy-subrc BETWEEN 2 AND 4.
+    MESSAGE l_message TYPE 'I' DISPLAY LIKE 'E'.
+  ELSEIF sy-subrc <> 0.
+    MESSAGE 'File could not be written'(009) TYPE 'I' DISPLAY LIKE 'E'.
   ENDIF.
 
 ENDMETHOD.
