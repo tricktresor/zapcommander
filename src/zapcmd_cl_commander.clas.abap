@@ -40,6 +40,11 @@ CLASS zapcmd_cl_commander DEFINITION
 *"* private components of class ZAPCMD_CL_COMMANDER
 *"* do not include other source files here!!!
 
+    "! GUI focus at the previous PAI; only a change of the focus activates
+    "! a list, so that a switch with F9 is not undone when the GUI keeps
+    "! the focus on the old list
+    DATA cf_last_focus TYPE REF TO cl_gui_control.
+
     "! Stores both panes' directories for the next start
     METHODS save_last_dirs.
     "! Only frontend and application server can be restored; for other
@@ -142,9 +147,12 @@ CLASS ZAPCMD_CL_COMMANDER IMPLEMENTATION.
         cntl_error        = 1
         cntl_system_error = 2
         OTHERS            = 3 ).
-    IF sy-subrc = 0.
-      cf_filesleft->check_active( lf_gui_comp ).
-      cf_filesright->check_active( lf_gui_comp ).
+    IF sy-subrc = 0 AND lf_gui_comp IS BOUND.
+      IF lf_gui_comp <> cf_last_focus.
+        cf_filesleft->check_active( lf_gui_comp ).
+        cf_filesright->check_active( lf_gui_comp ).
+      ENDIF.
+      cf_last_focus = lf_gui_comp.
     ENDIF.
 
     IF cf_filesleft->cf_active = 'X'.
