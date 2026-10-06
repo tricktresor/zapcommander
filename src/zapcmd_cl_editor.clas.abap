@@ -278,7 +278,8 @@ CLASS ZAPCMD_CL_EDITOR IMPLEMENTATION.
               IMPORTING
                 status                 = lf_is_modified ).
           ENDIF.
-
+          " the status is only transferred from the frontend with the flush
+          cl_gui_cfw=>flush( ).
 
           IF lf_is_modified <> 0.
             CALL FUNCTION 'POPUP_TO_CONFIRM'
