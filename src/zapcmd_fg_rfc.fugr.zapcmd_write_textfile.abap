@@ -15,7 +15,6 @@ FUNCTION ZAPCMD_WRITE_TEXTFILE.
   import text = lt_file from INTERNAL TABLE it_file[].
 
     data lf_string like line of lt_file.
-    data lf_subrc type sysubrc.
     data lf_mess(100) type c.
 *** Datei oeffen ***
     open dataset iv_full_name for output in text mode encoding default

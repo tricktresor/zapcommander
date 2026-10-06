@@ -320,7 +320,7 @@ endif.
         pf_return_code = lv_return_code.
  if lv_return_code <> 0.
    super->rename( pf_newname = lf_oldname ).
-   read table lt_output index 1 into lv_output.
+   read table lt_output index 1 into lv_output ##SUBRC_OK.
    message lv_output type 'S' display like 'E'.
  endif.
 

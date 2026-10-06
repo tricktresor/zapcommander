@@ -227,7 +227,7 @@ CLASS ZAPCMD_CL_COMMANDER IMPLEMENTATION.
           EXPORTING
             fieldname           = 'FILEEXTERN'
             tabname             = 'FILENAME'
-            titel               = 'Neues Verzeichnis anlegen:'(005)
+            titel               = 'Create new directory:'(005)
             valuein             = ''
           IMPORTING
             answer              = lf_answer

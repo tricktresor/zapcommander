@@ -94,7 +94,7 @@ CLASS zapcmd_cl_server_dir IMPLEMENTATION.
         pf_return_code  = lv_return_code ).
     IF lv_return_code <> 0.
       CLEAR pf_file.
-      READ TABLE lt_output INDEX 1 INTO lv_output.
+      READ TABLE lt_output INDEX 1 INTO lv_output ##SUBRC_OK.
       MESSAGE lv_output TYPE 'S' DISPLAY LIKE 'E'.
     ENDIF.
 
@@ -132,14 +132,14 @@ CLASS zapcmd_cl_server_dir IMPLEMENTATION.
         DATA value TYPE sval.
         value-tabname = 'PATH'.
         value-fieldname = 'PATHINTERN'.
-        value-fieldtext = 'Logischer Pfad'(012).
+        value-fieldtext = 'logical Path'(012).
         APPEND value TO values.
 
 
         DATA l_subrc TYPE char1.
         CALL FUNCTION 'POPUP_GET_VALUES'
           EXPORTING
-            popup_title     = 'logischer Pfad'(013)
+            popup_title     = 'logical Path'(013)
           IMPORTING
             returncode      = l_subrc
           TABLES
@@ -157,13 +157,9 @@ CLASS zapcmd_cl_server_dir IMPLEMENTATION.
 
         DATA l_path TYPE filepath-pathintern.
         l_path = value-value.
+        DATA lf_dir TYPE string.
+        CREATE OBJECT eo_dir TYPE zapcmd_cl_server_dir.
         IF l_path IS NOT INITIAL.
-
-          CREATE OBJECT eo_dir
-            TYPE
-            zapcmd_cl_server_dir.
-
-          DATA lf_dir TYPE string.
 
           CALL FUNCTION 'FILE_GET_NAME_USING_PATH'
             EXPORTING
@@ -186,13 +182,10 @@ CLASS zapcmd_cl_server_dir IMPLEMENTATION.
           IF sy-subrc = 0.
             lf_dir = lf_dir(l_offset).
           ENDIF.
-
-          eo_dir->init( pf_full_name = lf_dir ).
         ELSE.
-          CREATE OBJECT eo_dir TYPE zapcmd_cl_server_dir.
           lf_dir = eo_dir->co_logicaldir.
-          eo_dir->init( pf_full_name = lf_dir ).
         ENDIF.
+        eo_dir->init( pf_full_name = lf_dir ).
 
     ENDCASE.
 
@@ -212,7 +205,7 @@ CLASS zapcmd_cl_server_dir IMPLEMENTATION.
         ptx_output     = lt_output
         pf_return_code = lv_return_code ).
     IF lv_return_code <> 0.
-      READ TABLE lt_output INDEX 1 INTO lv_output.
+      READ TABLE lt_output INDEX 1 INTO lv_output ##SUBRC_OK.
       MESSAGE lv_output TYPE 'S' DISPLAY LIKE 'E'.
     ENDIF.
 
@@ -233,7 +226,7 @@ CLASS zapcmd_cl_server_dir IMPLEMENTATION.
         free_space            = lf_freespace
       EXCEPTIONS
         cant_find_destination = 1
-        cant_get_destinations = 1
+        cant_get_destinations = 2
         OTHERS                = 4.
     IF sy-subrc <> 0.
       lf_freespace = 0.
@@ -253,7 +246,7 @@ CLASS zapcmd_cl_server_dir IMPLEMENTATION.
     MOVE co_server TO ls_toolbar-function.
     MOVE icon_sym_alt_server TO ls_toolbar-icon.
     MOVE 'Server'(234) TO ls_toolbar-text.
-    MOVE 'Liste verbundener Server'(235) TO ls_toolbar-quickinfo.
+    MOVE 'List of connected servers'(235) TO ls_toolbar-quickinfo.
     MOVE space TO ls_toolbar-disabled.
     APPEND ls_toolbar TO pt_toolbar.
 
@@ -262,7 +255,7 @@ CLASS zapcmd_cl_server_dir IMPLEMENTATION.
     MOVE co_al11 TO ls_toolbar-function.
     MOVE icon_open_linked_folder TO ls_toolbar-icon.
     MOVE 'AL11'(236) TO ls_toolbar-text.
-    MOVE 'Verzeichnisse aus der AL11'(237) TO ls_toolbar-quickinfo.
+    MOVE 'Directories from AL11'(237) TO ls_toolbar-quickinfo.
     MOVE space TO ls_toolbar-disabled.
     APPEND ls_toolbar TO pt_toolbar.
 
@@ -272,8 +265,8 @@ CLASS zapcmd_cl_server_dir IMPLEMENTATION.
       MOVE 0 TO ls_toolbar-butn_type.
       MOVE co_drives TO ls_toolbar-function.
       MOVE icon_system_save TO ls_toolbar-icon.
-      MOVE 'Laufwerke'(232) TO ls_toolbar-text.
-      MOVE 'Laufwerke'(232) TO ls_toolbar-quickinfo.
+      MOVE 'Drives'(232) TO ls_toolbar-text.
+      MOVE 'Drives'(232) TO ls_toolbar-quickinfo.
       MOVE space TO ls_toolbar-disabled.
       APPEND ls_toolbar TO pt_toolbar.
     ENDIF.
@@ -282,8 +275,8 @@ CLASS zapcmd_cl_server_dir IMPLEMENTATION.
     MOVE 0 TO ls_toolbar-butn_type.
     MOVE co_logicalfile TO ls_toolbar-function.
     MOVE icon_public_files TO ls_toolbar-icon.
-    MOVE 'log. Datei'(003) TO ls_toolbar-text.
-    MOVE 'logische Pfade und Dateien'(004) TO ls_toolbar-quickinfo.
+    MOVE 'log. file'(003) TO ls_toolbar-text.
+    MOVE 'logical paths and files'(004) TO ls_toolbar-quickinfo.
     MOVE space TO ls_toolbar-disabled.
     APPEND ls_toolbar TO pt_toolbar.
 
@@ -868,7 +861,7 @@ CLASS zapcmd_cl_server_dir IMPLEMENTATION.
         pf_return_code = lv_return_code ).
     IF lv_return_code <> 0.
       super->rename( pf_newname = lf_oldname ).
-      READ TABLE lt_output INDEX 1 INTO lv_output.
+      READ TABLE lt_output INDEX 1 INTO lv_output ##SUBRC_OK.
       MESSAGE lv_output TYPE 'S' DISPLAY LIKE 'E'.
     ENDIF.
   ENDMETHOD.

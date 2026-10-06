@@ -220,7 +220,7 @@ method RENAME.
 *    PF_NEWNAME = PF_NEWNAME
 *    .
 
-message 'Noch nicht implementiert'(001) type 'I'.
+message 'Not yet implemented.'(001) type 'I'.
 
 endmethod.
 

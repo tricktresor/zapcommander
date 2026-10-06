@@ -156,6 +156,58 @@
     "colon_missing_space": {
       "exclude": [],
       "severity": "Error"
+    },
+    "unused_variables": {
+      "exclude": [
+        "zapcmd_fg_rfc\\.fugr\\.zapcmd_delete_file\\.abap$"
+      ],
+      "severity": "Error",
+      "skipNames": [],
+      "skipAbstract": false
+    },
+    "unused_types": {
+      "exclude": [],
+      "severity": "Error",
+      "skipNames": []
+    },
+    "unused_methods": {
+      "exclude": [],
+      "severity": "Error"
+    },
+    "empty_statement": {
+      "exclude": [],
+      "severity": "Error"
+    },
+    "identical_contents": {
+      "exclude": [],
+      "severity": "Error"
+    },
+    "classic_exceptions_overlap": {
+      "exclude": [],
+      "severity": "Error"
+    },
+    "check_text_elements": {
+      "exclude": [],
+      "severity": "Error"
+    },
+    "rfc_error_handling": {
+      "exclude": [],
+      "severity": "Error"
+    },
+    "check_subrc": {
+      "exclude": [],
+      "severity": "Error",
+      "openDataset": true,
+      "authorityCheck": true,
+      "selectSingle": true,
+      "selectTable": false,
+      "updateDatabase": true,
+      "insertDatabase": true,
+      "modifyDatabase": true,
+      "deleteDatabase": true,
+      "readTable": true,
+      "assign": true,
+      "find": true
     }
   }
 }

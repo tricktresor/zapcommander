@@ -46,7 +46,7 @@ CLASS ZAPCMD_CL_FRONTEND_FACTORY IMPLEMENTATION.
     MOVE gc_fcode-frontend TO ls_toolbar-function.
     MOVE icon_workplace TO ls_toolbar-icon.
     MOVE 'Frontend'(220) TO ls_toolbar-text.
-    MOVE 'Präsentationsserver'(221) TO ls_toolbar-quickinfo.
+    MOVE 'presentation server'(221) TO ls_toolbar-quickinfo.
     MOVE space TO ls_toolbar-disabled.
     APPEND ls_toolbar TO et_button.
 

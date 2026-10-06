@@ -18,6 +18,24 @@
      <ENTRY>OS command failed</ENTRY>
      <LENGTH>40</LENGTH>
     </item>
+    <item>
+     <ID>I</ID>
+     <KEY>007</KEY>
+     <ENTRY>File could not be deleted</ENTRY>
+     <LENGTH>40</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
+     <KEY>008</KEY>
+     <ENTRY>File could not be read</ENTRY>
+     <LENGTH>40</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
+     <KEY>009</KEY>
+     <ENTRY>File could not be written</ENTRY>
+     <LENGTH>40</LENGTH>
+    </item>
    </TPOOL>
    <I18N_TPOOL>
     <item>
@@ -29,6 +47,24 @@
        <ENTRY>Betriebssystembefehl fehlgeschlagen</ENTRY>
        <LENGTH>40</LENGTH>
       </item>
+      <item>
+       <ID>I</ID>
+       <KEY>007</KEY>
+       <ENTRY>Datei konnte nicht gelöscht werden</ENTRY>
+       <LENGTH>40</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>008</KEY>
+       <ENTRY>Datei konnte nicht gelesen werden</ENTRY>
+       <LENGTH>40</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>009</KEY>
+       <ENTRY>Datei konnte nicht geschrieben werden</ENTRY>
+       <LENGTH>40</LENGTH>
+      </item>
      </TEXTPOOL>
     </item>
     <item>
@@ -38,6 +74,24 @@
        <ID>I</ID>
        <KEY>006</KEY>
        <ENTRY>Error en comando del sistema</ENTRY>
+       <LENGTH>40</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>007</KEY>
+       <ENTRY>No se pudo eliminar el archivo</ENTRY>
+       <LENGTH>40</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>008</KEY>
+       <ENTRY>No se pudo leer el archivo</ENTRY>
+       <LENGTH>40</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>009</KEY>
+       <ENTRY>No se pudo escribir el archivo</ENTRY>
        <LENGTH>40</LENGTH>
       </item>
      </TEXTPOOL>

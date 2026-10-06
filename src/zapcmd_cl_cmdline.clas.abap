@@ -116,8 +116,6 @@ CLASS ZAPCMD_CL_CMDLINE IMPLEMENTATION.
 
         DATA lf_line TYPE string.
 
-        DATA ls_filedescr TYPE zapcmd_file_descr.
-*      ls_filedescr = pf_filelist->cf_ref_dir->get_info( ).
         lf_line = ls_dir->full_name.
         CONCATENATE lf_line '>' pf_cmdline INTO lf_line.
         APPEND lf_line TO ct_line.

@@ -39,7 +39,7 @@ protected section.
 
   methods GET_RFCDEST final
     returning
-      value(RESULT) type RFCDEST.
+      value(RESULT) type RFCDEST ##CALLED.
 
   methods READ_DRIVES
     exporting
@@ -71,8 +71,8 @@ method CONSTRUCTOR.
          EV_OPSYS       = l_opsys
       EXCEPTIONS
         SYSTEM_FAILURE = 1
-        COMMUNICATION_failure = 2.
-      .
+        COMMUNICATION_failure = 2
+        RESOURCE_FAILURE = 3.
     if sy-subrc <> 0.
       raise not_installed.
     endif.
@@ -86,7 +86,7 @@ method CONSTRUCTOR.
       separator = '/'.
     endif.
 
-    AREA_STRING = 'RFC-Verb.'(001).
+    AREA_STRING = 'RFC-conn.'(001).
 
 endmethod.
 
@@ -128,8 +128,9 @@ method CREATE_DIR.
         not_found             = 1
         system_failure        = 2 message l_message
         communication_failure = 3 message l_message
-        others                = 4.
-    if sy-subrc = 2 or sy-subrc = 3.
+        resource_failure      = 4
+        others                = 5.
+    if sy-subrc between 2 and 3.
       clear pf_file.
       message l_message type 'S' display like 'E'.
     elseif sy-subrc <> 0.
@@ -212,9 +213,10 @@ method DELETE.
      NOT_FOUND          = 1
      system_failure        = 2 MESSAGE l_message
      communication_failure = 3 MESSAGE l_message
-     OTHERS             = 4
+     resource_failure      = 4
+     OTHERS             = 5
             .
-  if sy-subrc = 2 or sy-subrc = 3.
+  if sy-subrc between 2 and 3.
     MESSAGE l_message TYPE 'S' DISPLAY LIKE 'E'.
   elseif sy-subrc <> 0.
     MESSAGE 'OS command failed'(006) TYPE 'S' DISPLAY LIKE 'E'.
@@ -240,7 +242,7 @@ method GET_FREESPACE.
         free_space = lf_freespace
      EXCEPTIONS
        cant_find_destination    = 1
-       cant_get_destinations    = 1
+       cant_get_destinations    = 2
        OTHERS                   = 4.
     if sy-subrc <> 0.
       lf_freespace = 0.
@@ -261,8 +263,8 @@ method GET_TOOLBAR.
       MOVE 0 TO ls_toolbar-butn_type.
       MOVE co_drives TO ls_toolbar-function.
       MOVE ICON_SYSTEM_SAVE TO ls_toolbar-icon.
-      MOVE 'Laufwerke'(232) to ls_toolbar-text.
-      MOVE 'Laufwerke'(232) TO ls_toolbar-quickinfo.
+      MOVE 'Drives'(232) to ls_toolbar-text.
+      MOVE 'Drives'(232) TO ls_toolbar-quickinfo.
       MOVE SPACE TO ls_toolbar-disabled.
       APPEND ls_toolbar TO pt_toolbar.
     endif.
@@ -291,8 +293,8 @@ METHOD init.
         ev_fullname = lf_temp
       EXCEPTIONS
         SYSTEM_FAILURE = 1
-        COMMUNICATION_failure = 2.
-      .
+        COMMUNICATION_failure = 2
+        RESOURCE_FAILURE = 3.
     if sy-subrc <> 0.
     endif.
 
@@ -333,7 +335,6 @@ METHOD read_dir.
   lf_dir = full_name.
 
 
-  DATA lf_server TYPE string.
   DATA lf_strlen TYPE i.
   lf_strlen = STRLEN( full_name ).
 
@@ -380,10 +381,14 @@ METHOD read_dir.
    NOT_FOUND       = 1
    SYSTEM_FAILURE        = 2 MESSAGE l_message
    COMMUNICATION_FAILURE = 3 MESSAGE l_message
-   OTHERS          = 4
+   RESOURCE_FAILURE      = 4
+   OTHERS          = 5
             .
-  IF sy-subrc = 2 OR sy-subrc = 3.
+  IF sy-subrc BETWEEN 2 AND 3.
     MESSAGE l_message TYPE 'S' DISPLAY LIKE 'E'.
+    RETURN.
+  ELSEIF sy-subrc = 4.
+    MESSAGE 'RFC-Destination not reachable'(005) TYPE 'S' DISPLAY LIKE 'E'.
     RETURN.
   ELSEIF sy-subrc <> 0.
     MESSAGE ID SY-MSGID TYPE 'I' NUMBER SY-MSGNO display like SY-MSGTY
@@ -443,7 +448,6 @@ method READ_DRIVES.
     data lf_index type i value 0.
     data lf_drive type string.
     data lf_name type string.
-    data lf_drivetype type string.
 
     data lf_ref_file type ref to Zapcmd_CL_KNOT.
 
@@ -465,9 +469,14 @@ method READ_DRIVES.
          EV_REACHABLE       = l_reachable
        EXCEPTIONS
          system_failure        = 1 MESSAGE l_message
-         communication_failure = 2 MESSAGE l_message.
+         communication_failure = 2 MESSAGE l_message
+         resource_failure      = 3.
       if sy-subrc <> 0.
-        message l_message type 'S' display like 'E'.
+        if l_message is initial.
+          message 'RFC-Destination not reachable'(005) type 'S' display like 'E'.
+        else.
+          message l_message type 'S' display like 'E'.
+        endif.
         exit.
       endif.
 
@@ -527,7 +536,8 @@ METHOD execute_command.
       not_found             = 1
       system_failure        = 2 MESSAGE l_message
       communication_failure = 3 MESSAGE l_message
-      OTHERS                = 4.
+      resource_failure      = 4
+      OTHERS                = 5.
   ev_return_code = sy-subrc.
   CASE ev_return_code.
     WHEN 0.

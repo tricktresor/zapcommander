@@ -91,7 +91,6 @@ CLASS zapcmd_cl_filelist DEFINITION
     DATA cf_gui_alv TYPE REF TO cl_gui_alv_grid .
     DATA ct_files TYPE zapcmd_tbl_filelist .
     DATA ct_fileinfo TYPE zapcmd_tbl_file_info .
-    DATA temp_non_sort LIKE ct_fileinfo.
     DATA ct_undo TYPE TABLE OF REF TO zapcmd_cl_dir .
     DATA gv_side TYPE string.
     DATA gt_fcode_factory TYPE zapcmd_tbl_fcode_factory .
@@ -309,8 +308,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 
       IF pf_destdir->check_fileexist( lf_sourcefile->name ) = abap_true.
 
-        CONCATENATE '"' lf_sourcefile->name '"' ' existiert'(006) '. ' 'Überschreiben'(007) '?' INTO
-          lf_string.
+        lf_string = |"{ lf_sourcefile->name }" { 'exists'(006) }. { 'Overwrite'(007) }?|.
         confirm(
           EXPORTING
             pf_title     = lf_sourcefile->full_name
@@ -443,7 +441,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 
       IF io_destdir->check_fileexist( lo_file->name ) = abap_true.
 
-        lv_string = |"{ lo_file->name }" { 'exists'(006) } { 'Overwrite'(007) }?|.
+        lv_string = |"{ lo_file->name }" { 'exists'(006) }. { 'Overwrite'(007) }?|.
         confirm(
           EXPORTING
             pf_title     = lo_file->full_name
@@ -506,7 +504,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
         CONTINUE.
       ENDIF.
 
-      CONCATENATE '"' lf_file->name '"' ' löschen?'(010) INTO lf_string.
+      CONCATENATE '"' lf_file->name '"' ' delete?'(010) INTO lf_string.
       CLEAR lf_info.
       IF lf_file->filetype = 'DIR'.
         lf_info = 'Directory including its contents'(022).
@@ -562,14 +560,14 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
     DATA lf_returncode TYPE c LENGTH 1.
     value-tabname = 'ZAPCMD_FILE_DESCR'.
     value-fieldname = 'FULL_NAME'.
-    value-fieldtext = 'Pfad:'(002).
+    value-fieldtext = 'Path:'(002).
     APPEND value TO values.
 
 
     CALL FUNCTION 'POPUP_GET_VALUES'
       EXPORTING
 *       NO_VALUE_CHECK        = ' '
-        popup_title = 'Direkte Pfadeingabe'(202)
+        popup_title = 'jump directly to path'(202)
 *       START_COLUMN          = '5'
 *       START_ROW   = '5'
       IMPORTING
@@ -583,7 +581,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
       RETURN.
     ENDIF.
 
-    READ TABLE values INTO value INDEX 1.
+    READ TABLE values INTO value INDEX 1 ##SUBRC_OK.
 
     DATA lf_rootdir TYPE string.
     lf_rootdir = value-value.
@@ -615,13 +613,6 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 
     DATA lt_imp       TYPE TABLE OF seoclsname.
     DATA li_user_exit TYPE REF TO zapcmd_if_user_exit.
-
-    DATA: BEGIN OF ls_para_tab,
-            name      TYPE abap_parmname,
-            tabname   TYPE tabname,
-            fieldname TYPE fieldname,
-          END OF ls_para_tab.
-    DATA lt_para_tab LIKE TABLE OF ls_para_tab.
 
     " active versions only: creating an inactive class with syntax
     " errors would end in an uncatchable runtime error
@@ -739,8 +730,9 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
       DATA ls_fileinfo TYPE zapcmd_file_descr.
       DATA lf_file TYPE REF TO zapcmd_cl_knot.
       READ TABLE ct_fileinfo INDEX ls_row-index INTO ls_fileinfo.
-
+      CHECK sy-subrc = 0.
       READ TABLE ct_files INDEX ls_fileinfo-indx INTO lf_file.
+      CHECK sy-subrc = 0.
       APPEND lf_file TO ptx_files.
 
     ENDLOOP.
@@ -859,7 +851,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
         CALL FUNCTION 'POPUP_GET_VALUES'
           EXPORTING
 *           NO_VALUE_CHECK        = ' '
-            popup_title = 'Werteingabe'(018)
+            popup_title = 'Insert value'(018)
 *           START_COLUMN          = '5'
 *           START_ROW   = '5'
 *       IMPORTING
@@ -957,7 +949,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 
     e_object->add_function(
         fcode       = zapcmd_cl_dir=>co_rename
-        text        = 'Umbenennen'(231)
+        text        = 'Rename'(231)
         icon        = icon_rename
 *      FTYPE       = FTYPE
 *      DISABLED    = DISABLED
@@ -968,7 +960,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 
     e_object->add_function(
        fcode       = zapcmd_cl_dir=>co_delete
-       text        = 'Löschen'(011)
+       text        = 'Delete'(011)
        icon        = icon_delete
 *      FTYPE       = FTYPE
 *      DISABLED    = DISABLED
@@ -997,9 +989,15 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
     DATA lf_file TYPE REF TO zapcmd_cl_knot.
     DATA ls_fileinto TYPE zapcmd_file_descr.
     DATA ls_fileinfo TYPE zapcmd_file_descr.
+    " e.g. a double-click on a row that no longer exists
     READ TABLE ct_fileinfo INDEX e_row-index INTO ls_fileinfo.
-
+    IF sy-subrc <> 0.
+      RETURN.
+    ENDIF.
     READ TABLE ct_files INDEX ls_fileinfo-indx INTO lf_file.
+    IF sy-subrc <> 0.
+      RETURN.
+    ENDIF.
 
     IF lf_file->is_dir = abap_true.
       IF cf_ref_dir IS BOUND.
@@ -1067,7 +1065,9 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
       LOOP AT lt_selected_rows INTO ls_row.
 
         READ TABLE ct_fileinfo INDEX ls_row-index INTO ls_fileinfo.
+        CHECK sy-subrc = 0.
         READ TABLE ct_files INDEX ls_fileinfo-indx INTO lo_knot.
+        CHECK sy-subrc = 0.
 
         lo_list->add( lo_knot ).
 
@@ -1076,9 +1076,12 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
     ELSE.
 
       READ TABLE ct_fileinfo INDEX is_row-index INTO ls_fileinfo.
-      READ TABLE ct_files INDEX ls_fileinfo-indx INTO lo_knot.
-
-      lo_list->add( lo_knot ).
+      IF sy-subrc = 0.
+        READ TABLE ct_files INDEX ls_fileinfo-indx INTO lo_knot.
+        IF sy-subrc = 0.
+          lo_list->add( lo_knot ).
+        ENDIF.
+      ENDIF.
 
     ENDIF.
 
@@ -1112,8 +1115,15 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
         RETURN.
     ENDTRY.
 
+    " dropped on a file/directory row, or on the empty area of the list
+    CLEAR lo_knot.
     READ TABLE ct_fileinfo INDEX e_row-index INTO ls_fileinfo.
-    READ TABLE ct_files INDEX ls_fileinfo-indx INTO lo_knot.
+    IF sy-subrc = 0.
+      READ TABLE ct_files INDEX ls_fileinfo-indx INTO lo_knot.
+      IF sy-subrc <> 0.
+        CLEAR lo_knot.
+      ENDIF.
+    ENDIF.
 
     IF lo_knot IS BOUND.
 
@@ -1145,7 +1155,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 
         WHEN 1.
           DATA lo_ask_knot TYPE REF TO zapcmd_cl_knot.
-          READ TABLE lo_list->ct_list INDEX 1 INTO lo_ask_knot.
+          READ TABLE lo_list->ct_list INDEX 1 INTO lo_ask_knot ##SUBRC_OK.
           lv_file_ask = lo_ask_knot->name.
 
         WHEN OTHERS.
@@ -1266,7 +1276,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
       MOVE 0 TO ls_toolbar-butn_type.
       MOVE zapcmd_cl_dir=>co_edit_dir TO ls_toolbar-function.
       MOVE icon_fast_entry TO ls_toolbar-icon.
-      MOVE 'Direkte Pfadeingabe'(202) TO ls_toolbar-quickinfo.
+      MOVE 'jump directly to path'(202) TO ls_toolbar-quickinfo.
       MOVE space TO ls_toolbar-disabled.
       APPEND ls_toolbar TO lt_toolbar_uex.
 
@@ -1289,7 +1299,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 *    MOVE co_server TO ls_toolbar-function.
 *    MOVE ICON_SYM_ALT_SERVER TO ls_toolbar-icon.
 *    MOVE 'Server/Laufwerke'(230) to ls_toolbar-text.
-*    MOVE 'Server/Laufmerke'(231) TO ls_toolbar-quickinfo.
+*    MOVE 'Rename'(231) TO ls_toolbar-quickinfo.
 *    MOVE SPACE TO ls_toolbar-disabled.
 *    APPEND ls_toolbar TO e_object->mt_toolbar.
 *
@@ -1318,11 +1328,10 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
 
         CALL METHOD reload_dir.
         CALL METHOD refresh.
-        RETURN.
       ELSE.
-        MESSAGE 'Verzeichnis konnte nicht eingelesen werden.'(017) TYPE 'I' DISPLAY LIKE 'E'.
-        RETURN.
+        MESSAGE 'Directory could not be read.'(017) TYPE 'I' DISPLAY LIKE 'E'.
       ENDIF.
+      RETURN.
 
     ENDIF.
 
@@ -1364,7 +1373,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
           CALL FUNCTION 'POPUP_GET_VALUES'
             EXPORTING
 *             NO_VALUE_CHECK        = ' '
-              popup_title = 'Neuer Dateiname'(001)
+              popup_title = 'New File name'(001)
 *             START_COLUMN          = '5'
 *             START_ROW   = '5'
             IMPORTING
@@ -1378,7 +1387,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
             EXIT.
           ENDIF.
           DATA lf_newname TYPE zapcmd_filename.
-          READ TABLE lt_fields INDEX 1 INTO ls_field.
+          READ TABLE lt_fields INDEX 1 INTO ls_field ##SUBRC_OK.
           lf_newname = ls_field-value.
           IF lf_newname <> lf_file->name.
             lf_file->rename( lf_newname ).
@@ -1462,7 +1471,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
         EXPORTING
           titel = lf_repid
           txt2  = sy-subrc
-          txt1  = 'Error in FLush'(500).
+          txt1  = 'Error in GUI'(500).
     ENDIF.
 
     IF pf_activate = abap_true.
@@ -1540,7 +1549,6 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
       SET HANDLER handle_drag FOR cf_gui_alv.
       SET HANDLER handle_drop FOR cf_gui_alv.
 
-      DATA ls_fileinto TYPE zapcmd_file_descr.
 
 
 
@@ -1709,7 +1717,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
         EXPORTING
           titel = lf_repid
           txt2  = sy-subrc
-          txt1  = 'Error in FLush'(500).
+          txt1  = 'Error in GUI'(500).
     ENDIF.
 
   ENDMETHOD.
@@ -1723,7 +1731,7 @@ CLASS zapcmd_cl_filelist IMPLEMENTATION.
       RETURN.
     ELSE.
       READ TABLE ct_undo INDEX l_lines
-        INTO cf_ref_dir.
+        INTO cf_ref_dir ##SUBRC_OK.
       DELETE ct_undo INDEX l_lines.
       CALL METHOD reload_dir.
       CALL METHOD refresh.

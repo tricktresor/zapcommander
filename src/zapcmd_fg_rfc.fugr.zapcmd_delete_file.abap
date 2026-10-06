@@ -7,11 +7,15 @@ FUNCTION ZAPCMD_DELETE_FILE.
 *"      NOT_FOUND
 *"----------------------------------------------------------------------
 
-  delete dataset iv_full_name.
-    IF SY-SUBRC <> 0.
-      MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
-           WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4 RAISING not_found.
-    ENDIF.
+  " DELETE DATASET sets no SY-MSG* fields, so the caller shows its own text
+  TRY.
+      DELETE DATASET iv_full_name.
+      IF sy-subrc <> 0.
+        RAISE not_found.
+      ENDIF.
+    CATCH cx_sy_file_access_error.
+      RAISE not_found.
+  ENDTRY.
 
 
 

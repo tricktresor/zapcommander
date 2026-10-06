@@ -97,7 +97,7 @@ data: syn_err_mess(240),                       "Syntax-check
     data l_errortext type string.
     data l_line type string.
     l_line = syn_err_line.
-    concatenate 'Syntaxfehler in Zeile'(001) l_line ':"' syn_err_mess '"' into l_errortext.
+    concatenate 'Syntax error in line'(001) l_line ':"' syn_err_mess '"' into l_errortext.
 
 
     message l_errortext type 'I' DISPLAY LIKE 'E'.
