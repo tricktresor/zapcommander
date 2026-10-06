@@ -58,7 +58,7 @@ FUNCTION ZAPCMD_READ_DIR.
 
 
 
-    DATA: l_errcnt(2) TYPE p VALUE 0.
+    DATA l_errcnt TYPE i VALUE 0.
 
     g_file-rec_level = g_rec_level_120.
 
