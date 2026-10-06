@@ -115,25 +115,34 @@ CLASS zapcmd_cl_knot IMPLEMENTATION.
 
     DATA lf_size TYPE p DECIMALS 2.
     DATA lf_kmg(4) TYPE c.
+    " room for a thousands separator, e.g. "1,023.50"
+    DATA lf_temp(12) TYPE c.
 
     lf_size = pf_size.
     IF lf_size > 0.
       lf_kmg = 'B'.
     ENDIF.
-    IF lf_size > 1024.
+    IF lf_size >= 1024.
       lf_size = lf_size / 1024.
       lf_kmg = 'kB'.
     ENDIF.
-    IF lf_size > 1024.
+    IF lf_size >= 1024.
       lf_size = lf_size / 1024.
       lf_kmg = 'MB'.
     ENDIF.
-    IF lf_size > 1024.
+    IF lf_size >= 1024.
       lf_size = lf_size / 1024.
       lf_kmg = 'GB'.
     ENDIF.
-    DATA lf_temp(7) TYPE c.
-    WRITE lf_size TO lf_temp.
+    IF lf_size >= 1024.
+      lf_size = lf_size / 1024.
+      lf_kmg = 'TB'.
+    ENDIF.
+    IF lf_kmg = 'B'.
+      WRITE lf_size TO lf_temp DECIMALS 0.
+    ELSE.
+      WRITE lf_size TO lf_temp.
+    ENDIF.
     CONCATENATE lf_temp lf_kmg INTO pfx_sizestr SEPARATED BY space.
 
   ENDMETHOD.
