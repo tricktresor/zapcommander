@@ -33,6 +33,8 @@ public section.
     redefinition .
   methods EXECUTE_COMMAND
     redefinition .
+  methods GET_COMMAND_TARGET
+    redefinition .
 protected section.
 *"* protected components of class ZAPCMD_CL_RFC_DIR
 *"* do not include other source files here!!!
@@ -553,5 +555,13 @@ METHOD execute_command.
   ENDCASE.
 
 ENDMETHOD.
+
+
+METHOD get_command_target.
+
+  rv_target = |{ area_string } { rfcdest }|.
+
+ENDMETHOD.
+
 
 ENDCLASS.

@@ -64,6 +64,10 @@ CLASS zapcmd_cl_dir DEFINITION
         !i_fcode      TYPE syucomm OPTIONAL
       RETURNING
         VALUE(eo_dir) TYPE REF TO zapcmd_cl_dir .
+    "! Where OS commands for this directory run, e.g. "Appl. Server A4H"
+    METHODS get_command_target
+      RETURNING
+        VALUE(rv_target) TYPE string .
     "! Runs an OS command in this directory
     METHODS execute_command
       IMPORTING
@@ -255,5 +259,13 @@ CLASS ZAPCMD_CL_DIR IMPLEMENTATION.
     ev_return_code = 4.
 
   ENDMETHOD.
+
+
+  METHOD get_command_target.
+
+    rv_target = area_string.
+
+  ENDMETHOD.
+
 
 ENDCLASS.

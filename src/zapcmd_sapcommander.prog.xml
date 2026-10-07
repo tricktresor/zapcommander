@@ -439,6 +439,13 @@
       <ICON_ID>@2L@</ICON_ID>
       <FUN_TEXT>Save</FUN_TEXT>
      </RSMPE_FUNT>
+     <RSMPE_FUNT>
+      <CODE>SWITCH</CODE>
+      <TEXTNO>001</TEXTNO>
+      <TEXT_TYPE>S</TEXT_TYPE>
+      <FUN_TEXT>Switch pane</FUN_TEXT>
+      <INFO_TEXT>Make the other list active (F9)</INFO_TEXT>
+     </RSMPE_FUNT>
     </FUN>
     <BUT>
      <RSMPE_BUT>
@@ -458,6 +465,12 @@
       <CODE>0001</CODE>
       <NO>03</NO>
       <PFNO>29</PFNO>
+     </RSMPE_BUT>
+     <RSMPE_BUT>
+      <PFK_CODE>000001</PFK_CODE>
+      <CODE>0001</CODE>
+      <NO>04</NO>
+      <PFNO>09</PFNO>
      </RSMPE_BUT>
     </BUT>
     <PFK>
@@ -495,6 +508,12 @@
       <CODE>000001</CODE>
       <PFNO>08</PFNO>
       <FUNCODE>DEL</FUNCODE>
+      <FUNNO>001</FUNNO>
+     </RSMPE_PFK>
+     <RSMPE_PFK>
+      <CODE>000001</CODE>
+      <PFNO>09</PFNO>
+      <FUNCODE>SWITCH</FUNCODE>
       <FUNNO>001</FUNNO>
      </RSMPE_PFK>
      <RSMPE_PFK>
@@ -576,6 +595,10 @@
      <RSMPE_STAF>
       <STATUS>STATUS100</STATUS>
       <FUNCTION>NEWDIR</FUNCTION>
+     </RSMPE_STAF>
+     <RSMPE_STAF>
+      <STATUS>STATUS100</STATUS>
+      <FUNCTION>SWITCH</FUNCTION>
      </RSMPE_STAF>
     </SET>
     <DOC>
